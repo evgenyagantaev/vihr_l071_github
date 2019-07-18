@@ -1,0 +1,6 @@
+load
+b stm32l0xx_it.c:111
+#b ring_buffer_object.c:54
+#b main.c:204
+#b main.c if ring_buffer_write_index == 3648
+

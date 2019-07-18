@@ -1,0 +1,69 @@
+Configuration	l051_tors_000_002
+STM32CubeMX 	4.26.1
+Date	03/01/2019
+MCU	STM32L051C6Tx
+
+
+
+PERIPHERALS	MODES	FUNCTIONS	PINS
+SPI1	Full-Duplex Master	SPI1_MISO	PA6
+SPI1	Full-Duplex Master	SPI1_MOSI	PA7
+SPI1	Full-Duplex Master	SPI1_SCK	PA5
+SPI2	Full-Duplex Slave	SPI2_MISO	PB14
+SPI2	Full-Duplex Slave	SPI2_MOSI	PB15
+SPI2	Full-Duplex Slave	SPI2_SCK	PB13
+SPI2	Hardware NSS Input Signal	SPI2_NSS	PB12
+SYS	Serial_Wire	SYS_SWCLK	PA14
+SYS	Serial_Wire	SYS_SWDIO	PA13
+SYS	SysTick	SYS_VS_Systick	VP_SYS_VS_Systick
+USART1	Asynchronous	USART1_RX	PB7
+USART1	Asynchronous	USART1_TX	PB6
+
+
+
+Pin Nb	PINs	FUNCTIONs	LABELs
+12	PA2	GPIO_Output	debug_oscil0
+13	PA3	GPIO_Output	debug_oscil1
+15	PA5	SPI1_SCK	
+16	PA6	SPI1_MISO	
+17	PA7	SPI1_MOSI	
+18	PB0	GPIO_Output	led0
+25	PB12	SPI2_NSS	
+26	PB13	SPI2_SCK	
+27	PB14	SPI2_MISO	
+28	PB15	SPI2_MOSI	
+29	PA8	GPIO_Output	
+30	PA9	GPIO_Output	
+31	PA10	GPIO_Output	
+32	PA11	GPIO_Output	sinchro_master
+34	PA13	SYS_SWDIO	
+37	PA14	SYS_SWCLK	
+42	PB6	USART1_TX	
+43	PB7	USART1_RX	
+
+
+
+SOFTWARE PROJECT
+
+Project Settings : 
+Project Name : l051_tors_000_002
+Project Folder : /home/eugeny/workspace/tors_stm32_github
+Toolchain / IDE : Makefile
+Firmware Package Name and Version : STM32Cube FW_L0 V1.10.0
+
+
+Code Generation Settings : 
+STM32Cube Firmware Library Package : Copy all used libraries into the project folder
+Generate peripheral initialization as a pair of '.c/.h' files per peripheral : Yes
+Backup previously generated files when re-generating : No
+Delete previously generated files when not re-generated : No
+Set all free pins as analog (to optimize the power consumption) : No
+
+
+Toolchains Settings : 
+Compiler Optimizations : 
+
+
+
+
+
