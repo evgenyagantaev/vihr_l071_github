@@ -41,26 +41,6 @@ Src/main.c:96:11: warning: unused variable 'rtc_time_counter' [-Wunused-variable
 Src/main.c:95:11: warning: unused variable 'seconds_in_day' [-Wunused-variable]
   uint32_t seconds_in_day = seconds_in_hour * 24;
            ^
-Src/main.c: In function 'SystemClock_Config':
-Src/main.c:358:20: error: 'RCC_OscInitTypeDef' has no member named 'HSEPredivValue'
-   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV2;
-                    ^
-Src/main.c:358:38: error: 'RCC_HSE_PREDIV_DIV2' undeclared (first use in this function)
-   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV2;
-                                      ^
-Src/main.c:358:38: note: each undeclared identifier is reported only once for each function it appears in
-Src/main.c:363:34: error: 'RCC_PLL_MUL2' undeclared (first use in this function)
-   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL2;
-                                  ^
-Src/main.c:383:58: error: 'RCC_PERIPHCLK_ADC' undeclared (first use in this function)
-   PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_RTC|RCC_PERIPHCLK_ADC;
-                                                          ^
-Src/main.c:388:16: error: 'RCC_PeriphCLKInitTypeDef' has no member named 'AdcClockSelection'
-   PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV2;
-                ^
-Src/main.c:388:37: error: 'RCC_ADCPCLK2_DIV2' undeclared (first use in this function)
-   PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV2;
-                                     ^
 In file included from Src/main.c:54:0:
 Src/main.c: At top level:
 Inc/pressure_sensor_object.h:19:17: warning: 'pressure' defined but not used [-Wunused-variable]
@@ -114,5 +94,32 @@ Inc/dive_meter_object.h:9:16: warning: 'old_minutes' defined but not used [-Wunu
 Inc/dive_meter_object.h:11:16: warning: 'dive_started_flag' defined but not used [-Wunused-variable]
  static uint8_t dive_started_flag = 0;
                 ^
-Makefile:184: ошибка выполнения рецепта для цели «build/main.o»
-make: *** [build/main.o] Ошибка 1
+arm-none-eabi-gcc -c -mcpu=cortex-m0plus -mthumb   -DUSE_HAL_DRIVER -DSTM32L051xx -IInc -IDrivers/STM32L0xx_HAL_Driver/Inc -IDrivers/STM32L0xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32L0xx/Include -IDrivers/CMSIS/Include -Og -Wall -fdata-sections -ffunction-sections -g -gdwarf-2 -MMD -MP -MF"build/gpio.d" -Wa,-a,-ad,-alms=build/gpio.lst Src/gpio.c -o build/gpio.o
+arm-none-eabi-gcc -c -mcpu=cortex-m0plus -mthumb   -DUSE_HAL_DRIVER -DSTM32L051xx -IInc -IDrivers/STM32L0xx_HAL_Driver/Inc -IDrivers/STM32L0xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32L0xx/Include -IDrivers/CMSIS/Include -Og -Wall -fdata-sections -ffunction-sections -g -gdwarf-2 -MMD -MP -MF"build/i2c.d" -Wa,-a,-ad,-alms=build/i2c.lst Src/i2c.c -o build/i2c.o
+Src/i2c.c: In function 'MX_I2C1_Init':
+Src/i2c.c:57:13: error: 'I2C_InitTypeDef' has no member named 'ClockSpeed'
+   hi2c1.Init.ClockSpeed = 100000;
+             ^
+Src/i2c.c:58:13: error: 'I2C_InitTypeDef' has no member named 'DutyCycle'
+   hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
+             ^
+Src/i2c.c:58:26: error: 'I2C_DUTYCYCLE_2' undeclared (first use in this function)
+   hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
+                          ^
+Src/i2c.c:58:26: note: each undeclared identifier is reported only once for each function it appears in
+Src/i2c.c: In function 'MX_I2C2_Init':
+Src/i2c.c:76:13: error: 'I2C_InitTypeDef' has no member named 'ClockSpeed'
+   hi2c2.Init.ClockSpeed = 100000;
+             ^
+Src/i2c.c:77:13: error: 'I2C_InitTypeDef' has no member named 'DutyCycle'
+   hi2c2.Init.DutyCycle = I2C_DUTYCYCLE_2;
+             ^
+Src/i2c.c:77:26: error: 'I2C_DUTYCYCLE_2' undeclared (first use in this function)
+   hi2c2.Init.DutyCycle = I2C_DUTYCYCLE_2;
+                          ^
+Src/i2c.c: In function 'HAL_I2C_MspInit':
+Src/i2c.c:110:5: warning: implicit declaration of function '__HAL_AFIO_REMAP_I2C1_ENABLE' [-Wimplicit-function-declaration]
+     __HAL_AFIO_REMAP_I2C1_ENABLE();
+     ^
+Makefile:182: ошибка выполнения рецепта для цели «build/i2c.o»
+make: *** [build/i2c.o] Ошибка 1
