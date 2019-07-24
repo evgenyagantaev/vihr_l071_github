@@ -59,7 +59,13 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 
-/* USER CODE BEGIN PFP */
+uint8_t primitive_delay()
+{
+	uint32_t volatile i;
+	for(i=0; i<300000; i++);
+
+	return 0;
+}
 /* Private function prototypes -----------------------------------------------*/
 
 /* USER CODE END PFP */
@@ -107,17 +113,16 @@ int main(void)
 
   /* USER CODE END 2 */
 
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-  while (1)
-  {
-
-  /* USER CODE END WHILE */
-
-  /* USER CODE BEGIN 3 */
-
-  }
-  /* USER CODE END 3 */
+	// stop                                                      		    
+	while(1)                                                     	    
+	{                                                            	    
+	    HAL_GPIO_TogglePin(led0_GPIO_Port, led3_Pin); //           	    
+	    //HAL_Delay(500);                                          	    
+		primitive_delay();                                       		
+	    HAL_GPIO_TogglePin(led0_GPIO_Port, led3_Pin); //           	    
+	    //HAL_Delay(500);                                          	    
+		primitive_delay();                                       		
+	}                                                            	    
 
 }
 

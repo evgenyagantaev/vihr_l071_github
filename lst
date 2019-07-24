@@ -1,125 +1,137 @@
-arm-none-eabi-gcc -c -mcpu=cortex-m0plus -mthumb   -DUSE_HAL_DRIVER -DSTM32L051xx -IInc -IDrivers/STM32L0xx_HAL_Driver/Inc -IDrivers/STM32L0xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32L0xx/Include -IDrivers/CMSIS/Include -Og -Wall -fdata-sections -ffunction-sections -g -gdwarf-2 -MMD -MP -MF"build/main.d" -Wa,-a,-ad,-alms=build/main.lst Src/main.c -o build/main.o
-Src/main.c: In function 'main':
-Src/main.c:126:5: warning: implicit declaration of function 'MX_ADC1_Init' [-Wimplicit-function-declaration]
-     MX_ADC1_Init();
-     ^
-Src/main.c:127:5: warning: implicit declaration of function 'MX_ADC2_Init' [-Wimplicit-function-declaration]
-     MX_ADC2_Init();
-     ^
-Src/main.c:177:29: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
-  HAL_UART_Transmit(&huart2, "W\r\n", 1, 500);
+arm-none-eabi-gcc -c -mcpu=cortex-m0plus -mthumb   -DUSE_HAL_DRIVER -DSTM32L071xx -IInc -IDrivers/STM32L0xx_HAL_Driver/Inc -IDrivers/STM32L0xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32L0xx/Include -IDrivers/CMSIS/Include -Og -Wall -fdata-sections -ffunction-sections -g -gdwarf-2 -MMD -MP -MF"build/adc.d" -Wa,-a,-ad,-alms=build/adc.lst Src/adc.c -o build/adc.o
+In file included from Src/adc.c:41:0:
+Inc/adc.h:54:8: error: unknown type name 'ADC_HandleTypeDef'
+ extern ADC_HandleTypeDef hadc1;
+        ^
+Inc/adc.h:55:8: error: unknown type name 'ADC_HandleTypeDef'
+ extern ADC_HandleTypeDef hadc2;
+        ^
+Src/adc.c:49:1: error: unknown type name 'ADC_HandleTypeDef'
+ ADC_HandleTypeDef hadc1;
+ ^
+Src/adc.c:50:1: error: unknown type name 'ADC_HandleTypeDef'
+ ADC_HandleTypeDef hadc2;
+ ^
+Src/adc.c: In function 'MX_ADC1_Init':
+Src/adc.c:55:3: error: unknown type name 'ADC_ChannelConfTypeDef'
+   ADC_ChannelConfTypeDef sConfig;
+   ^
+Src/adc.c:59:8: error: request for member 'Instance' in something not a structure or union
+   hadc1.Instance = ADC1;
+        ^
+Src/adc.c:60:8: error: request for member 'Init' in something not a structure or union
+   hadc1.Init.ScanConvMode = ADC_SCAN_DISABLE;
+        ^
+Src/adc.c:60:29: error: 'ADC_SCAN_DISABLE' undeclared (first use in this function)
+   hadc1.Init.ScanConvMode = ADC_SCAN_DISABLE;
                              ^
-In file included from Inc/stm32l0xx_hal_conf.h:260:0,
-                 from Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h:48,
-                 from Inc/main.h:45,
-                 from Src/main.c:40:
-Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_uart.h:1379:19: note: expected 'uint8_t *' but argument is of type 'char *'
- HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-                   ^
-Src/main.c:179:29: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
-  HAL_UART_Transmit(&huart2, gps_message, strlen((const char *)gps_message), 500);
+Src/adc.c:60:29: note: each undeclared identifier is reported only once for each function it appears in
+Src/adc.c:61:8: error: request for member 'Init' in something not a structure or union
+   hadc1.Init.ContinuousConvMode = DISABLE;
+        ^
+Src/adc.c:62:8: error: request for member 'Init' in something not a structure or union
+   hadc1.Init.DiscontinuousConvMode = DISABLE;
+        ^
+Src/adc.c:63:8: error: request for member 'Init' in something not a structure or union
+   hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+        ^
+Src/adc.c:63:33: error: 'ADC_SOFTWARE_START' undeclared (first use in this function)
+   hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+                                 ^
+Src/adc.c:64:8: error: request for member 'Init' in something not a structure or union
+   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+        ^
+Src/adc.c:64:26: error: 'ADC_DATAALIGN_RIGHT' undeclared (first use in this function)
+   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+                          ^
+Src/adc.c:65:8: error: request for member 'Init' in something not a structure or union
+   hadc1.Init.NbrOfConversion = 1;
+        ^
+Src/adc.c:66:3: warning: implicit declaration of function 'HAL_ADC_Init' [-Wimplicit-function-declaration]
+   if (HAL_ADC_Init(&hadc1) != HAL_OK)
+   ^
+Src/adc.c:73:10: error: request for member 'Channel' in something not a structure or union
+   sConfig.Channel = ADC_CHANNEL_0;
+          ^
+Src/adc.c:73:21: error: 'ADC_CHANNEL_0' undeclared (first use in this function)
+   sConfig.Channel = ADC_CHANNEL_0;
+                     ^
+Src/adc.c:74:10: error: request for member 'Rank' in something not a structure or union
+   sConfig.Rank = ADC_REGULAR_RANK_1;
+          ^
+Src/adc.c:74:18: error: 'ADC_REGULAR_RANK_1' undeclared (first use in this function)
+   sConfig.Rank = ADC_REGULAR_RANK_1;
+                  ^
+Src/adc.c:75:10: error: request for member 'SamplingTime' in something not a structure or union
+   sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
+          ^
+Src/adc.c:75:26: error: 'ADC_SAMPLETIME_1CYCLE_5' undeclared (first use in this function)
+   sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
+                          ^
+Src/adc.c:76:3: warning: implicit declaration of function 'HAL_ADC_ConfigChannel' [-Wimplicit-function-declaration]
+   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+   ^
+Src/adc.c: In function 'MX_ADC2_Init':
+Src/adc.c:85:3: error: unknown type name 'ADC_ChannelConfTypeDef'
+   ADC_ChannelConfTypeDef sConfig;
+   ^
+Src/adc.c:89:8: error: request for member 'Instance' in something not a structure or union
+   hadc2.Instance = ADC2;
+        ^
+Src/adc.c:89:20: error: 'ADC2' undeclared (first use in this function)
+   hadc2.Instance = ADC2;
+                    ^
+Src/adc.c:90:8: error: request for member 'Init' in something not a structure or union
+   hadc2.Init.ScanConvMode = ADC_SCAN_DISABLE;
+        ^
+Src/adc.c:90:29: error: 'ADC_SCAN_DISABLE' undeclared (first use in this function)
+   hadc2.Init.ScanConvMode = ADC_SCAN_DISABLE;
                              ^
-In file included from Inc/stm32l0xx_hal_conf.h:260:0,
-                 from Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h:48,
-                 from Inc/main.h:45,
-                 from Src/main.c:40:
-Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_uart.h:1379:19: note: expected 'uint8_t *' but argument is of type 'char *'
- HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-                   ^
-Src/main.c:223:14: warning: unused variable 'accu_percentage' [-Wunused-variable]
-       double accu_percentage = voltmeter_get_percentage();
-              ^
-Src/main.c:200:9: warning: unused variable 'depth' [-Wunused-variable]
-  double depth = 7.0;
-         ^
-Src/main.c:196:11: warning: unused variable 'surface_pressure' [-Wunused-variable]
-  uint32_t surface_pressure = 101325;
-           ^
-Src/main.c:96:11: warning: unused variable 'rtc_time_counter' [-Wunused-variable]
-  uint32_t rtc_time_counter;
-           ^
-Src/main.c:95:11: warning: unused variable 'seconds_in_day' [-Wunused-variable]
-  uint32_t seconds_in_day = seconds_in_hour * 24;
-           ^
-In file included from Src/main.c:54:0:
-Src/main.c: At top level:
-Inc/pressure_sensor_object.h:19:17: warning: 'pressure' defined but not used [-Wunused-variable]
- static uint32_t pressure;
-                 ^
-Inc/pressure_sensor_object.h:20:17: warning: 'temperature' defined but not used [-Wunused-variable]
- static uint32_t temperature;
-                 ^
-Inc/pressure_sensor_object.h:21:15: warning: 'dT' defined but not used [-Wunused-variable]
- static double dT;
-               ^
-Inc/pressure_sensor_object.h:22:15: warning: 'actual_temperature' defined but not used [-Wunused-variable]
- static double actual_temperature;
-               ^
-Inc/pressure_sensor_object.h:23:15: warning: 'OFF' defined but not used [-Wunused-variable]
- static double OFF;
-               ^
-Inc/pressure_sensor_object.h:24:15: warning: 'SENS' defined but not used [-Wunused-variable]
- static double SENS;
-               ^
-Inc/pressure_sensor_object.h:25:15: warning: 'P' defined but not used [-Wunused-variable]
- static double P;
-               ^
-Inc/pressure_sensor_object.h:28:17: warning: 'sensor_prom' defined but not used [-Wunused-variable]
- static uint16_t sensor_prom[7];
-                 ^
-In file included from Src/main.c:55:0:
-Inc/voltmeter_object.h:9:15: warning: 'voltage_coefficient' defined but not used [-Wunused-variable]
- static double voltage_coefficient = 3.3/4096.0;
-               ^
-Inc/voltmeter_object.h:10:15: warning: 'accu_voltage' defined but not used [-Wunused-variable]
- static double accu_voltage;
-               ^
-Inc/voltmeter_object.h:11:15: warning: 'accu_percentage' defined but not used [-Wunused-variable]
- static double accu_percentage;
-               ^
-In file included from Inc/dive_meter_interface.h:4:0,
-                 from Src/main.c:61:
-Inc/dive_meter_object.h:6:16: warning: 'current_depth' defined but not used [-Wunused-variable]
- static uint8_t current_depth;
-                ^
-Inc/dive_meter_object.h:7:16: warning: 'max_depth' defined but not used [-Wunused-variable]
- static uint8_t max_depth;
-                ^
-Inc/dive_meter_object.h:8:16: warning: 'current_dive_time' defined but not used [-Wunused-variable]
- static uint8_t current_dive_time;
-                ^
-Inc/dive_meter_object.h:9:16: warning: 'old_minutes' defined but not used [-Wunused-variable]
- static uint8_t old_minutes;
-                ^
-Inc/dive_meter_object.h:11:16: warning: 'dive_started_flag' defined but not used [-Wunused-variable]
- static uint8_t dive_started_flag = 0;
-                ^
-arm-none-eabi-gcc -c -mcpu=cortex-m0plus -mthumb   -DUSE_HAL_DRIVER -DSTM32L051xx -IInc -IDrivers/STM32L0xx_HAL_Driver/Inc -IDrivers/STM32L0xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32L0xx/Include -IDrivers/CMSIS/Include -Og -Wall -fdata-sections -ffunction-sections -g -gdwarf-2 -MMD -MP -MF"build/gpio.d" -Wa,-a,-ad,-alms=build/gpio.lst Src/gpio.c -o build/gpio.o
-arm-none-eabi-gcc -c -mcpu=cortex-m0plus -mthumb   -DUSE_HAL_DRIVER -DSTM32L051xx -IInc -IDrivers/STM32L0xx_HAL_Driver/Inc -IDrivers/STM32L0xx_HAL_Driver/Inc/Legacy -IDrivers/CMSIS/Device/ST/STM32L0xx/Include -IDrivers/CMSIS/Include -Og -Wall -fdata-sections -ffunction-sections -g -gdwarf-2 -MMD -MP -MF"build/i2c.d" -Wa,-a,-ad,-alms=build/i2c.lst Src/i2c.c -o build/i2c.o
-Src/i2c.c: In function 'MX_I2C1_Init':
-Src/i2c.c:57:13: error: 'I2C_InitTypeDef' has no member named 'ClockSpeed'
-   hi2c1.Init.ClockSpeed = 100000;
-             ^
-Src/i2c.c:58:13: error: 'I2C_InitTypeDef' has no member named 'DutyCycle'
-   hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
-             ^
-Src/i2c.c:58:26: error: 'I2C_DUTYCYCLE_2' undeclared (first use in this function)
-   hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
+Src/adc.c:91:8: error: request for member 'Init' in something not a structure or union
+   hadc2.Init.ContinuousConvMode = DISABLE;
+        ^
+Src/adc.c:92:8: error: request for member 'Init' in something not a structure or union
+   hadc2.Init.DiscontinuousConvMode = DISABLE;
+        ^
+Src/adc.c:93:8: error: request for member 'Init' in something not a structure or union
+   hadc2.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+        ^
+Src/adc.c:93:33: error: 'ADC_SOFTWARE_START' undeclared (first use in this function)
+   hadc2.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+                                 ^
+Src/adc.c:94:8: error: request for member 'Init' in something not a structure or union
+   hadc2.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+        ^
+Src/adc.c:94:26: error: 'ADC_DATAALIGN_RIGHT' undeclared (first use in this function)
+   hadc2.Init.DataAlign = ADC_DATAALIGN_RIGHT;
                           ^
-Src/i2c.c:58:26: note: each undeclared identifier is reported only once for each function it appears in
-Src/i2c.c: In function 'MX_I2C2_Init':
-Src/i2c.c:76:13: error: 'I2C_InitTypeDef' has no member named 'ClockSpeed'
-   hi2c2.Init.ClockSpeed = 100000;
-             ^
-Src/i2c.c:77:13: error: 'I2C_InitTypeDef' has no member named 'DutyCycle'
-   hi2c2.Init.DutyCycle = I2C_DUTYCYCLE_2;
-             ^
-Src/i2c.c:77:26: error: 'I2C_DUTYCYCLE_2' undeclared (first use in this function)
-   hi2c2.Init.DutyCycle = I2C_DUTYCYCLE_2;
+Src/adc.c:95:8: error: request for member 'Init' in something not a structure or union
+   hadc2.Init.NbrOfConversion = 1;
+        ^
+Src/adc.c:103:10: error: request for member 'Channel' in something not a structure or union
+   sConfig.Channel = ADC_CHANNEL_1;
+          ^
+Src/adc.c:103:21: error: 'ADC_CHANNEL_1' undeclared (first use in this function)
+   sConfig.Channel = ADC_CHANNEL_1;
+                     ^
+Src/adc.c:104:10: error: request for member 'Rank' in something not a structure or union
+   sConfig.Rank = ADC_REGULAR_RANK_1;
+          ^
+Src/adc.c:104:18: error: 'ADC_REGULAR_RANK_1' undeclared (first use in this function)
+   sConfig.Rank = ADC_REGULAR_RANK_1;
+                  ^
+Src/adc.c:105:10: error: request for member 'SamplingTime' in something not a structure or union
+   sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
+          ^
+Src/adc.c:105:26: error: 'ADC_SAMPLETIME_1CYCLE_5' undeclared (first use in this function)
+   sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
                           ^
-Src/i2c.c: In function 'HAL_I2C_MspInit':
-Src/i2c.c:110:5: warning: implicit declaration of function '__HAL_AFIO_REMAP_I2C1_ENABLE' [-Wimplicit-function-declaration]
-     __HAL_AFIO_REMAP_I2C1_ENABLE();
-     ^
-Makefile:182: ошибка выполнения рецепта для цели «build/i2c.o»
-make: *** [build/i2c.o] Ошибка 1
+Src/adc.c: At top level:
+Src/adc.c:113:22: error: unknown type name 'ADC_HandleTypeDef'
+ void HAL_ADC_MspInit(ADC_HandleTypeDef* adcHandle)
+                      ^
+Src/adc.c:157:24: error: unknown type name 'ADC_HandleTypeDef'
+ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
+                        ^
+Makefile:171: ошибка выполнения рецепта для цели «build/adc.o»
+make: *** [build/adc.o] Ошибка 1
