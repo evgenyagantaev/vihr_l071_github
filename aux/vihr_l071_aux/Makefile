@@ -44,6 +44,9 @@ Src/spi.c \
 Src/usart.c \
 Src/stm32l0xx_it.c \
 Src/stm32l0xx_hal_msp.c \
+Src/rtc_ds3231_object.c \
+Src/fonts.c \
+Src/ssd1306.c \
 Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc.c \
 Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c \
 Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_i2c.c \
