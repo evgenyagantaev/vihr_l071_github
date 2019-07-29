@@ -41,6 +41,7 @@ Src/gpio.c \
 Src/adc.c \
 Src/i2c.c \
 Src/spi.c \
+Src/tim.c \
 Src/usart.c \
 Src/stm32l0xx_it.c \
 Src/stm32l0xx_hal_msp.c \
