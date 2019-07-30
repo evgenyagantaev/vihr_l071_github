@@ -1,0 +1,718 @@
+ARM GAS  /tmp/ccWG3elB.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 1
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"rtc_ds3231_object.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.rtc_ds3231_get_date,"ax",%progbits
+  18              		.align	2
+  19              		.global	rtc_ds3231_get_date
+  20              		.code	16
+  21              		.thumb_func
+  23              	rtc_ds3231_get_date:
+  24              	.LFB36:
+  25              		.file 1 "Src/rtc_ds3231_object.c"
+   1:Src/rtc_ds3231_object.c **** #include "rtc_ds3231_object.h"
+   2:Src/rtc_ds3231_object.c **** #include "rtc_ds3231_interface.h"
+   3:Src/rtc_ds3231_object.c **** 
+   4:Src/rtc_ds3231_object.c **** 
+   5:Src/rtc_ds3231_object.c **** 
+   6:Src/rtc_ds3231_object.c **** void rtc_ds3231_get_date(uint8_t *Date, uint8_t *Month, uint8_t *Year)
+   7:Src/rtc_ds3231_object.c **** {
+  26              		.loc 1 7 0
+  27              		.cfi_startproc
+  28              	.LVL0:
+   8:Src/rtc_ds3231_object.c **** 	*Date = date;
+  29              		.loc 1 8 0
+  30 0000 044B     		ldr	r3, .L2
+  31 0002 1B78     		ldrb	r3, [r3]
+  32 0004 0370     		strb	r3, [r0]
+   9:Src/rtc_ds3231_object.c **** 	*Month = month;
+  33              		.loc 1 9 0
+  34 0006 044B     		ldr	r3, .L2+4
+  35 0008 1B78     		ldrb	r3, [r3]
+  36 000a 0B70     		strb	r3, [r1]
+  10:Src/rtc_ds3231_object.c **** 	*Year = year;
+  37              		.loc 1 10 0
+  38 000c 034B     		ldr	r3, .L2+8
+  39 000e 1B78     		ldrb	r3, [r3]
+  40 0010 1370     		strb	r3, [r2]
+  11:Src/rtc_ds3231_object.c **** }
+  41              		.loc 1 11 0
+  42              		@ sp needed
+  43 0012 7047     		bx	lr
+  44              	.L3:
+  45              		.align	2
+  46              	.L2:
+  47 0014 00000000 		.word	.LANCHOR0
+ARM GAS  /tmp/ccWG3elB.s 			page 2
+
+
+  48 0018 00000000 		.word	.LANCHOR1
+  49 001c 00000000 		.word	.LANCHOR2
+  50              		.cfi_endproc
+  51              	.LFE36:
+  53              		.section	.text.rtc_ds3231_get_time,"ax",%progbits
+  54              		.align	2
+  55              		.global	rtc_ds3231_get_time
+  56              		.code	16
+  57              		.thumb_func
+  59              	rtc_ds3231_get_time:
+  60              	.LFB37:
+  12:Src/rtc_ds3231_object.c **** void rtc_ds3231_get_time(uint8_t *Hours, uint8_t *Minutes, uint8_t *Seconds)
+  13:Src/rtc_ds3231_object.c **** {
+  61              		.loc 1 13 0
+  62              		.cfi_startproc
+  63              	.LVL1:
+  14:Src/rtc_ds3231_object.c **** 	*Hours = hours;
+  64              		.loc 1 14 0
+  65 0000 044B     		ldr	r3, .L5
+  66 0002 1B78     		ldrb	r3, [r3]
+  67 0004 0370     		strb	r3, [r0]
+  15:Src/rtc_ds3231_object.c **** 	*Minutes = minutes;
+  68              		.loc 1 15 0
+  69 0006 044B     		ldr	r3, .L5+4
+  70 0008 1B78     		ldrb	r3, [r3]
+  71 000a 0B70     		strb	r3, [r1]
+  16:Src/rtc_ds3231_object.c **** 	*Seconds = seconds;
+  72              		.loc 1 16 0
+  73 000c 034B     		ldr	r3, .L5+8
+  74 000e 1B78     		ldrb	r3, [r3]
+  75 0010 1370     		strb	r3, [r2]
+  17:Src/rtc_ds3231_object.c **** }
+  76              		.loc 1 17 0
+  77              		@ sp needed
+  78 0012 7047     		bx	lr
+  79              	.L6:
+  80              		.align	2
+  81              	.L5:
+  82 0014 00000000 		.word	.LANCHOR3
+  83 0018 00000000 		.word	.LANCHOR4
+  84 001c 00000000 		.word	.LANCHOR5
+  85              		.cfi_endproc
+  86              	.LFE37:
+  88              		.global	__aeabi_uidiv
+  89              		.global	__aeabi_uidivmod
+  90              		.section	.text.rtc_ds3231_set_date,"ax",%progbits
+  91              		.align	2
+  92              		.global	rtc_ds3231_set_date
+  93              		.code	16
+  94              		.thumb_func
+  96              	rtc_ds3231_set_date:
+  97              	.LFB38:
+  18:Src/rtc_ds3231_object.c **** 
+  19:Src/rtc_ds3231_object.c **** void rtc_ds3231_set_date(uint8_t Date, uint8_t Month, uint8_t Year)
+  20:Src/rtc_ds3231_object.c **** {
+  98              		.loc 1 20 0
+  99              		.cfi_startproc
+ARM GAS  /tmp/ccWG3elB.s 			page 3
+
+
+ 100              	.LVL2:
+ 101 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 102              	.LCFI0:
+ 103              		.cfi_def_cfa_offset 20
+ 104              		.cfi_offset 4, -20
+ 105              		.cfi_offset 5, -16
+ 106              		.cfi_offset 6, -12
+ 107              		.cfi_offset 7, -8
+ 108              		.cfi_offset 14, -4
+ 109 0002 85B0     		sub	sp, sp, #20
+ 110              	.LCFI1:
+ 111              		.cfi_def_cfa_offset 40
+ 112 0004 041C     		mov	r4, r0
+ 113 0006 0F1C     		mov	r7, r1
+ 114 0008 161C     		mov	r6, r2
+  21:Src/rtc_ds3231_object.c **** 	ds3231_buffer[4] = (((uint8_t)(Date/10))<<4) + ((uint8_t)(Date%10));
+ 115              		.loc 1 21 0
+ 116 000a 0A21     		mov	r1, #10
+ 117              	.LVL3:
+ 118 000c FFF7FEFF 		bl	__aeabi_uidiv
+ 119              	.LVL4:
+ 120 0010 C5B2     		uxtb	r5, r0
+ 121 0012 201C     		mov	r0, r4
+ 122 0014 0A21     		mov	r1, #10
+ 123 0016 FFF7FEFF 		bl	__aeabi_uidivmod
+ 124              	.LVL5:
+ 125 001a 204C     		ldr	r4, .L8
+ 126 001c 2D01     		lsl	r5, r5, #4
+ 127 001e 4919     		add	r1, r1, r5
+ 128 0020 2171     		strb	r1, [r4, #4]
+  22:Src/rtc_ds3231_object.c **** 	ds3231_buffer[5] = (((uint8_t)(Month/10))<<4) + ((uint8_t)(Month%10));
+ 129              		.loc 1 22 0
+ 130 0022 381C     		mov	r0, r7
+ 131 0024 0A21     		mov	r1, #10
+ 132 0026 FFF7FEFF 		bl	__aeabi_uidiv
+ 133              	.LVL6:
+ 134 002a C5B2     		uxtb	r5, r0
+ 135 002c 381C     		mov	r0, r7
+ 136 002e 0A21     		mov	r1, #10
+ 137 0030 FFF7FEFF 		bl	__aeabi_uidivmod
+ 138              	.LVL7:
+ 139 0034 2D01     		lsl	r5, r5, #4
+ 140 0036 4919     		add	r1, r1, r5
+ 141 0038 6171     		strb	r1, [r4, #5]
+  23:Src/rtc_ds3231_object.c **** 	ds3231_buffer[6] = (((uint8_t)(Year/10))<<4) + ((uint8_t)(Year%10));
+ 142              		.loc 1 23 0
+ 143 003a 301C     		mov	r0, r6
+ 144 003c 0A21     		mov	r1, #10
+ 145 003e FFF7FEFF 		bl	__aeabi_uidiv
+ 146              	.LVL8:
+ 147 0042 C5B2     		uxtb	r5, r0
+ 148 0044 301C     		mov	r0, r6
+ 149 0046 0A21     		mov	r1, #10
+ 150 0048 FFF7FEFF 		bl	__aeabi_uidivmod
+ 151              	.LVL9:
+ 152 004c 2D01     		lsl	r5, r5, #4
+ 153 004e 4919     		add	r1, r1, r5
+ARM GAS  /tmp/ccWG3elB.s 			page 4
+
+
+ 154 0050 A171     		strb	r1, [r4, #6]
+ 155              	.LVL10:
+  24:Src/rtc_ds3231_object.c **** 
+  25:Src/rtc_ds3231_object.c **** 	uint16_t data_array_length = 1;
+  26:Src/rtc_ds3231_object.c **** 
+  27:Src/rtc_ds3231_object.c **** 	//HAL_I2C_Master_Transmit(ds3231_i2c_handle, ds3231_shifted_address, ds3231_buffer, DS3231_BUFFER_
+  28:Src/rtc_ds3231_object.c **** 	HAL_I2C_Mem_Write(ds3231_i2c_handle, ds3231_shifted_address, 0x4, 1, &(ds3231_buffer[4]), data_arr
+ 156              		.loc 1 28 0
+ 157 0052 134F     		ldr	r7, .L8+4
+ 158 0054 3868     		ldr	r0, [r7]
+ 159 0056 231D     		add	r3, r4, #4
+ 160 0058 0093     		str	r3, [sp]
+ 161 005a 0126     		mov	r6, #1
+ 162 005c 0196     		str	r6, [sp, #4]
+ 163 005e FA25     		mov	r5, #250
+ 164 0060 6D00     		lsl	r5, r5, #1
+ 165 0062 0295     		str	r5, [sp, #8]
+ 166 0064 D021     		mov	r1, #208
+ 167 0066 0422     		mov	r2, #4
+ 168 0068 0123     		mov	r3, #1
+ 169 006a FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 170              	.LVL11:
+  29:Src/rtc_ds3231_object.c **** 	HAL_I2C_Mem_Write(ds3231_i2c_handle, ds3231_shifted_address, 0x5, 1, &(ds3231_buffer[5]), data_arr
+ 171              		.loc 1 29 0
+ 172 006e 3868     		ldr	r0, [r7]
+ 173 0070 631D     		add	r3, r4, #5
+ 174 0072 0093     		str	r3, [sp]
+ 175 0074 0196     		str	r6, [sp, #4]
+ 176 0076 0295     		str	r5, [sp, #8]
+ 177 0078 D021     		mov	r1, #208
+ 178 007a 0522     		mov	r2, #5
+ 179 007c 0123     		mov	r3, #1
+ 180 007e FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 181              	.LVL12:
+  30:Src/rtc_ds3231_object.c **** 	HAL_I2C_Mem_Write(ds3231_i2c_handle, ds3231_shifted_address, 0x6, 1, &(ds3231_buffer[6]), data_arr
+ 182              		.loc 1 30 0
+ 183 0082 3868     		ldr	r0, [r7]
+ 184 0084 0634     		add	r4, r4, #6
+ 185 0086 0094     		str	r4, [sp]
+ 186 0088 0196     		str	r6, [sp, #4]
+ 187 008a 0295     		str	r5, [sp, #8]
+ 188 008c D021     		mov	r1, #208
+ 189 008e 0622     		mov	r2, #6
+ 190 0090 0123     		mov	r3, #1
+ 191 0092 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 192              	.LVL13:
+  31:Src/rtc_ds3231_object.c **** }
+ 193              		.loc 1 31 0
+ 194 0096 05B0     		add	sp, sp, #20
+ 195              		@ sp needed
+ 196 0098 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 197              	.L9:
+ 198 009a C046     		.align	2
+ 199              	.L8:
+ 200 009c 00000000 		.word	.LANCHOR6
+ 201 00a0 00000000 		.word	.LANCHOR7
+ 202              		.cfi_endproc
+ARM GAS  /tmp/ccWG3elB.s 			page 5
+
+
+ 203              	.LFE38:
+ 205              		.section	.text.rtc_ds3231_set_time,"ax",%progbits
+ 206              		.align	2
+ 207              		.global	rtc_ds3231_set_time
+ 208              		.code	16
+ 209              		.thumb_func
+ 211              	rtc_ds3231_set_time:
+ 212              	.LFB39:
+  32:Src/rtc_ds3231_object.c **** void rtc_ds3231_set_time(uint8_t Hours, uint8_t Minutes, uint8_t Seconds)
+  33:Src/rtc_ds3231_object.c **** {
+ 213              		.loc 1 33 0
+ 214              		.cfi_startproc
+ 215              	.LVL14:
+ 216 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 217              	.LCFI2:
+ 218              		.cfi_def_cfa_offset 20
+ 219              		.cfi_offset 4, -20
+ 220              		.cfi_offset 5, -16
+ 221              		.cfi_offset 6, -12
+ 222              		.cfi_offset 7, -8
+ 223              		.cfi_offset 14, -4
+ 224 0002 85B0     		sub	sp, sp, #20
+ 225              	.LCFI3:
+ 226              		.cfi_def_cfa_offset 40
+ 227 0004 061C     		mov	r6, r0
+ 228 0006 0F1C     		mov	r7, r1
+ 229 0008 141C     		mov	r4, r2
+  34:Src/rtc_ds3231_object.c **** 	ds3231_buffer[0] = (((uint8_t)(Seconds/10))<<4) + ((uint8_t)(Seconds%10));
+ 230              		.loc 1 34 0
+ 231 000a 101C     		mov	r0, r2
+ 232              	.LVL15:
+ 233 000c 0A21     		mov	r1, #10
+ 234              	.LVL16:
+ 235 000e FFF7FEFF 		bl	__aeabi_uidiv
+ 236              	.LVL17:
+ 237 0012 C5B2     		uxtb	r5, r0
+ 238 0014 201C     		mov	r0, r4
+ 239 0016 0A21     		mov	r1, #10
+ 240 0018 FFF7FEFF 		bl	__aeabi_uidivmod
+ 241              	.LVL18:
+ 242 001c 1F4C     		ldr	r4, .L11
+ 243 001e 2D01     		lsl	r5, r5, #4
+ 244 0020 4919     		add	r1, r1, r5
+ 245 0022 2170     		strb	r1, [r4]
+  35:Src/rtc_ds3231_object.c **** 	ds3231_buffer[1] = (((uint8_t)(Minutes/10))<<4) + ((uint8_t)(Minutes%10));
+ 246              		.loc 1 35 0
+ 247 0024 381C     		mov	r0, r7
+ 248 0026 0A21     		mov	r1, #10
+ 249 0028 FFF7FEFF 		bl	__aeabi_uidiv
+ 250              	.LVL19:
+ 251 002c C5B2     		uxtb	r5, r0
+ 252 002e 381C     		mov	r0, r7
+ 253 0030 0A21     		mov	r1, #10
+ 254 0032 FFF7FEFF 		bl	__aeabi_uidivmod
+ 255              	.LVL20:
+ 256 0036 2D01     		lsl	r5, r5, #4
+ 257 0038 4919     		add	r1, r1, r5
+ARM GAS  /tmp/ccWG3elB.s 			page 6
+
+
+ 258 003a 6170     		strb	r1, [r4, #1]
+  36:Src/rtc_ds3231_object.c **** 	ds3231_buffer[2] = (((uint8_t)(Hours/10))<<4) + ((uint8_t)(Hours%10));
+ 259              		.loc 1 36 0
+ 260 003c 301C     		mov	r0, r6
+ 261 003e 0A21     		mov	r1, #10
+ 262 0040 FFF7FEFF 		bl	__aeabi_uidiv
+ 263              	.LVL21:
+ 264 0044 C5B2     		uxtb	r5, r0
+ 265 0046 301C     		mov	r0, r6
+ 266 0048 0A21     		mov	r1, #10
+ 267 004a FFF7FEFF 		bl	__aeabi_uidivmod
+ 268              	.LVL22:
+ 269 004e 2D01     		lsl	r5, r5, #4
+ 270 0050 4919     		add	r1, r1, r5
+ 271 0052 A170     		strb	r1, [r4, #2]
+ 272              	.LVL23:
+  37:Src/rtc_ds3231_object.c **** 
+  38:Src/rtc_ds3231_object.c **** 	uint16_t data_array_length = 1;
+  39:Src/rtc_ds3231_object.c **** 
+  40:Src/rtc_ds3231_object.c **** 	//HAL_I2C_Master_Transmit(ds3231_i2c_handle, ds3231_shifted_address, ds3231_buffer, DS3231_BUFFER_
+  41:Src/rtc_ds3231_object.c **** 	HAL_I2C_Mem_Write(ds3231_i2c_handle, ds3231_shifted_address, 0x0, 1, &(ds3231_buffer[0]), data_arr
+ 273              		.loc 1 41 0
+ 274 0054 124F     		ldr	r7, .L11+4
+ 275 0056 3868     		ldr	r0, [r7]
+ 276 0058 0094     		str	r4, [sp]
+ 277 005a 0126     		mov	r6, #1
+ 278 005c 0196     		str	r6, [sp, #4]
+ 279 005e FA25     		mov	r5, #250
+ 280 0060 6D00     		lsl	r5, r5, #1
+ 281 0062 0295     		str	r5, [sp, #8]
+ 282 0064 D021     		mov	r1, #208
+ 283 0066 0022     		mov	r2, #0
+ 284 0068 0123     		mov	r3, #1
+ 285 006a FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 286              	.LVL24:
+  42:Src/rtc_ds3231_object.c **** 	HAL_I2C_Mem_Write(ds3231_i2c_handle, ds3231_shifted_address, 0x1, 1, &(ds3231_buffer[1]), data_arr
+ 287              		.loc 1 42 0
+ 288 006e 3868     		ldr	r0, [r7]
+ 289 0070 631C     		add	r3, r4, #1
+ 290 0072 0093     		str	r3, [sp]
+ 291 0074 0196     		str	r6, [sp, #4]
+ 292 0076 0295     		str	r5, [sp, #8]
+ 293 0078 D021     		mov	r1, #208
+ 294 007a 0122     		mov	r2, #1
+ 295 007c 0123     		mov	r3, #1
+ 296 007e FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 297              	.LVL25:
+  43:Src/rtc_ds3231_object.c **** 	HAL_I2C_Mem_Write(ds3231_i2c_handle, ds3231_shifted_address, 0x2, 1, &(ds3231_buffer[2]), data_arr
+ 298              		.loc 1 43 0
+ 299 0082 3868     		ldr	r0, [r7]
+ 300 0084 0234     		add	r4, r4, #2
+ 301 0086 0094     		str	r4, [sp]
+ 302 0088 0196     		str	r6, [sp, #4]
+ 303 008a 0295     		str	r5, [sp, #8]
+ 304 008c D021     		mov	r1, #208
+ 305 008e 0222     		mov	r2, #2
+ 306 0090 0123     		mov	r3, #1
+ARM GAS  /tmp/ccWG3elB.s 			page 7
+
+
+ 307 0092 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 308              	.LVL26:
+  44:Src/rtc_ds3231_object.c **** }
+ 309              		.loc 1 44 0
+ 310 0096 05B0     		add	sp, sp, #20
+ 311              		@ sp needed
+ 312 0098 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 313              	.L12:
+ 314 009a C046     		.align	2
+ 315              	.L11:
+ 316 009c 00000000 		.word	.LANCHOR6
+ 317 00a0 00000000 		.word	.LANCHOR7
+ 318              		.cfi_endproc
+ 319              	.LFE39:
+ 321              		.section	.text.rtc_ds3231_set_i2c_handle,"ax",%progbits
+ 322              		.align	2
+ 323              		.global	rtc_ds3231_set_i2c_handle
+ 324              		.code	16
+ 325              		.thumb_func
+ 327              	rtc_ds3231_set_i2c_handle:
+ 328              	.LFB40:
+  45:Src/rtc_ds3231_object.c **** 
+  46:Src/rtc_ds3231_object.c **** void rtc_ds3231_set_i2c_handle(I2C_HandleTypeDef *handle)
+  47:Src/rtc_ds3231_object.c **** {
+ 329              		.loc 1 47 0
+ 330              		.cfi_startproc
+ 331              	.LVL27:
+  48:Src/rtc_ds3231_object.c **** 	ds3231_i2c_handle = handle;
+ 332              		.loc 1 48 0
+ 333 0000 014B     		ldr	r3, .L14
+ 334 0002 1860     		str	r0, [r3]
+  49:Src/rtc_ds3231_object.c **** }
+ 335              		.loc 1 49 0
+ 336              		@ sp needed
+ 337 0004 7047     		bx	lr
+ 338              	.L15:
+ 339 0006 C046     		.align	2
+ 340              	.L14:
+ 341 0008 00000000 		.word	.LANCHOR7
+ 342              		.cfi_endproc
+ 343              	.LFE40:
+ 345              		.section	.text.rtc_ds3231_action,"ax",%progbits
+ 346              		.align	2
+ 347              		.global	rtc_ds3231_action
+ 348              		.code	16
+ 349              		.thumb_func
+ 351              	rtc_ds3231_action:
+ 352              	.LFB41:
+  50:Src/rtc_ds3231_object.c **** 
+  51:Src/rtc_ds3231_object.c **** 
+  52:Src/rtc_ds3231_object.c **** void rtc_ds3231_action()
+  53:Src/rtc_ds3231_object.c **** {
+ 353              		.loc 1 53 0
+ 354              		.cfi_startproc
+ 355 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 356              	.LCFI4:
+ 357              		.cfi_def_cfa_offset 20
+ARM GAS  /tmp/ccWG3elB.s 			page 8
+
+
+ 358              		.cfi_offset 4, -20
+ 359              		.cfi_offset 5, -16
+ 360              		.cfi_offset 6, -12
+ 361              		.cfi_offset 7, -8
+ 362              		.cfi_offset 14, -4
+ 363 0002 85B0     		sub	sp, sp, #20
+ 364              	.LCFI5:
+ 365              		.cfi_def_cfa_offset 40
+ 366              	.LVL28:
+  54:Src/rtc_ds3231_object.c **** 
+  55:Src/rtc_ds3231_object.c **** 	uint16_t data_array_length = 1;
+  56:Src/rtc_ds3231_object.c **** 
+  57:Src/rtc_ds3231_object.c **** 	uint8_t i2c_status;
+  58:Src/rtc_ds3231_object.c **** 
+  59:Src/rtc_ds3231_object.c **** 	//i2c_status = HAL_I2C_Mem_Read(ds3231_i2c_handle, ds3231_shifted_address, 0x0, 1, ds3231_buffer, 
+  60:Src/rtc_ds3231_object.c **** 	HAL_I2C_Mem_Read(ds3231_i2c_handle, ds3231_shifted_address, 0x0, 1, &(ds3231_buffer[0]), data_arra
+ 367              		.loc 1 60 0
+ 368 0004 434F     		ldr	r7, .L17
+ 369 0006 3868     		ldr	r0, [r7]
+ 370 0008 434C     		ldr	r4, .L17+4
+ 371 000a 0094     		str	r4, [sp]
+ 372 000c 0126     		mov	r6, #1
+ 373 000e 0196     		str	r6, [sp, #4]
+ 374 0010 FA25     		mov	r5, #250
+ 375 0012 6D00     		lsl	r5, r5, #1
+ 376 0014 0295     		str	r5, [sp, #8]
+ 377 0016 D021     		mov	r1, #208
+ 378 0018 0022     		mov	r2, #0
+ 379 001a 0123     		mov	r3, #1
+ 380 001c FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 381              	.LVL29:
+  61:Src/rtc_ds3231_object.c **** 	HAL_I2C_Mem_Read(ds3231_i2c_handle, ds3231_shifted_address, 0x1, 1, &(ds3231_buffer[1]), data_arra
+ 382              		.loc 1 61 0
+ 383 0020 3868     		ldr	r0, [r7]
+ 384 0022 631C     		add	r3, r4, #1
+ 385 0024 0093     		str	r3, [sp]
+ 386 0026 0196     		str	r6, [sp, #4]
+ 387 0028 0295     		str	r5, [sp, #8]
+ 388 002a D021     		mov	r1, #208
+ 389 002c 0122     		mov	r2, #1
+ 390 002e 0123     		mov	r3, #1
+ 391 0030 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 392              	.LVL30:
+  62:Src/rtc_ds3231_object.c **** 	HAL_I2C_Mem_Read(ds3231_i2c_handle, ds3231_shifted_address, 0x2, 1, &(ds3231_buffer[2]), data_arra
+ 393              		.loc 1 62 0
+ 394 0034 3868     		ldr	r0, [r7]
+ 395 0036 A31C     		add	r3, r4, #2
+ 396 0038 0093     		str	r3, [sp]
+ 397 003a 0196     		str	r6, [sp, #4]
+ 398 003c 0295     		str	r5, [sp, #8]
+ 399 003e D021     		mov	r1, #208
+ 400 0040 0222     		mov	r2, #2
+ 401 0042 0123     		mov	r3, #1
+ 402 0044 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 403              	.LVL31:
+  63:Src/rtc_ds3231_object.c **** 	HAL_I2C_Mem_Read(ds3231_i2c_handle, ds3231_shifted_address, 0x3, 1, &(ds3231_buffer[3]), data_arra
+ 404              		.loc 1 63 0
+ARM GAS  /tmp/ccWG3elB.s 			page 9
+
+
+ 405 0048 3868     		ldr	r0, [r7]
+ 406 004a E31C     		add	r3, r4, #3
+ 407 004c 0093     		str	r3, [sp]
+ 408 004e 0196     		str	r6, [sp, #4]
+ 409 0050 0295     		str	r5, [sp, #8]
+ 410 0052 D021     		mov	r1, #208
+ 411 0054 0322     		mov	r2, #3
+ 412 0056 0123     		mov	r3, #1
+ 413 0058 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 414              	.LVL32:
+  64:Src/rtc_ds3231_object.c **** 	HAL_I2C_Mem_Read(ds3231_i2c_handle, ds3231_shifted_address, 0x4, 1, &(ds3231_buffer[4]), data_arra
+ 415              		.loc 1 64 0
+ 416 005c 3868     		ldr	r0, [r7]
+ 417 005e 231D     		add	r3, r4, #4
+ 418 0060 0093     		str	r3, [sp]
+ 419 0062 0196     		str	r6, [sp, #4]
+ 420 0064 0295     		str	r5, [sp, #8]
+ 421 0066 D021     		mov	r1, #208
+ 422 0068 0422     		mov	r2, #4
+ 423 006a 0123     		mov	r3, #1
+ 424 006c FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 425              	.LVL33:
+  65:Src/rtc_ds3231_object.c **** 	HAL_I2C_Mem_Read(ds3231_i2c_handle, ds3231_shifted_address, 0x5, 1, &(ds3231_buffer[5]), data_arra
+ 426              		.loc 1 65 0
+ 427 0070 3868     		ldr	r0, [r7]
+ 428 0072 631D     		add	r3, r4, #5
+ 429 0074 0093     		str	r3, [sp]
+ 430 0076 0196     		str	r6, [sp, #4]
+ 431 0078 0295     		str	r5, [sp, #8]
+ 432 007a D021     		mov	r1, #208
+ 433 007c 0522     		mov	r2, #5
+ 434 007e 0123     		mov	r3, #1
+ 435 0080 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 436              	.LVL34:
+  66:Src/rtc_ds3231_object.c **** 	HAL_I2C_Mem_Read(ds3231_i2c_handle, ds3231_shifted_address, 0x6, 1, &(ds3231_buffer[6]), data_arra
+ 437              		.loc 1 66 0
+ 438 0084 3868     		ldr	r0, [r7]
+ 439 0086 A31D     		add	r3, r4, #6
+ 440 0088 0093     		str	r3, [sp]
+ 441 008a 0196     		str	r6, [sp, #4]
+ 442 008c 0295     		str	r5, [sp, #8]
+ 443 008e D021     		mov	r1, #208
+ 444 0090 0622     		mov	r2, #6
+ 445 0092 0123     		mov	r3, #1
+ 446 0094 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 447              	.LVL35:
+  67:Src/rtc_ds3231_object.c **** 	
+  68:Src/rtc_ds3231_object.c **** 	seconds = 10*(ds3231_buffer[0]>>4) + (ds3231_buffer[0] & 0x0f);
+ 448              		.loc 1 68 0
+ 449 0098 2378     		ldrb	r3, [r4]
+ 450 009a 1909     		lsr	r1, r3, #4
+ 451 009c 8A00     		lsl	r2, r1, #2
+ 452 009e 8A18     		add	r2, r1, r2
+ 453 00a0 5100     		lsl	r1, r2, #1
+ 454 00a2 0F22     		mov	r2, #15
+ 455 00a4 1340     		and	r3, r2
+ 456 00a6 CB18     		add	r3, r1, r3
+ARM GAS  /tmp/ccWG3elB.s 			page 10
+
+
+ 457 00a8 1C49     		ldr	r1, .L17+8
+ 458 00aa 0B70     		strb	r3, [r1]
+  69:Src/rtc_ds3231_object.c **** 	minutes = 10*(ds3231_buffer[1]>>4) + (ds3231_buffer[1] & 0x0f);
+ 459              		.loc 1 69 0
+ 460 00ac 6378     		ldrb	r3, [r4, #1]
+ 461 00ae 1809     		lsr	r0, r3, #4
+ 462 00b0 8100     		lsl	r1, r0, #2
+ 463 00b2 4118     		add	r1, r0, r1
+ 464 00b4 4800     		lsl	r0, r1, #1
+ 465 00b6 1340     		and	r3, r2
+ 466 00b8 C318     		add	r3, r0, r3
+ 467 00ba 1949     		ldr	r1, .L17+12
+ 468 00bc 0B70     		strb	r3, [r1]
+  70:Src/rtc_ds3231_object.c **** 	hours = 10*((ds3231_buffer[2]>>4) & 0x03) + (ds3231_buffer[2] & 0x0f);
+ 469              		.loc 1 70 0
+ 470 00be A378     		ldrb	r3, [r4, #2]
+ 471 00c0 1909     		lsr	r1, r3, #4
+ 472 00c2 F23D     		sub	r5, r5, #242
+ 473 00c4 FF3D     		sub	r5, r5, #255
+ 474 00c6 2940     		and	r1, r5
+ 475 00c8 8800     		lsl	r0, r1, #2
+ 476 00ca 0918     		add	r1, r1, r0
+ 477 00cc 4800     		lsl	r0, r1, #1
+ 478 00ce 1340     		and	r3, r2
+ 479 00d0 C318     		add	r3, r0, r3
+ 480 00d2 1449     		ldr	r1, .L17+16
+ 481 00d4 0B70     		strb	r3, [r1]
+  71:Src/rtc_ds3231_object.c **** 	date = 10*(ds3231_buffer[4]>>4) + (ds3231_buffer[4] & 0x0f);
+ 482              		.loc 1 71 0
+ 483 00d6 2379     		ldrb	r3, [r4, #4]
+ 484 00d8 1909     		lsr	r1, r3, #4
+ 485 00da 8800     		lsl	r0, r1, #2
+ 486 00dc 0818     		add	r0, r1, r0
+ 487 00de 4100     		lsl	r1, r0, #1
+ 488 00e0 1340     		and	r3, r2
+ 489 00e2 CB18     		add	r3, r1, r3
+ 490 00e4 1049     		ldr	r1, .L17+20
+ 491 00e6 0B70     		strb	r3, [r1]
+  72:Src/rtc_ds3231_object.c **** 	month = 10*((ds3231_buffer[5]>>4) & 0x03) + (ds3231_buffer[5] & 0x0f);
+ 492              		.loc 1 72 0
+ 493 00e8 6379     		ldrb	r3, [r4, #5]
+ 494 00ea 1909     		lsr	r1, r3, #4
+ 495 00ec 2940     		and	r1, r5
+ 496 00ee 8800     		lsl	r0, r1, #2
+ 497 00f0 0918     		add	r1, r1, r0
+ 498 00f2 4800     		lsl	r0, r1, #1
+ 499 00f4 1340     		and	r3, r2
+ 500 00f6 C318     		add	r3, r0, r3
+ 501 00f8 0C49     		ldr	r1, .L17+24
+ 502 00fa 0B70     		strb	r3, [r1]
+  73:Src/rtc_ds3231_object.c **** 	year = 10*(ds3231_buffer[6]>>4) + (ds3231_buffer[6] & 0x0f);
+ 503              		.loc 1 73 0
+ 504 00fc A379     		ldrb	r3, [r4, #6]
+ 505 00fe 1809     		lsr	r0, r3, #4
+ 506 0100 8100     		lsl	r1, r0, #2
+ 507 0102 4118     		add	r1, r0, r1
+ 508 0104 4800     		lsl	r0, r1, #1
+ARM GAS  /tmp/ccWG3elB.s 			page 11
+
+
+ 509 0106 1340     		and	r3, r2
+ 510 0108 C318     		add	r3, r0, r3
+ 511 010a 094A     		ldr	r2, .L17+28
+ 512 010c 1370     		strb	r3, [r2]
+  74:Src/rtc_ds3231_object.c **** }
+ 513              		.loc 1 74 0
+ 514 010e 05B0     		add	sp, sp, #20
+ 515              		@ sp needed
+ 516 0110 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 517              	.L18:
+ 518 0112 C046     		.align	2
+ 519              	.L17:
+ 520 0114 00000000 		.word	.LANCHOR7
+ 521 0118 00000000 		.word	.LANCHOR6
+ 522 011c 00000000 		.word	.LANCHOR5
+ 523 0120 00000000 		.word	.LANCHOR4
+ 524 0124 00000000 		.word	.LANCHOR3
+ 525 0128 00000000 		.word	.LANCHOR0
+ 526 012c 00000000 		.word	.LANCHOR1
+ 527 0130 00000000 		.word	.LANCHOR2
+ 528              		.cfi_endproc
+ 529              	.LFE41:
+ 531              		.section	.bss.year,"aw",%nobits
+ 532              		.set	.LANCHOR2,. + 0
+ 535              	year:
+ 536 0000 00       		.space	1
+ 537              		.section	.bss.ds3231_buffer,"aw",%nobits
+ 538              		.align	2
+ 539              		.set	.LANCHOR6,. + 0
+ 542              	ds3231_buffer:
+ 543 0000 00000000 		.space	7
+ 543      000000
+ 544              		.section	.bss.seconds,"aw",%nobits
+ 545              		.set	.LANCHOR5,. + 0
+ 548              	seconds:
+ 549 0000 00       		.space	1
+ 550              		.section	.bss.minutes,"aw",%nobits
+ 551              		.set	.LANCHOR4,. + 0
+ 554              	minutes:
+ 555 0000 00       		.space	1
+ 556              		.section	.bss.ds3231_i2c_handle,"aw",%nobits
+ 557              		.align	2
+ 558              		.set	.LANCHOR7,. + 0
+ 561              	ds3231_i2c_handle:
+ 562 0000 00000000 		.space	4
+ 563              		.section	.bss.hours,"aw",%nobits
+ 564              		.set	.LANCHOR3,. + 0
+ 567              	hours:
+ 568 0000 00       		.space	1
+ 569              		.section	.bss.date,"aw",%nobits
+ 570              		.set	.LANCHOR0,. + 0
+ 573              	date:
+ 574 0000 00       		.space	1
+ 575              		.section	.bss.month,"aw",%nobits
+ 576              		.set	.LANCHOR1,. + 0
+ 579              	month:
+ 580 0000 00       		.space	1
+ARM GAS  /tmp/ccWG3elB.s 			page 12
+
+
+ 581              		.text
+ 582              	.Letext0:
+ 583              		.file 2 "/usr/include/newlib/machine/_default_types.h"
+ 584              		.file 3 "/usr/include/newlib/sys/_stdint.h"
+ 585              		.file 4 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l071xx.h"
+ 586              		.file 5 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_def.h"
+ 587              		.file 6 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_dma.h"
+ 588              		.file 7 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_i2c.h"
+ 589              		.file 8 "Inc/rtc_ds3231_object.h"
+ARM GAS  /tmp/ccWG3elB.s 			page 13
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 rtc_ds3231_object.c
+     /tmp/ccWG3elB.s:18     .text.rtc_ds3231_get_date:0000000000000000 $t
+     /tmp/ccWG3elB.s:23     .text.rtc_ds3231_get_date:0000000000000000 rtc_ds3231_get_date
+     /tmp/ccWG3elB.s:47     .text.rtc_ds3231_get_date:0000000000000014 $d
+     /tmp/ccWG3elB.s:54     .text.rtc_ds3231_get_time:0000000000000000 $t
+     /tmp/ccWG3elB.s:59     .text.rtc_ds3231_get_time:0000000000000000 rtc_ds3231_get_time
+     /tmp/ccWG3elB.s:82     .text.rtc_ds3231_get_time:0000000000000014 $d
+     /tmp/ccWG3elB.s:91     .text.rtc_ds3231_set_date:0000000000000000 $t
+     /tmp/ccWG3elB.s:96     .text.rtc_ds3231_set_date:0000000000000000 rtc_ds3231_set_date
+     /tmp/ccWG3elB.s:200    .text.rtc_ds3231_set_date:000000000000009c $d
+     /tmp/ccWG3elB.s:206    .text.rtc_ds3231_set_time:0000000000000000 $t
+     /tmp/ccWG3elB.s:211    .text.rtc_ds3231_set_time:0000000000000000 rtc_ds3231_set_time
+     /tmp/ccWG3elB.s:316    .text.rtc_ds3231_set_time:000000000000009c $d
+     /tmp/ccWG3elB.s:322    .text.rtc_ds3231_set_i2c_handle:0000000000000000 $t
+     /tmp/ccWG3elB.s:327    .text.rtc_ds3231_set_i2c_handle:0000000000000000 rtc_ds3231_set_i2c_handle
+     /tmp/ccWG3elB.s:341    .text.rtc_ds3231_set_i2c_handle:0000000000000008 $d
+     /tmp/ccWG3elB.s:346    .text.rtc_ds3231_action:0000000000000000 $t
+     /tmp/ccWG3elB.s:351    .text.rtc_ds3231_action:0000000000000000 rtc_ds3231_action
+     /tmp/ccWG3elB.s:520    .text.rtc_ds3231_action:0000000000000114 $d
+     /tmp/ccWG3elB.s:535    .bss.year:0000000000000000 year
+     /tmp/ccWG3elB.s:536    .bss.year:0000000000000000 $d
+     /tmp/ccWG3elB.s:538    .bss.ds3231_buffer:0000000000000000 $d
+     /tmp/ccWG3elB.s:542    .bss.ds3231_buffer:0000000000000000 ds3231_buffer
+     /tmp/ccWG3elB.s:548    .bss.seconds:0000000000000000 seconds
+     /tmp/ccWG3elB.s:549    .bss.seconds:0000000000000000 $d
+     /tmp/ccWG3elB.s:554    .bss.minutes:0000000000000000 minutes
+     /tmp/ccWG3elB.s:555    .bss.minutes:0000000000000000 $d
+     /tmp/ccWG3elB.s:557    .bss.ds3231_i2c_handle:0000000000000000 $d
+     /tmp/ccWG3elB.s:561    .bss.ds3231_i2c_handle:0000000000000000 ds3231_i2c_handle
+     /tmp/ccWG3elB.s:567    .bss.hours:0000000000000000 hours
+     /tmp/ccWG3elB.s:568    .bss.hours:0000000000000000 $d
+     /tmp/ccWG3elB.s:573    .bss.date:0000000000000000 date
+     /tmp/ccWG3elB.s:574    .bss.date:0000000000000000 $d
+     /tmp/ccWG3elB.s:579    .bss.month:0000000000000000 month
+     /tmp/ccWG3elB.s:580    .bss.month:0000000000000000 $d
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+__aeabi_uidiv
+__aeabi_uidivmod
+HAL_I2C_Mem_Write
+HAL_I2C_Mem_Read

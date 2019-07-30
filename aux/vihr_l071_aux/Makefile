@@ -42,6 +42,7 @@ Src/adc.c \
 Src/i2c.c \
 Src/spi.c \
 Src/usart.c \
+Src/one_second_timer_object.c \
 Src/stm32l0xx_it.c \
 Src/stm32l0xx_hal_msp.c \
 Src/rtc_ds3231_object.c \

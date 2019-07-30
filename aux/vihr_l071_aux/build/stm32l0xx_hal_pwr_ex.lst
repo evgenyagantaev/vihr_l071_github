@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccmsxCxB.s 			page 1
+ARM GAS  /tmp/ccl9UDkH.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccmsxCxB.s 			page 1
   31:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_pwr_ex.c ****   * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
   32:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_pwr_ex.c ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
   33:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_pwr_ex.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-ARM GAS  /tmp/ccmsxCxB.s 			page 2
+ARM GAS  /tmp/ccl9UDkH.s 			page 2
 
 
   34:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_pwr_ex.c ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccmsxCxB.s 			page 1
   26              		.loc 1 87 0
   27              		.cfi_startproc
   88:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_pwr_ex.c ****   return  (PWR->CR & PWR_CR_VOS);
-ARM GAS  /tmp/ccmsxCxB.s 			page 3
+ARM GAS  /tmp/ccl9UDkH.s 			page 3
 
 
   28              		.loc 1 88 0
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccmsxCxB.s 			page 1
   69              	.LFE37:
   71              		.section	.text.HAL_PWREx_DisableFastWakeUp,"ax",%progbits
   72              		.align	2
-ARM GAS  /tmp/ccmsxCxB.s 			page 4
+ARM GAS  /tmp/ccl9UDkH.s 			page 4
 
 
   73              		.global	HAL_PWREx_DisableFastWakeUp
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccmsxCxB.s 			page 1
  111 0004 8021     		mov	r1, #128
  112 0006 8900     		lsl	r1, r1, #2
  113 0008 0B43     		orr	r3, r1
-ARM GAS  /tmp/ccmsxCxB.s 			page 5
+ARM GAS  /tmp/ccl9UDkH.s 			page 5
 
 
  114 000a 1360     		str	r3, [r2]
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccmsxCxB.s 			page 1
  135:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_pwr_ex.c **** /**
  136:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_pwr_ex.c ****   * @brief  Enable the Low Power Run mode.
  137:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_pwr_ex.c ****   * @note   Low power run mode can only be entered when VCORE is in range 2.
-ARM GAS  /tmp/ccmsxCxB.s 			page 6
+ARM GAS  /tmp/ccl9UDkH.s 			page 6
 
 
  138:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_pwr_ex.c ****   *         In addition, the dynamic voltage scaling must not be used when Low
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccmsxCxB.s 			page 1
  161:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_pwr_ex.c ****   */
  162:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_pwr_ex.c **** HAL_StatusTypeDef HAL_PWREx_DisableLowPowerRunMode(void)
  163:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_pwr_ex.c **** {
-ARM GAS  /tmp/ccmsxCxB.s 			page 7
+ARM GAS  /tmp/ccl9UDkH.s 			page 7
 
 
  193              		.loc 1 163 0
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccmsxCxB.s 			page 1
  233 002c 5B68     		ldr	r3, [r3, #4]
  234 002e 9B06     		lsl	r3, r3, #26
  235 0030 F8D4     		bmi	.L22
-ARM GAS  /tmp/ccmsxCxB.s 			page 8
+ARM GAS  /tmp/ccl9UDkH.s 			page 8
 
 
  236              	.L21:
@@ -466,32 +466,32 @@ ARM GAS  /tmp/ccmsxCxB.s 			page 1
  270              		.file 5 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l0xx.h"
  271              		.file 6 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_def.h"
  272              		.file 7 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/system_stm32l0xx.h"
-ARM GAS  /tmp/ccmsxCxB.s 			page 9
+ARM GAS  /tmp/ccl9UDkH.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32l0xx_hal_pwr_ex.c
-     /tmp/ccmsxCxB.s:18     .text.HAL_PWREx_GetVoltageRange:0000000000000000 $t
-     /tmp/ccmsxCxB.s:23     .text.HAL_PWREx_GetVoltageRange:0000000000000000 HAL_PWREx_GetVoltageRange
-     /tmp/ccmsxCxB.s:40     .text.HAL_PWREx_GetVoltageRange:000000000000000c $d
-     /tmp/ccmsxCxB.s:45     .text.HAL_PWREx_EnableFastWakeUp:0000000000000000 $t
-     /tmp/ccmsxCxB.s:50     .text.HAL_PWREx_EnableFastWakeUp:0000000000000000 HAL_PWREx_EnableFastWakeUp
-     /tmp/ccmsxCxB.s:67     .text.HAL_PWREx_EnableFastWakeUp:0000000000000010 $d
-     /tmp/ccmsxCxB.s:72     .text.HAL_PWREx_DisableFastWakeUp:0000000000000000 $t
-     /tmp/ccmsxCxB.s:77     .text.HAL_PWREx_DisableFastWakeUp:0000000000000000 HAL_PWREx_DisableFastWakeUp
-     /tmp/ccmsxCxB.s:93     .text.HAL_PWREx_DisableFastWakeUp:000000000000000c $d
-     /tmp/ccmsxCxB.s:99     .text.HAL_PWREx_EnableUltraLowPower:0000000000000000 $t
-     /tmp/ccmsxCxB.s:104    .text.HAL_PWREx_EnableUltraLowPower:0000000000000000 HAL_PWREx_EnableUltraLowPower
-     /tmp/ccmsxCxB.s:121    .text.HAL_PWREx_EnableUltraLowPower:0000000000000010 $d
-     /tmp/ccmsxCxB.s:126    .text.HAL_PWREx_DisableUltraLowPower:0000000000000000 $t
-     /tmp/ccmsxCxB.s:131    .text.HAL_PWREx_DisableUltraLowPower:0000000000000000 HAL_PWREx_DisableUltraLowPower
-     /tmp/ccmsxCxB.s:147    .text.HAL_PWREx_DisableUltraLowPower:000000000000000c $d
-     /tmp/ccmsxCxB.s:153    .text.HAL_PWREx_EnableLowPowerRunMode:0000000000000000 $t
-     /tmp/ccmsxCxB.s:158    .text.HAL_PWREx_EnableLowPowerRunMode:0000000000000000 HAL_PWREx_EnableLowPowerRunMode
-     /tmp/ccmsxCxB.s:180    .text.HAL_PWREx_EnableLowPowerRunMode:0000000000000018 $d
-     /tmp/ccmsxCxB.s:186    .text.HAL_PWREx_DisableLowPowerRunMode:0000000000000000 $t
-     /tmp/ccmsxCxB.s:191    .text.HAL_PWREx_DisableLowPowerRunMode:0000000000000000 HAL_PWREx_DisableLowPowerRunMode
-     /tmp/ccmsxCxB.s:258    .text.HAL_PWREx_DisableLowPowerRunMode:0000000000000044 $d
+     /tmp/ccl9UDkH.s:18     .text.HAL_PWREx_GetVoltageRange:0000000000000000 $t
+     /tmp/ccl9UDkH.s:23     .text.HAL_PWREx_GetVoltageRange:0000000000000000 HAL_PWREx_GetVoltageRange
+     /tmp/ccl9UDkH.s:40     .text.HAL_PWREx_GetVoltageRange:000000000000000c $d
+     /tmp/ccl9UDkH.s:45     .text.HAL_PWREx_EnableFastWakeUp:0000000000000000 $t
+     /tmp/ccl9UDkH.s:50     .text.HAL_PWREx_EnableFastWakeUp:0000000000000000 HAL_PWREx_EnableFastWakeUp
+     /tmp/ccl9UDkH.s:67     .text.HAL_PWREx_EnableFastWakeUp:0000000000000010 $d
+     /tmp/ccl9UDkH.s:72     .text.HAL_PWREx_DisableFastWakeUp:0000000000000000 $t
+     /tmp/ccl9UDkH.s:77     .text.HAL_PWREx_DisableFastWakeUp:0000000000000000 HAL_PWREx_DisableFastWakeUp
+     /tmp/ccl9UDkH.s:93     .text.HAL_PWREx_DisableFastWakeUp:000000000000000c $d
+     /tmp/ccl9UDkH.s:99     .text.HAL_PWREx_EnableUltraLowPower:0000000000000000 $t
+     /tmp/ccl9UDkH.s:104    .text.HAL_PWREx_EnableUltraLowPower:0000000000000000 HAL_PWREx_EnableUltraLowPower
+     /tmp/ccl9UDkH.s:121    .text.HAL_PWREx_EnableUltraLowPower:0000000000000010 $d
+     /tmp/ccl9UDkH.s:126    .text.HAL_PWREx_DisableUltraLowPower:0000000000000000 $t
+     /tmp/ccl9UDkH.s:131    .text.HAL_PWREx_DisableUltraLowPower:0000000000000000 HAL_PWREx_DisableUltraLowPower
+     /tmp/ccl9UDkH.s:147    .text.HAL_PWREx_DisableUltraLowPower:000000000000000c $d
+     /tmp/ccl9UDkH.s:153    .text.HAL_PWREx_EnableLowPowerRunMode:0000000000000000 $t
+     /tmp/ccl9UDkH.s:158    .text.HAL_PWREx_EnableLowPowerRunMode:0000000000000000 HAL_PWREx_EnableLowPowerRunMode
+     /tmp/ccl9UDkH.s:180    .text.HAL_PWREx_EnableLowPowerRunMode:0000000000000018 $d
+     /tmp/ccl9UDkH.s:186    .text.HAL_PWREx_DisableLowPowerRunMode:0000000000000000 $t
+     /tmp/ccl9UDkH.s:191    .text.HAL_PWREx_DisableLowPowerRunMode:0000000000000000 HAL_PWREx_DisableLowPowerRunMode
+     /tmp/ccl9UDkH.s:258    .text.HAL_PWREx_DisableLowPowerRunMode:0000000000000044 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

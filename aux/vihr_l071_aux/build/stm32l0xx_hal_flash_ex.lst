@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccGmJUbX.s 			page 1
+ARM GAS  /tmp/ccJct65T.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
   32:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****        (+) Boot activation
   33:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****        (+) PCROP protection configuration and control for all pages
   34:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   
-ARM GAS  /tmp/ccGmJUbX.s 			page 2
+ARM GAS  /tmp/ccJct65T.s 			page 2
 
 
   35:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   @endverbatim
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
   89:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   
   90:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** /** @defgroup FLASHEx FLASHEx
   91:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   * @brief FLASH HAL Extension module driver
-ARM GAS  /tmp/ccGmJUbX.s 			page 3
+ARM GAS  /tmp/ccJct65T.s 			page 3
 
 
   92:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   * @{
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  146:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   */
  147:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** 
  148:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** /** @defgroup FLASHEx_Exported_Functions_Group1 FLASHEx Memory Erasing functions
-ARM GAS  /tmp/ccGmJUbX.s 			page 4
+ARM GAS  /tmp/ccJct65T.s 			page 4
 
 
  149:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****  *  @brief   FLASH Memory Erasing functions
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  203:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****     /* Check the parameters */
  204:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****     assert_param(IS_NBPAGES(pEraseInit->NbPages));
  205:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****     assert_param(IS_FLASH_TYPEERASE(pEraseInit->TypeErase));
-ARM GAS  /tmp/ccGmJUbX.s 			page 5
+ARM GAS  /tmp/ccJct65T.s 			page 5
 
 
  206:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****     assert_param(IS_FLASH_PROGRAM_ADDRESS(pEraseInit->PageAddress));
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  260:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** 
  261:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   /* Check the parameters */
  262:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   assert_param(IS_NBPAGES(pEraseInit->NbPages));
-ARM GAS  /tmp/ccGmJUbX.s 			page 6
+ARM GAS  /tmp/ccJct65T.s 			page 6
 
 
  263:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   assert_param(IS_FLASH_TYPEERASE(pEraseInit->TypeErase));
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  317:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****     (#) Call the @ref HAL_FLASH_OB_Lock() to disable the Flash option control register access (reco
  318:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****         to protect the option Bytes against possible unwanted operations).
  319:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** 
-ARM GAS  /tmp/ccGmJUbX.s 			page 7
+ARM GAS  /tmp/ccJct65T.s 			page 7
 
 
  320:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****     [..] Proprietary code Read Out Protection (PcROP):
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  374:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****     if (status != HAL_OK)
  375:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****     {
  376:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****       /* Process Unlocked */
-ARM GAS  /tmp/ccGmJUbX.s 			page 8
+ARM GAS  /tmp/ccJct65T.s 			page 8
 
 
  377:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****       __HAL_UNLOCK(&pFlash);
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  431:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   pOBInit->WRPSector = FLASH_OB_GetWRP();
  432:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** 
  433:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** #if defined(STM32L071xx) || defined(STM32L072xx) || defined(STM32L073xx) || defined(STM32L081xx) ||
-ARM GAS  /tmp/ccGmJUbX.s 			page 9
+ARM GAS  /tmp/ccJct65T.s 			page 9
 
 
  434:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   pOBInit->WRPSector2 = FLASH_OB_GetWRP2();
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  488:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   }
  489:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   
  490:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** #endif /* FLASH_OPTR_BFB2 */
-ARM GAS  /tmp/ccGmJUbX.s 			page 10
+ARM GAS  /tmp/ccJct65T.s 			page 10
 
 
  491:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** 
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  545:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   uint16_t tmp1 = 0;
  546:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   uint32_t tmp2 = 0;
  547:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   uint8_t optiontmp = 0;
-ARM GAS  /tmp/ccGmJUbX.s 			page 11
+ARM GAS  /tmp/ccJct65T.s 			page 11
 
 
  548:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   uint16_t optiontmp2 = 0;
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  602:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   tmp2 = (uint32_t)(((uint32_t)((uint32_t)(tmp1) << 16U)) | ((uint32_t)optiontmp2));
  603:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   
  604:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   if(status == HAL_OK)
-ARM GAS  /tmp/ccGmJUbX.s 			page 12
+ARM GAS  /tmp/ccJct65T.s 			page 12
 
 
  605:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   {         
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  659:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   {
  660:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****     return HAL_ERROR;
  661:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   }
-ARM GAS  /tmp/ccGmJUbX.s 			page 13
+ARM GAS  /tmp/ccJct65T.s 			page 13
 
 
  662:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   return HAL_OK;  
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  716:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   *         Call the @ref HAL_FLASHEx_DATAEEPROM_Unlock() to he data EEPROM access
  717:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   *         and Flash program erase control register access(recommended to protect 
  718:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   *         the DATA_EEPROM against possible unwanted operation).
-ARM GAS  /tmp/ccGmJUbX.s 			page 14
+ARM GAS  /tmp/ccJct65T.s 			page 14
 
 
  719:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   * @note   The function @ref HAL_FLASHEx_DATAEEPROM_EnableFixedTimeProgram() can be called before 
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  773:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   }
  774:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** 
  775:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   /* Process Unlocked */
-ARM GAS  /tmp/ccGmJUbX.s 			page 15
+ARM GAS  /tmp/ccJct65T.s 			page 15
 
 
  776:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   __HAL_UNLOCK(&pFlash);
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  830:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** static HAL_StatusTypeDef FLASH_OB_RDPConfig(uint8_t OB_RDP)
  831:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** {
  832:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   HAL_StatusTypeDef status = HAL_OK;
-ARM GAS  /tmp/ccGmJUbX.s 			page 16
+ARM GAS  /tmp/ccJct65T.s 			page 16
 
 
  833:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   uint32_t tmp1 = 0U, tmp2 = 0U, tmp3 = 0U;
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  887:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   assert_param(IS_OB_BOR_LEVEL(OB_BOR));
  888:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** 
  889:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   /* Get the User Option byte register */
-ARM GAS  /tmp/ccGmJUbX.s 			page 17
+ARM GAS  /tmp/ccJct65T.s 			page 17
 
 
  890:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   tmp1 = OB->USER & ((~FLASH_OPTR_BOR_LEV) >> 16U);
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  944:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****     pFlash.ErrorCode = HAL_FLASH_ERROR_NONE;
  945:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****     /* Program OB */
  946:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****     OB->USER = tmp; 
-ARM GAS  /tmp/ccGmJUbX.s 			page 18
+ARM GAS  /tmp/ccJct65T.s 			page 18
 
 
  947:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****     /* Wait for last operation to be completed */
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
   53              		.loc 1 974 0
   54 0000 014B     		ldr	r3, .L5
   55 0002 D869     		ldr	r0, [r3, #28]
-ARM GAS  /tmp/ccGmJUbX.s 			page 19
+ARM GAS  /tmp/ccJct65T.s 			page 19
 
 
   56 0004 C0B2     		uxtb	r0, r0
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  991:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** static uint8_t FLASH_OB_GetBOOTBit1(void)
  992:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** {
   98              		.loc 1 992 0
-ARM GAS  /tmp/ccGmJUbX.s 			page 20
+ARM GAS  /tmp/ccJct65T.s 			page 20
 
 
   99              		.cfi_startproc
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
 1007:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** 
 1008:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** #if defined(STM32L071xx) || defined(STM32L072xx) || defined(STM32L073xx) || defined(STM32L081xx) ||
 1009:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** /**
-ARM GAS  /tmp/ccGmJUbX.s 			page 21
+ARM GAS  /tmp/ccJct65T.s 			page 21
 
 
 1010:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   * @brief  Returns the FLASH Write Protection Option Bytes value.
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
 1043:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** #endif
 1044:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** {
  166              		.loc 1 1044 0
-ARM GAS  /tmp/ccGmJUbX.s 			page 22
+ARM GAS  /tmp/ccJct65T.s 			page 22
 
 
  167              		.cfi_startproc
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  201              		.loc 1 1064 0
  202 0024 2449     		ldr	r1, .L26+8
  203 0026 8B68     		ldr	r3, [r1, #8]
-ARM GAS  /tmp/ccGmJUbX.s 			page 23
+ARM GAS  /tmp/ccJct65T.s 			page 23
 
 
  204 0028 2343     		orr	r3, r4
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  240              	.LVL9:
  241 0054 184A     		ldr	r2, .L26+8
  242 0056 D368     		ldr	r3, [r2, #12]
-ARM GAS  /tmp/ccGmJUbX.s 			page 24
+ARM GAS  /tmp/ccJct65T.s 			page 24
 
 
  243 0058 1C43     		orr	r4, r3
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  280 0082 08D0     		beq	.L25
 1100:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****         {
 1101:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****           WRP_Data = (uint16_t)(((OB_WRP & WRP_MASK_LOW) | OB->WRP45));
-ARM GAS  /tmp/ccGmJUbX.s 			page 25
+ARM GAS  /tmp/ccJct65T.s 			page 25
 
 
  281              		.loc 1 1101 0
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  318              	.LVL27:
  319 00ac 70BD     		pop	{r4, r5, r6, pc}
  320              	.L27:
-ARM GAS  /tmp/ccGmJUbX.s 			page 26
+ARM GAS  /tmp/ccJct65T.s 			page 26
 
 
  321 00ae C046     		.align	2
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  371              	.LVL38:
  852:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****     {
  372              		.loc 1 852 0
-ARM GAS  /tmp/ccGmJUbX.s 			page 27
+ARM GAS  /tmp/ccJct65T.s 			page 27
 
 
  373 001e 0028     		cmp	r0, #0
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
 1136:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** static HAL_StatusTypeDef FLASH_OB_UserConfig(uint8_t OB_IWDG, uint8_t OB_STOP, uint8_t OB_STDBY)
 1137:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** {
  408              		.loc 1 1137 0
-ARM GAS  /tmp/ccGmJUbX.s 			page 28
+ARM GAS  /tmp/ccJct65T.s 			page 28
 
 
  409              		.cfi_startproc
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
 1157:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   {  
 1158:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****     /* Clean the error context */
 1159:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****     pFlash.ErrorCode = HAL_FLASH_ERROR_NONE;
-ARM GAS  /tmp/ccGmJUbX.s 			page 29
+ARM GAS  /tmp/ccJct65T.s 			page 29
 
 
  444              		.loc 1 1159 0
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  487              		.loc 1 890 0
  488 0002 0B4B     		ldr	r3, .L38
  489 0004 5A68     		ldr	r2, [r3, #4]
-ARM GAS  /tmp/ccGmJUbX.s 			page 30
+ARM GAS  /tmp/ccJct65T.s 			page 30
 
 
  490 0006 0B4B     		ldr	r3, .L38+4
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  536              		.cfi_endproc
  537              	.LFE51:
  539              		.section	.text.FLASH_OB_BOOTBit1Config,"ax",%progbits
-ARM GAS  /tmp/ccGmJUbX.s 			page 31
+ARM GAS  /tmp/ccJct65T.s 			page 31
 
 
  540              		.align	2
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  946:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****     /* Wait for last operation to be completed */
  587              		.loc 1 946 0
  588 0026 034B     		ldr	r3, .L42
-ARM GAS  /tmp/ccGmJUbX.s 			page 32
+ARM GAS  /tmp/ccJct65T.s 			page 32
 
 
  589 0028 5C60     		str	r4, [r3, #4]
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
 1189:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** 
 1190:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   /* Get the User Option byte register  and BOR Level*/
 1191:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   tmp1 = OB->USER & ((~FLASH_OPTR_BFB2) >> 16U);
-ARM GAS  /tmp/ccGmJUbX.s 			page 33
+ARM GAS  /tmp/ccJct65T.s 			page 33
 
 
  625              		.loc 1 1191 0
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  661              	.LVL89:
  662              	.L45:
 1210:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   }
-ARM GAS  /tmp/ccGmJUbX.s 			page 34
+ARM GAS  /tmp/ccJct65T.s 			page 34
 
 
 1211:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** 
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  710              	.LVL93:
  711 001a E168     		ldr	r1, [r4, #12]
  712 001c 6268     		ldr	r2, [r4, #4]
-ARM GAS  /tmp/ccGmJUbX.s 			page 35
+ARM GAS  /tmp/ccJct65T.s 			page 35
 
 
  713 001e FFF7FEFF 		bl	FLASH_OB_ProtectedSectorsConfig
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  756 004e A27C     		ldrb	r2, [r4, #18]
  757 0050 1020     		mov	r0, #16
  758 0052 1040     		and	r0, r2
-ARM GAS  /tmp/ccGmJUbX.s 			page 36
+ARM GAS  /tmp/ccJct65T.s 			page 36
 
 
  759 0054 2021     		mov	r1, #32
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  803 008a E07C     		ldrb	r0, [r4, #19]
  804 008c FFF7FEFF 		bl	FLASH_OB_BOOTBit1Config
  805              	.LVL108:
-ARM GAS  /tmp/ccGmJUbX.s 			page 37
+ARM GAS  /tmp/ccJct65T.s 			page 37
 
 
  806 0090 031C     		mov	r3, r0
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  855 000c A060     		str	r0, [r4, #8]
  434:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** #endif
  856              		.loc 1 434 0
-ARM GAS  /tmp/ccGmJUbX.s 			page 38
+ARM GAS  /tmp/ccJct65T.s 			page 38
 
 
  857 000e FFF7FEFF 		bl	FLASH_OB_GetWRP2
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  905              		.loc 1 474 0
  906 000a 8068     		ldr	r0, [r0, #8]
  907              	.LVL122:
-ARM GAS  /tmp/ccGmJUbX.s 			page 39
+ARM GAS  /tmp/ccJct65T.s 			page 39
 
 
  908 000c E168     		ldr	r1, [r4, #12]
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  956              		.loc 1 514 0
  957 000e 136A     		ldr	r3, [r2, #32]
  958 0010 8360     		str	r3, [r0, #8]
-ARM GAS  /tmp/ccGmJUbX.s 			page 40
+ARM GAS  /tmp/ccJct65T.s 			page 40
 
 
  518:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** #endif
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  1007              		.loc 1 556 0
  1008 000c 8022     		mov	r2, #128
  1009 000e 5200     		lsl	r2, r2, #1
-ARM GAS  /tmp/ccGmJUbX.s 			page 41
+ARM GAS  /tmp/ccJct65T.s 			page 41
 
 
  1010 0010 1343     		orr	r3, r2
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  1058 0000 08B5     		push	{r3, lr}
  1059              	.LCFI10:
  1060              		.cfi_def_cfa_offset 8
-ARM GAS  /tmp/ccGmJUbX.s 			page 42
+ARM GAS  /tmp/ccJct65T.s 			page 42
 
 
  1061              		.cfi_offset 3, -8
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  1106              		.cfi_endproc
  1107              	.LFE43:
  1109              		.section	.text.HAL_FLASHEx_DATAEEPROM_Unlock,"ax",%progbits
-ARM GAS  /tmp/ccGmJUbX.s 			page 43
+ARM GAS  /tmp/ccJct65T.s 			page 43
 
 
  1110              		.align	2
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  1159              		.cfi_startproc
  672:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   
  1160              		.loc 1 672 0
-ARM GAS  /tmp/ccGmJUbX.s 			page 44
+ARM GAS  /tmp/ccJct65T.s 			page 44
 
 
  1161 0000 034A     		ldr	r2, .L81
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  1210 0016 0248     		ldr	r0, .L85
  1211              	.LVL151:
  1212 0018 FFF7FEFF 		bl	FLASH_WaitForLastOperation
-ARM GAS  /tmp/ccGmJUbX.s 			page 45
+ARM GAS  /tmp/ccJct65T.s 			page 45
 
 
  1213              	.LVL152:
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  743:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   {
  1264              		.loc 1 743 0 discriminator 2
  1265 001c 0028     		cmp	r0, #0
-ARM GAS  /tmp/ccGmJUbX.s 			page 46
+ARM GAS  /tmp/ccJct65T.s 			page 46
 
 
  1266 001e 16D1     		bne	.L89
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  1310              	.L89:
  776:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** 
  1311              		.loc 1 776 0
-ARM GAS  /tmp/ccGmJUbX.s 			page 47
+ARM GAS  /tmp/ccJct65T.s 			page 47
 
 
  1312 004e 0022     		mov	r2, #0
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  1363              		.section	.text.HAL_FLASHEx_DATAEEPROM_DisableFixedTimeProgram,"ax",%progbits
  1364              		.align	2
  1365              		.global	HAL_FLASHEx_DATAEEPROM_DisableFixedTimeProgram
-ARM GAS  /tmp/ccGmJUbX.s 			page 48
+ARM GAS  /tmp/ccJct65T.s 			page 48
 
 
  1366              		.code	16
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
 1237:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   * @param  PageAddress The page address in program memory to be erased.
 1238:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   * @note   A Page is erased in the Program memory only if the address to load 
 1239:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   *         is the start address of a page (multiple of @ref FLASH_PAGE_SIZE bytes).
-ARM GAS  /tmp/ccGmJUbX.s 			page 49
+ARM GAS  /tmp/ccJct65T.s 			page 49
 
 
 1240:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   * @retval None
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  1436              	.LFE62:
  1438              		.section	.text.HAL_FLASHEx_Erase,"ax",%progbits
  1439              		.align	2
-ARM GAS  /tmp/ccGmJUbX.s 			page 50
+ARM GAS  /tmp/ccJct65T.s 			page 50
 
 
  1440              		.global	HAL_FLASHEx_Erase
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  1487              	.LVL177:
  1488 002a FFF7FEFF 		bl	FLASH_PageErase
  1489              	.LVL178:
-ARM GAS  /tmp/ccGmJUbX.s 			page 51
+ARM GAS  /tmp/ccJct65T.s 			page 51
 
 
  217:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** 
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  1533 0064 00E0     		b	.L107
  1534              	.LVL182:
  1535              	.L112:
-ARM GAS  /tmp/ccGmJUbX.s 			page 52
+ARM GAS  /tmp/ccJct65T.s 			page 52
 
 
  193:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c **** 
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  1586 0018 1A74     		strb	r2, [r3, #16]
  271:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c ****   
  1587              		.loc 1 271 0 is_stmt 1 discriminator 2
-ARM GAS  /tmp/ccGmJUbX.s 			page 53
+ARM GAS  /tmp/ccJct65T.s 			page 53
 
 
  1588 001a 1048     		ldr	r0, .L121+4
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  1633 0050 0120     		mov	r0, #1
  1634              	.LVL194:
  1635 0052 00E0     		b	.L116
-ARM GAS  /tmp/ccGmJUbX.s 			page 54
+ARM GAS  /tmp/ccJct65T.s 			page 54
 
 
  1636              	.LVL195:
@@ -3209,93 +3209,93 @@ ARM GAS  /tmp/ccGmJUbX.s 			page 1
  1660              		.file 6 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_def.h"
  1661              		.file 7 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_flash.h"
  1662              		.file 8 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_flash_ex.h"
-ARM GAS  /tmp/ccGmJUbX.s 			page 55
+ARM GAS  /tmp/ccJct65T.s 			page 55
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32l0xx_hal_flash_ex.c
-     /tmp/ccGmJUbX.s:18     .text.FLASH_OB_GetUser:0000000000000000 $t
-     /tmp/ccGmJUbX.s:22     .text.FLASH_OB_GetUser:0000000000000000 FLASH_OB_GetUser
-     /tmp/ccGmJUbX.s:40     .text.FLASH_OB_GetUser:0000000000000010 $d
-     /tmp/ccGmJUbX.s:45     .text.FLASH_OB_GetRDP:0000000000000000 $t
-     /tmp/ccGmJUbX.s:49     .text.FLASH_OB_GetRDP:0000000000000000 FLASH_OB_GetRDP
-     /tmp/ccGmJUbX.s:63     .text.FLASH_OB_GetRDP:0000000000000008 $d
-     /tmp/ccGmJUbX.s:68     .text.FLASH_OB_GetBOR:0000000000000000 $t
-     /tmp/ccGmJUbX.s:72     .text.FLASH_OB_GetBOR:0000000000000000 FLASH_OB_GetBOR
-     /tmp/ccGmJUbX.s:87     .text.FLASH_OB_GetBOR:000000000000000c $d
-     /tmp/ccGmJUbX.s:92     .text.FLASH_OB_GetBOOTBit1:0000000000000000 $t
-     /tmp/ccGmJUbX.s:96     .text.FLASH_OB_GetBOOTBit1:0000000000000000 FLASH_OB_GetBOOTBit1
-     /tmp/ccGmJUbX.s:110    .text.FLASH_OB_GetBOOTBit1:0000000000000008 $d
-     /tmp/ccGmJUbX.s:115    .text.FLASH_OB_GetWRP:0000000000000000 $t
-     /tmp/ccGmJUbX.s:119    .text.FLASH_OB_GetWRP:0000000000000000 FLASH_OB_GetWRP
-     /tmp/ccGmJUbX.s:132    .text.FLASH_OB_GetWRP:0000000000000008 $d
-     /tmp/ccGmJUbX.s:137    .text.FLASH_OB_GetWRP2:0000000000000000 $t
-     /tmp/ccGmJUbX.s:141    .text.FLASH_OB_GetWRP2:0000000000000000 FLASH_OB_GetWRP2
-     /tmp/ccGmJUbX.s:155    .text.FLASH_OB_GetWRP2:0000000000000008 $d
-     /tmp/ccGmJUbX.s:160    .text.FLASH_OB_ProtectedSectorsConfig:0000000000000000 $t
-     /tmp/ccGmJUbX.s:164    .text.FLASH_OB_ProtectedSectorsConfig:0000000000000000 FLASH_OB_ProtectedSectorsConfig
-     /tmp/ccGmJUbX.s:323    .text.FLASH_OB_ProtectedSectorsConfig:00000000000000b0 $d
-     /tmp/ccGmJUbX.s:330    .text.FLASH_OB_RDPConfig:0000000000000000 $t
-     /tmp/ccGmJUbX.s:334    .text.FLASH_OB_RDPConfig:0000000000000000 FLASH_OB_RDPConfig
-     /tmp/ccGmJUbX.s:395    .text.FLASH_OB_RDPConfig:0000000000000034 $d
-     /tmp/ccGmJUbX.s:402    .text.FLASH_OB_UserConfig:0000000000000000 $t
-     /tmp/ccGmJUbX.s:406    .text.FLASH_OB_UserConfig:0000000000000000 FLASH_OB_UserConfig
-     /tmp/ccGmJUbX.s:464    .text.FLASH_OB_UserConfig:0000000000000034 $d
-     /tmp/ccGmJUbX.s:472    .text.FLASH_OB_BORConfig:0000000000000000 $t
-     /tmp/ccGmJUbX.s:476    .text.FLASH_OB_BORConfig:0000000000000000 FLASH_OB_BORConfig
-     /tmp/ccGmJUbX.s:532    .text.FLASH_OB_BORConfig:0000000000000030 $d
-     /tmp/ccGmJUbX.s:540    .text.FLASH_OB_BOOTBit1Config:0000000000000000 $t
-     /tmp/ccGmJUbX.s:544    .text.FLASH_OB_BOOTBit1Config:0000000000000000 FLASH_OB_BOOTBit1Config
-     /tmp/ccGmJUbX.s:603    .text.FLASH_OB_BOOTBit1Config:0000000000000034 $d
-     /tmp/ccGmJUbX.s:610    .text.FLASH_OB_BootConfig:0000000000000000 $t
-     /tmp/ccGmJUbX.s:614    .text.FLASH_OB_BootConfig:0000000000000000 FLASH_OB_BootConfig
-     /tmp/ccGmJUbX.s:670    .text.FLASH_OB_BootConfig:0000000000000030 $d
-     /tmp/ccGmJUbX.s:678    .text.HAL_FLASHEx_OBProgram:0000000000000000 $t
-     /tmp/ccGmJUbX.s:683    .text.HAL_FLASHEx_OBProgram:0000000000000000 HAL_FLASHEx_OBProgram
-     /tmp/ccGmJUbX.s:828    .text.HAL_FLASHEx_OBProgram:00000000000000a0 $d
-     /tmp/ccGmJUbX.s:833    .text.HAL_FLASHEx_OBGetConfig:0000000000000000 $t
-     /tmp/ccGmJUbX.s:838    .text.HAL_FLASHEx_OBGetConfig:0000000000000000 HAL_FLASHEx_OBGetConfig
-     /tmp/ccGmJUbX.s:884    .text.HAL_FLASHEx_AdvOBProgram:0000000000000000 $t
-     /tmp/ccGmJUbX.s:889    .text.HAL_FLASHEx_AdvOBProgram:0000000000000000 HAL_FLASHEx_AdvOBProgram
-     /tmp/ccGmJUbX.s:937    .text.HAL_FLASHEx_AdvOBGetConfig:0000000000000000 $t
-     /tmp/ccGmJUbX.s:942    .text.HAL_FLASHEx_AdvOBGetConfig:0000000000000000 HAL_FLASHEx_AdvOBGetConfig
-     /tmp/ccGmJUbX.s:979    .text.HAL_FLASHEx_AdvOBGetConfig:000000000000002c $d
-     /tmp/ccGmJUbX.s:984    .text.HAL_FLASHEx_OB_SelectPCROP:0000000000000000 $t
-     /tmp/ccGmJUbX.s:989    .text.HAL_FLASHEx_OB_SelectPCROP:0000000000000000 HAL_FLASHEx_OB_SelectPCROP
-     /tmp/ccGmJUbX.s:1042   .text.HAL_FLASHEx_OB_SelectPCROP:0000000000000030 $d
-     /tmp/ccGmJUbX.s:1049   .text.HAL_FLASHEx_OB_DeSelectPCROP:0000000000000000 $t
-     /tmp/ccGmJUbX.s:1054   .text.HAL_FLASHEx_OB_DeSelectPCROP:0000000000000000 HAL_FLASHEx_OB_DeSelectPCROP
-     /tmp/ccGmJUbX.s:1103   .text.HAL_FLASHEx_OB_DeSelectPCROP:000000000000002c $d
-     /tmp/ccGmJUbX.s:1110   .text.HAL_FLASHEx_DATAEEPROM_Unlock:0000000000000000 $t
-     /tmp/ccGmJUbX.s:1115   .text.HAL_FLASHEx_DATAEEPROM_Unlock:0000000000000000 HAL_FLASHEx_DATAEEPROM_Unlock
-     /tmp/ccGmJUbX.s:1144   .text.HAL_FLASHEx_DATAEEPROM_Unlock:000000000000001c $d
-ARM GAS  /tmp/ccGmJUbX.s 			page 56
+     /tmp/ccJct65T.s:18     .text.FLASH_OB_GetUser:0000000000000000 $t
+     /tmp/ccJct65T.s:22     .text.FLASH_OB_GetUser:0000000000000000 FLASH_OB_GetUser
+     /tmp/ccJct65T.s:40     .text.FLASH_OB_GetUser:0000000000000010 $d
+     /tmp/ccJct65T.s:45     .text.FLASH_OB_GetRDP:0000000000000000 $t
+     /tmp/ccJct65T.s:49     .text.FLASH_OB_GetRDP:0000000000000000 FLASH_OB_GetRDP
+     /tmp/ccJct65T.s:63     .text.FLASH_OB_GetRDP:0000000000000008 $d
+     /tmp/ccJct65T.s:68     .text.FLASH_OB_GetBOR:0000000000000000 $t
+     /tmp/ccJct65T.s:72     .text.FLASH_OB_GetBOR:0000000000000000 FLASH_OB_GetBOR
+     /tmp/ccJct65T.s:87     .text.FLASH_OB_GetBOR:000000000000000c $d
+     /tmp/ccJct65T.s:92     .text.FLASH_OB_GetBOOTBit1:0000000000000000 $t
+     /tmp/ccJct65T.s:96     .text.FLASH_OB_GetBOOTBit1:0000000000000000 FLASH_OB_GetBOOTBit1
+     /tmp/ccJct65T.s:110    .text.FLASH_OB_GetBOOTBit1:0000000000000008 $d
+     /tmp/ccJct65T.s:115    .text.FLASH_OB_GetWRP:0000000000000000 $t
+     /tmp/ccJct65T.s:119    .text.FLASH_OB_GetWRP:0000000000000000 FLASH_OB_GetWRP
+     /tmp/ccJct65T.s:132    .text.FLASH_OB_GetWRP:0000000000000008 $d
+     /tmp/ccJct65T.s:137    .text.FLASH_OB_GetWRP2:0000000000000000 $t
+     /tmp/ccJct65T.s:141    .text.FLASH_OB_GetWRP2:0000000000000000 FLASH_OB_GetWRP2
+     /tmp/ccJct65T.s:155    .text.FLASH_OB_GetWRP2:0000000000000008 $d
+     /tmp/ccJct65T.s:160    .text.FLASH_OB_ProtectedSectorsConfig:0000000000000000 $t
+     /tmp/ccJct65T.s:164    .text.FLASH_OB_ProtectedSectorsConfig:0000000000000000 FLASH_OB_ProtectedSectorsConfig
+     /tmp/ccJct65T.s:323    .text.FLASH_OB_ProtectedSectorsConfig:00000000000000b0 $d
+     /tmp/ccJct65T.s:330    .text.FLASH_OB_RDPConfig:0000000000000000 $t
+     /tmp/ccJct65T.s:334    .text.FLASH_OB_RDPConfig:0000000000000000 FLASH_OB_RDPConfig
+     /tmp/ccJct65T.s:395    .text.FLASH_OB_RDPConfig:0000000000000034 $d
+     /tmp/ccJct65T.s:402    .text.FLASH_OB_UserConfig:0000000000000000 $t
+     /tmp/ccJct65T.s:406    .text.FLASH_OB_UserConfig:0000000000000000 FLASH_OB_UserConfig
+     /tmp/ccJct65T.s:464    .text.FLASH_OB_UserConfig:0000000000000034 $d
+     /tmp/ccJct65T.s:472    .text.FLASH_OB_BORConfig:0000000000000000 $t
+     /tmp/ccJct65T.s:476    .text.FLASH_OB_BORConfig:0000000000000000 FLASH_OB_BORConfig
+     /tmp/ccJct65T.s:532    .text.FLASH_OB_BORConfig:0000000000000030 $d
+     /tmp/ccJct65T.s:540    .text.FLASH_OB_BOOTBit1Config:0000000000000000 $t
+     /tmp/ccJct65T.s:544    .text.FLASH_OB_BOOTBit1Config:0000000000000000 FLASH_OB_BOOTBit1Config
+     /tmp/ccJct65T.s:603    .text.FLASH_OB_BOOTBit1Config:0000000000000034 $d
+     /tmp/ccJct65T.s:610    .text.FLASH_OB_BootConfig:0000000000000000 $t
+     /tmp/ccJct65T.s:614    .text.FLASH_OB_BootConfig:0000000000000000 FLASH_OB_BootConfig
+     /tmp/ccJct65T.s:670    .text.FLASH_OB_BootConfig:0000000000000030 $d
+     /tmp/ccJct65T.s:678    .text.HAL_FLASHEx_OBProgram:0000000000000000 $t
+     /tmp/ccJct65T.s:683    .text.HAL_FLASHEx_OBProgram:0000000000000000 HAL_FLASHEx_OBProgram
+     /tmp/ccJct65T.s:828    .text.HAL_FLASHEx_OBProgram:00000000000000a0 $d
+     /tmp/ccJct65T.s:833    .text.HAL_FLASHEx_OBGetConfig:0000000000000000 $t
+     /tmp/ccJct65T.s:838    .text.HAL_FLASHEx_OBGetConfig:0000000000000000 HAL_FLASHEx_OBGetConfig
+     /tmp/ccJct65T.s:884    .text.HAL_FLASHEx_AdvOBProgram:0000000000000000 $t
+     /tmp/ccJct65T.s:889    .text.HAL_FLASHEx_AdvOBProgram:0000000000000000 HAL_FLASHEx_AdvOBProgram
+     /tmp/ccJct65T.s:937    .text.HAL_FLASHEx_AdvOBGetConfig:0000000000000000 $t
+     /tmp/ccJct65T.s:942    .text.HAL_FLASHEx_AdvOBGetConfig:0000000000000000 HAL_FLASHEx_AdvOBGetConfig
+     /tmp/ccJct65T.s:979    .text.HAL_FLASHEx_AdvOBGetConfig:000000000000002c $d
+     /tmp/ccJct65T.s:984    .text.HAL_FLASHEx_OB_SelectPCROP:0000000000000000 $t
+     /tmp/ccJct65T.s:989    .text.HAL_FLASHEx_OB_SelectPCROP:0000000000000000 HAL_FLASHEx_OB_SelectPCROP
+     /tmp/ccJct65T.s:1042   .text.HAL_FLASHEx_OB_SelectPCROP:0000000000000030 $d
+     /tmp/ccJct65T.s:1049   .text.HAL_FLASHEx_OB_DeSelectPCROP:0000000000000000 $t
+     /tmp/ccJct65T.s:1054   .text.HAL_FLASHEx_OB_DeSelectPCROP:0000000000000000 HAL_FLASHEx_OB_DeSelectPCROP
+     /tmp/ccJct65T.s:1103   .text.HAL_FLASHEx_OB_DeSelectPCROP:000000000000002c $d
+     /tmp/ccJct65T.s:1110   .text.HAL_FLASHEx_DATAEEPROM_Unlock:0000000000000000 $t
+     /tmp/ccJct65T.s:1115   .text.HAL_FLASHEx_DATAEEPROM_Unlock:0000000000000000 HAL_FLASHEx_DATAEEPROM_Unlock
+     /tmp/ccJct65T.s:1144   .text.HAL_FLASHEx_DATAEEPROM_Unlock:000000000000001c $d
+ARM GAS  /tmp/ccJct65T.s 			page 56
 
 
-     /tmp/ccGmJUbX.s:1151   .text.HAL_FLASHEx_DATAEEPROM_Lock:0000000000000000 $t
-     /tmp/ccGmJUbX.s:1156   .text.HAL_FLASHEx_DATAEEPROM_Lock:0000000000000000 HAL_FLASHEx_DATAEEPROM_Lock
-     /tmp/ccGmJUbX.s:1173   .text.HAL_FLASHEx_DATAEEPROM_Lock:0000000000000010 $d
-     /tmp/ccGmJUbX.s:1178   .text.HAL_FLASHEx_DATAEEPROM_Erase:0000000000000000 $t
-     /tmp/ccGmJUbX.s:1183   .text.HAL_FLASHEx_DATAEEPROM_Erase:0000000000000000 HAL_FLASHEx_DATAEEPROM_Erase
-     /tmp/ccGmJUbX.s:1222   .text.HAL_FLASHEx_DATAEEPROM_Erase:0000000000000020 $d
-     /tmp/ccGmJUbX.s:1228   .text.HAL_FLASHEx_DATAEEPROM_Program:0000000000000000 $t
-     /tmp/ccGmJUbX.s:1233   .text.HAL_FLASHEx_DATAEEPROM_Program:0000000000000000 HAL_FLASHEx_DATAEEPROM_Program
-     /tmp/ccGmJUbX.s:1331   .text.HAL_FLASHEx_DATAEEPROM_Program:000000000000005c $d
-     /tmp/ccGmJUbX.s:1337   .text.HAL_FLASHEx_DATAEEPROM_EnableFixedTimeProgram:0000000000000000 $t
-     /tmp/ccGmJUbX.s:1342   .text.HAL_FLASHEx_DATAEEPROM_EnableFixedTimeProgram:0000000000000000 HAL_FLASHEx_DATAEEPROM_EnableFixedTimeProgram
-     /tmp/ccGmJUbX.s:1359   .text.HAL_FLASHEx_DATAEEPROM_EnableFixedTimeProgram:0000000000000010 $d
-     /tmp/ccGmJUbX.s:1364   .text.HAL_FLASHEx_DATAEEPROM_DisableFixedTimeProgram:0000000000000000 $t
-     /tmp/ccGmJUbX.s:1369   .text.HAL_FLASHEx_DATAEEPROM_DisableFixedTimeProgram:0000000000000000 HAL_FLASHEx_DATAEEPROM_DisableFixedTimeProgram
-     /tmp/ccGmJUbX.s:1385   .text.HAL_FLASHEx_DATAEEPROM_DisableFixedTimeProgram:000000000000000c $d
-     /tmp/ccGmJUbX.s:1391   .text.FLASH_PageErase:0000000000000000 $t
-     /tmp/ccGmJUbX.s:1396   .text.FLASH_PageErase:0000000000000000 FLASH_PageErase
-     /tmp/ccGmJUbX.s:1433   .text.FLASH_PageErase:0000000000000024 $d
-     /tmp/ccGmJUbX.s:1439   .text.HAL_FLASHEx_Erase:0000000000000000 $t
-     /tmp/ccGmJUbX.s:1444   .text.HAL_FLASHEx_Erase:0000000000000000 HAL_FLASHEx_Erase
-     /tmp/ccGmJUbX.s:1546   .text.HAL_FLASHEx_Erase:000000000000006c $d
-     /tmp/ccGmJUbX.s:1554   .text.HAL_FLASHEx_Erase_IT:0000000000000000 $t
-     /tmp/ccGmJUbX.s:1559   .text.HAL_FLASHEx_Erase_IT:0000000000000000 HAL_FLASHEx_Erase_IT
-     /tmp/ccGmJUbX.s:1648   .text.HAL_FLASHEx_Erase_IT:0000000000000058 $d
+     /tmp/ccJct65T.s:1151   .text.HAL_FLASHEx_DATAEEPROM_Lock:0000000000000000 $t
+     /tmp/ccJct65T.s:1156   .text.HAL_FLASHEx_DATAEEPROM_Lock:0000000000000000 HAL_FLASHEx_DATAEEPROM_Lock
+     /tmp/ccJct65T.s:1173   .text.HAL_FLASHEx_DATAEEPROM_Lock:0000000000000010 $d
+     /tmp/ccJct65T.s:1178   .text.HAL_FLASHEx_DATAEEPROM_Erase:0000000000000000 $t
+     /tmp/ccJct65T.s:1183   .text.HAL_FLASHEx_DATAEEPROM_Erase:0000000000000000 HAL_FLASHEx_DATAEEPROM_Erase
+     /tmp/ccJct65T.s:1222   .text.HAL_FLASHEx_DATAEEPROM_Erase:0000000000000020 $d
+     /tmp/ccJct65T.s:1228   .text.HAL_FLASHEx_DATAEEPROM_Program:0000000000000000 $t
+     /tmp/ccJct65T.s:1233   .text.HAL_FLASHEx_DATAEEPROM_Program:0000000000000000 HAL_FLASHEx_DATAEEPROM_Program
+     /tmp/ccJct65T.s:1331   .text.HAL_FLASHEx_DATAEEPROM_Program:000000000000005c $d
+     /tmp/ccJct65T.s:1337   .text.HAL_FLASHEx_DATAEEPROM_EnableFixedTimeProgram:0000000000000000 $t
+     /tmp/ccJct65T.s:1342   .text.HAL_FLASHEx_DATAEEPROM_EnableFixedTimeProgram:0000000000000000 HAL_FLASHEx_DATAEEPROM_EnableFixedTimeProgram
+     /tmp/ccJct65T.s:1359   .text.HAL_FLASHEx_DATAEEPROM_EnableFixedTimeProgram:0000000000000010 $d
+     /tmp/ccJct65T.s:1364   .text.HAL_FLASHEx_DATAEEPROM_DisableFixedTimeProgram:0000000000000000 $t
+     /tmp/ccJct65T.s:1369   .text.HAL_FLASHEx_DATAEEPROM_DisableFixedTimeProgram:0000000000000000 HAL_FLASHEx_DATAEEPROM_DisableFixedTimeProgram
+     /tmp/ccJct65T.s:1385   .text.HAL_FLASHEx_DATAEEPROM_DisableFixedTimeProgram:000000000000000c $d
+     /tmp/ccJct65T.s:1391   .text.FLASH_PageErase:0000000000000000 $t
+     /tmp/ccJct65T.s:1396   .text.FLASH_PageErase:0000000000000000 FLASH_PageErase
+     /tmp/ccJct65T.s:1433   .text.FLASH_PageErase:0000000000000024 $d
+     /tmp/ccJct65T.s:1439   .text.HAL_FLASHEx_Erase:0000000000000000 $t
+     /tmp/ccJct65T.s:1444   .text.HAL_FLASHEx_Erase:0000000000000000 HAL_FLASHEx_Erase
+     /tmp/ccJct65T.s:1546   .text.HAL_FLASHEx_Erase:000000000000006c $d
+     /tmp/ccJct65T.s:1554   .text.HAL_FLASHEx_Erase_IT:0000000000000000 $t
+     /tmp/ccJct65T.s:1559   .text.HAL_FLASHEx_Erase_IT:0000000000000000 HAL_FLASHEx_Erase_IT
+     /tmp/ccJct65T.s:1648   .text.HAL_FLASHEx_Erase_IT:0000000000000058 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

@@ -43,9 +43,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 
-/* USER CODE BEGIN Includes */
-
-/* USER CODE END Includes */
+#include "stm32l0xx_hal.h"
 
 /* Private define ------------------------------------------------------------*/
 

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccvqxzNR.s 			page 1
+ARM GAS  /tmp/ccts0KqN.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccvqxzNR.s 			page 1
   31:Src/system_stm32l0xx.c ****   *   2. Redistributions in binary form must reproduce the above copyright notice,
   32:Src/system_stm32l0xx.c ****   *      this list of conditions and the following disclaimer in the documentation
   33:Src/system_stm32l0xx.c ****   *      and/or other materials provided with the distribution.
-ARM GAS  /tmp/ccvqxzNR.s 			page 2
+ARM GAS  /tmp/ccts0KqN.s 			page 2
 
 
   34:Src/system_stm32l0xx.c ****   *   3. Neither the name of STMicroelectronics nor the names of its contributors
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccvqxzNR.s 			page 1
   88:Src/system_stm32l0xx.c ****   * @}
   89:Src/system_stm32l0xx.c ****   */
   90:Src/system_stm32l0xx.c **** 
-ARM GAS  /tmp/ccvqxzNR.s 			page 3
+ARM GAS  /tmp/ccts0KqN.s 			page 3
 
 
   91:Src/system_stm32l0xx.c **** /** @addtogroup STM32L0xx_System_Private_Defines
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccvqxzNR.s 			page 1
  145:Src/system_stm32l0xx.c **** 
  146:Src/system_stm32l0xx.c **** /**
  147:Src/system_stm32l0xx.c ****   * @brief  Setup the microcontroller system.
-ARM GAS  /tmp/ccvqxzNR.s 			page 4
+ARM GAS  /tmp/ccts0KqN.s 			page 4
 
 
  148:Src/system_stm32l0xx.c ****   * @param  None
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccvqxzNR.s 			page 1
   58 0030 0A40     		and	r2, r1
   59 0032 DA60     		str	r2, [r3, #12]
  170:Src/system_stm32l0xx.c **** 
-ARM GAS  /tmp/ccvqxzNR.s 			page 5
+ARM GAS  /tmp/ccts0KqN.s 			page 5
 
 
  171:Src/system_stm32l0xx.c ****   /*!< Disable all interrupts */
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccvqxzNR.s 			page 1
  195:Src/system_stm32l0xx.c ****   *             
  196:Src/system_stm32l0xx.c ****   *           - If SYSCLK source is MSI, SystemCoreClock will contain the MSI 
  197:Src/system_stm32l0xx.c ****   *             value as defined by the MSI range.
-ARM GAS  /tmp/ccvqxzNR.s 			page 6
+ARM GAS  /tmp/ccts0KqN.s 			page 6
 
 
  198:Src/system_stm32l0xx.c ****   *                                   
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccvqxzNR.s 			page 1
  116 001a 0C2B     		cmp	r3, #12
  117 001c 14D0     		beq	.L10
  118 001e 2EE0     		b	.L5
-ARM GAS  /tmp/ccvqxzNR.s 			page 7
+ARM GAS  /tmp/ccts0KqN.s 			page 7
 
 
  119              	.L8:
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccvqxzNR.s 			page 1
  159              		.loc 1 241 0
  160 0048 184A     		ldr	r2, .L13
  161 004a D368     		ldr	r3, [r2, #12]
-ARM GAS  /tmp/ccvqxzNR.s 			page 8
+ARM GAS  /tmp/ccts0KqN.s 			page 8
 
 
  162              	.LVL11:
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccvqxzNR.s 			page 1
  201              	.LVL22:
  202 0078 0D4B     		ldr	r3, .L13+4
  203 007a 1860     		str	r0, [r3]
-ARM GAS  /tmp/ccvqxzNR.s 			page 9
+ARM GAS  /tmp/ccts0KqN.s 			page 9
 
 
  204 007c 0AE0     		b	.L11
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccvqxzNR.s 			page 1
  245 00ac 00100240 		.word	1073876992
  246 00b0 00000000 		.word	.LANCHOR0
  247 00b4 0024F400 		.word	16000000
-ARM GAS  /tmp/ccvqxzNR.s 			page 10
+ARM GAS  /tmp/ccts0KqN.s 			page 10
 
 
  248 00b8 00127A00 		.word	8000000
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccvqxzNR.s 			page 1
  309              		.align	2
  310              		.set	.LANCHOR0,. + 0
  313              	SystemCoreClock:
-ARM GAS  /tmp/ccvqxzNR.s 			page 11
+ARM GAS  /tmp/ccts0KqN.s 			page 11
 
 
  314 0000 80841E00 		.word	2000000
@@ -608,25 +608,25 @@ ARM GAS  /tmp/ccvqxzNR.s 			page 1
  318              		.file 3 "/usr/include/newlib/sys/_stdint.h"
  319              		.file 4 "Drivers/CMSIS/Include/core_cm0plus.h"
  320              		.file 5 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l071xx.h"
-ARM GAS  /tmp/ccvqxzNR.s 			page 12
+ARM GAS  /tmp/ccts0KqN.s 			page 12
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 system_stm32l0xx.c
-     /tmp/ccvqxzNR.s:18     .text.SystemInit:0000000000000000 $t
-     /tmp/ccvqxzNR.s:23     .text.SystemInit:0000000000000000 SystemInit
-     /tmp/ccvqxzNR.s:74     .text.SystemInit:0000000000000044 $d
-     /tmp/ccvqxzNR.s:85     .text.SystemCoreClockUpdate:0000000000000000 $t
-     /tmp/ccvqxzNR.s:90     .text.SystemCoreClockUpdate:0000000000000000 SystemCoreClockUpdate
-     /tmp/ccvqxzNR.s:245    .text.SystemCoreClockUpdate:00000000000000ac $d
-     /tmp/ccvqxzNR.s:298    .rodata.PLLMulTable:0000000000000000 PLLMulTable
-     /tmp/ccvqxzNR.s:284    .rodata.APBPrescTable:0000000000000000 APBPrescTable
-     /tmp/ccvqxzNR.s:263    .rodata.AHBPrescTable:0000000000000000 AHBPrescTable
-     /tmp/ccvqxzNR.s:313    .data.SystemCoreClock:0000000000000000 SystemCoreClock
-     /tmp/ccvqxzNR.s:259    .rodata.AHBPrescTable:0000000000000000 $d
-     /tmp/ccvqxzNR.s:281    .rodata.APBPrescTable:0000000000000000 $d
-     /tmp/ccvqxzNR.s:294    .rodata.PLLMulTable:0000000000000000 $d
-     /tmp/ccvqxzNR.s:309    .data.SystemCoreClock:0000000000000000 $d
+     /tmp/ccts0KqN.s:18     .text.SystemInit:0000000000000000 $t
+     /tmp/ccts0KqN.s:23     .text.SystemInit:0000000000000000 SystemInit
+     /tmp/ccts0KqN.s:74     .text.SystemInit:0000000000000044 $d
+     /tmp/ccts0KqN.s:85     .text.SystemCoreClockUpdate:0000000000000000 $t
+     /tmp/ccts0KqN.s:90     .text.SystemCoreClockUpdate:0000000000000000 SystemCoreClockUpdate
+     /tmp/ccts0KqN.s:245    .text.SystemCoreClockUpdate:00000000000000ac $d
+     /tmp/ccts0KqN.s:298    .rodata.PLLMulTable:0000000000000000 PLLMulTable
+     /tmp/ccts0KqN.s:284    .rodata.APBPrescTable:0000000000000000 APBPrescTable
+     /tmp/ccts0KqN.s:263    .rodata.AHBPrescTable:0000000000000000 AHBPrescTable
+     /tmp/ccts0KqN.s:313    .data.SystemCoreClock:0000000000000000 SystemCoreClock
+     /tmp/ccts0KqN.s:259    .rodata.AHBPrescTable:0000000000000000 $d
+     /tmp/ccts0KqN.s:281    .rodata.APBPrescTable:0000000000000000 $d
+     /tmp/ccts0KqN.s:294    .rodata.PLLMulTable:0000000000000000 $d
+     /tmp/ccts0KqN.s:309    .data.SystemCoreClock:0000000000000000 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

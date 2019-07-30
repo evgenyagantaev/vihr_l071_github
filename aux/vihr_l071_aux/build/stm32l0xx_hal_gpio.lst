@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccljups8.s 			page 1
+ARM GAS  /tmp/ccv9daj9.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccljups8.s 			page 1
   31:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c ****   type and the IO speed can be selected depending on the VDD value.
   32:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c ****   
   33:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c ****     (+) The microcontroller IO pins are connected to onboard peripherals/modules through a 
-ARM GAS  /tmp/ccljups8.s 			page 2
+ARM GAS  /tmp/ccv9daj9.s 			page 2
 
 
   34:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c ****         multiplexer that allows only one peripheral alternate function (AF) connected 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccljups8.s 			page 1
   88:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c ****         (PC14 and PC15, respectively) when the LSE oscillator is off. The LSE has 
   89:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c ****         priority over the GPIO function.
   90:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c ****   
-ARM GAS  /tmp/ccljups8.s 			page 3
+ARM GAS  /tmp/ccv9daj9.s 			page 3
 
 
   91:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c ****     (#) The HSE oscillator pins OSC_IN/OSC_OUT can be used as 
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccljups8.s 			page 1
  145:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c ****  
  146:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c **** #define GPIO_MODE             ((uint32_t)0x00000003U)
  147:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c **** #define EXTI_MODE             ((uint32_t)0x10000000U)
-ARM GAS  /tmp/ccljups8.s 			page 4
+ARM GAS  /tmp/ccv9daj9.s 			page 4
 
 
  148:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c **** #define GPIO_MODE_IT          ((uint32_t)0x00010000U)
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccljups8.s 			page 1
   43              		.cfi_offset 9, -24
   44 0008 83B0     		sub	sp, sp, #12
   45              	.LCFI2:
-ARM GAS  /tmp/ccljups8.s 			page 5
+ARM GAS  /tmp/ccv9daj9.s 			page 5
 
 
   46              		.cfi_def_cfa_offset 40
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccljups8.s 			page 1
   75 0028 AE00     		lsl	r6, r5, #2
   76 002a 3758     		ldr	r7, [r6, r0]
   77              	.LVL4:
-ARM GAS  /tmp/ccljups8.s 			page 6
+ARM GAS  /tmp/ccv9daj9.s 			page 6
 
 
  210:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c ****         temp &= ~((uint32_t)0xFU << ((uint32_t)(position & (uint32_t)0x07U) * 4U)) ;
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccljups8.s 			page 1
  118 005c 2F1C     		mov	r7, r5
  119              	.LVL11:
  224:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c ****         temp |= (GPIO_Init->Speed << (position * 2U));
-ARM GAS  /tmp/ccljups8.s 			page 7
+ARM GAS  /tmp/ccv9daj9.s 			page 7
 
 
  120              		.loc 1 224 0
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccljups8.s 			page 1
  161 008a 6546     		mov	r5, ip
  162              	.LVL21:
  163 008c 4A68     		ldr	r2, [r1, #4]
-ARM GAS  /tmp/ccljups8.s 			page 8
+ARM GAS  /tmp/ccv9daj9.s 			page 8
 
 
  164 008e 1540     		and	r5, r2
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccljups8.s 			page 1
  254:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c ****         CLEAR_BIT(temp, ((uint32_t)0x0FU) << (4U * (position & 0x03U)));
  202              		.loc 1 254 0
  203 00bc 0327     		mov	r7, #3
-ARM GAS  /tmp/ccljups8.s 			page 9
+ARM GAS  /tmp/ccv9daj9.s 			page 9
 
 
  204 00be 1F40     		and	r7, r3
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccljups8.s 			page 1
  257 0108 AF40     		lsl	r7, r7, r5
  258 010a 3D1C     		mov	r5, r7
  259 010c 3543     		orr	r5, r6
-ARM GAS  /tmp/ccljups8.s 			page 10
+ARM GAS  /tmp/ccv9daj9.s 			page 10
 
 
  260              	.LVL30:
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccljups8.s 			page 1
  270:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c ****         {
  271:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c ****           temp |= iocurrent;
  300              		.loc 1 271 0
-ARM GAS  /tmp/ccljups8.s 			page 11
+ARM GAS  /tmp/ccv9daj9.s 			page 11
 
 
  301 013e 4A46     		mov	r2, r9
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccljups8.s 			page 1
  288:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c ****           temp |= iocurrent;
  339              		.loc 1 288 0
  340 0168 4A46     		mov	r2, r9
-ARM GAS  /tmp/ccljups8.s 			page 12
+ARM GAS  /tmp/ccv9daj9.s 			page 12
 
 
  341 016a 2A43     		orr	r2, r5
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccljups8.s 			page 1
  389              	HAL_GPIO_DeInit:
  390              	.LFB37:
  296:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c **** 
-ARM GAS  /tmp/ccljups8.s 			page 13
+ARM GAS  /tmp/ccv9daj9.s 			page 13
 
 
  297:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c **** /**
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccljups8.s 			page 1
  422 0014 2F40     		and	r7, r5
  423 0016 BA46     		mov	r10, r7
  424              	.LVL48:
-ARM GAS  /tmp/ccljups8.s 			page 14
+ARM GAS  /tmp/ccv9daj9.s 			page 14
 
 
  320:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c **** 
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccljups8.s 			page 1
  464 005a 4660     		str	r6, [r0, #4]
  335:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c ****       
  336:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c ****       /* Deactivate the Pull-up oand Pull-down resistor for the current IO */
-ARM GAS  /tmp/ccljups8.s 			page 15
+ARM GAS  /tmp/ccv9daj9.s 			page 15
 
 
  337:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c ****       GPIOx->PUPDR &= ~(GPIO_PUPDR_PUPD0 << (position * 2U));
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccljups8.s 			page 1
  511 00a0 0AE0     		b	.L30
  512              	.L42:
  513 00a2 0626     		mov	r6, #6
-ARM GAS  /tmp/ccljups8.s 			page 16
+ARM GAS  /tmp/ccv9daj9.s 			page 16
 
 
  514 00a4 08E0     		b	.L30
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccljups8.s 			page 1
  355:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c ****         EXTI->FTSR &= ~((uint32_t)iocurrent);
  558              		.loc 1 355 0
  559 00e4 D468     		ldr	r4, [r2, #12]
-ARM GAS  /tmp/ccljups8.s 			page 17
+ARM GAS  /tmp/ccv9daj9.s 			page 17
 
 
  560 00e6 2740     		and	r7, r4
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccljups8.s 			page 1
  371:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c ****                        ##### IO operation functions #####
  372:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c ****  ===============================================================================
  373:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c **** 
-ARM GAS  /tmp/ccljups8.s 			page 18
+ARM GAS  /tmp/ccv9daj9.s 			page 18
 
 
  374:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c **** @endverbatim
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccljups8.s 			page 1
  625              		.global	HAL_GPIO_WritePin
  626              		.code	16
  627              		.thumb_func
-ARM GAS  /tmp/ccljups8.s 			page 19
+ARM GAS  /tmp/ccv9daj9.s 			page 19
 
 
  629              	HAL_GPIO_WritePin:
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccljups8.s 			page 1
  650              		.section	.text.HAL_GPIO_TogglePin,"ax",%progbits
  651              		.align	2
  652              		.global	HAL_GPIO_TogglePin
-ARM GAS  /tmp/ccljups8.s 			page 20
+ARM GAS  /tmp/ccv9daj9.s 			page 20
 
 
  653              		.code	16
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccljups8.s 			page 1
  468:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c **** HAL_StatusTypeDef HAL_GPIO_LockPin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
  469:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c **** {
  680              		.loc 1 469 0
-ARM GAS  /tmp/ccljups8.s 			page 21
+ARM GAS  /tmp/ccv9daj9.s 			page 21
 
 
  681              		.cfi_startproc
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccljups8.s 			page 1
  490:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c ****   else
  491:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c ****   {
  492:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c ****     return HAL_ERROR;
-ARM GAS  /tmp/ccljups8.s 			page 22
+ARM GAS  /tmp/ccv9daj9.s 			page 22
 
 
  715              		.loc 1 492 0
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccljups8.s 			page 1
  740              		.cfi_endproc
  741              	.LFE43:
  743 0002 C046     		.section	.text.HAL_GPIO_EXTI_IRQHandler,"ax",%progbits
-ARM GAS  /tmp/ccljups8.s 			page 23
+ARM GAS  /tmp/ccv9daj9.s 			page 23
 
 
  744              		.align	2
@@ -1369,30 +1369,30 @@ ARM GAS  /tmp/ccljups8.s 			page 1
  786              		.file 5 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l0xx.h"
  787              		.file 6 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_def.h"
  788              		.file 7 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_gpio.h"
-ARM GAS  /tmp/ccljups8.s 			page 24
+ARM GAS  /tmp/ccv9daj9.s 			page 24
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32l0xx_hal_gpio.c
-     /tmp/ccljups8.s:18     .text.HAL_GPIO_Init:0000000000000000 $t
-     /tmp/ccljups8.s:23     .text.HAL_GPIO_Init:0000000000000000 HAL_GPIO_Init
-     /tmp/ccljups8.s:372    .text.HAL_GPIO_Init:000000000000018c $d
-     /tmp/ccljups8.s:384    .text.HAL_GPIO_DeInit:0000000000000000 $t
-     /tmp/ccljups8.s:389    .text.HAL_GPIO_DeInit:0000000000000000 HAL_GPIO_DeInit
-     /tmp/ccljups8.s:582    .text.HAL_GPIO_DeInit:00000000000000fc $d
-     /tmp/ccljups8.s:593    .text.HAL_GPIO_ReadPin:0000000000000000 $t
-     /tmp/ccljups8.s:598    .text.HAL_GPIO_ReadPin:0000000000000000 HAL_GPIO_ReadPin
-     /tmp/ccljups8.s:624    .text.HAL_GPIO_WritePin:0000000000000000 $t
-     /tmp/ccljups8.s:629    .text.HAL_GPIO_WritePin:0000000000000000 HAL_GPIO_WritePin
-     /tmp/ccljups8.s:651    .text.HAL_GPIO_TogglePin:0000000000000000 $t
-     /tmp/ccljups8.s:656    .text.HAL_GPIO_TogglePin:0000000000000000 HAL_GPIO_TogglePin
-     /tmp/ccljups8.s:673    .text.HAL_GPIO_LockPin:0000000000000000 $t
-     /tmp/ccljups8.s:678    .text.HAL_GPIO_LockPin:0000000000000000 HAL_GPIO_LockPin
-     /tmp/ccljups8.s:727    .text.HAL_GPIO_EXTI_Callback:0000000000000000 $t
-     /tmp/ccljups8.s:732    .text.HAL_GPIO_EXTI_Callback:0000000000000000 HAL_GPIO_EXTI_Callback
-     /tmp/ccljups8.s:744    .text.HAL_GPIO_EXTI_IRQHandler:0000000000000000 $t
-     /tmp/ccljups8.s:749    .text.HAL_GPIO_EXTI_IRQHandler:0000000000000000 HAL_GPIO_EXTI_IRQHandler
-     /tmp/ccljups8.s:777    .text.HAL_GPIO_EXTI_IRQHandler:0000000000000014 $d
+     /tmp/ccv9daj9.s:18     .text.HAL_GPIO_Init:0000000000000000 $t
+     /tmp/ccv9daj9.s:23     .text.HAL_GPIO_Init:0000000000000000 HAL_GPIO_Init
+     /tmp/ccv9daj9.s:372    .text.HAL_GPIO_Init:000000000000018c $d
+     /tmp/ccv9daj9.s:384    .text.HAL_GPIO_DeInit:0000000000000000 $t
+     /tmp/ccv9daj9.s:389    .text.HAL_GPIO_DeInit:0000000000000000 HAL_GPIO_DeInit
+     /tmp/ccv9daj9.s:582    .text.HAL_GPIO_DeInit:00000000000000fc $d
+     /tmp/ccv9daj9.s:593    .text.HAL_GPIO_ReadPin:0000000000000000 $t
+     /tmp/ccv9daj9.s:598    .text.HAL_GPIO_ReadPin:0000000000000000 HAL_GPIO_ReadPin
+     /tmp/ccv9daj9.s:624    .text.HAL_GPIO_WritePin:0000000000000000 $t
+     /tmp/ccv9daj9.s:629    .text.HAL_GPIO_WritePin:0000000000000000 HAL_GPIO_WritePin
+     /tmp/ccv9daj9.s:651    .text.HAL_GPIO_TogglePin:0000000000000000 $t
+     /tmp/ccv9daj9.s:656    .text.HAL_GPIO_TogglePin:0000000000000000 HAL_GPIO_TogglePin
+     /tmp/ccv9daj9.s:673    .text.HAL_GPIO_LockPin:0000000000000000 $t
+     /tmp/ccv9daj9.s:678    .text.HAL_GPIO_LockPin:0000000000000000 HAL_GPIO_LockPin
+     /tmp/ccv9daj9.s:727    .text.HAL_GPIO_EXTI_Callback:0000000000000000 $t
+     /tmp/ccv9daj9.s:732    .text.HAL_GPIO_EXTI_Callback:0000000000000000 HAL_GPIO_EXTI_Callback
+     /tmp/ccv9daj9.s:744    .text.HAL_GPIO_EXTI_IRQHandler:0000000000000000 $t
+     /tmp/ccv9daj9.s:749    .text.HAL_GPIO_EXTI_IRQHandler:0000000000000000 HAL_GPIO_EXTI_IRQHandler
+     /tmp/ccv9daj9.s:777    .text.HAL_GPIO_EXTI_IRQHandler:0000000000000014 $d
                      .debug_frame:0000000000000010 $d
 
 NO UNDEFINED SYMBOLS
