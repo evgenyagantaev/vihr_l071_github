@@ -133,5 +133,5 @@ Src/adc.c:113:22: error: unknown type name 'ADC_HandleTypeDef'
 Src/adc.c:157:24: error: unknown type name 'ADC_HandleTypeDef'
  void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
                         ^
-Makefile:171: ошибка выполнения рецепта для цели «build/adc.o»
+Makefile:172: ошибка выполнения рецепта для цели «build/adc.o»
 make: *** [build/adc.o] Ошибка 1

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccNylFCO.s 			page 1
+ARM GAS  /tmp/ccE47EHe.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccNylFCO.s 			page 1
   26              		.cfi_startproc
   27              	.LVL0:
   28 0000 00B5     		push	{lr}
-ARM GAS  /tmp/ccNylFCO.s 			page 2
+ARM GAS  /tmp/ccE47EHe.s 			page 2
 
 
   29              	.LCFI0:
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccNylFCO.s 			page 1
   80 0006 03D1     		bne	.L5
   20:Src/ssd1306.c **** 	else
   81              		.loc 1 20 0
-ARM GAS  /tmp/ccNylFCO.s 			page 3
+ARM GAS  /tmp/ccE47EHe.s 			page 3
 
 
   82 0008 044A     		ldr	r2, .L7+4
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccNylFCO.s 			page 1
   56:Src/ssd1306.c **** 	ssd1306_WriteCommand(0xA8); //--set multiplex ratio(1 to 64)
   57:Src/ssd1306.c **** 	ssd1306_WriteCommand(0x3F); //
   58:Src/ssd1306.c **** 	ssd1306_WriteCommand(0xA4); //0xa4,Output follows RAM content;0xa5,Output ignores RAM content
-ARM GAS  /tmp/ccNylFCO.s 			page 4
+ARM GAS  /tmp/ccE47EHe.s 			page 4
 
 
   59:Src/ssd1306.c **** 	ssd1306_WriteCommand(0xD3); //-set display offset
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccNylFCO.s 			page 1
  126 000c 01D1     		bne	.L13
  127 000e 0021     		mov	r1, #0
  128 0010 00E0     		b	.L11
-ARM GAS  /tmp/ccNylFCO.s 			page 5
+ARM GAS  /tmp/ccE47EHe.s 			page 5
 
 
  129              	.L13:
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccNylFCO.s 			page 1
  172              		.loc 1 110 0
  173 0004 0024     		mov	r4, #0
  174 0006 1CE0     		b	.L17
-ARM GAS  /tmp/ccNylFCO.s 			page 6
+ARM GAS  /tmp/ccE47EHe.s 			page 6
 
 
  175              	.LVL9:
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccNylFCO.s 			page 1
  220              	.LVL16:
  221 0048 10BD     		pop	{r4, pc}
  222              	.L20:
-ARM GAS  /tmp/ccNylFCO.s 			page 7
+ARM GAS  /tmp/ccE47EHe.s 			page 7
 
 
  223 004a C046     		.align	2
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccNylFCO.s 			page 1
  271 0028 FFF7FEFF 		bl	ssd1306_WriteCommand
  272              	.LVL23:
   50:Src/ssd1306.c **** 	ssd1306_WriteCommand(0x40); //--set start line address
-ARM GAS  /tmp/ccNylFCO.s 			page 8
+ARM GAS  /tmp/ccE47EHe.s 			page 8
 
 
  273              		.loc 1 50 0
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccNylFCO.s 			page 1
   61:Src/ssd1306.c **** 	ssd1306_WriteCommand(0xF0); //--set divide ratio
  317              		.loc 1 61 0
  318 006e D520     		mov	r0, #213
-ARM GAS  /tmp/ccNylFCO.s 			page 9
+ARM GAS  /tmp/ccE47EHe.s 			page 9
 
 
  319 0070 FFF7FEFF 		bl	ssd1306_WriteCommand
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccNylFCO.s 			page 1
  362 00b0 0020     		mov	r0, #0
  363 00b2 FFF7FEFF 		bl	ssd1306_Fill
  364              	.LVL46:
-ARM GAS  /tmp/ccNylFCO.s 			page 10
+ARM GAS  /tmp/ccE47EHe.s 			page 10
 
 
   77:Src/ssd1306.c **** 	
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccNylFCO.s 			page 1
  128:Src/ssd1306.c **** 	{
  129:Src/ssd1306.c **** 		// Don't write outside the buffer
  130:Src/ssd1306.c **** 		return;
-ARM GAS  /tmp/ccNylFCO.s 			page 11
+ARM GAS  /tmp/ccE47EHe.s 			page 11
 
 
  131:Src/ssd1306.c **** 	}
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccNylFCO.s 			page 1
  444 003e C018     		add	r0, r0, r3
  445              	.LVL54:
  446 0040 064B     		ldr	r3, .L28+4
-ARM GAS  /tmp/ccNylFCO.s 			page 12
+ARM GAS  /tmp/ccE47EHe.s 			page 12
 
 
  447 0042 1B68     		ldr	r3, [r3]
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccNylFCO.s 			page 1
  492 0008 4446     		mov	r4, r8
  493 000a F0B4     		push	{r4, r5, r6, r7}
  494              	.LCFI6:
-ARM GAS  /tmp/ccNylFCO.s 			page 13
+ARM GAS  /tmp/ccE47EHe.s 			page 13
 
 
  495              		.cfi_def_cfa_offset 36
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccNylFCO.s 			page 1
  534 0040 5B19     		add	r3, r3, r5
  535 0042 5B00     		lsl	r3, r3, #1
  536 0044 019A     		ldr	r2, [sp, #4]
-ARM GAS  /tmp/ccNylFCO.s 			page 14
+ARM GAS  /tmp/ccE47EHe.s 			page 14
 
 
  537 0046 9F5A     		ldrh	r7, [r3, r2]
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccNylFCO.s 			page 1
  172:Src/ssd1306.c **** 		{
  581              		.loc 1 172 0 is_stmt 0 discriminator 1
  582 0086 A642     		cmp	r6, r4
-ARM GAS  /tmp/ccNylFCO.s 			page 15
+ARM GAS  /tmp/ccE47EHe.s 			page 15
 
 
  583 0088 E0D8     		bhi	.L36
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccNylFCO.s 			page 1
  624              	.LFE42:
  626              		.section	.text.ssd1306_WriteString,"ax",%progbits
  627              		.align	2
-ARM GAS  /tmp/ccNylFCO.s 			page 16
+ARM GAS  /tmp/ccE47EHe.s 			page 16
 
 
  628              		.global	ssd1306_WriteString
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccNylFCO.s 			page 1
  666              	.LVL71:
  667              	.L43:
  198:Src/ssd1306.c **** 	{
-ARM GAS  /tmp/ccNylFCO.s 			page 17
+ARM GAS  /tmp/ccE47EHe.s 			page 17
 
 
  668              		.loc 1 198 0
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccNylFCO.s 			page 1
  713              	SSD1306_Buffer:
  714 0000 00000000 		.space	4
  715              		.section	.bss.SSD1306,"aw",%nobits
-ARM GAS  /tmp/ccNylFCO.s 			page 18
+ARM GAS  /tmp/ccE47EHe.s 			page 18
 
 
  716              		.align	2
@@ -1055,46 +1055,46 @@ ARM GAS  /tmp/ccNylFCO.s 			page 1
  744              		.file 8 "Inc/fonts.h"
  745              		.file 9 "Inc/ssd1306.h"
  746              		.file 10 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h"
-ARM GAS  /tmp/ccNylFCO.s 			page 19
+ARM GAS  /tmp/ccE47EHe.s 			page 19
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 ssd1306.c
-     /tmp/ccNylFCO.s:18     .text.ssd1306_WriteCommand:0000000000000000 $t
-     /tmp/ccNylFCO.s:22     .text.ssd1306_WriteCommand:0000000000000000 ssd1306_WriteCommand
-     /tmp/ccNylFCO.s:60     .text.ssd1306_WriteCommand:0000000000000028 $d
+     /tmp/ccE47EHe.s:18     .text.ssd1306_WriteCommand:0000000000000000 $t
+     /tmp/ccE47EHe.s:22     .text.ssd1306_WriteCommand:0000000000000000 ssd1306_WriteCommand
+     /tmp/ccE47EHe.s:60     .text.ssd1306_WriteCommand:0000000000000028 $d
                             *COM*:0000000000000004 SSD1306_I2C_PORT
-     /tmp/ccNylFCO.s:65     .text.ssd1306_set_i2c_port:0000000000000000 $t
-     /tmp/ccNylFCO.s:70     .text.ssd1306_set_i2c_port:0000000000000000 ssd1306_set_i2c_port
-     /tmp/ccNylFCO.s:98     .text.ssd1306_set_i2c_port:0000000000000018 $d
-     /tmp/ccNylFCO.s:106    .text.ssd1306_Fill:0000000000000000 $t
-     /tmp/ccNylFCO.s:111    .text.ssd1306_Fill:0000000000000000 ssd1306_Fill
-     /tmp/ccNylFCO.s:148    .text.ssd1306_Fill:0000000000000020 $d
-     /tmp/ccNylFCO.s:154    .text.ssd1306_UpdateScreen:0000000000000000 $t
-     /tmp/ccNylFCO.s:159    .text.ssd1306_UpdateScreen:0000000000000000 ssd1306_UpdateScreen
-     /tmp/ccNylFCO.s:225    .text.ssd1306_UpdateScreen:000000000000004c $d
-     /tmp/ccNylFCO.s:231    .text.ssd1306_Init:0000000000000000 $t
-     /tmp/ccNylFCO.s:236    .text.ssd1306_Init:0000000000000000 ssd1306_Init
-     /tmp/ccNylFCO.s:384    .text.ssd1306_Init:00000000000000cc $d
-     /tmp/ccNylFCO.s:389    .text.ssd1306_DrawPixel:0000000000000000 $t
-     /tmp/ccNylFCO.s:394    .text.ssd1306_DrawPixel:0000000000000000 ssd1306_DrawPixel
-     /tmp/ccNylFCO.s:465    .text.ssd1306_DrawPixel:0000000000000058 $d
-     /tmp/ccNylFCO.s:471    .text.ssd1306_WriteChar:0000000000000000 $t
-     /tmp/ccNylFCO.s:476    .text.ssd1306_WriteChar:0000000000000000 ssd1306_WriteChar
-     /tmp/ccNylFCO.s:622    .text.ssd1306_WriteChar:00000000000000b0 $d
-     /tmp/ccNylFCO.s:627    .text.ssd1306_WriteString:0000000000000000 $t
-     /tmp/ccNylFCO.s:632    .text.ssd1306_WriteString:0000000000000000 ssd1306_WriteString
-     /tmp/ccNylFCO.s:682    .text.ssd1306_SetCursor:0000000000000000 $t
-     /tmp/ccNylFCO.s:687    .text.ssd1306_SetCursor:0000000000000000 ssd1306_SetCursor
-     /tmp/ccNylFCO.s:703    .text.ssd1306_SetCursor:0000000000000008 $d
-     /tmp/ccNylFCO.s:709    .bss.SSD1306_Buffer:0000000000000000 $d
-     /tmp/ccNylFCO.s:713    .bss.SSD1306_Buffer:0000000000000000 SSD1306_Buffer
-     /tmp/ccNylFCO.s:716    .bss.SSD1306:0000000000000000 $d
-     /tmp/ccNylFCO.s:720    .bss.SSD1306:0000000000000000 SSD1306
-     /tmp/ccNylFCO.s:723    .bss.SSD1306_Buffer1:0000000000000000 $d
-     /tmp/ccNylFCO.s:727    .bss.SSD1306_Buffer1:0000000000000000 SSD1306_Buffer1
-     /tmp/ccNylFCO.s:730    .bss.SSD1306_Buffer2:0000000000000000 $d
-     /tmp/ccNylFCO.s:734    .bss.SSD1306_Buffer2:0000000000000000 SSD1306_Buffer2
+     /tmp/ccE47EHe.s:65     .text.ssd1306_set_i2c_port:0000000000000000 $t
+     /tmp/ccE47EHe.s:70     .text.ssd1306_set_i2c_port:0000000000000000 ssd1306_set_i2c_port
+     /tmp/ccE47EHe.s:98     .text.ssd1306_set_i2c_port:0000000000000018 $d
+     /tmp/ccE47EHe.s:106    .text.ssd1306_Fill:0000000000000000 $t
+     /tmp/ccE47EHe.s:111    .text.ssd1306_Fill:0000000000000000 ssd1306_Fill
+     /tmp/ccE47EHe.s:148    .text.ssd1306_Fill:0000000000000020 $d
+     /tmp/ccE47EHe.s:154    .text.ssd1306_UpdateScreen:0000000000000000 $t
+     /tmp/ccE47EHe.s:159    .text.ssd1306_UpdateScreen:0000000000000000 ssd1306_UpdateScreen
+     /tmp/ccE47EHe.s:225    .text.ssd1306_UpdateScreen:000000000000004c $d
+     /tmp/ccE47EHe.s:231    .text.ssd1306_Init:0000000000000000 $t
+     /tmp/ccE47EHe.s:236    .text.ssd1306_Init:0000000000000000 ssd1306_Init
+     /tmp/ccE47EHe.s:384    .text.ssd1306_Init:00000000000000cc $d
+     /tmp/ccE47EHe.s:389    .text.ssd1306_DrawPixel:0000000000000000 $t
+     /tmp/ccE47EHe.s:394    .text.ssd1306_DrawPixel:0000000000000000 ssd1306_DrawPixel
+     /tmp/ccE47EHe.s:465    .text.ssd1306_DrawPixel:0000000000000058 $d
+     /tmp/ccE47EHe.s:471    .text.ssd1306_WriteChar:0000000000000000 $t
+     /tmp/ccE47EHe.s:476    .text.ssd1306_WriteChar:0000000000000000 ssd1306_WriteChar
+     /tmp/ccE47EHe.s:622    .text.ssd1306_WriteChar:00000000000000b0 $d
+     /tmp/ccE47EHe.s:627    .text.ssd1306_WriteString:0000000000000000 $t
+     /tmp/ccE47EHe.s:632    .text.ssd1306_WriteString:0000000000000000 ssd1306_WriteString
+     /tmp/ccE47EHe.s:682    .text.ssd1306_SetCursor:0000000000000000 $t
+     /tmp/ccE47EHe.s:687    .text.ssd1306_SetCursor:0000000000000000 ssd1306_SetCursor
+     /tmp/ccE47EHe.s:703    .text.ssd1306_SetCursor:0000000000000008 $d
+     /tmp/ccE47EHe.s:709    .bss.SSD1306_Buffer:0000000000000000 $d
+     /tmp/ccE47EHe.s:713    .bss.SSD1306_Buffer:0000000000000000 SSD1306_Buffer
+     /tmp/ccE47EHe.s:716    .bss.SSD1306:0000000000000000 $d
+     /tmp/ccE47EHe.s:720    .bss.SSD1306:0000000000000000 SSD1306
+     /tmp/ccE47EHe.s:723    .bss.SSD1306_Buffer1:0000000000000000 $d
+     /tmp/ccE47EHe.s:727    .bss.SSD1306_Buffer1:0000000000000000 SSD1306_Buffer1
+     /tmp/ccE47EHe.s:730    .bss.SSD1306_Buffer2:0000000000000000 $d
+     /tmp/ccE47EHe.s:734    .bss.SSD1306_Buffer2:0000000000000000 SSD1306_Buffer2
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

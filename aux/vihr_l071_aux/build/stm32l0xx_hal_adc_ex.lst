@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccb4vTOm.s 			page 1
+ARM GAS  /tmp/cclfIsaz.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccb4vTOm.s 			page 1
   31:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****   *      this list of conditions and the following disclaimer in the documentation
   32:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****   *      and/or other materials provided with the distribution.
   33:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****   *   3. Neither the name of STMicroelectronics nor the names of its contributors
-ARM GAS  /tmp/ccb4vTOm.s 			page 2
+ARM GAS  /tmp/cclfIsaz.s 			page 2
 
 
   34:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****   *      may be used to endorse or promote products derived from this software
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccb4vTOm.s 			page 1
   88:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c **** 
   89:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c **** /* Private macro -------------------------------------------------------------*/
   90:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c **** /* Private variables ---------------------------------------------------------*/
-ARM GAS  /tmp/ccb4vTOm.s 			page 3
+ARM GAS  /tmp/cclfIsaz.s 			page 3
 
 
   91:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c **** /* Private function prototypes -----------------------------------------------*/
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccb4vTOm.s 			page 1
   37              		.loc 1 133 0
   38 0002 5423     		mov	r3, #84
   39 0004 C35C     		ldrb	r3, [r0, r3]
-ARM GAS  /tmp/ccb4vTOm.s 			page 4
+ARM GAS  /tmp/cclfIsaz.s 			page 4
 
 
   40 0006 012B     		cmp	r3, #1
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccb4vTOm.s 			page 1
   78              		.loc 1 149 0
   79 003e D668     		ldr	r6, [r2, #12]
   80 0040 0131     		add	r1, r1, #1
-ARM GAS  /tmp/ccb4vTOm.s 			page 5
+ARM GAS  /tmp/cclfIsaz.s 			page 5
 
 
   81 0042 0E40     		and	r6, r1
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccb4vTOm.s 			page 1
  116              		.loc 1 168 0
  117 0074 0022     		mov	r2, #0
  118 0076 5423     		mov	r3, #84
-ARM GAS  /tmp/ccb4vTOm.s 			page 6
+ARM GAS  /tmp/cclfIsaz.s 			page 6
 
 
  119 0078 E254     		strb	r2, [r4, r3]
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccb4vTOm.s 			page 1
  152              		.loc 1 187 0
  153 00a4 0120     		mov	r0, #1
  154              	.LVL11:
-ARM GAS  /tmp/ccb4vTOm.s 			page 7
+ARM GAS  /tmp/cclfIsaz.s 			page 7
 
 
  155              	.L7:
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccb4vTOm.s 			page 1
  209:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****   
  210:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****   /* Return the ADC calibration value */ 
  211:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****   return ((hadc->Instance->CALFACT) & 0x0000007FU);
-ARM GAS  /tmp/ccb4vTOm.s 			page 8
+ARM GAS  /tmp/cclfIsaz.s 			page 8
 
 
  189              		.loc 1 211 0
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccb4vTOm.s 			page 1
  223 0006 012B     		cmp	r3, #1
  224 0008 2ED0     		beq	.L19
  225              		.loc 1 233 0 is_stmt 0 discriminator 2
-ARM GAS  /tmp/ccb4vTOm.s 			page 9
+ARM GAS  /tmp/cclfIsaz.s 			page 9
 
 
  226 000a 0121     		mov	r1, #1
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccb4vTOm.s 			page 1
  225:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****   
  270              		.loc 1 225 0
  271 0048 0023     		mov	r3, #0
-ARM GAS  /tmp/ccb4vTOm.s 			page 10
+ARM GAS  /tmp/cclfIsaz.s 			page 10
 
 
  272              		.loc 1 242 0
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccb4vTOm.s 			page 1
  307              		@ sp needed
  308 006a 30BD     		pop	{r4, r5, pc}
  309              		.cfi_endproc
-ARM GAS  /tmp/ccb4vTOm.s 			page 11
+ARM GAS  /tmp/cclfIsaz.s 			page 11
 
 
  310              	.LFE38:
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccb4vTOm.s 			page 1
  283:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****     if((HAL_GetTick() - tickstart) > SYSCFG_BUF_VREFINT_ENABLE_TIMEOUT)
  344              		.loc 1 283 0
  345 0016 FFF7FEFF 		bl	HAL_GetTick
-ARM GAS  /tmp/ccb4vTOm.s 			page 12
+ARM GAS  /tmp/cclfIsaz.s 			page 12
 
 
  346              	.LVL31:
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccb4vTOm.s 			page 1
  300:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****   CLEAR_BIT(SYSCFG->CFGR3, SYSCFG_CFGR3_ENBUF_VREFINT_ADC);
  384              		.loc 1 300 0
  385 0000 024A     		ldr	r2, .L30
-ARM GAS  /tmp/ccb4vTOm.s 			page 13
+ARM GAS  /tmp/cclfIsaz.s 			page 13
 
 
  386 0002 116A     		ldr	r1, [r2, #32]
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccb4vTOm.s 			page 1
  319:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****   /* Get tick count */
  320:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****   tickstart = HAL_GetTick();
  424              		.loc 1 320 0
-ARM GAS  /tmp/ccb4vTOm.s 			page 14
+ARM GAS  /tmp/cclfIsaz.s 			page 14
 
 
  425 000e FFF7FEFF 		bl	HAL_GetTick
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccb4vTOm.s 			page 1
  467              		.thumb_func
  469              	HAL_ADCEx_DisableVREFINTTempSensor:
  470              	.LFB42:
-ARM GAS  /tmp/ccb4vTOm.s 			page 15
+ARM GAS  /tmp/cclfIsaz.s 			page 15
 
 
  332:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c **** 
@@ -880,30 +880,30 @@ ARM GAS  /tmp/ccb4vTOm.s 			page 1
  497              		.file 7 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_dma.h"
  498              		.file 8 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_adc.h"
  499              		.file 9 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h"
-ARM GAS  /tmp/ccb4vTOm.s 			page 16
+ARM GAS  /tmp/cclfIsaz.s 			page 16
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32l0xx_hal_adc_ex.c
-     /tmp/ccb4vTOm.s:18     .text.HAL_ADCEx_Calibration_Start:0000000000000000 $t
-     /tmp/ccb4vTOm.s:23     .text.HAL_ADCEx_Calibration_Start:0000000000000000 HAL_ADCEx_Calibration_Start
-     /tmp/ccb4vTOm.s:174    .text.HAL_ADCEx_Calibration_Start:00000000000000b4 $d
-     /tmp/ccb4vTOm.s:179    .text.HAL_ADCEx_Calibration_GetValue:0000000000000000 $t
-     /tmp/ccb4vTOm.s:184    .text.HAL_ADCEx_Calibration_GetValue:0000000000000000 HAL_ADCEx_Calibration_GetValue
-     /tmp/ccb4vTOm.s:203    .text.HAL_ADCEx_Calibration_SetValue:0000000000000000 $t
-     /tmp/ccb4vTOm.s:208    .text.HAL_ADCEx_Calibration_SetValue:0000000000000000 HAL_ADCEx_Calibration_SetValue
-     /tmp/ccb4vTOm.s:313    .text.HAL_ADCEx_EnableVREFINT:0000000000000000 $t
-     /tmp/ccb4vTOm.s:318    .text.HAL_ADCEx_EnableVREFINT:0000000000000000 HAL_ADCEx_EnableVREFINT
-     /tmp/ccb4vTOm.s:370    .text.HAL_ADCEx_EnableVREFINT:0000000000000030 $d
-     /tmp/ccb4vTOm.s:375    .text.HAL_ADCEx_DisableVREFINT:0000000000000000 $t
-     /tmp/ccb4vTOm.s:380    .text.HAL_ADCEx_DisableVREFINT:0000000000000000 HAL_ADCEx_DisableVREFINT
-     /tmp/ccb4vTOm.s:396    .text.HAL_ADCEx_DisableVREFINT:000000000000000c $d
-     /tmp/ccb4vTOm.s:402    .text.HAL_ADCEx_EnableVREFINTTempSensor:0000000000000000 $t
-     /tmp/ccb4vTOm.s:407    .text.HAL_ADCEx_EnableVREFINTTempSensor:0000000000000000 HAL_ADCEx_EnableVREFINTTempSensor
-     /tmp/ccb4vTOm.s:459    .text.HAL_ADCEx_EnableVREFINTTempSensor:0000000000000030 $d
-     /tmp/ccb4vTOm.s:464    .text.HAL_ADCEx_DisableVREFINTTempSensor:0000000000000000 $t
-     /tmp/ccb4vTOm.s:469    .text.HAL_ADCEx_DisableVREFINTTempSensor:0000000000000000 HAL_ADCEx_DisableVREFINTTempSensor
-     /tmp/ccb4vTOm.s:485    .text.HAL_ADCEx_DisableVREFINTTempSensor:000000000000000c $d
+     /tmp/cclfIsaz.s:18     .text.HAL_ADCEx_Calibration_Start:0000000000000000 $t
+     /tmp/cclfIsaz.s:23     .text.HAL_ADCEx_Calibration_Start:0000000000000000 HAL_ADCEx_Calibration_Start
+     /tmp/cclfIsaz.s:174    .text.HAL_ADCEx_Calibration_Start:00000000000000b4 $d
+     /tmp/cclfIsaz.s:179    .text.HAL_ADCEx_Calibration_GetValue:0000000000000000 $t
+     /tmp/cclfIsaz.s:184    .text.HAL_ADCEx_Calibration_GetValue:0000000000000000 HAL_ADCEx_Calibration_GetValue
+     /tmp/cclfIsaz.s:203    .text.HAL_ADCEx_Calibration_SetValue:0000000000000000 $t
+     /tmp/cclfIsaz.s:208    .text.HAL_ADCEx_Calibration_SetValue:0000000000000000 HAL_ADCEx_Calibration_SetValue
+     /tmp/cclfIsaz.s:313    .text.HAL_ADCEx_EnableVREFINT:0000000000000000 $t
+     /tmp/cclfIsaz.s:318    .text.HAL_ADCEx_EnableVREFINT:0000000000000000 HAL_ADCEx_EnableVREFINT
+     /tmp/cclfIsaz.s:370    .text.HAL_ADCEx_EnableVREFINT:0000000000000030 $d
+     /tmp/cclfIsaz.s:375    .text.HAL_ADCEx_DisableVREFINT:0000000000000000 $t
+     /tmp/cclfIsaz.s:380    .text.HAL_ADCEx_DisableVREFINT:0000000000000000 HAL_ADCEx_DisableVREFINT
+     /tmp/cclfIsaz.s:396    .text.HAL_ADCEx_DisableVREFINT:000000000000000c $d
+     /tmp/cclfIsaz.s:402    .text.HAL_ADCEx_EnableVREFINTTempSensor:0000000000000000 $t
+     /tmp/cclfIsaz.s:407    .text.HAL_ADCEx_EnableVREFINTTempSensor:0000000000000000 HAL_ADCEx_EnableVREFINTTempSensor
+     /tmp/cclfIsaz.s:459    .text.HAL_ADCEx_EnableVREFINTTempSensor:0000000000000030 $d
+     /tmp/cclfIsaz.s:464    .text.HAL_ADCEx_DisableVREFINTTempSensor:0000000000000000 $t
+     /tmp/cclfIsaz.s:469    .text.HAL_ADCEx_DisableVREFINTTempSensor:0000000000000000 HAL_ADCEx_DisableVREFINTTempSensor
+     /tmp/cclfIsaz.s:485    .text.HAL_ADCEx_DisableVREFINTTempSensor:000000000000000c $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

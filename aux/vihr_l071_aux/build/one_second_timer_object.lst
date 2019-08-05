@@ -1,0 +1,330 @@
+ARM GAS  /tmp/cck9anVD.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 1
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"one_second_timer_object.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.one_second_timer_start,"ax",%progbits
+  18              		.align	2
+  19              		.global	one_second_timer_start
+  20              		.code	16
+  21              		.thumb_func
+  23              	one_second_timer_start:
+  24              	.LFB37:
+  25              		.file 1 "Src/one_second_timer_object.c"
+   1:Src/one_second_timer_object.c **** #include "one_second_timer_object.h"
+   2:Src/one_second_timer_object.c **** #include "one_second_timer_interface.h"
+   3:Src/one_second_timer_object.c **** #include "main.h"
+   4:Src/one_second_timer_object.c **** 
+   5:Src/one_second_timer_object.c **** 
+   6:Src/one_second_timer_object.c **** void one_second_timer_init()
+   7:Src/one_second_timer_object.c **** {
+   8:Src/one_second_timer_object.c **** 
+   9:Src/one_second_timer_object.c **** 	one_second_timer_reset_flag();
+  10:Src/one_second_timer_object.c **** 
+  11:Src/one_second_timer_object.c ****     MX_TIM2_Init();
+  12:Src/one_second_timer_object.c **** 	
+  13:Src/one_second_timer_object.c **** }
+  14:Src/one_second_timer_object.c **** void one_second_timer_start()
+  15:Src/one_second_timer_object.c **** {
+  26              		.loc 1 15 0
+  27              		.cfi_startproc
+  28 0000 08B5     		push	{r3, lr}
+  29              	.LCFI0:
+  30              		.cfi_def_cfa_offset 8
+  31              		.cfi_offset 3, -8
+  32              		.cfi_offset 14, -4
+  16:Src/one_second_timer_object.c **** 	HAL_TIM_Base_Start_IT(&htim2);
+  33              		.loc 1 16 0
+  34 0002 0248     		ldr	r0, .L2
+  35 0004 FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
+  36              	.LVL0:
+  17:Src/one_second_timer_object.c **** }
+  37              		.loc 1 17 0
+  38              		@ sp needed
+  39 0008 08BD     		pop	{r3, pc}
+  40              	.L3:
+  41 000a C046     		.align	2
+ARM GAS  /tmp/cck9anVD.s 			page 2
+
+
+  42              	.L2:
+  43 000c 00000000 		.word	htim2
+  44              		.cfi_endproc
+  45              	.LFE37:
+  47              		.section	.text.one_second_timer_stop,"ax",%progbits
+  48              		.align	2
+  49              		.global	one_second_timer_stop
+  50              		.code	16
+  51              		.thumb_func
+  53              	one_second_timer_stop:
+  54              	.LFB38:
+  18:Src/one_second_timer_object.c **** void one_second_timer_stop()
+  19:Src/one_second_timer_object.c **** {
+  55              		.loc 1 19 0
+  56              		.cfi_startproc
+  57 0000 08B5     		push	{r3, lr}
+  58              	.LCFI1:
+  59              		.cfi_def_cfa_offset 8
+  60              		.cfi_offset 3, -8
+  61              		.cfi_offset 14, -4
+  20:Src/one_second_timer_object.c **** 	HAL_TIM_Base_Stop_IT(&htim2);
+  62              		.loc 1 20 0
+  63 0002 0248     		ldr	r0, .L5
+  64 0004 FFF7FEFF 		bl	HAL_TIM_Base_Stop_IT
+  65              	.LVL1:
+  21:Src/one_second_timer_object.c **** }
+  66              		.loc 1 21 0
+  67              		@ sp needed
+  68 0008 08BD     		pop	{r3, pc}
+  69              	.L6:
+  70 000a C046     		.align	2
+  71              	.L5:
+  72 000c 00000000 		.word	htim2
+  73              		.cfi_endproc
+  74              	.LFE38:
+  76              		.section	.text.one_second_timer_set_flag,"ax",%progbits
+  77              		.align	2
+  78              		.global	one_second_timer_set_flag
+  79              		.code	16
+  80              		.thumb_func
+  82              	one_second_timer_set_flag:
+  83              	.LFB39:
+  22:Src/one_second_timer_object.c **** 
+  23:Src/one_second_timer_object.c **** 
+  24:Src/one_second_timer_object.c **** 
+  25:Src/one_second_timer_object.c **** void one_second_timer_set_flag()
+  26:Src/one_second_timer_object.c **** {
+  84              		.loc 1 26 0
+  85              		.cfi_startproc
+  27:Src/one_second_timer_object.c **** 	one_second_timer_flag = 1;
+  86              		.loc 1 27 0
+  87 0000 0122     		mov	r2, #1
+  88 0002 014B     		ldr	r3, .L8
+  89 0004 1A60     		str	r2, [r3]
+  28:Src/one_second_timer_object.c **** }
+  90              		.loc 1 28 0
+  91              		@ sp needed
+ARM GAS  /tmp/cck9anVD.s 			page 3
+
+
+  92 0006 7047     		bx	lr
+  93              	.L9:
+  94              		.align	2
+  95              	.L8:
+  96 0008 00000000 		.word	.LANCHOR0
+  97              		.cfi_endproc
+  98              	.LFE39:
+ 100              		.section	.text.one_second_timer_reset_flag,"ax",%progbits
+ 101              		.align	2
+ 102              		.global	one_second_timer_reset_flag
+ 103              		.code	16
+ 104              		.thumb_func
+ 106              	one_second_timer_reset_flag:
+ 107              	.LFB40:
+  29:Src/one_second_timer_object.c **** void one_second_timer_reset_flag()
+  30:Src/one_second_timer_object.c **** {
+ 108              		.loc 1 30 0
+ 109              		.cfi_startproc
+  31:Src/one_second_timer_object.c **** 	one_second_timer_flag = 0;
+ 110              		.loc 1 31 0
+ 111 0000 0022     		mov	r2, #0
+ 112 0002 014B     		ldr	r3, .L11
+ 113 0004 1A60     		str	r2, [r3]
+  32:Src/one_second_timer_object.c **** }
+ 114              		.loc 1 32 0
+ 115              		@ sp needed
+ 116 0006 7047     		bx	lr
+ 117              	.L12:
+ 118              		.align	2
+ 119              	.L11:
+ 120 0008 00000000 		.word	.LANCHOR0
+ 121              		.cfi_endproc
+ 122              	.LFE40:
+ 124              		.section	.text.one_second_timer_init,"ax",%progbits
+ 125              		.align	2
+ 126              		.global	one_second_timer_init
+ 127              		.code	16
+ 128              		.thumb_func
+ 130              	one_second_timer_init:
+ 131              	.LFB36:
+   7:Src/one_second_timer_object.c **** 
+ 132              		.loc 1 7 0
+ 133              		.cfi_startproc
+ 134 0000 08B5     		push	{r3, lr}
+ 135              	.LCFI2:
+ 136              		.cfi_def_cfa_offset 8
+ 137              		.cfi_offset 3, -8
+ 138              		.cfi_offset 14, -4
+   9:Src/one_second_timer_object.c **** 
+ 139              		.loc 1 9 0
+ 140 0002 FFF7FEFF 		bl	one_second_timer_reset_flag
+ 141              	.LVL2:
+  11:Src/one_second_timer_object.c **** 	
+ 142              		.loc 1 11 0
+ 143 0006 FFF7FEFF 		bl	MX_TIM2_Init
+ 144              	.LVL3:
+  13:Src/one_second_timer_object.c **** void one_second_timer_start()
+ARM GAS  /tmp/cck9anVD.s 			page 4
+
+
+ 145              		.loc 1 13 0
+ 146              		@ sp needed
+ 147 000a 08BD     		pop	{r3, pc}
+ 148              		.cfi_endproc
+ 149              	.LFE36:
+ 151              		.section	.text.one_second_timer_get_flag,"ax",%progbits
+ 152              		.align	2
+ 153              		.global	one_second_timer_get_flag
+ 154              		.code	16
+ 155              		.thumb_func
+ 157              	one_second_timer_get_flag:
+ 158              	.LFB41:
+  33:Src/one_second_timer_object.c **** int one_second_timer_get_flag()
+  34:Src/one_second_timer_object.c **** {
+ 159              		.loc 1 34 0
+ 160              		.cfi_startproc
+  35:Src/one_second_timer_object.c **** 	return one_second_timer_flag;
+ 161              		.loc 1 35 0
+ 162 0000 014B     		ldr	r3, .L15
+ 163 0002 1868     		ldr	r0, [r3]
+  36:Src/one_second_timer_object.c **** }
+ 164              		.loc 1 36 0
+ 165              		@ sp needed
+ 166 0004 7047     		bx	lr
+ 167              	.L16:
+ 168 0006 C046     		.align	2
+ 169              	.L15:
+ 170 0008 00000000 		.word	.LANCHOR0
+ 171              		.cfi_endproc
+ 172              	.LFE41:
+ 174              		.section	.text.one_second_timer_increment_counter,"ax",%progbits
+ 175              		.align	2
+ 176              		.global	one_second_timer_increment_counter
+ 177              		.code	16
+ 178              		.thumb_func
+ 180              	one_second_timer_increment_counter:
+ 181              	.LFB42:
+  37:Src/one_second_timer_object.c **** 
+  38:Src/one_second_timer_object.c **** 
+  39:Src/one_second_timer_object.c **** void one_second_timer_increment_counter()
+  40:Src/one_second_timer_object.c **** {
+ 182              		.loc 1 40 0
+ 183              		.cfi_startproc
+  41:Src/one_second_timer_object.c **** 	seconds_counter++;
+ 184              		.loc 1 41 0
+ 185 0000 024A     		ldr	r2, .L18
+ 186 0002 1368     		ldr	r3, [r2]
+ 187 0004 0133     		add	r3, r3, #1
+ 188 0006 1360     		str	r3, [r2]
+  42:Src/one_second_timer_object.c **** }
+ 189              		.loc 1 42 0
+ 190              		@ sp needed
+ 191 0008 7047     		bx	lr
+ 192              	.L19:
+ 193 000a C046     		.align	2
+ 194              	.L18:
+ 195 000c 00000000 		.word	.LANCHOR1
+ARM GAS  /tmp/cck9anVD.s 			page 5
+
+
+ 196              		.cfi_endproc
+ 197              	.LFE42:
+ 199              		.section	.text.one_second_timer_get_counter,"ax",%progbits
+ 200              		.align	2
+ 201              		.global	one_second_timer_get_counter
+ 202              		.code	16
+ 203              		.thumb_func
+ 205              	one_second_timer_get_counter:
+ 206              	.LFB43:
+  43:Src/one_second_timer_object.c **** 
+  44:Src/one_second_timer_object.c **** uint32_t one_second_timer_get_counter()
+  45:Src/one_second_timer_object.c **** {
+ 207              		.loc 1 45 0
+ 208              		.cfi_startproc
+  46:Src/one_second_timer_object.c **** 	return seconds_counter;
+ 209              		.loc 1 46 0
+ 210 0000 014B     		ldr	r3, .L21
+ 211 0002 1868     		ldr	r0, [r3]
+  47:Src/one_second_timer_object.c **** }
+ 212              		.loc 1 47 0
+ 213              		@ sp needed
+ 214 0004 7047     		bx	lr
+ 215              	.L22:
+ 216 0006 C046     		.align	2
+ 217              	.L21:
+ 218 0008 00000000 		.word	.LANCHOR1
+ 219              		.cfi_endproc
+ 220              	.LFE43:
+ 222              		.section	.bss.one_second_timer_flag,"aw",%nobits
+ 223              		.align	2
+ 224              		.set	.LANCHOR0,. + 0
+ 227              	one_second_timer_flag:
+ 228 0000 00000000 		.space	4
+ 229              		.section	.bss.seconds_counter,"aw",%nobits
+ 230              		.align	2
+ 231              		.set	.LANCHOR1,. + 0
+ 234              	seconds_counter:
+ 235 0000 00000000 		.space	4
+ 236              		.text
+ 237              	.Letext0:
+ 238              		.file 2 "/usr/include/newlib/machine/_default_types.h"
+ 239              		.file 3 "/usr/include/newlib/sys/_stdint.h"
+ 240              		.file 4 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l071xx.h"
+ 241              		.file 5 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_def.h"
+ 242              		.file 6 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_dma.h"
+ 243              		.file 7 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim.h"
+ 244              		.file 8 "Inc/one_second_timer_object.h"
+ 245              		.file 9 "Inc/tim.h"
+ARM GAS  /tmp/cck9anVD.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 one_second_timer_object.c
+     /tmp/cck9anVD.s:18     .text.one_second_timer_start:0000000000000000 $t
+     /tmp/cck9anVD.s:23     .text.one_second_timer_start:0000000000000000 one_second_timer_start
+     /tmp/cck9anVD.s:43     .text.one_second_timer_start:000000000000000c $d
+     /tmp/cck9anVD.s:48     .text.one_second_timer_stop:0000000000000000 $t
+     /tmp/cck9anVD.s:53     .text.one_second_timer_stop:0000000000000000 one_second_timer_stop
+     /tmp/cck9anVD.s:72     .text.one_second_timer_stop:000000000000000c $d
+     /tmp/cck9anVD.s:77     .text.one_second_timer_set_flag:0000000000000000 $t
+     /tmp/cck9anVD.s:82     .text.one_second_timer_set_flag:0000000000000000 one_second_timer_set_flag
+     /tmp/cck9anVD.s:96     .text.one_second_timer_set_flag:0000000000000008 $d
+     /tmp/cck9anVD.s:101    .text.one_second_timer_reset_flag:0000000000000000 $t
+     /tmp/cck9anVD.s:106    .text.one_second_timer_reset_flag:0000000000000000 one_second_timer_reset_flag
+     /tmp/cck9anVD.s:120    .text.one_second_timer_reset_flag:0000000000000008 $d
+     /tmp/cck9anVD.s:125    .text.one_second_timer_init:0000000000000000 $t
+     /tmp/cck9anVD.s:130    .text.one_second_timer_init:0000000000000000 one_second_timer_init
+     /tmp/cck9anVD.s:152    .text.one_second_timer_get_flag:0000000000000000 $t
+     /tmp/cck9anVD.s:157    .text.one_second_timer_get_flag:0000000000000000 one_second_timer_get_flag
+     /tmp/cck9anVD.s:170    .text.one_second_timer_get_flag:0000000000000008 $d
+     /tmp/cck9anVD.s:175    .text.one_second_timer_increment_counter:0000000000000000 $t
+     /tmp/cck9anVD.s:180    .text.one_second_timer_increment_counter:0000000000000000 one_second_timer_increment_counter
+     /tmp/cck9anVD.s:195    .text.one_second_timer_increment_counter:000000000000000c $d
+     /tmp/cck9anVD.s:200    .text.one_second_timer_get_counter:0000000000000000 $t
+     /tmp/cck9anVD.s:205    .text.one_second_timer_get_counter:0000000000000000 one_second_timer_get_counter
+     /tmp/cck9anVD.s:218    .text.one_second_timer_get_counter:0000000000000008 $d
+     /tmp/cck9anVD.s:223    .bss.one_second_timer_flag:0000000000000000 $d
+     /tmp/cck9anVD.s:227    .bss.one_second_timer_flag:0000000000000000 one_second_timer_flag
+     /tmp/cck9anVD.s:230    .bss.seconds_counter:0000000000000000 $d
+     /tmp/cck9anVD.s:234    .bss.seconds_counter:0000000000000000 seconds_counter
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+HAL_TIM_Base_Start_IT
+htim2
+HAL_TIM_Base_Stop_IT
+MX_TIM2_Init
