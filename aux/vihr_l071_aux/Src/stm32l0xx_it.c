@@ -35,6 +35,10 @@
 #include "stm32l0xx.h"
 #include "stm32l0xx_it.h"
 
+#include "one_second_timer_interface.h"
+
+
+
 /* USER CODE BEGIN 0 */
 
 /* USER CODE END 0 */
@@ -116,6 +120,32 @@ void SysTick_Handler(void)
 
   /* USER CODE END SysTick_IRQn 1 */
 }
+
+
+
+void TIM2_IRQHandler(void)
+{
+	HAL_TIM_IRQHandler(&htim2);
+
+
+}
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+	
+	if(htim->Instance==TIM2)
+	{
+		//HAL_GPIO_TogglePin(GPIOC, led0_Pin);
+		one_second_timer_increment_counter();
+		one_second_timer_set_flag();
+	}
+}
+
+
+
+
+
+
 
 /******************************************************************************/
 /* STM32L0xx Peripheral Interrupt Handlers                                    */

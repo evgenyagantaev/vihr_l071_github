@@ -48,6 +48,7 @@
 #include "ssd1306.h"
 
 #include "rtc_ds3231_interface.h"
+#include "one_second_timer_interface.h"
 
 
 
@@ -135,15 +136,43 @@ int main(void)
 	one_second_timer_init();
 	one_second_timer_start();
 
-	// stop                                                      		    
+	int odd_even = 0;
+	//************************   MAIN LOOP   *********************************
 	while(1)                                                     	    
-	{                                                            	    
+	{   
+
+		// debug
+		/*
 	    HAL_GPIO_TogglePin(led0_GPIO_Port, led3_Pin); //           	    
 	    //HAL_Delay(500);                                          	    
 		primitive_delay();                                       		
 	    HAL_GPIO_TogglePin(led0_GPIO_Port, led3_Pin); //           	    
 	    //HAL_Delay(500);                                          	    
 		primitive_delay();                                       		
+		*/
+
+
+		if(one_second_timer_get_flag())
+		{
+			one_second_timer_reset_flag();
+			odd_even = (odd_even+1)%2;
+
+
+
+			// debug
+			//*
+			ssd1306_Fill(Black);                                                                                         
+  		    ssd1306_SetCursor(3,0);                                                                                         
+			if(odd_even)                                                                                                	
+		    	sprintf(message, "odd");                                                               
+			else                                                                                                        	
+		    	sprintf(message, "even");                                                               
+  		    ssd1306_WriteString(message, Font_11x18, White);                                                                
+  		    ssd1306_UpdateScreen();                                                                                         
+			//*/
+
+		}
+
 	}                                                            	    
 
 }
@@ -176,11 +205,13 @@ void SystemClock_Config(void)
 
     /**Initializes the CPU, AHB and APB busses clocks 
     */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_MSI;
-  RCC_OscInitStruct.MSIState = RCC_MSI_ON;
-  RCC_OscInitStruct.MSICalibrationValue = 0;
-  RCC_OscInitStruct.MSIClockRange = RCC_MSIRANGE_5;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.HSICalibrationValue = 16;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLLMUL_3;
+  RCC_OscInitStruct.PLL.PLLDIV = RCC_PLLDIV_3;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
@@ -190,8 +221,8 @@ void SystemClock_Config(void)
     */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_MSI;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV8;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 

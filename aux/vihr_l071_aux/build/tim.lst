@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cci39Xlx.s 			page 1
+ARM GAS  /tmp/ccSOODr2.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cci39Xlx.s 			page 1
   31:Src/tim.c     ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
   32:Src/tim.c     ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
   33:Src/tim.c     ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-ARM GAS  /tmp/cci39Xlx.s 			page 2
+ARM GAS  /tmp/ccSOODr2.s 			page 2
 
 
   34:Src/tim.c     ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
@@ -93,240 +93,265 @@ ARM GAS  /tmp/cci39Xlx.s 			page 1
   54:Src/tim.c     **** 
   55:Src/tim.c     ****   htim2.Instance = TIM2;
   35              		.loc 1 55 0
-  36 0004 1648     		ldr	r0, .L5
+  36 0004 1948     		ldr	r0, .L5
   37 0006 8023     		mov	r3, #128
   38 0008 DB05     		lsl	r3, r3, #23
   39 000a 0360     		str	r3, [r0]
-  56:Src/tim.c     ****   htim2.Init.Prescaler = 0;
+  56:Src/tim.c     ****   htim2.Init.Prescaler = 2000;
   40              		.loc 1 56 0
-  41 000c 0023     		mov	r3, #0
-  42 000e 4360     		str	r3, [r0, #4]
+  41 000c FA23     		mov	r3, #250
+  42 000e DB00     		lsl	r3, r3, #3
+  43 0010 4360     		str	r3, [r0, #4]
   57:Src/tim.c     ****   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  43              		.loc 1 57 0
-  44 0010 8360     		str	r3, [r0, #8]
-  58:Src/tim.c     ****   htim2.Init.Period = 0;
-  45              		.loc 1 58 0
-  46 0012 C360     		str	r3, [r0, #12]
+  44              		.loc 1 57 0
+  45 0012 0023     		mov	r3, #0
+  46 0014 8360     		str	r3, [r0, #8]
+  58:Src/tim.c     ****   htim2.Init.Period = 1000;
+  47              		.loc 1 58 0
+  48 0016 FA22     		mov	r2, #250
+  49 0018 9200     		lsl	r2, r2, #2
+  50 001a C260     		str	r2, [r0, #12]
   59:Src/tim.c     ****   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  47              		.loc 1 59 0
-  48 0014 0361     		str	r3, [r0, #16]
+  51              		.loc 1 59 0
+  52 001c 0361     		str	r3, [r0, #16]
   60:Src/tim.c     ****   if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
-  49              		.loc 1 60 0
-  50 0016 FFF7FEFF 		bl	HAL_TIM_Base_Init
-  51              	.LVL0:
-  52 001a 0028     		cmp	r0, #0
-  53 001c 03D0     		beq	.L2
+  53              		.loc 1 60 0
+  54 001e FFF7FEFF 		bl	HAL_TIM_Base_Init
+  55              	.LVL0:
+ARM GAS  /tmp/ccSOODr2.s 			page 3
+
+
+  56 0022 0028     		cmp	r0, #0
+  57 0024 03D0     		beq	.L2
   61:Src/tim.c     ****   {
   62:Src/tim.c     ****     _Error_Handler(__FILE__, __LINE__);
-ARM GAS  /tmp/cci39Xlx.s 			page 3
-
-
-  54              		.loc 1 62 0
-  55 001e 1148     		ldr	r0, .L5+4
-  56 0020 3E21     		mov	r1, #62
-  57 0022 FFF7FEFF 		bl	_Error_Handler
-  58              	.LVL1:
-  59              	.L2:
+  58              		.loc 1 62 0
+  59 0026 1248     		ldr	r0, .L5+4
+  60 0028 3E21     		mov	r1, #62
+  61 002a FFF7FEFF 		bl	_Error_Handler
+  62              	.LVL1:
+  63              	.L2:
   63:Src/tim.c     ****   }
   64:Src/tim.c     **** 
   65:Src/tim.c     ****   sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  60              		.loc 1 65 0
-  61 0026 8023     		mov	r3, #128
-  62 0028 5B01     		lsl	r3, r3, #5
-  63 002a 0293     		str	r3, [sp, #8]
+  64              		.loc 1 65 0
+  65 002e 8023     		mov	r3, #128
+  66 0030 5B01     		lsl	r3, r3, #5
+  67 0032 0293     		str	r3, [sp, #8]
   66:Src/tim.c     ****   if (HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig) != HAL_OK)
-  64              		.loc 1 66 0
-  65 002c 0C48     		ldr	r0, .L5
-  66 002e 02A9     		add	r1, sp, #8
-  67 0030 FFF7FEFF 		bl	HAL_TIM_ConfigClockSource
-  68              	.LVL2:
-  69 0034 0028     		cmp	r0, #0
-  70 0036 03D0     		beq	.L3
+  68              		.loc 1 66 0
+  69 0034 0D48     		ldr	r0, .L5
+  70 0036 02A9     		add	r1, sp, #8
+  71 0038 FFF7FEFF 		bl	HAL_TIM_ConfigClockSource
+  72              	.LVL2:
+  73 003c 0028     		cmp	r0, #0
+  74 003e 03D0     		beq	.L3
   67:Src/tim.c     ****   {
   68:Src/tim.c     ****     _Error_Handler(__FILE__, __LINE__);
-  71              		.loc 1 68 0
-  72 0038 0A48     		ldr	r0, .L5+4
-  73 003a 4421     		mov	r1, #68
-  74 003c FFF7FEFF 		bl	_Error_Handler
-  75              	.LVL3:
-  76              	.L3:
+  75              		.loc 1 68 0
+  76 0040 0B48     		ldr	r0, .L5+4
+  77 0042 4421     		mov	r1, #68
+  78 0044 FFF7FEFF 		bl	_Error_Handler
+  79              	.LVL3:
+  80              	.L3:
   69:Src/tim.c     ****   }
   70:Src/tim.c     **** 
   71:Src/tim.c     ****   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-  77              		.loc 1 71 0
-  78 0040 0023     		mov	r3, #0
-  79 0042 0093     		str	r3, [sp]
+  81              		.loc 1 71 0
+  82 0048 0023     		mov	r3, #0
+  83 004a 0093     		str	r3, [sp]
   72:Src/tim.c     ****   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  80              		.loc 1 72 0
-  81 0044 0193     		str	r3, [sp, #4]
+  84              		.loc 1 72 0
+  85 004c 0193     		str	r3, [sp, #4]
   73:Src/tim.c     ****   if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
-  82              		.loc 1 73 0
-  83 0046 0648     		ldr	r0, .L5
-  84 0048 6946     		mov	r1, sp
-  85 004a FFF7FEFF 		bl	HAL_TIMEx_MasterConfigSynchronization
-  86              	.LVL4:
-  87 004e 0028     		cmp	r0, #0
-  88 0050 03D0     		beq	.L1
+  86              		.loc 1 73 0
+  87 004e 0748     		ldr	r0, .L5
+  88 0050 6946     		mov	r1, sp
+  89 0052 FFF7FEFF 		bl	HAL_TIMEx_MasterConfigSynchronization
+  90              	.LVL4:
+  91 0056 0028     		cmp	r0, #0
+  92 0058 03D0     		beq	.L4
   74:Src/tim.c     ****   {
   75:Src/tim.c     ****     _Error_Handler(__FILE__, __LINE__);
-  89              		.loc 1 75 0
-  90 0052 0448     		ldr	r0, .L5+4
-  91 0054 4B21     		mov	r1, #75
-  92 0056 FFF7FEFF 		bl	_Error_Handler
-  93              	.LVL5:
-  94              	.L1:
+  93              		.loc 1 75 0
+  94 005a 0548     		ldr	r0, .L5+4
+  95 005c 4B21     		mov	r1, #75
+  96 005e FFF7FEFF 		bl	_Error_Handler
+  97              	.LVL5:
+ARM GAS  /tmp/ccSOODr2.s 			page 4
+
+
+  98              	.L4:
   76:Src/tim.c     ****   }
   77:Src/tim.c     **** 
-  78:Src/tim.c     **** }
-ARM GAS  /tmp/cci39Xlx.s 			page 4
-
-
-  95              		.loc 1 78 0
-  96 005a 07B0     		add	sp, sp, #28
-  97              		@ sp needed
-  98 005c 00BD     		pop	{pc}
-  99              	.L6:
- 100 005e C046     		.align	2
- 101              	.L5:
- 102 0060 00000000 		.word	htim2
- 103 0064 00000000 		.word	.LC1
- 104              		.cfi_endproc
- 105              	.LFE36:
- 107              		.section	.text.HAL_TIM_Base_MspInit,"ax",%progbits
+  78:Src/tim.c     ****   HAL_TIM_Base_Start_IT(&htim2);
+  99              		.loc 1 78 0
+ 100 0062 0248     		ldr	r0, .L5
+ 101 0064 FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
+ 102              	.LVL6:
+  79:Src/tim.c     **** }
+ 103              		.loc 1 79 0
+ 104 0068 07B0     		add	sp, sp, #28
+ 105              		@ sp needed
+ 106 006a 00BD     		pop	{pc}
+ 107              	.L6:
  108              		.align	2
- 109              		.global	HAL_TIM_Base_MspInit
- 110              		.code	16
- 111              		.thumb_func
- 113              	HAL_TIM_Base_MspInit:
- 114              	.LFB37:
-  79:Src/tim.c     **** 
-  80:Src/tim.c     **** void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* tim_baseHandle)
-  81:Src/tim.c     **** {
- 115              		.loc 1 81 0
- 116              		.cfi_startproc
- 117              	.LVL6:
-  82:Src/tim.c     **** 
-  83:Src/tim.c     ****   if(tim_baseHandle->Instance==TIM2)
- 118              		.loc 1 83 0
- 119 0000 0268     		ldr	r2, [r0]
- 120 0002 8023     		mov	r3, #128
- 121 0004 DB05     		lsl	r3, r3, #23
- 122 0006 9A42     		cmp	r2, r3
- 123 0008 04D1     		bne	.L7
-  84:Src/tim.c     ****   {
-  85:Src/tim.c     ****   /* USER CODE BEGIN TIM2_MspInit 0 */
-  86:Src/tim.c     **** 
-  87:Src/tim.c     ****   /* USER CODE END TIM2_MspInit 0 */
-  88:Src/tim.c     ****     /* TIM2 clock enable */
-  89:Src/tim.c     ****     __HAL_RCC_TIM2_CLK_ENABLE();
- 124              		.loc 1 89 0
- 125 000a 034A     		ldr	r2, .L9
- 126 000c 916B     		ldr	r1, [r2, #56]
- 127 000e 0123     		mov	r3, #1
- 128 0010 0B43     		orr	r3, r1
- 129 0012 9363     		str	r3, [r2, #56]
- 130              	.L7:
-  90:Src/tim.c     ****   /* USER CODE BEGIN TIM2_MspInit 1 */
-  91:Src/tim.c     **** 
-  92:Src/tim.c     ****   /* USER CODE END TIM2_MspInit 1 */
+ 109              	.L5:
+ 110 006c 00000000 		.word	htim2
+ 111 0070 00000000 		.word	.LC1
+ 112              		.cfi_endproc
+ 113              	.LFE36:
+ 115              		.section	.text.HAL_TIM_Base_MspInit,"ax",%progbits
+ 116              		.align	2
+ 117              		.global	HAL_TIM_Base_MspInit
+ 118              		.code	16
+ 119              		.thumb_func
+ 121              	HAL_TIM_Base_MspInit:
+ 122              	.LFB37:
+  80:Src/tim.c     **** 
+  81:Src/tim.c     **** void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* tim_baseHandle)
+  82:Src/tim.c     **** {
+ 123              		.loc 1 82 0
+ 124              		.cfi_startproc
+ 125              	.LVL7:
+ 126 0000 08B5     		push	{r3, lr}
+ 127              	.LCFI2:
+ 128              		.cfi_def_cfa_offset 8
+ 129              		.cfi_offset 3, -8
+ 130              		.cfi_offset 14, -4
+  83:Src/tim.c     **** 
+  84:Src/tim.c     ****   if(tim_baseHandle->Instance==TIM2)
+ 131              		.loc 1 84 0
+ 132 0002 0268     		ldr	r2, [r0]
+ 133 0004 8023     		mov	r3, #128
+ 134 0006 DB05     		lsl	r3, r3, #23
+ 135 0008 9A42     		cmp	r2, r3
+ 136 000a 0CD1     		bne	.L7
+  85:Src/tim.c     ****   {
+  86:Src/tim.c     ****     
+  87:Src/tim.c     **** 	/* TIM2 clock enable */
+  88:Src/tim.c     ****     __HAL_RCC_TIM2_CLK_ENABLE();
+ 137              		.loc 1 88 0
+ 138 000c 064A     		ldr	r2, .L9
+ 139 000e 916B     		ldr	r1, [r2, #56]
+ 140 0010 0123     		mov	r3, #1
+ 141 0012 0B43     		orr	r3, r1
+ 142 0014 9363     		str	r3, [r2, #56]
+  89:Src/tim.c     **** 
+ARM GAS  /tmp/ccSOODr2.s 			page 5
+
+
+  90:Src/tim.c     ****     /* TIM2 interrupt Init */
+  91:Src/tim.c     ****     HAL_NVIC_SetPriority(TIM2_IRQn, 7, 0);
+ 143              		.loc 1 91 0
+ 144 0016 0F20     		mov	r0, #15
+ 145              	.LVL8:
+ 146 0018 0721     		mov	r1, #7
+ 147 001a 0022     		mov	r2, #0
+ 148 001c FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 149              	.LVL9:
+  92:Src/tim.c     ****     HAL_NVIC_EnableIRQ(TIM2_IRQn);
+ 150              		.loc 1 92 0
+ 151 0020 0F20     		mov	r0, #15
+ 152 0022 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 153              	.LVL10:
+ 154              	.L7:
   93:Src/tim.c     ****   }
   94:Src/tim.c     **** }
- 131              		.loc 1 94 0
- 132              		@ sp needed
- 133 0014 7047     		bx	lr
- 134              	.L10:
- 135 0016 C046     		.align	2
- 136              	.L9:
- 137 0018 00100240 		.word	1073876992
-ARM GAS  /tmp/cci39Xlx.s 			page 5
-
-
- 138              		.cfi_endproc
- 139              	.LFE37:
- 141              		.section	.text.HAL_TIM_Base_MspDeInit,"ax",%progbits
- 142              		.align	2
- 143              		.global	HAL_TIM_Base_MspDeInit
- 144              		.code	16
- 145              		.thumb_func
- 147              	HAL_TIM_Base_MspDeInit:
- 148              	.LFB38:
+ 155              		.loc 1 94 0
+ 156              		@ sp needed
+ 157 0026 08BD     		pop	{r3, pc}
+ 158              	.L10:
+ 159              		.align	2
+ 160              	.L9:
+ 161 0028 00100240 		.word	1073876992
+ 162              		.cfi_endproc
+ 163              	.LFE37:
+ 165              		.section	.text.HAL_TIM_Base_MspDeInit,"ax",%progbits
+ 166              		.align	2
+ 167              		.global	HAL_TIM_Base_MspDeInit
+ 168              		.code	16
+ 169              		.thumb_func
+ 171              	HAL_TIM_Base_MspDeInit:
+ 172              	.LFB38:
   95:Src/tim.c     **** 
   96:Src/tim.c     **** void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* tim_baseHandle)
   97:Src/tim.c     **** {
- 149              		.loc 1 97 0
- 150              		.cfi_startproc
- 151              	.LVL7:
+ 173              		.loc 1 97 0
+ 174              		.cfi_startproc
+ 175              	.LVL11:
   98:Src/tim.c     **** 
   99:Src/tim.c     ****   if(tim_baseHandle->Instance==TIM2)
- 152              		.loc 1 99 0
- 153 0000 0268     		ldr	r2, [r0]
- 154 0002 8023     		mov	r3, #128
- 155 0004 DB05     		lsl	r3, r3, #23
- 156 0006 9A42     		cmp	r2, r3
- 157 0008 04D1     		bne	.L11
+ 176              		.loc 1 99 0
+ 177 0000 0268     		ldr	r2, [r0]
+ 178 0002 8023     		mov	r3, #128
+ 179 0004 DB05     		lsl	r3, r3, #23
+ 180 0006 9A42     		cmp	r2, r3
+ 181 0008 04D1     		bne	.L11
  100:Src/tim.c     ****   {
  101:Src/tim.c     ****   /* USER CODE BEGIN TIM2_MspDeInit 0 */
  102:Src/tim.c     **** 
  103:Src/tim.c     ****   /* USER CODE END TIM2_MspDeInit 0 */
  104:Src/tim.c     ****     /* Peripheral clock disable */
  105:Src/tim.c     ****     __HAL_RCC_TIM2_CLK_DISABLE();
- 158              		.loc 1 105 0
- 159 000a 034A     		ldr	r2, .L13
- 160 000c 936B     		ldr	r3, [r2, #56]
- 161 000e 0121     		mov	r1, #1
- 162 0010 8B43     		bic	r3, r1
- 163 0012 9363     		str	r3, [r2, #56]
- 164              	.L11:
+ 182              		.loc 1 105 0
+ 183 000a 034A     		ldr	r2, .L13
+ 184 000c 936B     		ldr	r3, [r2, #56]
+ 185 000e 0121     		mov	r1, #1
+ARM GAS  /tmp/ccSOODr2.s 			page 6
+
+
+ 186 0010 8B43     		bic	r3, r1
+ 187 0012 9363     		str	r3, [r2, #56]
+ 188              	.L11:
  106:Src/tim.c     ****   /* USER CODE BEGIN TIM2_MspDeInit 1 */
  107:Src/tim.c     **** 
  108:Src/tim.c     ****   /* USER CODE END TIM2_MspDeInit 1 */
  109:Src/tim.c     ****   }
  110:Src/tim.c     **** } 
- 165              		.loc 1 110 0
- 166              		@ sp needed
- 167 0014 7047     		bx	lr
- 168              	.L14:
- 169 0016 C046     		.align	2
- 170              	.L13:
- 171 0018 00100240 		.word	1073876992
- 172              		.cfi_endproc
- 173              	.LFE38:
- 175              		.comm	htim2,56,4
- 176              		.section	.rodata.str1.4,"aMS",%progbits,1
- 177              		.align	2
- 178              	.LC1:
- 179 0000 5372632F 		.ascii	"Src/tim.c\000"
- 179      74696D2E 
- 179      6300
-ARM GAS  /tmp/cci39Xlx.s 			page 6
-
-
- 180              		.text
- 181              	.Letext0:
- 182              		.file 2 "/usr/include/newlib/machine/_default_types.h"
- 183              		.file 3 "/usr/include/newlib/sys/_stdint.h"
- 184              		.file 4 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l071xx.h"
- 185              		.file 5 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_def.h"
- 186              		.file 6 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_dma.h"
- 187              		.file 7 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim.h"
- 188              		.file 8 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim_ex.h"
- 189              		.file 9 "Inc/tim.h"
-ARM GAS  /tmp/cci39Xlx.s 			page 7
+ 189              		.loc 1 110 0
+ 190              		@ sp needed
+ 191 0014 7047     		bx	lr
+ 192              	.L14:
+ 193 0016 C046     		.align	2
+ 194              	.L13:
+ 195 0018 00100240 		.word	1073876992
+ 196              		.cfi_endproc
+ 197              	.LFE38:
+ 199              		.comm	htim2,56,4
+ 200              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 201              		.align	2
+ 202              	.LC1:
+ 203 0000 5372632F 		.ascii	"Src/tim.c\000"
+ 203      74696D2E 
+ 203      6300
+ 204              		.text
+ 205              	.Letext0:
+ 206              		.file 2 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l071xx.h"
+ 207              		.file 3 "/usr/include/newlib/machine/_default_types.h"
+ 208              		.file 4 "/usr/include/newlib/sys/_stdint.h"
+ 209              		.file 5 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_def.h"
+ 210              		.file 6 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_dma.h"
+ 211              		.file 7 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim.h"
+ 212              		.file 8 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim_ex.h"
+ 213              		.file 9 "Inc/tim.h"
+ 214              		.file 10 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_cortex.h"
+ARM GAS  /tmp/ccSOODr2.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 tim.c
-     /tmp/cci39Xlx.s:18     .text.MX_TIM2_Init:0000000000000000 $t
-     /tmp/cci39Xlx.s:23     .text.MX_TIM2_Init:0000000000000000 MX_TIM2_Init
-     /tmp/cci39Xlx.s:102    .text.MX_TIM2_Init:0000000000000060 $d
+     /tmp/ccSOODr2.s:18     .text.MX_TIM2_Init:0000000000000000 $t
+     /tmp/ccSOODr2.s:23     .text.MX_TIM2_Init:0000000000000000 MX_TIM2_Init
+     /tmp/ccSOODr2.s:110    .text.MX_TIM2_Init:000000000000006c $d
                             *COM*:0000000000000038 htim2
-     /tmp/cci39Xlx.s:108    .text.HAL_TIM_Base_MspInit:0000000000000000 $t
-     /tmp/cci39Xlx.s:113    .text.HAL_TIM_Base_MspInit:0000000000000000 HAL_TIM_Base_MspInit
-     /tmp/cci39Xlx.s:137    .text.HAL_TIM_Base_MspInit:0000000000000018 $d
-     /tmp/cci39Xlx.s:142    .text.HAL_TIM_Base_MspDeInit:0000000000000000 $t
-     /tmp/cci39Xlx.s:147    .text.HAL_TIM_Base_MspDeInit:0000000000000000 HAL_TIM_Base_MspDeInit
-     /tmp/cci39Xlx.s:171    .text.HAL_TIM_Base_MspDeInit:0000000000000018 $d
-     /tmp/cci39Xlx.s:177    .rodata.str1.4:0000000000000000 $d
+     /tmp/ccSOODr2.s:116    .text.HAL_TIM_Base_MspInit:0000000000000000 $t
+     /tmp/ccSOODr2.s:121    .text.HAL_TIM_Base_MspInit:0000000000000000 HAL_TIM_Base_MspInit
+     /tmp/ccSOODr2.s:161    .text.HAL_TIM_Base_MspInit:0000000000000028 $d
+     /tmp/ccSOODr2.s:166    .text.HAL_TIM_Base_MspDeInit:0000000000000000 $t
+     /tmp/ccSOODr2.s:171    .text.HAL_TIM_Base_MspDeInit:0000000000000000 HAL_TIM_Base_MspDeInit
+     /tmp/ccSOODr2.s:195    .text.HAL_TIM_Base_MspDeInit:0000000000000018 $d
+     /tmp/ccSOODr2.s:201    .rodata.str1.4:0000000000000000 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
@@ -334,3 +359,6 @@ HAL_TIM_Base_Init
 _Error_Handler
 HAL_TIM_ConfigClockSource
 HAL_TIMEx_MasterConfigSynchronization
+HAL_TIM_Base_Start_IT
+HAL_NVIC_SetPriority
+HAL_NVIC_EnableIRQ
