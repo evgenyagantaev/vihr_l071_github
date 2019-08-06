@@ -1,0 +1,404 @@
+ARM GAS  /tmp/ccE3oQGR.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 1
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"dive_meter_object.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.global	__aeabi_i2d
+  18              		.global	__aeabi_dcmplt
+  19              		.global	__aeabi_dsub
+  20              		.global	__aeabi_d2uiz
+  21              		.global	__aeabi_ddiv
+  22              		.section	.text.dive_meter_action,"ax",%progbits
+  23              		.align	2
+  24              		.global	dive_meter_action
+  25              		.code	16
+  26              		.thumb_func
+  28              	dive_meter_action:
+  29              	.LFB36:
+  30              		.file 1 "Src/dive_meter_object.c"
+   1:Src/dive_meter_object.c **** #include "dive_meter_object.h"
+   2:Src/dive_meter_object.c **** #include "dive_meter_interface.h"
+   3:Src/dive_meter_object.c **** #include "rtc_ds3231_interface.h"
+   4:Src/dive_meter_object.c **** #include "at24c32_interface.h"
+   5:Src/dive_meter_object.c **** #include "atm_barometer_interface.h"
+   6:Src/dive_meter_object.c **** #include "dive_meter_interface.h"
+   7:Src/dive_meter_object.c **** 
+   8:Src/dive_meter_object.c **** 
+   9:Src/dive_meter_object.c **** void dive_meter_action()
+  10:Src/dive_meter_object.c **** {
+  31              		.loc 1 10 0
+  32              		.cfi_startproc
+  33 0000 30B5     		push	{r4, r5, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 12
+  36              		.cfi_offset 4, -12
+  37              		.cfi_offset 5, -8
+  38              		.cfi_offset 14, -4
+  39 0002 83B0     		sub	sp, sp, #12
+  40              	.LCFI1:
+  41              		.cfi_def_cfa_offset 24
+  11:Src/dive_meter_object.c **** 	double P = pressure_sensor_get_pressure();
+  42              		.loc 1 11 0
+  43 0004 FFF7FEFF 		bl	pressure_sensor_get_pressure
+  44              	.LVL0:
+  45 0008 FFF7FEFF 		bl	__aeabi_i2d
+  46              	.LVL1:
+  47 000c 041C     		mov	r4, r0
+ARM GAS  /tmp/ccE3oQGR.s 			page 2
+
+
+  48 000e 0D1C     		mov	r5, r1
+  49              	.LVL2:
+  12:Src/dive_meter_object.c **** 	if(P > atm_barometer_get_mean_pressure())
+  50              		.loc 1 12 0
+  51 0010 FFF7FEFF 		bl	atm_barometer_get_mean_pressure
+  52              	.LVL3:
+  53 0014 221C     		mov	r2, r4
+  54 0016 2B1C     		mov	r3, r5
+  55 0018 FFF7FEFF 		bl	__aeabi_dcmplt
+  56              	.LVL4:
+  57 001c 0028     		cmp	r0, #0
+  58 001e 15D0     		beq	.L9
+  13:Src/dive_meter_object.c **** 		current_depth = (uint8_t)((double)(P - atm_barometer_get_mean_pressure()))/9800.0;
+  59              		.loc 1 13 0
+  60 0020 FFF7FEFF 		bl	atm_barometer_get_mean_pressure
+  61              	.LVL5:
+  62 0024 021C     		mov	r2, r0
+  63 0026 0B1C     		mov	r3, r1
+  64 0028 201C     		mov	r0, r4
+  65 002a 291C     		mov	r1, r5
+  66 002c FFF7FEFF 		bl	__aeabi_dsub
+  67              	.LVL6:
+  68 0030 FFF7FEFF 		bl	__aeabi_d2uiz
+  69              	.LVL7:
+  70 0034 C0B2     		uxtb	r0, r0
+  71 0036 FFF7FEFF 		bl	__aeabi_i2d
+  72              	.LVL8:
+  73 003a 0022     		mov	r2, #0
+  74 003c 1D4B     		ldr	r3, .L10
+  75 003e FFF7FEFF 		bl	__aeabi_ddiv
+  76              	.LVL9:
+  77 0042 FFF7FEFF 		bl	__aeabi_d2uiz
+  78              	.LVL10:
+  79 0046 1C4B     		ldr	r3, .L10+4
+  80 0048 1870     		strb	r0, [r3]
+  81 004a 02E0     		b	.L4
+  82              	.L9:
+  14:Src/dive_meter_object.c **** 	else
+  15:Src/dive_meter_object.c **** 		current_depth = 0;
+  83              		.loc 1 15 0
+  84 004c 0022     		mov	r2, #0
+  85 004e 1A4B     		ldr	r3, .L10+4
+  86 0050 1A70     		strb	r2, [r3]
+  87              	.L4:
+  16:Src/dive_meter_object.c **** 	
+  17:Src/dive_meter_object.c **** 	uint8_t seconds, minutes, hours;
+  18:Src/dive_meter_object.c **** 	rtc_ds3231_get_time(&hours, &minutes, &seconds);
+  88              		.loc 1 18 0
+  89 0052 6B46     		mov	r3, sp
+  90 0054 581D     		add	r0, r3, #5
+  91 0056 991D     		add	r1, r3, #6
+  92 0058 DA1D     		add	r2, r3, #7
+  93 005a FFF7FEFF 		bl	rtc_ds3231_get_time
+  94              	.LVL11:
+  19:Src/dive_meter_object.c **** 
+  20:Src/dive_meter_object.c **** 	if(!dive_started_flag)
+  95              		.loc 1 20 0
+ARM GAS  /tmp/ccE3oQGR.s 			page 3
+
+
+  96 005e 174B     		ldr	r3, .L10+8
+  97 0060 1B78     		ldrb	r3, [r3]
+  98 0062 002B     		cmp	r3, #0
+  99 0064 0ED1     		bne	.L5
+  21:Src/dive_meter_object.c **** 	{
+  22:Src/dive_meter_object.c **** 		dive_started_flag = 1;
+ 100              		.loc 1 22 0
+ 101 0066 0122     		mov	r2, #1
+ 102 0068 144B     		ldr	r3, .L10+8
+ 103 006a 1A70     		strb	r2, [r3]
+  23:Src/dive_meter_object.c **** 
+  24:Src/dive_meter_object.c **** 		current_dive_time = 0;
+ 104              		.loc 1 24 0
+ 105 006c 0022     		mov	r2, #0
+ 106 006e 144B     		ldr	r3, .L10+12
+ 107 0070 1A70     		strb	r2, [r3]
+  25:Src/dive_meter_object.c **** 		old_minutes = minutes;
+ 108              		.loc 1 25 0
+ 109 0072 6B46     		mov	r3, sp
+ 110 0074 9A79     		ldrb	r2, [r3, #6]
+ 111 0076 134B     		ldr	r3, .L10+16
+ 112 0078 1A70     		strb	r2, [r3]
+  26:Src/dive_meter_object.c **** 		max_depth = current_depth;
+ 113              		.loc 1 26 0
+ 114 007a 0F4B     		ldr	r3, .L10+4
+ 115 007c 1A78     		ldrb	r2, [r3]
+ 116 007e 124B     		ldr	r3, .L10+20
+ 117 0080 1A70     		strb	r2, [r3]
+ 118 0082 14E0     		b	.L1
+ 119              	.L5:
+  27:Src/dive_meter_object.c **** 	}
+  28:Src/dive_meter_object.c **** 	else
+  29:Src/dive_meter_object.c **** 	{
+  30:Src/dive_meter_object.c **** 		if(old_minutes != minutes)
+ 120              		.loc 1 30 0
+ 121 0084 0F4B     		ldr	r3, .L10+16
+ 122 0086 1A78     		ldrb	r2, [r3]
+ 123 0088 6B46     		mov	r3, sp
+ 124 008a 0633     		add	r3, r3, #6
+ 125 008c 1B78     		ldrb	r3, [r3]
+ 126 008e 9A42     		cmp	r2, r3
+ 127 0090 05D0     		beq	.L7
+  31:Src/dive_meter_object.c **** 		{
+  32:Src/dive_meter_object.c **** 			old_minutes = minutes;
+ 128              		.loc 1 32 0
+ 129 0092 0C4A     		ldr	r2, .L10+16
+ 130 0094 1370     		strb	r3, [r2]
+  33:Src/dive_meter_object.c **** 			current_dive_time++;
+ 131              		.loc 1 33 0
+ 132 0096 0A4A     		ldr	r2, .L10+12
+ 133 0098 1378     		ldrb	r3, [r2]
+ 134 009a 0133     		add	r3, r3, #1
+ 135 009c 1370     		strb	r3, [r2]
+ 136              	.L7:
+  34:Src/dive_meter_object.c **** 		}
+  35:Src/dive_meter_object.c **** 
+  36:Src/dive_meter_object.c **** 		if(current_depth > max_depth)
+ARM GAS  /tmp/ccE3oQGR.s 			page 4
+
+
+ 137              		.loc 1 36 0
+ 138 009e 064B     		ldr	r3, .L10+4
+ 139 00a0 1B78     		ldrb	r3, [r3]
+ 140 00a2 094A     		ldr	r2, .L10+20
+ 141 00a4 1278     		ldrb	r2, [r2]
+ 142 00a6 9342     		cmp	r3, r2
+ 143 00a8 01D9     		bls	.L1
+  37:Src/dive_meter_object.c **** 			max_depth = current_depth;
+ 144              		.loc 1 37 0
+ 145 00aa 074A     		ldr	r2, .L10+20
+ 146 00ac 1370     		strb	r3, [r2]
+ 147              	.L1:
+  38:Src/dive_meter_object.c **** 
+  39:Src/dive_meter_object.c **** 	}
+  40:Src/dive_meter_object.c **** }
+ 148              		.loc 1 40 0
+ 149 00ae 03B0     		add	sp, sp, #12
+ 150              		@ sp needed
+ 151              	.LVL12:
+ 152 00b0 30BD     		pop	{r4, r5, pc}
+ 153              	.L11:
+ 154 00b2 C046     		.align	2
+ 155              	.L10:
+ 156 00b4 0024C340 		.word	1086530560
+ 157 00b8 00000000 		.word	.LANCHOR0
+ 158 00bc 00000000 		.word	.LANCHOR1
+ 159 00c0 00000000 		.word	.LANCHOR2
+ 160 00c4 00000000 		.word	.LANCHOR3
+ 161 00c8 00000000 		.word	.LANCHOR4
+ 162              		.cfi_endproc
+ 163              	.LFE36:
+ 165              		.section	.text.dive_meter_get_current_depth,"ax",%progbits
+ 166              		.align	2
+ 167              		.global	dive_meter_get_current_depth
+ 168              		.code	16
+ 169              		.thumb_func
+ 171              	dive_meter_get_current_depth:
+ 172              	.LFB37:
+  41:Src/dive_meter_object.c **** 
+  42:Src/dive_meter_object.c **** 
+  43:Src/dive_meter_object.c **** 
+  44:Src/dive_meter_object.c **** uint8_t dive_meter_get_current_depth()
+  45:Src/dive_meter_object.c **** {
+ 173              		.loc 1 45 0
+ 174              		.cfi_startproc
+  46:Src/dive_meter_object.c **** 	return current_depth;
+ 175              		.loc 1 46 0
+ 176 0000 014B     		ldr	r3, .L13
+ 177 0002 1878     		ldrb	r0, [r3]
+  47:Src/dive_meter_object.c **** }
+ 178              		.loc 1 47 0
+ 179              		@ sp needed
+ 180 0004 7047     		bx	lr
+ 181              	.L14:
+ 182 0006 C046     		.align	2
+ 183              	.L13:
+ 184 0008 00000000 		.word	.LANCHOR0
+ARM GAS  /tmp/ccE3oQGR.s 			page 5
+
+
+ 185              		.cfi_endproc
+ 186              	.LFE37:
+ 188              		.section	.text.dive_meter_get_current_dive_time,"ax",%progbits
+ 189              		.align	2
+ 190              		.global	dive_meter_get_current_dive_time
+ 191              		.code	16
+ 192              		.thumb_func
+ 194              	dive_meter_get_current_dive_time:
+ 195              	.LFB38:
+  48:Src/dive_meter_object.c **** uint8_t dive_meter_get_current_dive_time()
+  49:Src/dive_meter_object.c **** {
+ 196              		.loc 1 49 0
+ 197              		.cfi_startproc
+  50:Src/dive_meter_object.c **** 	return current_dive_time;
+ 198              		.loc 1 50 0
+ 199 0000 014B     		ldr	r3, .L16
+ 200 0002 1878     		ldrb	r0, [r3]
+  51:Src/dive_meter_object.c **** }
+ 201              		.loc 1 51 0
+ 202              		@ sp needed
+ 203 0004 7047     		bx	lr
+ 204              	.L17:
+ 205 0006 C046     		.align	2
+ 206              	.L16:
+ 207 0008 00000000 		.word	.LANCHOR2
+ 208              		.cfi_endproc
+ 209              	.LFE38:
+ 211              		.section	.text.dive_meter_get_max_depth,"ax",%progbits
+ 212              		.align	2
+ 213              		.global	dive_meter_get_max_depth
+ 214              		.code	16
+ 215              		.thumb_func
+ 217              	dive_meter_get_max_depth:
+ 218              	.LFB39:
+  52:Src/dive_meter_object.c **** uint8_t dive_meter_get_max_depth()
+  53:Src/dive_meter_object.c **** {
+ 219              		.loc 1 53 0
+ 220              		.cfi_startproc
+  54:Src/dive_meter_object.c **** 	return max_depth;
+ 221              		.loc 1 54 0
+ 222 0000 014B     		ldr	r3, .L19
+ 223 0002 1878     		ldrb	r0, [r3]
+  55:Src/dive_meter_object.c **** }
+ 224              		.loc 1 55 0
+ 225              		@ sp needed
+ 226 0004 7047     		bx	lr
+ 227              	.L20:
+ 228 0006 C046     		.align	2
+ 229              	.L19:
+ 230 0008 00000000 		.word	.LANCHOR4
+ 231              		.cfi_endproc
+ 232              	.LFE39:
+ 234              		.section	.text.dive_meter_drop_dive,"ax",%progbits
+ 235              		.align	2
+ 236              		.global	dive_meter_drop_dive
+ 237              		.code	16
+ 238              		.thumb_func
+ARM GAS  /tmp/ccE3oQGR.s 			page 6
+
+
+ 240              	dive_meter_drop_dive:
+ 241              	.LFB40:
+  56:Src/dive_meter_object.c **** 
+  57:Src/dive_meter_object.c **** 
+  58:Src/dive_meter_object.c **** void dive_meter_drop_dive()
+  59:Src/dive_meter_object.c **** {
+ 242              		.loc 1 59 0
+ 243              		.cfi_startproc
+  60:Src/dive_meter_object.c **** 	if(dive_started_flag)
+ 244              		.loc 1 60 0
+ 245 0000 034B     		ldr	r3, .L23
+ 246 0002 1B78     		ldrb	r3, [r3]
+ 247 0004 002B     		cmp	r3, #0
+ 248 0006 02D0     		beq	.L21
+  61:Src/dive_meter_object.c **** 		dive_started_flag = 0;
+ 249              		.loc 1 61 0
+ 250 0008 0022     		mov	r2, #0
+ 251 000a 014B     		ldr	r3, .L23
+ 252 000c 1A70     		strb	r2, [r3]
+ 253              	.L21:
+  62:Src/dive_meter_object.c **** }
+ 254              		.loc 1 62 0
+ 255              		@ sp needed
+ 256 000e 7047     		bx	lr
+ 257              	.L24:
+ 258              		.align	2
+ 259              	.L23:
+ 260 0010 00000000 		.word	.LANCHOR1
+ 261              		.cfi_endproc
+ 262              	.LFE40:
+ 264              		.section	.bss.max_depth,"aw",%nobits
+ 265              		.set	.LANCHOR4,. + 0
+ 268              	max_depth:
+ 269 0000 00       		.space	1
+ 270              		.section	.bss.current_dive_time,"aw",%nobits
+ 271              		.set	.LANCHOR2,. + 0
+ 274              	current_dive_time:
+ 275 0000 00       		.space	1
+ 276              		.section	.bss.current_depth,"aw",%nobits
+ 277              		.set	.LANCHOR0,. + 0
+ 280              	current_depth:
+ 281 0000 00       		.space	1
+ 282              		.section	.bss.old_minutes,"aw",%nobits
+ 283              		.set	.LANCHOR3,. + 0
+ 286              	old_minutes:
+ 287 0000 00       		.space	1
+ 288              		.section	.bss.dive_started_flag,"aw",%nobits
+ 289              		.set	.LANCHOR1,. + 0
+ 292              	dive_started_flag:
+ 293 0000 00       		.space	1
+ 294              		.text
+ 295              	.Letext0:
+ 296              		.file 2 "/usr/include/newlib/machine/_default_types.h"
+ 297              		.file 3 "/usr/include/newlib/sys/_stdint.h"
+ 298              		.file 4 "Inc/dive_meter_object.h"
+ 299              		.file 5 "Inc/atm_barometer_interface.h"
+ 300              		.file 6 "Inc/rtc_ds3231_interface.h"
+ARM GAS  /tmp/ccE3oQGR.s 			page 7
+
+
+ARM GAS  /tmp/ccE3oQGR.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 dive_meter_object.c
+     /tmp/ccE3oQGR.s:23     .text.dive_meter_action:0000000000000000 $t
+     /tmp/ccE3oQGR.s:28     .text.dive_meter_action:0000000000000000 dive_meter_action
+     /tmp/ccE3oQGR.s:156    .text.dive_meter_action:00000000000000b4 $d
+     /tmp/ccE3oQGR.s:166    .text.dive_meter_get_current_depth:0000000000000000 $t
+     /tmp/ccE3oQGR.s:171    .text.dive_meter_get_current_depth:0000000000000000 dive_meter_get_current_depth
+     /tmp/ccE3oQGR.s:184    .text.dive_meter_get_current_depth:0000000000000008 $d
+     /tmp/ccE3oQGR.s:189    .text.dive_meter_get_current_dive_time:0000000000000000 $t
+     /tmp/ccE3oQGR.s:194    .text.dive_meter_get_current_dive_time:0000000000000000 dive_meter_get_current_dive_time
+     /tmp/ccE3oQGR.s:207    .text.dive_meter_get_current_dive_time:0000000000000008 $d
+     /tmp/ccE3oQGR.s:212    .text.dive_meter_get_max_depth:0000000000000000 $t
+     /tmp/ccE3oQGR.s:217    .text.dive_meter_get_max_depth:0000000000000000 dive_meter_get_max_depth
+     /tmp/ccE3oQGR.s:230    .text.dive_meter_get_max_depth:0000000000000008 $d
+     /tmp/ccE3oQGR.s:235    .text.dive_meter_drop_dive:0000000000000000 $t
+     /tmp/ccE3oQGR.s:240    .text.dive_meter_drop_dive:0000000000000000 dive_meter_drop_dive
+     /tmp/ccE3oQGR.s:260    .text.dive_meter_drop_dive:0000000000000010 $d
+     /tmp/ccE3oQGR.s:268    .bss.max_depth:0000000000000000 max_depth
+     /tmp/ccE3oQGR.s:269    .bss.max_depth:0000000000000000 $d
+     /tmp/ccE3oQGR.s:274    .bss.current_dive_time:0000000000000000 current_dive_time
+     /tmp/ccE3oQGR.s:275    .bss.current_dive_time:0000000000000000 $d
+     /tmp/ccE3oQGR.s:280    .bss.current_depth:0000000000000000 current_depth
+     /tmp/ccE3oQGR.s:281    .bss.current_depth:0000000000000000 $d
+     /tmp/ccE3oQGR.s:286    .bss.old_minutes:0000000000000000 old_minutes
+     /tmp/ccE3oQGR.s:287    .bss.old_minutes:0000000000000000 $d
+     /tmp/ccE3oQGR.s:292    .bss.dive_started_flag:0000000000000000 dive_started_flag
+     /tmp/ccE3oQGR.s:293    .bss.dive_started_flag:0000000000000000 $d
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+__aeabi_i2d
+__aeabi_dcmplt
+__aeabi_dsub
+__aeabi_d2uiz
+__aeabi_ddiv
+pressure_sensor_get_pressure
+atm_barometer_get_mean_pressure
+rtc_ds3231_get_time

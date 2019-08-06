@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc5BoqO1.s 			page 1
+ARM GAS  /tmp/ccZnQ2t9.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc5BoqO1.s 			page 1
   31:Src/stm32l0xx_hal_msp.c ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
   32:Src/stm32l0xx_hal_msp.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
   33:Src/stm32l0xx_hal_msp.c ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-ARM GAS  /tmp/cc5BoqO1.s 			page 2
+ARM GAS  /tmp/ccZnQ2t9.s 			page 2
 
 
   34:Src/stm32l0xx_hal_msp.c ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc5BoqO1.s 			page 1
   62:Src/stm32l0xx_hal_msp.c ****   HAL_NVIC_SetPriority(PendSV_IRQn, 0, 0);
   52              		.loc 1 62 0
   53 0022 0220     		mov	r0, #2
-ARM GAS  /tmp/cc5BoqO1.s 			page 3
+ARM GAS  /tmp/ccZnQ2t9.s 			page 3
 
 
   54 0024 4042     		neg	r0, r0
@@ -155,14 +155,14 @@ ARM GAS  /tmp/cc5BoqO1.s 			page 1
   79              		.file 3 "/usr/include/newlib/machine/_default_types.h"
   80              		.file 4 "/usr/include/newlib/sys/_stdint.h"
   81              		.file 5 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_cortex.h"
-ARM GAS  /tmp/cc5BoqO1.s 			page 4
+ARM GAS  /tmp/ccZnQ2t9.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32l0xx_hal_msp.c
-     /tmp/cc5BoqO1.s:18     .text.HAL_MspInit:0000000000000000 $t
-     /tmp/cc5BoqO1.s:23     .text.HAL_MspInit:0000000000000000 HAL_MspInit
-     /tmp/cc5BoqO1.s:72     .text.HAL_MspInit:000000000000003c $d
+     /tmp/ccZnQ2t9.s:18     .text.HAL_MspInit:0000000000000000 $t
+     /tmp/ccZnQ2t9.s:23     .text.HAL_MspInit:0000000000000000 HAL_MspInit
+     /tmp/ccZnQ2t9.s:72     .text.HAL_MspInit:000000000000003c $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

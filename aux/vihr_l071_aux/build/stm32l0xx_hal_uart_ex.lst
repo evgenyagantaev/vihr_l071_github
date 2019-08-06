@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccxrlEeg.s 			page 1
+ARM GAS  /tmp/cclVeaaG.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccxrlEeg.s 			page 1
   32:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   *      this list of conditions and the following disclaimer.
   33:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   *   2. Redistributions in binary form must reproduce the above copyright notice,
   34:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   *      this list of conditions and the following disclaimer in the documentation
-ARM GAS  /tmp/ccxrlEeg.s 			page 2
+ARM GAS  /tmp/cclVeaaG.s 			page 2
 
 
   35:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   *      and/or other materials provided with the distribution.
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccxrlEeg.s 			page 1
   89:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   *
   90:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c **** @verbatim
   91:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c **** ===============================================================================
-ARM GAS  /tmp/ccxrlEeg.s 			page 3
+ARM GAS  /tmp/cclVeaaG.s 			page 3
 
 
   92:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****             ##### Initialization and Configuration functions #####
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccxrlEeg.s 			page 1
  146:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   * @brief Initialize the RS485 Driver enable feature according to the specified
  147:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   *         parameters in the UART_InitTypeDef and creates the associated handle.
  148:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   * @param huart: UART handle.
-ARM GAS  /tmp/ccxrlEeg.s 			page 4
+ARM GAS  /tmp/cclVeaaG.s 			page 4
 
 
  149:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   * @param Polarity: select the driver enable polarity.
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccxrlEeg.s 			page 1
  203:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   if (UART_SetConfig(huart) == HAL_ERROR)
  204:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   {
  205:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****     return HAL_ERROR;
-ARM GAS  /tmp/ccxrlEeg.s 			page 5
+ARM GAS  /tmp/cclVeaaG.s 			page 5
 
 
  206:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   }
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccxrlEeg.s 			page 1
  260:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   * @brief By default in multiprocessor mode, when the wake up method is set
  261:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   *        to address mark, the UART handles only 4-bit long addresses detection;
  262:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   *        this API allows to enable longer addresses detection (6-, 7- or 8-bit
-ARM GAS  /tmp/ccxrlEeg.s 			page 6
+ARM GAS  /tmp/cclVeaaG.s 			page 6
 
 
  263:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   *        long).
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccxrlEeg.s 			page 1
  317:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   assert_param(IS_UART_WAKEUP_SELECTION(WakeUpSelection.WakeUpEvent));
  318:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c **** 
  319:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   /* Process Locked */
-ARM GAS  /tmp/ccxrlEeg.s 			page 7
+ARM GAS  /tmp/cclVeaaG.s 			page 7
 
 
  320:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   __HAL_LOCK(huart);
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccxrlEeg.s 			page 1
  374:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c **** 
  375:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   huart->gState = HAL_UART_STATE_READY;
  376:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c **** 
-ARM GAS  /tmp/ccxrlEeg.s 			page 8
+ARM GAS  /tmp/cclVeaaG.s 			page 8
 
 
  377:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   /* Process Unlocked */
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccxrlEeg.s 			page 1
  431:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   * @brief Disable UART Clock in Stop Mode 
  432:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   * @param huart: uart handle
  433:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   * @retval HAL status
-ARM GAS  /tmp/ccxrlEeg.s 			page 9
+ARM GAS  /tmp/cclVeaaG.s 			page 9
 
 
  434:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   */
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccxrlEeg.s 			page 1
   25              		.loc 1 487 0
   26              		.cfi_startproc
   27              	.LVL0:
-ARM GAS  /tmp/ccxrlEeg.s 			page 10
+ARM GAS  /tmp/cclVeaaG.s 			page 10
 
 
   28 0000 82B0     		sub	sp, sp, #8
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccxrlEeg.s 			page 1
   67              		.loc 1 165 0
   68              		.cfi_startproc
   69              	.LVL1:
-ARM GAS  /tmp/ccxrlEeg.s 			page 11
+ARM GAS  /tmp/cclVeaaG.s 			page 11
 
 
   70 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccxrlEeg.s 			page 1
  116              		.loc 1 200 0
  117 0036 201C     		mov	r0, r4
  118 0038 FFF7FEFF 		bl	UART_AdvFeatureConfig
-ARM GAS  /tmp/ccxrlEeg.s 			page 12
+ARM GAS  /tmp/cclVeaaG.s 			page 12
 
 
  119              	.LVL6:
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccxrlEeg.s 			page 1
  165 007c FFF7FEFF 		bl	UART_CheckIdleState
  166              	.LVL12:
  167 0080 00E0     		b	.L3
-ARM GAS  /tmp/ccxrlEeg.s 			page 13
+ARM GAS  /tmp/cclVeaaG.s 			page 13
 
 
  168              	.LVL13:
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccxrlEeg.s 			page 1
  217 0016 0468     		ldr	r4, [r0]
  218 0018 6268     		ldr	r2, [r4, #4]
  219 001a 1025     		mov	r5, #16
-ARM GAS  /tmp/ccxrlEeg.s 			page 14
+ARM GAS  /tmp/cclVeaaG.s 			page 14
 
 
  220 001c AA43     		bic	r2, r5
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccxrlEeg.s 			page 1
  270 000c 012B     		cmp	r3, #1
  271 000e 32D0     		beq	.L16
  272 0010 041C     		mov	r4, r0
-ARM GAS  /tmp/ccxrlEeg.s 			page 15
+ARM GAS  /tmp/cclVeaaG.s 			page 15
 
 
  320:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c **** 
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccxrlEeg.s 			page 1
  318              	.LVL25:
  319 0056 8021     		mov	r1, #128
  320 0058 C903     		lsl	r1, r1, #15
-ARM GAS  /tmp/ccxrlEeg.s 			page 16
+ARM GAS  /tmp/cclVeaaG.s 			page 16
 
 
  321 005a 0022     		mov	r2, #0
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccxrlEeg.s 			page 1
  370              	.LVL30:
  371 0000 30B5     		push	{r4, r5, lr}
  372              	.LCFI5:
-ARM GAS  /tmp/ccxrlEeg.s 			page 17
+ARM GAS  /tmp/cclVeaaG.s 			page 17
 
 
  373              		.cfi_def_cfa_offset 12
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccxrlEeg.s 			page 1
  419              		.align	2
  420              		.global	HAL_UARTEx_DisableStopMode
  421              		.code	16
-ARM GAS  /tmp/ccxrlEeg.s 			page 18
+ARM GAS  /tmp/cclVeaaG.s 			page 18
 
 
  422              		.thumb_func
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccxrlEeg.s 			page 1
  468              	.LVL37:
  469              	.L24:
  404:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c **** 
-ARM GAS  /tmp/ccxrlEeg.s 			page 19
+ARM GAS  /tmp/cclVeaaG.s 			page 19
 
 
  470              		.loc 1 404 0
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccxrlEeg.s 			page 1
  427:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c **** }
  519              		.loc 1 427 0 discriminator 2
  520 002a 0020     		mov	r0, #0
-ARM GAS  /tmp/ccxrlEeg.s 			page 20
+ARM GAS  /tmp/cclVeaaG.s 			page 20
 
 
  521              	.LVL39:
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccxrlEeg.s 			page 1
  570 001e A360     		str	r3, [r4, #8]
  445:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c **** 
  571              		.loc 1 445 0 discriminator 2
-ARM GAS  /tmp/ccxrlEeg.s 			page 21
+ARM GAS  /tmp/cclVeaaG.s 			page 21
 
 
  572 0020 2023     		mov	r3, #32
@@ -1257,32 +1257,32 @@ ARM GAS  /tmp/ccxrlEeg.s 			page 1
  622              		.file 8 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_uart.h"
  623              		.file 9 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_uart_ex.h"
  624              		.file 10 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h"
-ARM GAS  /tmp/ccxrlEeg.s 			page 22
+ARM GAS  /tmp/cclVeaaG.s 			page 22
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32l0xx_hal_uart_ex.c
-     /tmp/ccxrlEeg.s:18     .text.UARTEx_Wakeup_AddressConfig:0000000000000000 $t
-     /tmp/ccxrlEeg.s:22     .text.UARTEx_Wakeup_AddressConfig:0000000000000000 UARTEx_Wakeup_AddressConfig
-     /tmp/ccxrlEeg.s:60     .text.HAL_RS485Ex_Init:0000000000000000 $t
-     /tmp/ccxrlEeg.s:65     .text.HAL_RS485Ex_Init:0000000000000000 HAL_RS485Ex_Init
-     /tmp/ccxrlEeg.s:180    .text.HAL_RS485Ex_Init:0000000000000088 $d
-     /tmp/ccxrlEeg.s:186    .text.HAL_MultiProcessorEx_AddressLength_Set:0000000000000000 $t
-     /tmp/ccxrlEeg.s:191    .text.HAL_MultiProcessorEx_AddressLength_Set:0000000000000000 HAL_MultiProcessorEx_AddressLength_Set
-     /tmp/ccxrlEeg.s:246    .text.HAL_UARTEx_StopModeWakeUpSourceConfig:0000000000000000 $t
-     /tmp/ccxrlEeg.s:251    .text.HAL_UARTEx_StopModeWakeUpSourceConfig:0000000000000000 HAL_UARTEx_StopModeWakeUpSourceConfig
-     /tmp/ccxrlEeg.s:355    .text.HAL_UARTEx_StopModeWakeUpSourceConfig:000000000000007c $d
-     /tmp/ccxrlEeg.s:361    .text.HAL_UARTEx_EnableStopMode:0000000000000000 $t
-     /tmp/ccxrlEeg.s:366    .text.HAL_UARTEx_EnableStopMode:0000000000000000 HAL_UARTEx_EnableStopMode
-     /tmp/ccxrlEeg.s:419    .text.HAL_UARTEx_DisableStopMode:0000000000000000 $t
-     /tmp/ccxrlEeg.s:424    .text.HAL_UARTEx_DisableStopMode:0000000000000000 HAL_UARTEx_DisableStopMode
-     /tmp/ccxrlEeg.s:477    .text.HAL_UARTEx_EnableClockStopMode:0000000000000000 $t
-     /tmp/ccxrlEeg.s:482    .text.HAL_UARTEx_EnableClockStopMode:0000000000000000 HAL_UARTEx_EnableClockStopMode
-     /tmp/ccxrlEeg.s:536    .text.HAL_UARTEx_DisableClockStopMode:0000000000000000 $t
-     /tmp/ccxrlEeg.s:541    .text.HAL_UARTEx_DisableClockStopMode:0000000000000000 HAL_UARTEx_DisableClockStopMode
-     /tmp/ccxrlEeg.s:593    .text.HAL_UARTEx_DisableClockStopMode:0000000000000030 $d
-     /tmp/ccxrlEeg.s:598    .text.HAL_UARTEx_WakeupCallback:0000000000000000 $t
-     /tmp/ccxrlEeg.s:603    .text.HAL_UARTEx_WakeupCallback:0000000000000000 HAL_UARTEx_WakeupCallback
+     /tmp/cclVeaaG.s:18     .text.UARTEx_Wakeup_AddressConfig:0000000000000000 $t
+     /tmp/cclVeaaG.s:22     .text.UARTEx_Wakeup_AddressConfig:0000000000000000 UARTEx_Wakeup_AddressConfig
+     /tmp/cclVeaaG.s:60     .text.HAL_RS485Ex_Init:0000000000000000 $t
+     /tmp/cclVeaaG.s:65     .text.HAL_RS485Ex_Init:0000000000000000 HAL_RS485Ex_Init
+     /tmp/cclVeaaG.s:180    .text.HAL_RS485Ex_Init:0000000000000088 $d
+     /tmp/cclVeaaG.s:186    .text.HAL_MultiProcessorEx_AddressLength_Set:0000000000000000 $t
+     /tmp/cclVeaaG.s:191    .text.HAL_MultiProcessorEx_AddressLength_Set:0000000000000000 HAL_MultiProcessorEx_AddressLength_Set
+     /tmp/cclVeaaG.s:246    .text.HAL_UARTEx_StopModeWakeUpSourceConfig:0000000000000000 $t
+     /tmp/cclVeaaG.s:251    .text.HAL_UARTEx_StopModeWakeUpSourceConfig:0000000000000000 HAL_UARTEx_StopModeWakeUpSourceConfig
+     /tmp/cclVeaaG.s:355    .text.HAL_UARTEx_StopModeWakeUpSourceConfig:000000000000007c $d
+     /tmp/cclVeaaG.s:361    .text.HAL_UARTEx_EnableStopMode:0000000000000000 $t
+     /tmp/cclVeaaG.s:366    .text.HAL_UARTEx_EnableStopMode:0000000000000000 HAL_UARTEx_EnableStopMode
+     /tmp/cclVeaaG.s:419    .text.HAL_UARTEx_DisableStopMode:0000000000000000 $t
+     /tmp/cclVeaaG.s:424    .text.HAL_UARTEx_DisableStopMode:0000000000000000 HAL_UARTEx_DisableStopMode
+     /tmp/cclVeaaG.s:477    .text.HAL_UARTEx_EnableClockStopMode:0000000000000000 $t
+     /tmp/cclVeaaG.s:482    .text.HAL_UARTEx_EnableClockStopMode:0000000000000000 HAL_UARTEx_EnableClockStopMode
+     /tmp/cclVeaaG.s:536    .text.HAL_UARTEx_DisableClockStopMode:0000000000000000 $t
+     /tmp/cclVeaaG.s:541    .text.HAL_UARTEx_DisableClockStopMode:0000000000000000 HAL_UARTEx_DisableClockStopMode
+     /tmp/cclVeaaG.s:593    .text.HAL_UARTEx_DisableClockStopMode:0000000000000030 $d
+     /tmp/cclVeaaG.s:598    .text.HAL_UARTEx_WakeupCallback:0000000000000000 $t
+     /tmp/cclVeaaG.s:603    .text.HAL_UARTEx_WakeupCallback:0000000000000000 HAL_UARTEx_WakeupCallback
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

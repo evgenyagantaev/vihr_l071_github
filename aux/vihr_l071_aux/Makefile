@@ -45,9 +45,14 @@ Src/usart.c \
 Src/tim.c \
 Src/one_second_timer_object.c \
 Src/pressure_sensor_object.c \
+Src/voltmeter_object.c \
+Src/depth_switch_object.c \
+Src/rtc_ds3231_object.c \
+Src/atm_barometer_object.c \
+Src/at24c32_object.c \
+Src/dive_meter_object.c \
 Src/stm32l0xx_it.c \
 Src/stm32l0xx_hal_msp.c \
-Src/rtc_ds3231_object.c \
 Src/fonts.c \
 Src/ssd1306.c \
 Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc.c \

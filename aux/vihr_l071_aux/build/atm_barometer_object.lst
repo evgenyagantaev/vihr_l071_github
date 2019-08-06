@@ -1,0 +1,474 @@
+ARM GAS  /tmp/ccNKsKZz.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 1
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"atm_barometer_object.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.atm_barometer_init,"ax",%progbits
+  18              		.align	2
+  19              		.global	atm_barometer_init
+  20              		.code	16
+  21              		.thumb_func
+  23              	atm_barometer_init:
+  24              	.LFB36:
+  25              		.file 1 "Src/atm_barometer_object.c"
+   1:Src/atm_barometer_object.c **** #include "main.h"
+   2:Src/atm_barometer_object.c **** #include "atm_barometer_object.h"
+   3:Src/atm_barometer_object.c **** #include "atm_barometer_interface.h"
+   4:Src/atm_barometer_object.c **** #include "rtc_ds3231_interface.h"
+   5:Src/atm_barometer_object.c **** #include "at24c32_interface.h"
+   6:Src/atm_barometer_object.c **** #include "pressure_sensor_object.h"
+   7:Src/atm_barometer_object.c **** 
+   8:Src/atm_barometer_object.c **** 
+   9:Src/atm_barometer_object.c **** void atm_barometer_init()
+  10:Src/atm_barometer_object.c **** {
+  26              		.loc 1 10 0
+  27              		.cfi_startproc
+  28 0000 10B5     		push	{r4, lr}
+  29              	.LCFI0:
+  30              		.cfi_def_cfa_offset 8
+  31              		.cfi_offset 4, -8
+  32              		.cfi_offset 14, -4
+  33 0002 82B0     		sub	sp, sp, #8
+  34              	.LCFI1:
+  35              		.cfi_def_cfa_offset 16
+  11:Src/atm_barometer_object.c **** 	uint8_t hours, minutes, seconds;
+  12:Src/atm_barometer_object.c **** 	rtc_ds3231_get_time(&hours, &minutes, &seconds);
+  36              		.loc 1 12 0
+  37 0004 6B46     		mov	r3, sp
+  38 0006 DC1D     		add	r4, r3, #7
+  39 0008 201C     		mov	r0, r4
+  40 000a 991D     		add	r1, r3, #6
+  41 000c 5A1D     		add	r2, r3, #5
+  42 000e FFF7FEFF 		bl	rtc_ds3231_get_time
+  43              	.LVL0:
+  13:Src/atm_barometer_object.c **** 	hours_old = hours;
+  44              		.loc 1 13 0
+  45 0012 2278     		ldrb	r2, [r4]
+ARM GAS  /tmp/ccNKsKZz.s 			page 2
+
+
+  46 0014 0C4B     		ldr	r3, .L6
+  47 0016 1A70     		strb	r2, [r3]
+  48              	.LVL1:
+  14:Src/atm_barometer_object.c **** 	// read pressure log from eeprom
+  15:Src/atm_barometer_object.c **** 	int i;
+  16:Src/atm_barometer_object.c **** 
+  17:Src/atm_barometer_object.c **** 	for(i=0; i<LOG_LENGTH; i++)
+  49              		.loc 1 17 0
+  50 0018 0023     		mov	r3, #0
+  51 001a 04E0     		b	.L2
+  52              	.LVL2:
+  53              	.L3:
+  18:Src/atm_barometer_object.c **** 	{
+  19:Src/atm_barometer_object.c **** 		//at24c32_write_32((uint16_t)(i*4), i*10);
+  20:Src/atm_barometer_object.c **** 		atm_pressure_log[i] = 0;
+  54              		.loc 1 20 0 discriminator 3
+  55 001c 9900     		lsl	r1, r3, #2
+  56 001e 0020     		mov	r0, #0
+  57 0020 0A4A     		ldr	r2, .L6+4
+  58 0022 8850     		str	r0, [r1, r2]
+  17:Src/atm_barometer_object.c **** 	{
+  59              		.loc 1 17 0 discriminator 3
+  60 0024 0133     		add	r3, r3, #1
+  61              	.LVL3:
+  62              	.L2:
+  17:Src/atm_barometer_object.c **** 	{
+  63              		.loc 1 17 0 is_stmt 0 discriminator 1
+  64 0026 2F2B     		cmp	r3, #47
+  65 0028 F8DD     		ble	.L3
+  66 002a 0024     		mov	r4, #0
+  67 002c 07E0     		b	.L4
+  68              	.LVL4:
+  69              	.L5:
+  21:Src/atm_barometer_object.c **** 	}
+  22:Src/atm_barometer_object.c **** 	for(i=0; i<LOG_LENGTH; i++)
+  23:Src/atm_barometer_object.c **** 		at24c32_read_32((uint16_t)(i*4), &(atm_pressure_log[i]));
+  70              		.loc 1 23 0 is_stmt 1 discriminator 3
+  71 002e A000     		lsl	r0, r4, #2
+  72 0030 80B2     		uxth	r0, r0
+  73 0032 A100     		lsl	r1, r4, #2
+  74 0034 054B     		ldr	r3, .L6+4
+  75 0036 C918     		add	r1, r1, r3
+  76 0038 FFF7FEFF 		bl	at24c32_read_32
+  77              	.LVL5:
+  22:Src/atm_barometer_object.c **** 		at24c32_read_32((uint16_t)(i*4), &(atm_pressure_log[i]));
+  78              		.loc 1 22 0 discriminator 3
+  79 003c 0134     		add	r4, r4, #1
+  80              	.LVL6:
+  81              	.L4:
+  22:Src/atm_barometer_object.c **** 		at24c32_read_32((uint16_t)(i*4), &(atm_pressure_log[i]));
+  82              		.loc 1 22 0 is_stmt 0 discriminator 1
+  83 003e 2F2C     		cmp	r4, #47
+  84 0040 F5DD     		ble	.L5
+  24:Src/atm_barometer_object.c **** }
+  85              		.loc 1 24 0 is_stmt 1
+  86 0042 02B0     		add	sp, sp, #8
+  87              		@ sp needed
+ARM GAS  /tmp/ccNKsKZz.s 			page 3
+
+
+  88              	.LVL7:
+  89 0044 10BD     		pop	{r4, pc}
+  90              	.L7:
+  91 0046 C046     		.align	2
+  92              	.L6:
+  93 0048 00000000 		.word	.LANCHOR0
+  94 004c 00000000 		.word	atm_pressure_log
+  95              		.cfi_endproc
+  96              	.LFE36:
+  98              		.global	__aeabi_d2uiz
+  99              		.section	.text.atm_barometer_action,"ax",%progbits
+ 100              		.align	2
+ 101              		.global	atm_barometer_action
+ 102              		.code	16
+ 103              		.thumb_func
+ 105              	atm_barometer_action:
+ 106              	.LFB37:
+  25:Src/atm_barometer_object.c **** 
+  26:Src/atm_barometer_object.c **** 
+  27:Src/atm_barometer_object.c **** void atm_barometer_action()
+  28:Src/atm_barometer_object.c **** {
+ 107              		.loc 1 28 0
+ 108              		.cfi_startproc
+ 109 0000 10B5     		push	{r4, lr}
+ 110              	.LCFI2:
+ 111              		.cfi_def_cfa_offset 8
+ 112              		.cfi_offset 4, -8
+ 113              		.cfi_offset 14, -4
+ 114 0002 82B0     		sub	sp, sp, #8
+ 115              	.LCFI3:
+ 116              		.cfi_def_cfa_offset 16
+  29:Src/atm_barometer_object.c **** 	int i;
+  30:Src/atm_barometer_object.c **** 	// check if hour_old != hour
+  31:Src/atm_barometer_object.c **** 	uint8_t hours, minutes, seconds;
+  32:Src/atm_barometer_object.c **** 	rtc_ds3231_get_time(&hours, &minutes, &seconds);
+ 117              		.loc 1 32 0
+ 118 0004 6B46     		mov	r3, sp
+ 119 0006 DC1D     		add	r4, r3, #7
+ 120 0008 201C     		mov	r0, r4
+ 121 000a 991D     		add	r1, r3, #6
+ 122 000c 5A1D     		add	r2, r3, #5
+ 123 000e FFF7FEFF 		bl	rtc_ds3231_get_time
+ 124              	.LVL8:
+  33:Src/atm_barometer_object.c **** 	//<debug
+  34:Src/atm_barometer_object.c **** 	//hours = minutes;
+  35:Src/atm_barometer_object.c **** 	//debug>
+  36:Src/atm_barometer_object.c **** 	if(hours_old != hours)
+ 125              		.loc 1 36 0
+ 126 0012 194B     		ldr	r3, .L16
+ 127 0014 1A78     		ldrb	r2, [r3]
+ 128 0016 2378     		ldrb	r3, [r4]
+ 129 0018 9A42     		cmp	r2, r3
+ 130 001a 12D0     		beq	.L9
+ 131              	.LBB2:
+  37:Src/atm_barometer_object.c **** 	{
+  38:Src/atm_barometer_object.c **** 		hours_old = hours;
+ 132              		.loc 1 38 0
+ARM GAS  /tmp/ccNKsKZz.s 			page 4
+
+
+ 133 001c 164A     		ldr	r2, .L16
+ 134 001e 1370     		strb	r3, [r2]
+ 135              	.LVL9:
+  39:Src/atm_barometer_object.c **** 
+  40:Src/atm_barometer_object.c **** 		// shift pressure log array
+  41:Src/atm_barometer_object.c **** 		for(i=(LOG_LENGTH-1); i>0; i--)
+ 136              		.loc 1 41 0
+ 137 0020 2F23     		mov	r3, #47
+ 138 0022 06E0     		b	.L10
+ 139              	.LVL10:
+ 140              	.L11:
+  42:Src/atm_barometer_object.c **** 		{
+  43:Src/atm_barometer_object.c **** 			atm_pressure_log[i] = atm_pressure_log[i-1];
+ 141              		.loc 1 43 0 discriminator 3
+ 142 0024 5A1E     		sub	r2, r3, #1
+ 143 0026 1549     		ldr	r1, .L16+4
+ 144 0028 9000     		lsl	r0, r2, #2
+ 145 002a 4058     		ldr	r0, [r0, r1]
+ 146 002c 9B00     		lsl	r3, r3, #2
+ 147              	.LVL11:
+ 148 002e 5850     		str	r0, [r3, r1]
+ 149              	.LVL12:
+  41:Src/atm_barometer_object.c **** 		{
+ 150              		.loc 1 41 0 discriminator 3
+ 151 0030 131C     		mov	r3, r2
+ 152              	.LVL13:
+ 153              	.L10:
+  41:Src/atm_barometer_object.c **** 		{
+ 154              		.loc 1 41 0 is_stmt 0 discriminator 1
+ 155 0032 002B     		cmp	r3, #0
+ 156 0034 F6DC     		bgt	.L11
+  44:Src/atm_barometer_object.c **** 		}
+  45:Src/atm_barometer_object.c **** 		double P = pressure_sensor_get_pressure();
+ 157              		.loc 1 45 0 is_stmt 1
+ 158 0036 FFF7FEFF 		bl	pressure_sensor_get_pressure
+ 159              	.LVL14:
+  46:Src/atm_barometer_object.c **** 		atm_pressure_log[0] = (uint32_t)P;
+ 160              		.loc 1 46 0
+ 161 003a FFF7FEFF 		bl	__aeabi_d2uiz
+ 162              	.LVL15:
+ 163 003e 0F4B     		ldr	r3, .L16+4
+ 164 0040 1860     		str	r0, [r3]
+ 165              	.L9:
+  41:Src/atm_barometer_object.c **** 		{
+ 166              		.loc 1 41 0 discriminator 1
+ 167 0042 0024     		mov	r4, #0
+ 168 0044 07E0     		b	.L12
+ 169              	.LVL16:
+ 170              	.L13:
+ 171              	.LBE2:
+  47:Src/atm_barometer_object.c **** 	}
+  48:Src/atm_barometer_object.c **** 
+  49:Src/atm_barometer_object.c **** 	// save log to eeprom
+  50:Src/atm_barometer_object.c **** 	for(i=0; i<LOG_LENGTH; i++)
+  51:Src/atm_barometer_object.c **** 		at24c32_write_32((uint16_t)(i*4), atm_pressure_log[i]);
+ 172              		.loc 1 51 0 discriminator 3
+ 173 0046 A000     		lsl	r0, r4, #2
+ARM GAS  /tmp/ccNKsKZz.s 			page 5
+
+
+ 174 0048 80B2     		uxth	r0, r0
+ 175 004a A200     		lsl	r2, r4, #2
+ 176 004c 0B4B     		ldr	r3, .L16+4
+ 177 004e D158     		ldr	r1, [r2, r3]
+ 178 0050 FFF7FEFF 		bl	at24c32_write_32
+ 179              	.LVL17:
+  50:Src/atm_barometer_object.c **** 		at24c32_write_32((uint16_t)(i*4), atm_pressure_log[i]);
+ 180              		.loc 1 50 0 discriminator 3
+ 181 0054 0134     		add	r4, r4, #1
+ 182              	.LVL18:
+ 183              	.L12:
+  50:Src/atm_barometer_object.c **** 		at24c32_write_32((uint16_t)(i*4), atm_pressure_log[i]);
+ 184              		.loc 1 50 0 is_stmt 0 discriminator 1
+ 185 0056 2F2C     		cmp	r4, #47
+ 186 0058 F5DD     		ble	.L13
+ 187 005a 0024     		mov	r4, #0
+ 188              	.LVL19:
+ 189 005c 07E0     		b	.L14
+ 190              	.LVL20:
+ 191              	.L15:
+  52:Src/atm_barometer_object.c **** 	// debug
+  53:Src/atm_barometer_object.c **** 	// control read from eeprom
+  54:Src/atm_barometer_object.c **** 	for(i=0; i<LOG_LENGTH; i++)
+  55:Src/atm_barometer_object.c **** 		at24c32_read_32((uint16_t)(i*4), &(atm_pressure_log[i]));
+ 192              		.loc 1 55 0 is_stmt 1 discriminator 3
+ 193 005e A000     		lsl	r0, r4, #2
+ 194 0060 80B2     		uxth	r0, r0
+ 195 0062 A100     		lsl	r1, r4, #2
+ 196 0064 054B     		ldr	r3, .L16+4
+ 197 0066 C918     		add	r1, r1, r3
+ 198 0068 FFF7FEFF 		bl	at24c32_read_32
+ 199              	.LVL21:
+  54:Src/atm_barometer_object.c **** 		at24c32_read_32((uint16_t)(i*4), &(atm_pressure_log[i]));
+ 200              		.loc 1 54 0 discriminator 3
+ 201 006c 0134     		add	r4, r4, #1
+ 202              	.LVL22:
+ 203              	.L14:
+  54:Src/atm_barometer_object.c **** 		at24c32_read_32((uint16_t)(i*4), &(atm_pressure_log[i]));
+ 204              		.loc 1 54 0 is_stmt 0 discriminator 1
+ 205 006e 2F2C     		cmp	r4, #47
+ 206 0070 F5DD     		ble	.L15
+  56:Src/atm_barometer_object.c **** 	// debug
+  57:Src/atm_barometer_object.c **** }
+ 207              		.loc 1 57 0 is_stmt 1
+ 208 0072 02B0     		add	sp, sp, #8
+ 209              		@ sp needed
+ 210              	.LVL23:
+ 211 0074 10BD     		pop	{r4, pc}
+ 212              	.L17:
+ 213 0076 C046     		.align	2
+ 214              	.L16:
+ 215 0078 00000000 		.word	.LANCHOR0
+ 216 007c 00000000 		.word	atm_pressure_log
+ 217              		.cfi_endproc
+ 218              	.LFE37:
+ 220              		.section	.text.atm_barometer_get_history,"ax",%progbits
+ 221              		.align	2
+ARM GAS  /tmp/ccNKsKZz.s 			page 6
+
+
+ 222              		.global	atm_barometer_get_history
+ 223              		.code	16
+ 224              		.thumb_func
+ 226              	atm_barometer_get_history:
+ 227              	.LFB38:
+  58:Src/atm_barometer_object.c **** 
+  59:Src/atm_barometer_object.c **** 
+  60:Src/atm_barometer_object.c **** void atm_barometer_get_history(uint32_t *buffer)
+  61:Src/atm_barometer_object.c **** {
+ 228              		.loc 1 61 0
+ 229              		.cfi_startproc
+ 230              	.LVL24:
+  62:Src/atm_barometer_object.c **** 	buffer[0] = atm_pressure_log[5];
+ 231              		.loc 1 62 0
+ 232 0000 054B     		ldr	r3, .L19
+ 233 0002 5A69     		ldr	r2, [r3, #20]
+ 234 0004 0260     		str	r2, [r0]
+  63:Src/atm_barometer_object.c **** 	buffer[1] = atm_pressure_log[11];
+ 235              		.loc 1 63 0
+ 236 0006 DA6A     		ldr	r2, [r3, #44]
+ 237 0008 4260     		str	r2, [r0, #4]
+  64:Src/atm_barometer_object.c **** 	buffer[2] = atm_pressure_log[23];
+ 238              		.loc 1 64 0
+ 239 000a DA6D     		ldr	r2, [r3, #92]
+ 240 000c 8260     		str	r2, [r0, #8]
+  65:Src/atm_barometer_object.c **** 	buffer[3] = atm_pressure_log[47];
+ 241              		.loc 1 65 0
+ 242 000e BC22     		mov	r2, #188
+ 243 0010 9B58     		ldr	r3, [r3, r2]
+ 244 0012 C360     		str	r3, [r0, #12]
+  66:Src/atm_barometer_object.c **** }
+ 245              		.loc 1 66 0
+ 246              		@ sp needed
+ 247 0014 7047     		bx	lr
+ 248              	.L20:
+ 249 0016 C046     		.align	2
+ 250              	.L19:
+ 251 0018 00000000 		.word	atm_pressure_log
+ 252              		.cfi_endproc
+ 253              	.LFE38:
+ 255              		.global	__aeabi_ui2d
+ 256              		.global	__aeabi_dmul
+ 257              		.global	__aeabi_dadd
+ 258              		.section	.text.atm_barometer_get_mean_pressure,"ax",%progbits
+ 259              		.align	2
+ 260              		.global	atm_barometer_get_mean_pressure
+ 261              		.code	16
+ 262              		.thumb_func
+ 264              	atm_barometer_get_mean_pressure:
+ 265              	.LFB39:
+  67:Src/atm_barometer_object.c **** 
+  68:Src/atm_barometer_object.c **** 
+  69:Src/atm_barometer_object.c **** double atm_barometer_get_mean_pressure()
+  70:Src/atm_barometer_object.c **** {
+ 266              		.loc 1 70 0
+ 267              		.cfi_startproc
+ 268 0000 D0B5     		push	{r4, r6, r7, lr}
+ARM GAS  /tmp/ccNKsKZz.s 			page 7
+
+
+ 269              	.LCFI4:
+ 270              		.cfi_def_cfa_offset 16
+ 271              		.cfi_offset 4, -16
+ 272              		.cfi_offset 6, -12
+ 273              		.cfi_offset 7, -8
+ 274              		.cfi_offset 14, -4
+  71:Src/atm_barometer_object.c **** 	double mean_presssure;
+  72:Src/atm_barometer_object.c **** 	mean_presssure = atm_pressure_log[0]*0.5 + atm_pressure_log[1]*0.3 + atm_pressure_log[2]*0.2;
+ 275              		.loc 1 72 0
+ 276 0002 134C     		ldr	r4, .L22
+ 277 0004 2068     		ldr	r0, [r4]
+ 278 0006 FFF7FEFF 		bl	__aeabi_ui2d
+ 279              	.LVL25:
+ 280 000a 0022     		mov	r2, #0
+ 281 000c 114B     		ldr	r3, .L22+4
+ 282 000e FFF7FEFF 		bl	__aeabi_dmul
+ 283              	.LVL26:
+ 284 0012 061C     		mov	r6, r0
+ 285 0014 0F1C     		mov	r7, r1
+ 286 0016 6068     		ldr	r0, [r4, #4]
+ 287 0018 FFF7FEFF 		bl	__aeabi_ui2d
+ 288              	.LVL27:
+ 289 001c 0E4A     		ldr	r2, .L22+8
+ 290 001e 0F4B     		ldr	r3, .L22+12
+ 291 0020 FFF7FEFF 		bl	__aeabi_dmul
+ 292              	.LVL28:
+ 293 0024 021C     		mov	r2, r0
+ 294 0026 0B1C     		mov	r3, r1
+ 295 0028 301C     		mov	r0, r6
+ 296 002a 391C     		mov	r1, r7
+ 297 002c FFF7FEFF 		bl	__aeabi_dadd
+ 298              	.LVL29:
+ 299 0030 061C     		mov	r6, r0
+ 300 0032 0F1C     		mov	r7, r1
+ 301 0034 A068     		ldr	r0, [r4, #8]
+ 302 0036 FFF7FEFF 		bl	__aeabi_ui2d
+ 303              	.LVL30:
+ 304 003a 094A     		ldr	r2, .L22+16
+ 305 003c 094B     		ldr	r3, .L22+20
+ 306 003e FFF7FEFF 		bl	__aeabi_dmul
+ 307              	.LVL31:
+ 308 0042 021C     		mov	r2, r0
+ 309 0044 0B1C     		mov	r3, r1
+ 310 0046 301C     		mov	r0, r6
+ 311 0048 391C     		mov	r1, r7
+ 312 004a FFF7FEFF 		bl	__aeabi_dadd
+ 313              	.LVL32:
+  73:Src/atm_barometer_object.c **** 
+  74:Src/atm_barometer_object.c **** 	return mean_presssure;
+  75:Src/atm_barometer_object.c **** }
+ 314              		.loc 1 75 0
+ 315              		@ sp needed
+ 316 004e D0BD     		pop	{r4, r6, r7, pc}
+ 317              	.L23:
+ 318              		.align	2
+ 319              	.L22:
+ 320 0050 00000000 		.word	atm_pressure_log
+ARM GAS  /tmp/ccNKsKZz.s 			page 8
+
+
+ 321 0054 0000E03F 		.word	1071644672
+ 322 0058 33333333 		.word	858993459
+ 323 005c 3333D33F 		.word	1070805811
+ 324 0060 9A999999 		.word	-1717986918
+ 325 0064 9999C93F 		.word	1070176665
+ 326              		.cfi_endproc
+ 327              	.LFE39:
+ 329              		.comm	atm_pressure_log,192,4
+ 330              		.section	.bss.hours_old,"aw",%nobits
+ 331              		.set	.LANCHOR0,. + 0
+ 334              	hours_old:
+ 335 0000 00       		.space	1
+ 336              		.text
+ 337              	.Letext0:
+ 338              		.file 2 "/usr/include/newlib/machine/_default_types.h"
+ 339              		.file 3 "/usr/include/newlib/sys/_stdint.h"
+ 340              		.file 4 "Inc/atm_barometer_object.h"
+ 341              		.file 5 "Inc/pressure_sensor_object.h"
+ 342              		.file 6 "Inc/rtc_ds3231_interface.h"
+ 343              		.file 7 "Inc/at24c32_interface.h"
+ARM GAS  /tmp/ccNKsKZz.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 atm_barometer_object.c
+     /tmp/ccNKsKZz.s:18     .text.atm_barometer_init:0000000000000000 $t
+     /tmp/ccNKsKZz.s:23     .text.atm_barometer_init:0000000000000000 atm_barometer_init
+     /tmp/ccNKsKZz.s:93     .text.atm_barometer_init:0000000000000048 $d
+                            *COM*:00000000000000c0 atm_pressure_log
+     /tmp/ccNKsKZz.s:100    .text.atm_barometer_action:0000000000000000 $t
+     /tmp/ccNKsKZz.s:105    .text.atm_barometer_action:0000000000000000 atm_barometer_action
+     /tmp/ccNKsKZz.s:215    .text.atm_barometer_action:0000000000000078 $d
+     /tmp/ccNKsKZz.s:221    .text.atm_barometer_get_history:0000000000000000 $t
+     /tmp/ccNKsKZz.s:226    .text.atm_barometer_get_history:0000000000000000 atm_barometer_get_history
+     /tmp/ccNKsKZz.s:251    .text.atm_barometer_get_history:0000000000000018 $d
+     /tmp/ccNKsKZz.s:259    .text.atm_barometer_get_mean_pressure:0000000000000000 $t
+     /tmp/ccNKsKZz.s:264    .text.atm_barometer_get_mean_pressure:0000000000000000 atm_barometer_get_mean_pressure
+     /tmp/ccNKsKZz.s:320    .text.atm_barometer_get_mean_pressure:0000000000000050 $d
+     /tmp/ccNKsKZz.s:334    .bss.hours_old:0000000000000000 hours_old
+     /tmp/ccNKsKZz.s:335    .bss.hours_old:0000000000000000 $d
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+rtc_ds3231_get_time
+at24c32_read_32
+__aeabi_d2uiz
+pressure_sensor_get_pressure
+at24c32_write_32
+__aeabi_ui2d
+__aeabi_dmul
+__aeabi_dadd

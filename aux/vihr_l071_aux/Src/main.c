@@ -38,25 +38,27 @@
   */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "string.h"
 #include "stm32l0xx_hal.h"
 #include "adc.h"
 #include "i2c.h"
 #include "spi.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
 #include "ssd1306.h"
 
-#include "rtc_ds3231_interface.h"
 #include "one_second_timer_interface.h"
 #include "pressure_sensor_object.h"
+#include "voltmeter_object.h"
+#include "depth_switch_interface.h"
+#include "rtc_ds3231_interface.h"
+#include "at24c32_interface.h"
+#include "atm_barometer_interface.h"
+#include "dive_meter_interface.h"
 
 
-
-
-/* USER CODE BEGIN Includes */
-
-/* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
 

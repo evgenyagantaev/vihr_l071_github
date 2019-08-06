@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccnbbK8m.s 			page 1
+ARM GAS  /tmp/ccdLcN1T.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccnbbK8m.s 			page 1
   31:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c **** ================================================================================
   32:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c ****     [..]
   33:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c ****      (#) Enable the TIM interface clock using 
-ARM GAS  /tmp/ccnbbK8m.s 			page 2
+ARM GAS  /tmp/ccdLcN1T.s 			page 2
 
 
   34:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c ****          __HAL_RCC_TIMx_CLK_ENABLE(); 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccnbbK8m.s 			page 1
   88:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c ****   */
   89:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c **** 
   90:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c **** /** @addtogroup TIMEx
-ARM GAS  /tmp/ccnbbK8m.s 			page 3
+ARM GAS  /tmp/ccdLcN1T.s 			page 3
 
 
   91:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c ****   * @brief TIMEx HAL module driver
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccnbbK8m.s 			page 1
   38 0002 3423     		mov	r3, #52
   39 0004 C35C     		ldrb	r3, [r0, r3]
   40 0006 012B     		cmp	r3, #1
-ARM GAS  /tmp/ccnbbK8m.s 			page 4
+ARM GAS  /tmp/ccdLcN1T.s 			page 4
 
 
   41 0008 1ED0     		beq	.L3
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccnbbK8m.s 			page 1
   78 0042 8354     		strb	r3, [r0, r2]
  150:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c ****   
  151:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c ****   return HAL_OK;
-ARM GAS  /tmp/ccnbbK8m.s 			page 5
+ARM GAS  /tmp/ccdLcN1T.s 			page 5
 
 
   79              		.loc 1 151 0 discriminator 2
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccnbbK8m.s 			page 1
  183:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c ****   *           @arg TIM2_ETR_HSI48:     TIM2  ETR connected to HSI48
  184:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c ****   *           @arg TIM2_ETR_HSI16:     TIM2  ETR connected to HSI16
  185:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c ****   *           @arg TIM2_ETR_LSE:       TIM2  ETR connected to LSE
-ARM GAS  /tmp/ccnbbK8m.s 			page 6
+ARM GAS  /tmp/ccdLcN1T.s 			page 6
 
 
  186:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c ****   *           @arg TIM2_ETR_COMP2_OUT: TIM2  ETR connected to COMP2 output
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccnbbK8m.s 			page 1
  240:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c ****   *                                    GPIOC(6)_AF0 or GPIOA(6)_AF5 or
  241:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c ****   *                                    GPIOB(4)_AF4 or GPIOE(0)_AF3
  242:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c ****   *           @arg TIM22_TI1_COMP2_OUT:TIM22 TI1 connected to COMP2 output
-ARM GAS  /tmp/ccnbbK8m.s 			page 7
+ARM GAS  /tmp/ccdLcN1T.s 			page 7
 
 
  243:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c ****   *           @arg TIM22_TI1_COMP1_OUT:TIM22 TI1 connected to COMP1 output
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccnbbK8m.s 			page 1
  297:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c ****   *           @arg TIM22_ETR_COMP2_OUT:TIM22 ETR connected to COMP2 output
  298:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c ****   *           @arg TIM22_ETR_COMP1_OUT:TIM22 ETR connected to COMP1 output
  299:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c ****   *           @arg TIM22_ETR_GPIO:     TIM22 ETR connected to GPIO(default):
-ARM GAS  /tmp/ccnbbK8m.s 			page 8
+ARM GAS  /tmp/ccdLcN1T.s 			page 8
 
 
  300:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c ****   *                                    GPIOA(4)_AF5
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccnbbK8m.s 			page 1
  354:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c ****   *           @arg TIM21_TI2_COMP2_OUT:TIM21 TI2 connected to COMP2 output
  355:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c ****   *
  356:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c ****   * @retval HAL status
-ARM GAS  /tmp/ccnbbK8m.s 			page 9
+ARM GAS  /tmp/ccdLcN1T.s 			page 9
 
 
  357:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c ****   */      
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccnbbK8m.s 			page 1
  411:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c ****   *           @arg TIM22_ETR_LSE:      TIM22 ETR connected to LSE
  412:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c ****   *           @arg TIM22_ETR_COMP2_OUT:TIM22 ETR connected to COMP2 output
  413:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c ****   *           @arg TIM22_ETR_COMP1_OUT:TIM22 ETR connected to COMP1 output
-ARM GAS  /tmp/ccnbbK8m.s 			page 10
+ARM GAS  /tmp/ccdLcN1T.s 			page 10
 
 
  414:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c ****   *           @arg TIM22_ETR_GPIO:     TIM22 ETR connected to GPIO(default):
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccnbbK8m.s 			page 1
  125 001a 00E0     		b	.L5
  126              	.LVL6:
  127              	.L6:
-ARM GAS  /tmp/ccnbbK8m.s 			page 11
+ARM GAS  /tmp/ccdLcN1T.s 			page 11
 
 
  433:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c **** 
@@ -621,15 +621,15 @@ ARM GAS  /tmp/ccnbbK8m.s 			page 1
  144              		.file 6 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_dma.h"
  145              		.file 7 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim.h"
  146              		.file 8 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim_ex.h"
-ARM GAS  /tmp/ccnbbK8m.s 			page 12
+ARM GAS  /tmp/ccdLcN1T.s 			page 12
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32l0xx_hal_tim_ex.c
-     /tmp/ccnbbK8m.s:18     .text.HAL_TIMEx_MasterConfigSynchronization:0000000000000000 $t
-     /tmp/ccnbbK8m.s:23     .text.HAL_TIMEx_MasterConfigSynchronization:0000000000000000 HAL_TIMEx_MasterConfigSynchronization
-     /tmp/ccnbbK8m.s:96     .text.HAL_TIMEx_RemapConfig:0000000000000000 $t
-     /tmp/ccnbbK8m.s:101    .text.HAL_TIMEx_RemapConfig:0000000000000000 HAL_TIMEx_RemapConfig
+     /tmp/ccdLcN1T.s:18     .text.HAL_TIMEx_MasterConfigSynchronization:0000000000000000 $t
+     /tmp/ccdLcN1T.s:23     .text.HAL_TIMEx_MasterConfigSynchronization:0000000000000000 HAL_TIMEx_MasterConfigSynchronization
+     /tmp/ccdLcN1T.s:96     .text.HAL_TIMEx_RemapConfig:0000000000000000 $t
+     /tmp/ccdLcN1T.s:101    .text.HAL_TIMEx_RemapConfig:0000000000000000 HAL_TIMEx_RemapConfig
                      .debug_frame:0000000000000010 $d
 
 NO UNDEFINED SYMBOLS

@@ -1,0 +1,351 @@
+ARM GAS  /tmp/ccaLbAii.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 1
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"voltmeter_object.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.global	__aeabi_ui2d
+  18              		.global	__aeabi_dmul
+  19              		.global	__aeabi_dadd
+  20              		.global	__aeabi_ddiv
+  21              		.global	__aeabi_dcmpgt
+  22              		.global	__aeabi_dcmplt
+  23              		.global	__aeabi_dsub
+  24              		.section	.text.voltmeter_measure_voltage,"ax",%progbits
+  25              		.align	2
+  26              		.global	voltmeter_measure_voltage
+  27              		.code	16
+  28              		.thumb_func
+  30              	voltmeter_measure_voltage:
+  31              	.LFB36:
+  32              		.file 1 "Src/voltmeter_object.c"
+   1:Src/voltmeter_object.c **** #include "voltmeter_object.h"
+   2:Src/voltmeter_object.c **** #include "adc.h"
+   3:Src/voltmeter_object.c **** 
+   4:Src/voltmeter_object.c **** 
+   5:Src/voltmeter_object.c **** 
+   6:Src/voltmeter_object.c **** 
+   7:Src/voltmeter_object.c **** 
+   8:Src/voltmeter_object.c **** 
+   9:Src/voltmeter_object.c **** 
+  10:Src/voltmeter_object.c **** void voltmeter_measure_voltage()
+  11:Src/voltmeter_object.c **** {
+  33              		.loc 1 11 0
+  34              		.cfi_startproc
+  35 0000 70B5     		push	{r4, r5, r6, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 16
+  38              		.cfi_offset 4, -16
+  39              		.cfi_offset 5, -12
+  40              		.cfi_offset 6, -8
+  41              		.cfi_offset 14, -4
+  12:Src/voltmeter_object.c **** 	int i;
+  13:Src/voltmeter_object.c **** 
+  14:Src/voltmeter_object.c **** 	accu_voltage = 0;
+  42              		.loc 1 14 0
+  43 0002 0020     		mov	r0, #0
+  44 0004 0021     		mov	r1, #0
+ARM GAS  /tmp/ccaLbAii.s 			page 2
+
+
+  45 0006 2D4B     		ldr	r3, .L8
+  46 0008 1860     		str	r0, [r3]
+  47 000a 5960     		str	r1, [r3, #4]
+  48              	.LVL0:
+  15:Src/voltmeter_object.c **** 
+  16:Src/voltmeter_object.c **** 	for(i=0; i<11; i++)
+  49              		.loc 1 16 0
+  50 000c 0025     		mov	r5, #0
+  51 000e 23E0     		b	.L2
+  52              	.LVL1:
+  53              	.L3:
+  54              	.LBB2:
+  17:Src/voltmeter_object.c **** 	{
+  18:Src/voltmeter_object.c **** 		// measure accu voltage
+  19:Src/voltmeter_object.c **** 	    HAL_ADC_Start(&hadc);
+  55              		.loc 1 19 0 discriminator 3
+  56 0010 2B4C     		ldr	r4, .L8+4
+  57 0012 201C     		mov	r0, r4
+  58 0014 FFF7FEFF 		bl	HAL_ADC_Start
+  59              	.LVL2:
+  20:Src/voltmeter_object.c **** 	    HAL_ADC_PollForConversion(&hadc, 500);
+  60              		.loc 1 20 0 discriminator 3
+  61 0018 201C     		mov	r0, r4
+  62 001a FA21     		mov	r1, #250
+  63 001c 4900     		lsl	r1, r1, #1
+  64 001e FFF7FEFF 		bl	HAL_ADC_PollForConversion
+  65              	.LVL3:
+  21:Src/voltmeter_object.c **** 	    uint32_t adc_voltage =  HAL_ADC_GetValue(&hadc);
+  66              		.loc 1 21 0 discriminator 3
+  67 0022 201C     		mov	r0, r4
+  68 0024 FFF7FEFF 		bl	HAL_ADC_GetValue
+  69              	.LVL4:
+  22:Src/voltmeter_object.c **** 	    adc_voltage *= 3;
+  70              		.loc 1 22 0 discriminator 3
+  71 0028 4300     		lsl	r3, r0, #1
+  72 002a 1818     		add	r0, r3, r0
+  73              	.LVL5:
+  23:Src/voltmeter_object.c **** 	    accu_voltage += (double)adc_voltage * voltage_coefficient * 100.0 * 1.0351;
+  74              		.loc 1 23 0 discriminator 3
+  75 002c FFF7FEFF 		bl	__aeabi_ui2d
+  76              	.LVL6:
+  77 0030 244A     		ldr	r2, .L8+8
+  78 0032 254B     		ldr	r3, .L8+12
+  79 0034 FFF7FEFF 		bl	__aeabi_dmul
+  80              	.LVL7:
+  81 0038 0022     		mov	r2, #0
+  82 003a 244B     		ldr	r3, .L8+16
+  83 003c FFF7FEFF 		bl	__aeabi_dmul
+  84              	.LVL8:
+  85 0040 234A     		ldr	r2, .L8+20
+  86 0042 244B     		ldr	r3, .L8+24
+  87 0044 FFF7FEFF 		bl	__aeabi_dmul
+  88              	.LVL9:
+  89 0048 1C4C     		ldr	r4, .L8
+  90 004a 2268     		ldr	r2, [r4]
+  91 004c 6368     		ldr	r3, [r4, #4]
+  92 004e FFF7FEFF 		bl	__aeabi_dadd
+ARM GAS  /tmp/ccaLbAii.s 			page 3
+
+
+  93              	.LVL10:
+  94 0052 2060     		str	r0, [r4]
+  95 0054 6160     		str	r1, [r4, #4]
+  96              	.LBE2:
+  16:Src/voltmeter_object.c **** 	{
+  97              		.loc 1 16 0 discriminator 3
+  98 0056 0135     		add	r5, r5, #1
+  99              	.LVL11:
+ 100              	.L2:
+  16:Src/voltmeter_object.c **** 	{
+ 101              		.loc 1 16 0 is_stmt 0 discriminator 1
+ 102 0058 0A2D     		cmp	r5, #10
+ 103 005a D9DD     		ble	.L3
+  24:Src/voltmeter_object.c **** 	    
+  25:Src/voltmeter_object.c **** 	}
+  26:Src/voltmeter_object.c **** 
+  27:Src/voltmeter_object.c **** 	accu_voltage /= 11;
+ 104              		.loc 1 27 0 is_stmt 1
+ 105 005c 174E     		ldr	r6, .L8
+ 106 005e 3068     		ldr	r0, [r6]
+ 107 0060 7168     		ldr	r1, [r6, #4]
+ 108 0062 0022     		mov	r2, #0
+ 109 0064 1C4B     		ldr	r3, .L8+28
+ 110 0066 FFF7FEFF 		bl	__aeabi_ddiv
+ 111              	.LVL12:
+ 112 006a 041C     		mov	r4, r0
+ 113 006c 0D1C     		mov	r5, r1
+ 114              	.LVL13:
+ 115 006e 3460     		str	r4, [r6]
+ 116 0070 7560     		str	r5, [r6, #4]
+  28:Src/voltmeter_object.c **** 	    
+  29:Src/voltmeter_object.c **** 	double current_voltage;
+  30:Src/voltmeter_object.c **** 	if (accu_voltage > UP_BOUND)
+ 117              		.loc 1 30 0
+ 118 0072 0022     		mov	r2, #0
+ 119 0074 194B     		ldr	r3, .L8+32
+ 120 0076 FFF7FEFF 		bl	__aeabi_dcmpgt
+ 121              	.LVL14:
+ 122 007a 0028     		cmp	r0, #0
+ 123 007c 0AD1     		bne	.L6
+  31:Src/voltmeter_object.c **** 	    current_voltage = UP_BOUND;
+  32:Src/voltmeter_object.c **** 	else if (accu_voltage < LOW_BOUND)
+ 124              		.loc 1 32 0
+ 125 007e 201C     		mov	r0, r4
+ 126 0080 291C     		mov	r1, r5
+ 127 0082 0022     		mov	r2, #0
+ 128 0084 164B     		ldr	r3, .L8+36
+ 129 0086 FFF7FEFF 		bl	__aeabi_dcmplt
+ 130              	.LVL15:
+ 131 008a 0028     		cmp	r0, #0
+ 132 008c 04D0     		beq	.L4
+  33:Src/voltmeter_object.c **** 	    current_voltage = LOW_BOUND;
+ 133              		.loc 1 33 0
+ 134 008e 0024     		mov	r4, #0
+ 135 0090 134D     		ldr	r5, .L8+36
+ 136 0092 01E0     		b	.L4
+ 137              	.L6:
+ARM GAS  /tmp/ccaLbAii.s 			page 4
+
+
+  31:Src/voltmeter_object.c **** 	    current_voltage = UP_BOUND;
+ 138              		.loc 1 31 0
+ 139 0094 0024     		mov	r4, #0
+ 140 0096 114D     		ldr	r5, .L8+32
+ 141              	.L4:
+ 142              	.LVL16:
+  34:Src/voltmeter_object.c **** 	else
+  35:Src/voltmeter_object.c **** 	    current_voltage = accu_voltage;
+  36:Src/voltmeter_object.c **** 	    
+  37:Src/voltmeter_object.c **** 	accu_percentage = (current_voltage - LOW_BOUND)/(UP_BOUND - LOW_BOUND)*100.0;
+ 143              		.loc 1 37 0
+ 144 0098 201C     		mov	r0, r4
+ 145 009a 291C     		mov	r1, r5
+ 146 009c 0022     		mov	r2, #0
+ 147 009e 104B     		ldr	r3, .L8+36
+ 148 00a0 FFF7FEFF 		bl	__aeabi_dsub
+ 149              	.LVL17:
+ 150 00a4 0022     		mov	r2, #0
+ 151 00a6 0F4B     		ldr	r3, .L8+40
+ 152 00a8 FFF7FEFF 		bl	__aeabi_ddiv
+ 153              	.LVL18:
+ 154 00ac 0022     		mov	r2, #0
+ 155 00ae 074B     		ldr	r3, .L8+16
+ 156 00b0 FFF7FEFF 		bl	__aeabi_dmul
+ 157              	.LVL19:
+ 158 00b4 0C4B     		ldr	r3, .L8+44
+ 159 00b6 1860     		str	r0, [r3]
+ 160 00b8 5960     		str	r1, [r3, #4]
+  38:Src/voltmeter_object.c **** }
+ 161              		.loc 1 38 0
+ 162              		@ sp needed
+ 163              	.LVL20:
+ 164 00ba 70BD     		pop	{r4, r5, r6, pc}
+ 165              	.L9:
+ 166              		.align	2
+ 167              	.L8:
+ 168 00bc 00000000 		.word	.LANCHOR0
+ 169 00c0 00000000 		.word	hadc
+ 170 00c4 66666666 		.word	1717986918
+ 171 00c8 66664A3F 		.word	1061840486
+ 172 00cc 00005940 		.word	1079574528
+ 173 00d0 006F8104 		.word	75591424
+ 174 00d4 C58FF03F 		.word	1072730053
+ 175 00d8 00002640 		.word	1076232192
+ 176 00dc 00407A40 		.word	1081753600
+ 177 00e0 00A07440 		.word	1081384960
+ 178 00e4 00805640 		.word	1079410688
+ 179 00e8 00000000 		.word	.LANCHOR1
+ 180              		.cfi_endproc
+ 181              	.LFE36:
+ 183              		.section	.text.voltmeter_get_voltage,"ax",%progbits
+ 184              		.align	2
+ 185              		.global	voltmeter_get_voltage
+ 186              		.code	16
+ 187              		.thumb_func
+ 189              	voltmeter_get_voltage:
+ 190              	.LFB37:
+ARM GAS  /tmp/ccaLbAii.s 			page 5
+
+
+  39:Src/voltmeter_object.c **** 
+  40:Src/voltmeter_object.c **** 
+  41:Src/voltmeter_object.c **** 
+  42:Src/voltmeter_object.c **** double voltmeter_get_voltage()
+  43:Src/voltmeter_object.c **** {
+ 191              		.loc 1 43 0
+ 192              		.cfi_startproc
+  44:Src/voltmeter_object.c **** 	return accu_voltage;
+ 193              		.loc 1 44 0
+ 194 0000 014B     		ldr	r3, .L11
+ 195 0002 1868     		ldr	r0, [r3]
+ 196 0004 5968     		ldr	r1, [r3, #4]
+  45:Src/voltmeter_object.c **** }
+ 197              		.loc 1 45 0
+ 198              		@ sp needed
+ 199 0006 7047     		bx	lr
+ 200              	.L12:
+ 201              		.align	2
+ 202              	.L11:
+ 203 0008 00000000 		.word	.LANCHOR0
+ 204              		.cfi_endproc
+ 205              	.LFE37:
+ 207              		.section	.text.voltmeter_get_percentage,"ax",%progbits
+ 208              		.align	2
+ 209              		.global	voltmeter_get_percentage
+ 210              		.code	16
+ 211              		.thumb_func
+ 213              	voltmeter_get_percentage:
+ 214              	.LFB38:
+  46:Src/voltmeter_object.c **** 
+  47:Src/voltmeter_object.c **** 
+  48:Src/voltmeter_object.c **** 
+  49:Src/voltmeter_object.c **** double voltmeter_get_percentage()
+  50:Src/voltmeter_object.c **** {
+ 215              		.loc 1 50 0
+ 216              		.cfi_startproc
+  51:Src/voltmeter_object.c **** 	return accu_percentage;
+ 217              		.loc 1 51 0
+ 218 0000 014B     		ldr	r3, .L14
+ 219 0002 1868     		ldr	r0, [r3]
+ 220 0004 5968     		ldr	r1, [r3, #4]
+  52:Src/voltmeter_object.c **** }
+ 221              		.loc 1 52 0
+ 222              		@ sp needed
+ 223 0006 7047     		bx	lr
+ 224              	.L15:
+ 225              		.align	2
+ 226              	.L14:
+ 227 0008 00000000 		.word	.LANCHOR1
+ 228              		.cfi_endproc
+ 229              	.LFE38:
+ 231              		.section	.bss.accu_voltage,"aw",%nobits
+ 232              		.align	3
+ 233              		.set	.LANCHOR0,. + 0
+ 236              	accu_voltage:
+ 237 0000 00000000 		.space	8
+ 237      00000000 
+ARM GAS  /tmp/ccaLbAii.s 			page 6
+
+
+ 238              		.section	.bss.accu_percentage,"aw",%nobits
+ 239              		.align	3
+ 240              		.set	.LANCHOR1,. + 0
+ 243              	accu_percentage:
+ 244 0000 00000000 		.space	8
+ 244      00000000 
+ 245              		.text
+ 246              	.Letext0:
+ 247              		.file 2 "/usr/include/newlib/machine/_default_types.h"
+ 248              		.file 3 "/usr/include/newlib/sys/_stdint.h"
+ 249              		.file 4 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l071xx.h"
+ 250              		.file 5 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_def.h"
+ 251              		.file 6 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_dma.h"
+ 252              		.file 7 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_adc.h"
+ 253              		.file 8 "Inc/voltmeter_object.h"
+ 254              		.file 9 "Inc/adc.h"
+ARM GAS  /tmp/ccaLbAii.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 voltmeter_object.c
+     /tmp/ccaLbAii.s:25     .text.voltmeter_measure_voltage:0000000000000000 $t
+     /tmp/ccaLbAii.s:30     .text.voltmeter_measure_voltage:0000000000000000 voltmeter_measure_voltage
+     /tmp/ccaLbAii.s:168    .text.voltmeter_measure_voltage:00000000000000bc $d
+     /tmp/ccaLbAii.s:184    .text.voltmeter_get_voltage:0000000000000000 $t
+     /tmp/ccaLbAii.s:189    .text.voltmeter_get_voltage:0000000000000000 voltmeter_get_voltage
+     /tmp/ccaLbAii.s:203    .text.voltmeter_get_voltage:0000000000000008 $d
+     /tmp/ccaLbAii.s:208    .text.voltmeter_get_percentage:0000000000000000 $t
+     /tmp/ccaLbAii.s:213    .text.voltmeter_get_percentage:0000000000000000 voltmeter_get_percentage
+     /tmp/ccaLbAii.s:227    .text.voltmeter_get_percentage:0000000000000008 $d
+     /tmp/ccaLbAii.s:232    .bss.accu_voltage:0000000000000000 $d
+     /tmp/ccaLbAii.s:236    .bss.accu_voltage:0000000000000000 accu_voltage
+     /tmp/ccaLbAii.s:239    .bss.accu_percentage:0000000000000000 $d
+     /tmp/ccaLbAii.s:243    .bss.accu_percentage:0000000000000000 accu_percentage
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+__aeabi_ui2d
+__aeabi_dmul
+__aeabi_dadd
+__aeabi_ddiv
+__aeabi_dcmpgt
+__aeabi_dcmplt
+__aeabi_dsub
+HAL_ADC_Start
+HAL_ADC_PollForConversion
+HAL_ADC_GetValue
+hadc
