@@ -47,6 +47,8 @@
 
 /* Private define ------------------------------------------------------------*/
 
+#define spi1_cs_pressure_Pin GPIO_PIN_4
+#define spi1_cs_pressure_GPIO_Port GPIOA
 #define led0_Pin GPIO_PIN_0
 #define led0_GPIO_Port GPIOB
 #define led1_Pin GPIO_PIN_1

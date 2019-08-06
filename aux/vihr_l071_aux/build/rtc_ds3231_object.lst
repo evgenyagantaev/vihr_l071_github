@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccIKCyuX.s 			page 1
+ARM GAS  /tmp/cc0E7HEc.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccIKCyuX.s 			page 1
   45              		.align	2
   46              	.L2:
   47 0014 00000000 		.word	.LANCHOR0
-ARM GAS  /tmp/ccIKCyuX.s 			page 2
+ARM GAS  /tmp/cc0E7HEc.s 			page 2
 
 
   48 0018 00000000 		.word	.LANCHOR1
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccIKCyuX.s 			page 1
   20:Src/rtc_ds3231_object.c **** {
   98              		.loc 1 20 0
   99              		.cfi_startproc
-ARM GAS  /tmp/ccIKCyuX.s 			page 3
+ARM GAS  /tmp/cc0E7HEc.s 			page 3
 
 
  100              	.LVL2:
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccIKCyuX.s 			page 1
  151              	.LVL9:
  152 004c 2D01     		lsl	r5, r5, #4
  153 004e 4919     		add	r1, r1, r5
-ARM GAS  /tmp/ccIKCyuX.s 			page 4
+ARM GAS  /tmp/cc0E7HEc.s 			page 4
 
 
  154 0050 A171     		strb	r1, [r4, #6]
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccIKCyuX.s 			page 1
  200 009c 00000000 		.word	.LANCHOR6
  201 00a0 00000000 		.word	.LANCHOR7
  202              		.cfi_endproc
-ARM GAS  /tmp/ccIKCyuX.s 			page 5
+ARM GAS  /tmp/cc0E7HEc.s 			page 5
 
 
  203              	.LFE38:
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccIKCyuX.s 			page 1
  255              	.LVL20:
  256 0036 2D01     		lsl	r5, r5, #4
  257 0038 4919     		add	r1, r1, r5
-ARM GAS  /tmp/ccIKCyuX.s 			page 6
+ARM GAS  /tmp/cc0E7HEc.s 			page 6
 
 
  258 003a 6170     		strb	r1, [r4, #1]
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccIKCyuX.s 			page 1
  304 008c D021     		mov	r1, #208
  305 008e 0222     		mov	r2, #2
  306 0090 0123     		mov	r3, #1
-ARM GAS  /tmp/ccIKCyuX.s 			page 7
+ARM GAS  /tmp/cc0E7HEc.s 			page 7
 
 
  307 0092 FFF7FEFF 		bl	HAL_I2C_Mem_Write
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccIKCyuX.s 			page 1
  355 0000 F0B5     		push	{r4, r5, r6, r7, lr}
  356              	.LCFI4:
  357              		.cfi_def_cfa_offset 20
-ARM GAS  /tmp/ccIKCyuX.s 			page 8
+ARM GAS  /tmp/cc0E7HEc.s 			page 8
 
 
  358              		.cfi_offset 4, -20
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccIKCyuX.s 			page 1
  403              	.LVL31:
   63:Src/rtc_ds3231_object.c **** 	HAL_I2C_Mem_Read(ds3231_i2c_handle, ds3231_shifted_address, 0x3, 1, &(ds3231_buffer[3]), data_arra
  404              		.loc 1 63 0
-ARM GAS  /tmp/ccIKCyuX.s 			page 9
+ARM GAS  /tmp/cc0E7HEc.s 			page 9
 
 
  405 0048 3868     		ldr	r0, [r7]
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccIKCyuX.s 			page 1
  454 00a2 0F22     		mov	r2, #15
  455 00a4 1340     		and	r3, r2
  456 00a6 CB18     		add	r3, r1, r3
-ARM GAS  /tmp/ccIKCyuX.s 			page 10
+ARM GAS  /tmp/cc0E7HEc.s 			page 10
 
 
  457 00a8 1C49     		ldr	r1, .L17+8
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccIKCyuX.s 			page 1
  506 0100 8100     		lsl	r1, r0, #2
  507 0102 4118     		add	r1, r0, r1
  508 0104 4800     		lsl	r0, r1, #1
-ARM GAS  /tmp/ccIKCyuX.s 			page 11
+ARM GAS  /tmp/cc0E7HEc.s 			page 11
 
 
  509 0106 1340     		and	r3, r2
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccIKCyuX.s 			page 1
  576              		.set	.LANCHOR1,. + 0
  579              	month:
  580 0000 00       		.space	1
-ARM GAS  /tmp/ccIKCyuX.s 			page 12
+ARM GAS  /tmp/cc0E7HEc.s 			page 12
 
 
  581              		.text
@@ -670,45 +670,45 @@ ARM GAS  /tmp/ccIKCyuX.s 			page 1
  587              		.file 6 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_dma.h"
  588              		.file 7 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_i2c.h"
  589              		.file 8 "Inc/rtc_ds3231_object.h"
-ARM GAS  /tmp/ccIKCyuX.s 			page 13
+ARM GAS  /tmp/cc0E7HEc.s 			page 13
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 rtc_ds3231_object.c
-     /tmp/ccIKCyuX.s:18     .text.rtc_ds3231_get_date:0000000000000000 $t
-     /tmp/ccIKCyuX.s:23     .text.rtc_ds3231_get_date:0000000000000000 rtc_ds3231_get_date
-     /tmp/ccIKCyuX.s:47     .text.rtc_ds3231_get_date:0000000000000014 $d
-     /tmp/ccIKCyuX.s:54     .text.rtc_ds3231_get_time:0000000000000000 $t
-     /tmp/ccIKCyuX.s:59     .text.rtc_ds3231_get_time:0000000000000000 rtc_ds3231_get_time
-     /tmp/ccIKCyuX.s:82     .text.rtc_ds3231_get_time:0000000000000014 $d
-     /tmp/ccIKCyuX.s:91     .text.rtc_ds3231_set_date:0000000000000000 $t
-     /tmp/ccIKCyuX.s:96     .text.rtc_ds3231_set_date:0000000000000000 rtc_ds3231_set_date
-     /tmp/ccIKCyuX.s:200    .text.rtc_ds3231_set_date:000000000000009c $d
-     /tmp/ccIKCyuX.s:206    .text.rtc_ds3231_set_time:0000000000000000 $t
-     /tmp/ccIKCyuX.s:211    .text.rtc_ds3231_set_time:0000000000000000 rtc_ds3231_set_time
-     /tmp/ccIKCyuX.s:316    .text.rtc_ds3231_set_time:000000000000009c $d
-     /tmp/ccIKCyuX.s:322    .text.rtc_ds3231_set_i2c_handle:0000000000000000 $t
-     /tmp/ccIKCyuX.s:327    .text.rtc_ds3231_set_i2c_handle:0000000000000000 rtc_ds3231_set_i2c_handle
-     /tmp/ccIKCyuX.s:341    .text.rtc_ds3231_set_i2c_handle:0000000000000008 $d
-     /tmp/ccIKCyuX.s:346    .text.rtc_ds3231_action:0000000000000000 $t
-     /tmp/ccIKCyuX.s:351    .text.rtc_ds3231_action:0000000000000000 rtc_ds3231_action
-     /tmp/ccIKCyuX.s:520    .text.rtc_ds3231_action:0000000000000114 $d
-     /tmp/ccIKCyuX.s:535    .bss.year:0000000000000000 year
-     /tmp/ccIKCyuX.s:536    .bss.year:0000000000000000 $d
-     /tmp/ccIKCyuX.s:538    .bss.ds3231_buffer:0000000000000000 $d
-     /tmp/ccIKCyuX.s:542    .bss.ds3231_buffer:0000000000000000 ds3231_buffer
-     /tmp/ccIKCyuX.s:548    .bss.seconds:0000000000000000 seconds
-     /tmp/ccIKCyuX.s:549    .bss.seconds:0000000000000000 $d
-     /tmp/ccIKCyuX.s:554    .bss.minutes:0000000000000000 minutes
-     /tmp/ccIKCyuX.s:555    .bss.minutes:0000000000000000 $d
-     /tmp/ccIKCyuX.s:557    .bss.ds3231_i2c_handle:0000000000000000 $d
-     /tmp/ccIKCyuX.s:561    .bss.ds3231_i2c_handle:0000000000000000 ds3231_i2c_handle
-     /tmp/ccIKCyuX.s:567    .bss.hours:0000000000000000 hours
-     /tmp/ccIKCyuX.s:568    .bss.hours:0000000000000000 $d
-     /tmp/ccIKCyuX.s:573    .bss.date:0000000000000000 date
-     /tmp/ccIKCyuX.s:574    .bss.date:0000000000000000 $d
-     /tmp/ccIKCyuX.s:579    .bss.month:0000000000000000 month
-     /tmp/ccIKCyuX.s:580    .bss.month:0000000000000000 $d
+     /tmp/cc0E7HEc.s:18     .text.rtc_ds3231_get_date:0000000000000000 $t
+     /tmp/cc0E7HEc.s:23     .text.rtc_ds3231_get_date:0000000000000000 rtc_ds3231_get_date
+     /tmp/cc0E7HEc.s:47     .text.rtc_ds3231_get_date:0000000000000014 $d
+     /tmp/cc0E7HEc.s:54     .text.rtc_ds3231_get_time:0000000000000000 $t
+     /tmp/cc0E7HEc.s:59     .text.rtc_ds3231_get_time:0000000000000000 rtc_ds3231_get_time
+     /tmp/cc0E7HEc.s:82     .text.rtc_ds3231_get_time:0000000000000014 $d
+     /tmp/cc0E7HEc.s:91     .text.rtc_ds3231_set_date:0000000000000000 $t
+     /tmp/cc0E7HEc.s:96     .text.rtc_ds3231_set_date:0000000000000000 rtc_ds3231_set_date
+     /tmp/cc0E7HEc.s:200    .text.rtc_ds3231_set_date:000000000000009c $d
+     /tmp/cc0E7HEc.s:206    .text.rtc_ds3231_set_time:0000000000000000 $t
+     /tmp/cc0E7HEc.s:211    .text.rtc_ds3231_set_time:0000000000000000 rtc_ds3231_set_time
+     /tmp/cc0E7HEc.s:316    .text.rtc_ds3231_set_time:000000000000009c $d
+     /tmp/cc0E7HEc.s:322    .text.rtc_ds3231_set_i2c_handle:0000000000000000 $t
+     /tmp/cc0E7HEc.s:327    .text.rtc_ds3231_set_i2c_handle:0000000000000000 rtc_ds3231_set_i2c_handle
+     /tmp/cc0E7HEc.s:341    .text.rtc_ds3231_set_i2c_handle:0000000000000008 $d
+     /tmp/cc0E7HEc.s:346    .text.rtc_ds3231_action:0000000000000000 $t
+     /tmp/cc0E7HEc.s:351    .text.rtc_ds3231_action:0000000000000000 rtc_ds3231_action
+     /tmp/cc0E7HEc.s:520    .text.rtc_ds3231_action:0000000000000114 $d
+     /tmp/cc0E7HEc.s:535    .bss.year:0000000000000000 year
+     /tmp/cc0E7HEc.s:536    .bss.year:0000000000000000 $d
+     /tmp/cc0E7HEc.s:538    .bss.ds3231_buffer:0000000000000000 $d
+     /tmp/cc0E7HEc.s:542    .bss.ds3231_buffer:0000000000000000 ds3231_buffer
+     /tmp/cc0E7HEc.s:548    .bss.seconds:0000000000000000 seconds
+     /tmp/cc0E7HEc.s:549    .bss.seconds:0000000000000000 $d
+     /tmp/cc0E7HEc.s:554    .bss.minutes:0000000000000000 minutes
+     /tmp/cc0E7HEc.s:555    .bss.minutes:0000000000000000 $d
+     /tmp/cc0E7HEc.s:557    .bss.ds3231_i2c_handle:0000000000000000 $d
+     /tmp/cc0E7HEc.s:561    .bss.ds3231_i2c_handle:0000000000000000 ds3231_i2c_handle
+     /tmp/cc0E7HEc.s:567    .bss.hours:0000000000000000 hours
+     /tmp/cc0E7HEc.s:568    .bss.hours:0000000000000000 $d
+     /tmp/cc0E7HEc.s:573    .bss.date:0000000000000000 date
+     /tmp/cc0E7HEc.s:574    .bss.date:0000000000000000 $d
+     /tmp/cc0E7HEc.s:579    .bss.month:0000000000000000 month
+     /tmp/cc0E7HEc.s:580    .bss.month:0000000000000000 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

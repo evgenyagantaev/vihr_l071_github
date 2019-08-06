@@ -49,6 +49,7 @@
 
 #include "rtc_ds3231_interface.h"
 #include "one_second_timer_interface.h"
+#include "pressure_sensor_object.h"
 
 
 
@@ -113,6 +114,8 @@ int main(void)
     MX_I2C2_Init();
     MX_I2C3_Init();
     MX_SPI1_Init();
+    // enable spi1
+    SPI1->CR1 |= SPI_CR1_SPE;
     MX_USART1_UART_Init();
 
 	//--------init display1------------------------------
@@ -136,6 +139,7 @@ int main(void)
 	one_second_timer_init();
 	one_second_timer_start();
 
+
 	int odd_even = 0;
 	//************************   MAIN LOOP   *********************************
 	while(1)                                                     	    
@@ -157,17 +161,22 @@ int main(void)
 			one_second_timer_reset_flag();
 			odd_even = (odd_even+1)%2;
 
+			pressure_sensor_measure_pressure_temperature();                                                                                                   	
+		    double P = pressure_sensor_get_pressure();
+		    double actual_temperature = pressure_sensor_get_temperature();
 
+			uint32_t atm_pressure_buffer[4];
 
 			// debug
 			//*
 			ssd1306_Fill(Black);                                                                                         
-  		    ssd1306_SetCursor(3,0);                                                                                         
-			if(odd_even)                                                                                                	
-		    	sprintf(message, "odd");                                                               
-			else                                                                                                        	
-		    	sprintf(message, "even");                                                               
-  		    ssd1306_WriteString(message, Font_11x18, White);                                                                
+  		    ssd1306_SetCursor(3,0);
+			if(odd_even)
+		        sprintf(message, "P%05d:T%03d" , (int)(P/10), (int)(actual_temperature/10));
+			else
+		        sprintf(message, "P%05d T%03d" , (int)(P/10), (int)(actual_temperature/10));
+  		    ssd1306_WriteString(message, Font_11x18, White);
+  		    ssd1306_WriteString(message, Font_11x18, White);
   		    ssd1306_UpdateScreen();                                                                                         
 			//*/
 

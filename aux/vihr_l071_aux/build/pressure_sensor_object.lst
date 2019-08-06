@@ -1,0 +1,1040 @@
+ARM GAS  /tmp/cccoTwk0.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 1
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"pressure_sensor_object.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.write_byte,"ax",%progbits
+  18              		.align	2
+  19              		.global	write_byte
+  20              		.code	16
+  21              		.thumb_func
+  23              	write_byte:
+  24              	.LFB36:
+  25              		.file 1 "Src/pressure_sensor_object.c"
+   1:Src/pressure_sensor_object.c **** #include "pressure_sensor_object.h"
+   2:Src/pressure_sensor_object.c **** 
+   3:Src/pressure_sensor_object.c **** //****************************************************************************
+   4:Src/pressure_sensor_object.c **** uint8_t write_byte(uint8_t data)
+   5:Src/pressure_sensor_object.c **** {
+  26              		.loc 1 5 0
+  27              		.cfi_startproc
+  28              	.LVL0:
+  29              	.L2:
+   6:Src/pressure_sensor_object.c **** 
+   7:Src/pressure_sensor_object.c **** 	uint8_t data_out;
+   8:Src/pressure_sensor_object.c ****     uint8_t read_data;
+   9:Src/pressure_sensor_object.c **** 
+  10:Src/pressure_sensor_object.c **** 	// wait for spi transmitter readiness
+  11:Src/pressure_sensor_object.c **** 	while ((SPI1->SR & SPI_SR_TXE) == RESET );
+  30              		.loc 1 11 0 discriminator 1
+  31 0000 064B     		ldr	r3, .L4
+  32 0002 9B68     		ldr	r3, [r3, #8]
+  33 0004 9B07     		lsl	r3, r3, #30
+  34 0006 FBD5     		bpl	.L2
+  35              	.LVL1:
+  12:Src/pressure_sensor_object.c **** 	data_out = data;
+  13:Src/pressure_sensor_object.c ****     SPI1->DR = data_out;
+  36              		.loc 1 13 0
+  37 0008 044B     		ldr	r3, .L4
+  38 000a D860     		str	r0, [r3, #12]
+  39              	.L3:
+  14:Src/pressure_sensor_object.c ****     // wait while a transmission complete
+  15:Src/pressure_sensor_object.c **** 	while ((SPI1->SR & SPI_SR_RXNE) == RESET );
+  40              		.loc 1 15 0 discriminator 1
+  41 000c 034B     		ldr	r3, .L4
+  42 000e 9B68     		ldr	r3, [r3, #8]
+  43 0010 DB07     		lsl	r3, r3, #31
+ARM GAS  /tmp/cccoTwk0.s 			page 2
+
+
+  44 0012 FBD5     		bpl	.L3
+  16:Src/pressure_sensor_object.c ****     read_data = SPI1->DR;
+  45              		.loc 1 16 0
+  46 0014 014B     		ldr	r3, .L4
+  47 0016 D868     		ldr	r0, [r3, #12]
+  48              	.LVL2:
+  49 0018 C0B2     		uxtb	r0, r0
+  50              	.LVL3:
+  17:Src/pressure_sensor_object.c **** 	
+  18:Src/pressure_sensor_object.c **** 	return read_data;
+  19:Src/pressure_sensor_object.c **** 
+  20:Src/pressure_sensor_object.c **** 	
+  21:Src/pressure_sensor_object.c **** }
+  51              		.loc 1 21 0
+  52              		@ sp needed
+  53 001a 7047     		bx	lr
+  54              	.L5:
+  55              		.align	2
+  56              	.L4:
+  57 001c 00300140 		.word	1073819648
+  58              		.cfi_endproc
+  59              	.LFE36:
+  61              		.section	.text.pressure_sensor_object_init,"ax",%progbits
+  62              		.align	2
+  63              		.global	pressure_sensor_object_init
+  64              		.code	16
+  65              		.thumb_func
+  67              	pressure_sensor_object_init:
+  68              	.LFB37:
+  22:Src/pressure_sensor_object.c **** 
+  23:Src/pressure_sensor_object.c **** //****************************************************************************
+  24:Src/pressure_sensor_object.c **** void pressure_sensor_object_init()
+  25:Src/pressure_sensor_object.c **** {
+  69              		.loc 1 25 0
+  70              		.cfi_startproc
+  71 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+  72              	.LCFI0:
+  73              		.cfi_def_cfa_offset 24
+  74              		.cfi_offset 3, -24
+  75              		.cfi_offset 4, -20
+  76              		.cfi_offset 5, -16
+  77              		.cfi_offset 6, -12
+  78              		.cfi_offset 7, -8
+  79              		.cfi_offset 14, -4
+  26:Src/pressure_sensor_object.c **** 	int i;
+  27:Src/pressure_sensor_object.c **** 
+  28:Src/pressure_sensor_object.c **** 	//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  29:Src/pressure_sensor_object.c **** 	//                 RESET
+  30:Src/pressure_sensor_object.c **** 	//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  31:Src/pressure_sensor_object.c **** 	// reset spi1 cs pin
+  32:Src/pressure_sensor_object.c ****     spi1_cs_pressure_GPIO_Port->BSRR = (uint32_t)(spi1_cs_pressure_Pin << 16); 	// reset
+  80              		.loc 1 32 0
+  81 0002 A024     		mov	r4, #160
+  82 0004 E405     		lsl	r4, r4, #23
+  83 0006 8023     		mov	r3, #128
+  84 0008 5B03     		lsl	r3, r3, #13
+  85 000a A361     		str	r3, [r4, #24]
+ARM GAS  /tmp/cccoTwk0.s 			page 3
+
+
+  33:Src/pressure_sensor_object.c **** 	// transmit 0x1e                             	
+  34:Src/pressure_sensor_object.c **** 	write_byte( 0x1e);                         	
+  86              		.loc 1 34 0
+  87 000c 1E20     		mov	r0, #30
+  88 000e FFF7FEFF 		bl	write_byte
+  89              	.LVL4:
+  35:Src/pressure_sensor_object.c **** 	// set spi1 cs pin                           	
+  36:Src/pressure_sensor_object.c ****     spi1_cs_pressure_GPIO_Port->BSRR = (uint32_t)spi1_cs_pressure_Pin ;	// set
+  90              		.loc 1 36 0
+  91 0012 1023     		mov	r3, #16
+  92 0014 A361     		str	r3, [r4, #24]
+  37:Src/pressure_sensor_object.c **** 	HAL_Delay(3);
+  93              		.loc 1 37 0
+  94 0016 0320     		mov	r0, #3
+  95 0018 FFF7FEFF 		bl	HAL_Delay
+  96              	.LVL5:
+  38:Src/pressure_sensor_object.c **** 	//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  39:Src/pressure_sensor_object.c **** 
+  40:Src/pressure_sensor_object.c **** 
+  41:Src/pressure_sensor_object.c **** 	for(i=1; i<7; i++)
+  97              		.loc 1 41 0
+  98 001c 0124     		mov	r4, #1
+  99 001e 1AE0     		b	.L7
+ 100              	.LVL6:
+ 101              	.L8:
+  42:Src/pressure_sensor_object.c **** 	{
+  43:Src/pressure_sensor_object.c **** 		//send read prom command
+  44:Src/pressure_sensor_object.c **** 		// reset spi1 cs pin
+  45:Src/pressure_sensor_object.c ****     	spi1_cs_pressure_GPIO_Port->BSRR = (uint32_t)(spi1_cs_pressure_Pin << 16); 	// reset
+ 102              		.loc 1 45 0 discriminator 3
+ 103 0020 A027     		mov	r7, #160
+ 104 0022 FF05     		lsl	r7, r7, #23
+ 105 0024 8023     		mov	r3, #128
+ 106 0026 5B03     		lsl	r3, r3, #13
+ 107 0028 BB61     		str	r3, [r7, #24]
+  46:Src/pressure_sensor_object.c **** 		// transmit command with address 
+  47:Src/pressure_sensor_object.c **** 		write_byte( 0xa0 + (((uint8_t)i)<<1));
+ 108              		.loc 1 47 0 discriminator 3
+ 109 002a E0B2     		uxtb	r0, r4
+ 110 002c 4000     		lsl	r0, r0, #1
+ 111 002e 6038     		sub	r0, r0, #96
+ 112 0030 C0B2     		uxtb	r0, r0
+ 113 0032 FFF7FEFF 		bl	write_byte
+ 114              	.LVL7:
+  48:Src/pressure_sensor_object.c **** 
+  49:Src/pressure_sensor_object.c **** 		// read ms byte
+  50:Src/pressure_sensor_object.c **** 		sensor_prom[i] = write_byte(0x55);
+ 115              		.loc 1 50 0 discriminator 3
+ 116 0036 5520     		mov	r0, #85
+ 117 0038 FFF7FEFF 		bl	write_byte
+ 118              	.LVL8:
+ 119 003c 074D     		ldr	r5, .L9
+ 120 003e 6600     		lsl	r6, r4, #1
+  51:Src/pressure_sensor_object.c **** 		sensor_prom[i] <<= 8;
+ 121              		.loc 1 51 0 discriminator 3
+ 122 0040 0002     		lsl	r0, r0, #8
+ 123 0042 A853     		strh	r0, [r5, r6]
+ARM GAS  /tmp/cccoTwk0.s 			page 4
+
+
+  52:Src/pressure_sensor_object.c **** 		// read ls byte
+  53:Src/pressure_sensor_object.c **** 		sensor_prom[i] += write_byte(0x55);
+ 124              		.loc 1 53 0 discriminator 3
+ 125 0044 5520     		mov	r0, #85
+ 126 0046 FFF7FEFF 		bl	write_byte
+ 127              	.LVL9:
+ 128 004a 735B     		ldrh	r3, [r6, r5]
+ 129 004c 1818     		add	r0, r3, r0
+ 130 004e 7053     		strh	r0, [r6, r5]
+  54:Src/pressure_sensor_object.c **** 
+  55:Src/pressure_sensor_object.c **** 		// set spi1 cs pin
+  56:Src/pressure_sensor_object.c ****     	spi1_cs_pressure_GPIO_Port->BSRR = (uint32_t)spi1_cs_pressure_Pin ;	// set
+ 131              		.loc 1 56 0 discriminator 3
+ 132 0050 1023     		mov	r3, #16
+ 133 0052 BB61     		str	r3, [r7, #24]
+  41:Src/pressure_sensor_object.c **** 	{
+ 134              		.loc 1 41 0 discriminator 3
+ 135 0054 0134     		add	r4, r4, #1
+ 136              	.LVL10:
+ 137              	.L7:
+  41:Src/pressure_sensor_object.c **** 	{
+ 138              		.loc 1 41 0 is_stmt 0 discriminator 1
+ 139 0056 062C     		cmp	r4, #6
+ 140 0058 E2DD     		ble	.L8
+  57:Src/pressure_sensor_object.c **** 	}
+  58:Src/pressure_sensor_object.c **** }
+ 141              		.loc 1 58 0 is_stmt 1
+ 142              		@ sp needed
+ 143              	.LVL11:
+ 144 005a F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 145              	.L10:
+ 146              		.align	2
+ 147              	.L9:
+ 148 005c 00000000 		.word	.LANCHOR0
+ 149              		.cfi_endproc
+ 150              	.LFE37:
+ 152              		.global	__aeabi_uidiv
+ 153              		.global	__aeabi_ui2d
+ 154              		.global	__aeabi_dmul
+ 155              		.global	__aeabi_dsub
+ 156              		.global	__aeabi_dadd
+ 157              		.global	__aeabi_dcmpge
+ 158              		.global	__aeabi_dcmplt
+ 159              		.section	.text.pressure_sensor_measure_pressure_temperature,"ax",%progbits
+ 160              		.align	2
+ 161              		.global	pressure_sensor_measure_pressure_temperature
+ 162              		.code	16
+ 163              		.thumb_func
+ 165              	pressure_sensor_measure_pressure_temperature:
+ 166              	.LFB38:
+  59:Src/pressure_sensor_object.c **** 
+  60:Src/pressure_sensor_object.c **** 
+  61:Src/pressure_sensor_object.c **** 
+  62:Src/pressure_sensor_object.c **** void pressure_sensor_measure_pressure_temperature()
+  63:Src/pressure_sensor_object.c **** {	
+ 167              		.loc 1 63 0
+ 168              		.cfi_startproc
+ARM GAS  /tmp/cccoTwk0.s 			page 5
+
+
+ 169 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 170              	.LCFI1:
+ 171              		.cfi_def_cfa_offset 20
+ 172              		.cfi_offset 4, -20
+ 173              		.cfi_offset 5, -16
+ 174              		.cfi_offset 6, -12
+ 175              		.cfi_offset 7, -8
+ 176              		.cfi_offset 14, -4
+ 177 0002 4746     		mov	r7, r8
+ 178 0004 80B4     		push	{r7}
+ 179              	.LCFI2:
+ 180              		.cfi_def_cfa_offset 24
+ 181              		.cfi_offset 8, -24
+ 182 0006 8AB0     		sub	sp, sp, #40
+ 183              	.LCFI3:
+ 184              		.cfi_def_cfa_offset 64
+ 185              	.LVL12:
+  64:Src/pressure_sensor_object.c **** 	uint32_t aux_p = 0;
+  65:Src/pressure_sensor_object.c **** 	int i;
+  66:Src/pressure_sensor_object.c **** 	                                                                                        	
+  67:Src/pressure_sensor_object.c **** 	for(i=0; i<PRESSURE_OVERSAMPLING; i++)                                                  	
+ 186              		.loc 1 67 0
+ 187 0008 0026     		mov	r6, #0
+  64:Src/pressure_sensor_object.c **** 	uint32_t aux_p = 0;
+ 188              		.loc 1 64 0
+ 189 000a 0023     		mov	r3, #0
+ 190 000c 9846     		mov	r8, r3
+ 191              		.loc 1 67 0
+ 192 000e 28E0     		b	.L12
+ 193              	.LVL13:
+ 194              	.L13:
+  68:Src/pressure_sensor_object.c ****     {
+  69:Src/pressure_sensor_object.c **** 	                                                                                        	
+  70:Src/pressure_sensor_object.c **** 		//send start conversion D1 OSR 1024 command                                         	
+  71:Src/pressure_sensor_object.c ****         // reset spi1 cs pin                                                                	
+  72:Src/pressure_sensor_object.c **** 		spi1_cs_pressure_GPIO_Port->BSRR = (uint32_t)(spi1_cs_pressure_Pin << 16); 	// reset	
+ 195              		.loc 1 72 0 discriminator 3
+ 196 0010 A025     		mov	r5, #160
+ 197 0012 ED05     		lsl	r5, r5, #23
+ 198 0014 8024     		mov	r4, #128
+ 199 0016 6403     		lsl	r4, r4, #13
+ 200 0018 AC61     		str	r4, [r5, #24]
+  73:Src/pressure_sensor_object.c **** 	    // transmit command                                                                 	
+  74:Src/pressure_sensor_object.c **** 	    write_byte(0x44);                                                                   	
+ 201              		.loc 1 74 0 discriminator 3
+ 202 001a 4420     		mov	r0, #68
+ 203 001c FFF7FEFF 		bl	write_byte
+ 204              	.LVL14:
+  75:Src/pressure_sensor_object.c ****         // set spi1 cs pin                                                                  	
+  76:Src/pressure_sensor_object.c **** 		spi1_cs_pressure_GPIO_Port->BSRR = (uint32_t)spi1_cs_pressure_Pin ;	// set       	
+ 205              		.loc 1 76 0 discriminator 3
+ 206 0020 1027     		mov	r7, #16
+ 207 0022 AF61     		str	r7, [r5, #24]
+  77:Src/pressure_sensor_object.c **** 	    // pause 3 mS                                                                       	
+  78:Src/pressure_sensor_object.c ****         HAL_Delay(3);                                                                           
+ 208              		.loc 1 78 0 discriminator 3
+ 209 0024 0320     		mov	r0, #3
+ARM GAS  /tmp/cccoTwk0.s 			page 6
+
+
+ 210 0026 FFF7FEFF 		bl	HAL_Delay
+ 211              	.LVL15:
+  79:Src/pressure_sensor_object.c **** 	                                                                                        	
+  80:Src/pressure_sensor_object.c **** 	    //send read adc command                                                             	
+  81:Src/pressure_sensor_object.c ****         // reset spi1 cs pin                                                                	
+  82:Src/pressure_sensor_object.c **** 		spi1_cs_pressure_GPIO_Port->BSRR = (uint32_t)(spi1_cs_pressure_Pin << 16); 	// reset	
+ 212              		.loc 1 82 0 discriminator 3
+ 213 002a AC61     		str	r4, [r5, #24]
+  83:Src/pressure_sensor_object.c **** 	    // transmit command                                                                 	
+  84:Src/pressure_sensor_object.c ****         write_byte(0x00);                                                                       
+ 214              		.loc 1 84 0 discriminator 3
+ 215 002c 0020     		mov	r0, #0
+ 216 002e FFF7FEFF 		bl	write_byte
+ 217              	.LVL16:
+  85:Src/pressure_sensor_object.c **** 	                                                                                        	
+  86:Src/pressure_sensor_object.c **** 	    // read ms byte                                                                     	
+  87:Src/pressure_sensor_object.c **** 	    pressure = write_byte(0x55);                                                        	
+ 218              		.loc 1 87 0 discriminator 3
+ 219 0032 5520     		mov	r0, #85
+ 220 0034 FFF7FEFF 		bl	write_byte
+ 221              	.LVL17:
+ 222 0038 AB4C     		ldr	r4, .L18
+  88:Src/pressure_sensor_object.c **** 	    pressure <<= 8;                                                                     	
+ 223              		.loc 1 88 0 discriminator 3
+ 224 003a 0002     		lsl	r0, r0, #8
+ 225 003c 2060     		str	r0, [r4]
+  89:Src/pressure_sensor_object.c **** 	    // read ls byte                                                                     	
+  90:Src/pressure_sensor_object.c **** 	    pressure += write_byte(0x55);                                                       	
+ 226              		.loc 1 90 0 discriminator 3
+ 227 003e 5520     		mov	r0, #85
+ 228 0040 FFF7FEFF 		bl	write_byte
+ 229              	.LVL18:
+ 230 0044 2368     		ldr	r3, [r4]
+ 231 0046 9C46     		mov	ip, r3
+ 232 0048 6044     		add	r0, r0, ip
+  91:Src/pressure_sensor_object.c **** 	    pressure <<= 8;                                                                     	
+ 233              		.loc 1 91 0 discriminator 3
+ 234 004a 0002     		lsl	r0, r0, #8
+ 235 004c 2060     		str	r0, [r4]
+  92:Src/pressure_sensor_object.c **** 	    // read ls byte                                                                     	
+  93:Src/pressure_sensor_object.c **** 	    pressure += write_byte(0x55);                                                       	
+ 236              		.loc 1 93 0 discriminator 3
+ 237 004e 5520     		mov	r0, #85
+ 238 0050 FFF7FEFF 		bl	write_byte
+ 239              	.LVL19:
+ 240 0054 2368     		ldr	r3, [r4]
+ 241 0056 9C46     		mov	ip, r3
+ 242 0058 6044     		add	r0, r0, ip
+ 243 005a 2060     		str	r0, [r4]
+  94:Src/pressure_sensor_object.c ****         // set spi1 cs pin                                                                  	
+  95:Src/pressure_sensor_object.c ****     	spi1_cs_pressure_GPIO_Port->BSRR = (uint32_t)spi1_cs_pressure_Pin ;	// set
+ 244              		.loc 1 95 0 discriminator 3
+ 245 005c AF61     		str	r7, [r5, #24]
+  96:Src/pressure_sensor_object.c **** 	                                                                                        	
+  97:Src/pressure_sensor_object.c ****     	aux_p += pressure;
+ 246              		.loc 1 97 0 discriminator 3
+ 247 005e 8044     		add	r8, r8, r0
+ARM GAS  /tmp/cccoTwk0.s 			page 7
+
+
+ 248              	.LVL20:
+  67:Src/pressure_sensor_object.c ****     {
+ 249              		.loc 1 67 0 discriminator 3
+ 250 0060 0136     		add	r6, r6, #1
+ 251              	.LVL21:
+ 252              	.L12:
+  67:Src/pressure_sensor_object.c ****     {
+ 253              		.loc 1 67 0 is_stmt 0 discriminator 1
+ 254 0062 632E     		cmp	r6, #99
+ 255 0064 D4DD     		ble	.L13
+  98:Src/pressure_sensor_object.c **** 	                                                                                        	
+  99:Src/pressure_sensor_object.c ****     }
+ 100:Src/pressure_sensor_object.c **** 	                                                                                        	
+ 101:Src/pressure_sensor_object.c ****     pressure = aux_p/PRESSURE_OVERSAMPLING;
+ 256              		.loc 1 101 0 is_stmt 1
+ 257 0066 4046     		mov	r0, r8
+ 258 0068 6421     		mov	r1, #100
+ 259 006a FFF7FEFF 		bl	__aeabi_uidiv
+ 260              	.LVL22:
+ 261 006e 9E4B     		ldr	r3, .L18
+ 262 0070 1860     		str	r0, [r3]
+ 102:Src/pressure_sensor_object.c **** 	                                                                                        	
+ 103:Src/pressure_sensor_object.c **** 	//----------------------------------------------------                                  	
+ 104:Src/pressure_sensor_object.c **** 	                                                                                        	
+ 105:Src/pressure_sensor_object.c **** 	//send start conversion D2 OSR 1024 command                                             	
+ 106:Src/pressure_sensor_object.c ****     // reset spi1 cs pin                                                                    	
+ 107:Src/pressure_sensor_object.c **** 	spi1_cs_pressure_GPIO_Port->BSRR = (uint32_t)(spi1_cs_pressure_Pin << 16); 	// reset 	
+ 263              		.loc 1 107 0
+ 264 0072 A025     		mov	r5, #160
+ 265 0074 ED05     		lsl	r5, r5, #23
+ 266 0076 8024     		mov	r4, #128
+ 267 0078 6403     		lsl	r4, r4, #13
+ 268 007a AC61     		str	r4, [r5, #24]
+ 108:Src/pressure_sensor_object.c **** 	// transmit command                                                                     	
+ 109:Src/pressure_sensor_object.c **** 	write_byte(0x54);                                                                       	
+ 269              		.loc 1 109 0
+ 270 007c 5420     		mov	r0, #84
+ 271 007e FFF7FEFF 		bl	write_byte
+ 272              	.LVL23:
+ 110:Src/pressure_sensor_object.c ****     // set spi1 cs pin                                                                      	
+ 111:Src/pressure_sensor_object.c **** 	spi1_cs_pressure_GPIO_Port->BSRR = (uint32_t)spi1_cs_pressure_Pin ;	// set           	
+ 273              		.loc 1 111 0
+ 274 0082 1026     		mov	r6, #16
+ 275              	.LVL24:
+ 276 0084 AE61     		str	r6, [r5, #24]
+ 112:Src/pressure_sensor_object.c **** 	// pause 3 mS                                                                           	
+ 113:Src/pressure_sensor_object.c ****     HAL_Delay(3);
+ 277              		.loc 1 113 0
+ 278 0086 0320     		mov	r0, #3
+ 279 0088 FFF7FEFF 		bl	HAL_Delay
+ 280              	.LVL25:
+ 114:Src/pressure_sensor_object.c **** 	                                                                                        	
+ 115:Src/pressure_sensor_object.c **** 	//send read adc command                                                                 	
+ 116:Src/pressure_sensor_object.c ****     // reset spi1 cs pin                                                                    	
+ 117:Src/pressure_sensor_object.c **** 	spi1_cs_pressure_GPIO_Port->BSRR = (uint32_t)(spi1_cs_pressure_Pin << 16); 	// reset 	
+ 281              		.loc 1 117 0
+ 282 008c AC61     		str	r4, [r5, #24]
+ARM GAS  /tmp/cccoTwk0.s 			page 8
+
+
+ 118:Src/pressure_sensor_object.c **** 	// transmit command                                                                     	
+ 119:Src/pressure_sensor_object.c ****     write_byte(0x00);
+ 283              		.loc 1 119 0
+ 284 008e 0020     		mov	r0, #0
+ 285 0090 FFF7FEFF 		bl	write_byte
+ 286              	.LVL26:
+ 120:Src/pressure_sensor_object.c **** 	                                                                                        	
+ 121:Src/pressure_sensor_object.c **** 	// read ms byte                                                                         	
+ 122:Src/pressure_sensor_object.c **** 	temperature = write_byte(0x55);                                                         	
+ 287              		.loc 1 122 0
+ 288 0094 5520     		mov	r0, #85
+ 289 0096 FFF7FEFF 		bl	write_byte
+ 290              	.LVL27:
+ 291 009a 944C     		ldr	r4, .L18+4
+ 123:Src/pressure_sensor_object.c **** 	temperature <<= 8;                                                                      	
+ 292              		.loc 1 123 0
+ 293 009c 0002     		lsl	r0, r0, #8
+ 294 009e 2060     		str	r0, [r4]
+ 124:Src/pressure_sensor_object.c **** 	// read ls byte                                                                         	
+ 125:Src/pressure_sensor_object.c **** 	temperature += write_byte(0x55);                                                        	
+ 295              		.loc 1 125 0
+ 296 00a0 5520     		mov	r0, #85
+ 297 00a2 FFF7FEFF 		bl	write_byte
+ 298              	.LVL28:
+ 299 00a6 2368     		ldr	r3, [r4]
+ 300 00a8 9C46     		mov	ip, r3
+ 301 00aa 6044     		add	r0, r0, ip
+ 126:Src/pressure_sensor_object.c **** 	temperature <<= 8;                                                                      	
+ 302              		.loc 1 126 0
+ 303 00ac 0002     		lsl	r0, r0, #8
+ 304 00ae 2060     		str	r0, [r4]
+ 127:Src/pressure_sensor_object.c **** 	// read ls byte                                                                         	
+ 128:Src/pressure_sensor_object.c **** 	temperature += write_byte(0x55);                                                        	
+ 305              		.loc 1 128 0
+ 306 00b0 5520     		mov	r0, #85
+ 307 00b2 FFF7FEFF 		bl	write_byte
+ 308              	.LVL29:
+ 309 00b6 2368     		ldr	r3, [r4]
+ 310 00b8 9C46     		mov	ip, r3
+ 311 00ba 6044     		add	r0, r0, ip
+ 312 00bc 2060     		str	r0, [r4]
+ 129:Src/pressure_sensor_object.c ****     // set spi1 cs pin                                                                      	
+ 130:Src/pressure_sensor_object.c ****     spi1_cs_pressure_GPIO_Port->BSRR = (uint32_t)spi1_cs_pressure_Pin ;	// set
+ 313              		.loc 1 130 0
+ 314 00be AE61     		str	r6, [r5, #24]
+ 131:Src/pressure_sensor_object.c **** 	                                                                                        	
+ 132:Src/pressure_sensor_object.c ****     //---------------------------------------------------
+ 133:Src/pressure_sensor_object.c **** 	                                                                                        	
+ 134:Src/pressure_sensor_object.c **** 	dT = (double)temperature - (double)sensor_prom[5]*DEG_2_8;                              	
+ 315              		.loc 1 134 0
+ 316 00c0 FFF7FEFF 		bl	__aeabi_ui2d
+ 317              	.LVL30:
+ 318 00c4 041C     		mov	r4, r0
+ 319 00c6 0D1C     		mov	r5, r1
+ 320 00c8 894E     		ldr	r6, .L18+8
+ 321 00ca 7089     		ldrh	r0, [r6, #10]
+ 322 00cc FFF7FEFF 		bl	__aeabi_ui2d
+ARM GAS  /tmp/cccoTwk0.s 			page 9
+
+
+ 323              	.LVL31:
+ 324 00d0 0022     		mov	r2, #0
+ 325 00d2 884B     		ldr	r3, .L18+12
+ 326 00d4 FFF7FEFF 		bl	__aeabi_dmul
+ 327              	.LVL32:
+ 328 00d8 021C     		mov	r2, r0
+ 329 00da 0B1C     		mov	r3, r1
+ 330 00dc 201C     		mov	r0, r4
+ 331 00de 291C     		mov	r1, r5
+ 332 00e0 FFF7FEFF 		bl	__aeabi_dsub
+ 333              	.LVL33:
+ 334 00e4 041C     		mov	r4, r0
+ 335 00e6 0D1C     		mov	r5, r1
+ 336 00e8 834B     		ldr	r3, .L18+16
+ 337 00ea 1C60     		str	r4, [r3]
+ 338 00ec 5D60     		str	r5, [r3, #4]
+ 135:Src/pressure_sensor_object.c ****     actual_temperature = 2000 + (dT*((double)sensor_prom[6]))/DEG_2_23;
+ 339              		.loc 1 135 0
+ 340 00ee B089     		ldrh	r0, [r6, #12]
+ 341 00f0 FFF7FEFF 		bl	__aeabi_ui2d
+ 342              	.LVL34:
+ 343 00f4 021C     		mov	r2, r0
+ 344 00f6 0B1C     		mov	r3, r1
+ 345 00f8 201C     		mov	r0, r4
+ 346 00fa 291C     		mov	r1, r5
+ 347 00fc FFF7FEFF 		bl	__aeabi_dmul
+ 348              	.LVL35:
+ 349 0100 0022     		mov	r2, #0
+ 350 0102 FA23     		mov	r3, #250
+ 351 0104 9B05     		lsl	r3, r3, #22
+ 352 0106 FFF7FEFF 		bl	__aeabi_dmul
+ 353              	.LVL36:
+ 354 010a 0022     		mov	r2, #0
+ 355 010c 7B4B     		ldr	r3, .L18+20
+ 356 010e FFF7FEFF 		bl	__aeabi_dadd
+ 357              	.LVL37:
+ 358 0112 0090     		str	r0, [sp]
+ 359 0114 0191     		str	r1, [sp, #4]
+ 136:Src/pressure_sensor_object.c **** 	                                                                                        	
+ 137:Src/pressure_sensor_object.c **** 	OFF = ((double)sensor_prom[2])*DEG_2_18 + (((double)sensor_prom[4])*dT)/DEG_2_5;        	
+ 360              		.loc 1 137 0
+ 361 0116 B088     		ldrh	r0, [r6, #4]
+ 362 0118 FFF7FEFF 		bl	__aeabi_ui2d
+ 363              	.LVL38:
+ 364 011c 0022     		mov	r2, #0
+ 365 011e 784B     		ldr	r3, .L18+24
+ 366 0120 FFF7FEFF 		bl	__aeabi_dmul
+ 367              	.LVL39:
+ 368 0124 0290     		str	r0, [sp, #8]
+ 369 0126 0391     		str	r1, [sp, #12]
+ 370 0128 3089     		ldrh	r0, [r6, #8]
+ 371 012a FFF7FEFF 		bl	__aeabi_ui2d
+ 372              	.LVL40:
+ 373 012e 021C     		mov	r2, r0
+ 374 0130 0B1C     		mov	r3, r1
+ 375 0132 201C     		mov	r0, r4
+ 376 0134 291C     		mov	r1, r5
+ARM GAS  /tmp/cccoTwk0.s 			page 10
+
+
+ 377 0136 FFF7FEFF 		bl	__aeabi_dmul
+ 378              	.LVL41:
+ 379 013a 0022     		mov	r2, #0
+ 380 013c 714B     		ldr	r3, .L18+28
+ 381 013e FFF7FEFF 		bl	__aeabi_dmul
+ 382              	.LVL42:
+ 383 0142 021C     		mov	r2, r0
+ 384 0144 0B1C     		mov	r3, r1
+ 385 0146 0298     		ldr	r0, [sp, #8]
+ 386 0148 0399     		ldr	r1, [sp, #12]
+ 387 014a FFF7FEFF 		bl	__aeabi_dadd
+ 388              	.LVL43:
+ 389 014e 0290     		str	r0, [sp, #8]
+ 390 0150 0391     		str	r1, [sp, #12]
+ 138:Src/pressure_sensor_object.c ****     SENS = ((double)sensor_prom[1])*DEG_2_17 + (((double)sensor_prom[3])*dT)/DEG_2_7;
+ 391              		.loc 1 138 0
+ 392 0152 7088     		ldrh	r0, [r6, #2]
+ 393 0154 FFF7FEFF 		bl	__aeabi_ui2d
+ 394              	.LVL44:
+ 395 0158 0022     		mov	r2, #0
+ 396 015a 8223     		mov	r3, #130
+ 397 015c DB05     		lsl	r3, r3, #23
+ 398 015e FFF7FEFF 		bl	__aeabi_dmul
+ 399              	.LVL45:
+ 400 0162 0490     		str	r0, [sp, #16]
+ 401 0164 0591     		str	r1, [sp, #20]
+ 402 0166 F088     		ldrh	r0, [r6, #6]
+ 403 0168 FFF7FEFF 		bl	__aeabi_ui2d
+ 404              	.LVL46:
+ 405 016c 021C     		mov	r2, r0
+ 406 016e 0B1C     		mov	r3, r1
+ 407 0170 201C     		mov	r0, r4
+ 408 0172 291C     		mov	r1, r5
+ 409 0174 FFF7FEFF 		bl	__aeabi_dmul
+ 410              	.LVL47:
+ 411 0178 0022     		mov	r2, #0
+ 412 017a FE23     		mov	r3, #254
+ 413 017c 9B05     		lsl	r3, r3, #22
+ 414 017e FFF7FEFF 		bl	__aeabi_dmul
+ 415              	.LVL48:
+ 416 0182 021C     		mov	r2, r0
+ 417 0184 0B1C     		mov	r3, r1
+ 418 0186 0498     		ldr	r0, [sp, #16]
+ 419 0188 0599     		ldr	r1, [sp, #20]
+ 420 018a FFF7FEFF 		bl	__aeabi_dadd
+ 421              	.LVL49:
+ 422 018e 0490     		str	r0, [sp, #16]
+ 423 0190 0591     		str	r1, [sp, #20]
+ 139:Src/pressure_sensor_object.c ****                                                                                             
+ 140:Src/pressure_sensor_object.c **** 	                                                                                        	
+ 141:Src/pressure_sensor_object.c **** 	double T2;                                                                              	
+ 142:Src/pressure_sensor_object.c **** 	double SENS2;                                                                           	
+ 143:Src/pressure_sensor_object.c ****     double OFF2;
+ 144:Src/pressure_sensor_object.c ****                                                                                             
+ 145:Src/pressure_sensor_object.c **** 	                                                                                        	
+ 146:Src/pressure_sensor_object.c **** 	if(actual_temperature >= 2000)                                                          	
+ 424              		.loc 1 146 0
+ARM GAS  /tmp/cccoTwk0.s 			page 11
+
+
+ 425 0192 009E     		ldr	r6, [sp]
+ 426 0194 019F     		ldr	r7, [sp, #4]
+ 427 0196 301C     		mov	r0, r6
+ 428 0198 391C     		mov	r1, r7
+ 429 019a 0022     		mov	r2, #0
+ 430 019c 574B     		ldr	r3, .L18+20
+ 431 019e FFF7FEFF 		bl	__aeabi_dcmpge
+ 432              	.LVL50:
+ 433 01a2 0028     		cmp	r0, #0
+ 434 01a4 5CD1     		bne	.L16
+ 435              	.LBB2:
+ 147:Src/pressure_sensor_object.c **** 	{                                                                                       	
+ 148:Src/pressure_sensor_object.c **** 		T2 = 0;                                                                             	
+ 149:Src/pressure_sensor_object.c **** 		SENS2 = 0;                                                                          	
+ 150:Src/pressure_sensor_object.c **** 		OFF2 = 0;                                                                           	
+ 151:Src/pressure_sensor_object.c **** 	}                                                                                       	
+ 152:Src/pressure_sensor_object.c **** 	else                                                                                    	
+ 153:Src/pressure_sensor_object.c **** 	{                                                                                       	
+ 154:Src/pressure_sensor_object.c **** 		T2 = 3.0 * dT * dT / DEG_2_33;                                                      	
+ 436              		.loc 1 154 0
+ 437 01a6 201C     		mov	r0, r4
+ 438 01a8 291C     		mov	r1, r5
+ 439 01aa 0022     		mov	r2, #0
+ 440 01ac 564B     		ldr	r3, .L18+32
+ 441 01ae FFF7FEFF 		bl	__aeabi_dmul
+ 442              	.LVL51:
+ 443 01b2 021C     		mov	r2, r0
+ 444 01b4 0B1C     		mov	r3, r1
+ 445 01b6 201C     		mov	r0, r4
+ 446 01b8 291C     		mov	r1, r5
+ 447 01ba FFF7FEFF 		bl	__aeabi_dmul
+ 448              	.LVL52:
+ 449 01be 0022     		mov	r2, #0
+ 450 01c0 524B     		ldr	r3, .L18+36
+ 451 01c2 FFF7FEFF 		bl	__aeabi_dmul
+ 452              	.LVL53:
+ 453 01c6 0690     		str	r0, [sp, #24]
+ 454 01c8 0791     		str	r1, [sp, #28]
+ 455              	.LVL54:
+ 155:Src/pressure_sensor_object.c **** 		double aux_dt = (actual_temperature - 2000);                                        	
+ 456              		.loc 1 155 0
+ 457 01ca 0096     		str	r6, [sp]
+ 458 01cc 0197     		str	r7, [sp, #4]
+ 459 01ce 301C     		mov	r0, r6
+ 460              	.LVL55:
+ 461 01d0 391C     		mov	r1, r7
+ 462 01d2 0022     		mov	r2, #0
+ 463 01d4 494B     		ldr	r3, .L18+20
+ 464 01d6 FFF7FEFF 		bl	__aeabi_dsub
+ 465              	.LVL56:
+ 466 01da 041C     		mov	r4, r0
+ 467 01dc 0D1C     		mov	r5, r1
+ 468              	.LVL57:
+ 156:Src/pressure_sensor_object.c **** 		OFF2 = 3.0 * aux_dt * aux_dt / 8.0;                                                 	
+ 469              		.loc 1 156 0
+ 470 01de 0022     		mov	r2, #0
+ 471 01e0 494B     		ldr	r3, .L18+32
+ARM GAS  /tmp/cccoTwk0.s 			page 12
+
+
+ 472 01e2 FFF7FEFF 		bl	__aeabi_dmul
+ 473              	.LVL58:
+ 474 01e6 221C     		mov	r2, r4
+ 475 01e8 2B1C     		mov	r3, r5
+ 476 01ea FFF7FEFF 		bl	__aeabi_dmul
+ 477              	.LVL59:
+ 478 01ee 0022     		mov	r2, #0
+ 479 01f0 FF23     		mov	r3, #255
+ 480 01f2 9B05     		lsl	r3, r3, #22
+ 481 01f4 FFF7FEFF 		bl	__aeabi_dmul
+ 482              	.LVL60:
+ 483 01f8 061C     		mov	r6, r0
+ 484 01fa 0F1C     		mov	r7, r1
+ 485              	.LVL61:
+ 157:Src/pressure_sensor_object.c ****     	SENS2 = 7.0 * aux_dt * aux_dt / 8.0;
+ 486              		.loc 1 157 0
+ 487 01fc 201C     		mov	r0, r4
+ 488 01fe 291C     		mov	r1, r5
+ 489 0200 0022     		mov	r2, #0
+ 490 0202 434B     		ldr	r3, .L18+40
+ 491 0204 FFF7FEFF 		bl	__aeabi_dmul
+ 492              	.LVL62:
+ 493 0208 221C     		mov	r2, r4
+ 494 020a 2B1C     		mov	r3, r5
+ 495 020c FFF7FEFF 		bl	__aeabi_dmul
+ 496              	.LVL63:
+ 497 0210 0022     		mov	r2, #0
+ 498 0212 FF23     		mov	r3, #255
+ 499 0214 9B05     		lsl	r3, r3, #22
+ 500 0216 FFF7FEFF 		bl	__aeabi_dmul
+ 501              	.LVL64:
+ 502 021a 041C     		mov	r4, r0
+ 503              	.LVL65:
+ 504 021c 0D1C     		mov	r5, r1
+ 505              	.LVL66:
+ 158:Src/pressure_sensor_object.c **** 	                                                                                        	
+ 159:Src/pressure_sensor_object.c **** 		if(actual_temperature < -1500)                                                      	
+ 506              		.loc 1 159 0
+ 507 021e 0098     		ldr	r0, [sp]
+ 508 0220 0199     		ldr	r1, [sp, #4]
+ 509 0222 0022     		mov	r2, #0
+ 510 0224 3B4B     		ldr	r3, .L18+44
+ 511 0226 FFF7FEFF 		bl	__aeabi_dcmplt
+ 512              	.LVL67:
+ 513 022a 0028     		cmp	r0, #0
+ 514 022c 1ED0     		beq	.L14
+ 515              	.LBB3:
+ 160:Src/pressure_sensor_object.c **** 		{                                                                                   	
+ 161:Src/pressure_sensor_object.c **** 			double aux_dt = actual_temperature + 1500;                                      	
+ 516              		.loc 1 161 0
+ 517 022e 0098     		ldr	r0, [sp]
+ 518 0230 0199     		ldr	r1, [sp, #4]
+ 519 0232 0022     		mov	r2, #0
+ 520 0234 384B     		ldr	r3, .L18+48
+ 521 0236 FFF7FEFF 		bl	__aeabi_dadd
+ 522              	.LVL68:
+ 162:Src/pressure_sensor_object.c **** 			SENS2 = SENS2 + 3.0 * aux_dt * aux_dt;                                          	
+ARM GAS  /tmp/cccoTwk0.s 			page 13
+
+
+ 523              		.loc 1 162 0
+ 524 023a 0890     		str	r0, [sp, #32]
+ 525 023c 0991     		str	r1, [sp, #36]
+ 526 023e 0022     		mov	r2, #0
+ 527 0240 314B     		ldr	r3, .L18+32
+ 528 0242 FFF7FEFF 		bl	__aeabi_dmul
+ 529              	.LVL69:
+ 530 0246 089A     		ldr	r2, [sp, #32]
+ 531 0248 099B     		ldr	r3, [sp, #36]
+ 532 024a FFF7FEFF 		bl	__aeabi_dmul
+ 533              	.LVL70:
+ 534 024e 021C     		mov	r2, r0
+ 535 0250 0B1C     		mov	r3, r1
+ 536 0252 201C     		mov	r0, r4
+ 537 0254 291C     		mov	r1, r5
+ 538 0256 FFF7FEFF 		bl	__aeabi_dadd
+ 539              	.LVL71:
+ 540 025a 041C     		mov	r4, r0
+ 541              	.LVL72:
+ 542 025c 0D1C     		mov	r5, r1
+ 543              	.LVL73:
+ 544 025e 05E0     		b	.L14
+ 545              	.LVL74:
+ 546              	.L16:
+ 547              	.LBE3:
+ 548              	.LBE2:
+ 150:Src/pressure_sensor_object.c **** 	}                                                                                       	
+ 549              		.loc 1 150 0
+ 550 0260 0026     		mov	r6, #0
+ 551 0262 0027     		mov	r7, #0
+ 149:Src/pressure_sensor_object.c **** 		OFF2 = 0;                                                                           	
+ 552              		.loc 1 149 0
+ 553 0264 341C     		mov	r4, r6
+ 554 0266 3D1C     		mov	r5, r7
+ 148:Src/pressure_sensor_object.c **** 		SENS2 = 0;                                                                          	
+ 555              		.loc 1 148 0
+ 556 0268 0696     		str	r6, [sp, #24]
+ 557 026a 0797     		str	r7, [sp, #28]
+ 558              	.L14:
+ 559              	.LVL75:
+ 163:Src/pressure_sensor_object.c **** 		}                                                                                   	
+ 164:Src/pressure_sensor_object.c ****     }
+ 165:Src/pressure_sensor_object.c **** 	                                                                                        	
+ 166:Src/pressure_sensor_object.c **** 	actual_temperature = actual_temperature - T2;                                           	
+ 560              		.loc 1 166 0
+ 561 026c 0098     		ldr	r0, [sp]
+ 562 026e 0199     		ldr	r1, [sp, #4]
+ 563 0270 069A     		ldr	r2, [sp, #24]
+ 564 0272 079B     		ldr	r3, [sp, #28]
+ 565 0274 FFF7FEFF 		bl	__aeabi_dsub
+ 566              	.LVL76:
+ 567 0278 284B     		ldr	r3, .L18+52
+ 568 027a 1860     		str	r0, [r3]
+ 569 027c 5960     		str	r1, [r3, #4]
+ 167:Src/pressure_sensor_object.c **** 	                                                                                        	
+ 168:Src/pressure_sensor_object.c **** 	OFF = OFF - OFF2;                                                                       	
+ 570              		.loc 1 168 0
+ARM GAS  /tmp/cccoTwk0.s 			page 14
+
+
+ 571 027e 0298     		ldr	r0, [sp, #8]
+ 572 0280 0399     		ldr	r1, [sp, #12]
+ 573 0282 321C     		mov	r2, r6
+ 574 0284 3B1C     		mov	r3, r7
+ 575 0286 FFF7FEFF 		bl	__aeabi_dsub
+ 576              	.LVL77:
+ 577 028a 061C     		mov	r6, r0
+ 578              	.LVL78:
+ 579 028c 0F1C     		mov	r7, r1
+ 580 028e 244B     		ldr	r3, .L18+56
+ 581 0290 1E60     		str	r6, [r3]
+ 582 0292 5F60     		str	r7, [r3, #4]
+ 169:Src/pressure_sensor_object.c ****     SENS = SENS - SENS2;
+ 583              		.loc 1 169 0
+ 584 0294 0498     		ldr	r0, [sp, #16]
+ 585 0296 0599     		ldr	r1, [sp, #20]
+ 586 0298 221C     		mov	r2, r4
+ 587 029a 2B1C     		mov	r3, r5
+ 588 029c FFF7FEFF 		bl	__aeabi_dsub
+ 589              	.LVL79:
+ 590 02a0 041C     		mov	r4, r0
+ 591              	.LVL80:
+ 592 02a2 0D1C     		mov	r5, r1
+ 593 02a4 1F4B     		ldr	r3, .L18+60
+ 594 02a6 1C60     		str	r4, [r3]
+ 595 02a8 5D60     		str	r5, [r3, #4]
+ 170:Src/pressure_sensor_object.c **** 	                                                                                        	
+ 171:Src/pressure_sensor_object.c **** 	P = (((double)pressure*SENS)/DEG_2_21 - OFF)/DEG_2_15;                                  
+ 596              		.loc 1 171 0
+ 597 02aa 0F4B     		ldr	r3, .L18
+ 598 02ac 1868     		ldr	r0, [r3]
+ 599 02ae FFF7FEFF 		bl	__aeabi_ui2d
+ 600              	.LVL81:
+ 601 02b2 021C     		mov	r2, r0
+ 602 02b4 0B1C     		mov	r3, r1
+ 603 02b6 201C     		mov	r0, r4
+ 604 02b8 291C     		mov	r1, r5
+ 605 02ba FFF7FEFF 		bl	__aeabi_dmul
+ 606              	.LVL82:
+ 607 02be 0022     		mov	r2, #0
+ 608 02c0 194B     		ldr	r3, .L18+64
+ 609 02c2 FFF7FEFF 		bl	__aeabi_dmul
+ 610              	.LVL83:
+ 611 02c6 321C     		mov	r2, r6
+ 612 02c8 3B1C     		mov	r3, r7
+ 613 02ca FFF7FEFF 		bl	__aeabi_dsub
+ 614              	.LVL84:
+ 615 02ce 0022     		mov	r2, #0
+ 616 02d0 FC23     		mov	r3, #252
+ 617 02d2 9B05     		lsl	r3, r3, #22
+ 618 02d4 FFF7FEFF 		bl	__aeabi_dmul
+ 619              	.LVL85:
+ 620 02d8 144B     		ldr	r3, .L18+68
+ 621 02da 1860     		str	r0, [r3]
+ 622 02dc 5960     		str	r1, [r3, #4]
+ 172:Src/pressure_sensor_object.c **** 
+ 173:Src/pressure_sensor_object.c **** 
+ARM GAS  /tmp/cccoTwk0.s 			page 15
+
+
+ 174:Src/pressure_sensor_object.c **** }
+ 623              		.loc 1 174 0
+ 624 02de 0AB0     		add	sp, sp, #40
+ 625              		@ sp needed
+ 626              	.LVL86:
+ 627 02e0 04BC     		pop	{r2}
+ 628 02e2 9046     		mov	r8, r2
+ 629 02e4 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 630              	.L19:
+ 631 02e6 C046     		.align	2
+ 632              	.L18:
+ 633 02e8 00000000 		.word	.LANCHOR1
+ 634 02ec 00000000 		.word	.LANCHOR2
+ 635 02f0 00000000 		.word	.LANCHOR0
+ 636 02f4 00007040 		.word	1081081856
+ 637 02f8 00000000 		.word	.LANCHOR3
+ 638 02fc 00409F40 		.word	1084178432
+ 639 0300 00001041 		.word	1091567616
+ 640 0304 0000A03F 		.word	1067450368
+ 641 0308 00000840 		.word	1074266112
+ 642 030c 0000E03D 		.word	1038090240
+ 643 0310 00001C40 		.word	1075576832
+ 644 0314 007097C0 		.word	-1063817216
+ 645 0318 00709740 		.word	1083666432
+ 646 031c 00000000 		.word	.LANCHOR4
+ 647 0320 00000000 		.word	.LANCHOR5
+ 648 0324 00000000 		.word	.LANCHOR6
+ 649 0328 0000A03E 		.word	1050673152
+ 650 032c 00000000 		.word	.LANCHOR7
+ 651              		.cfi_endproc
+ 652              	.LFE38:
+ 654              		.section	.text.pressure_sensor_get_pressure,"ax",%progbits
+ 655              		.align	2
+ 656              		.global	pressure_sensor_get_pressure
+ 657              		.code	16
+ 658              		.thumb_func
+ 660              	pressure_sensor_get_pressure:
+ 661              	.LFB39:
+ 175:Src/pressure_sensor_object.c **** 
+ 176:Src/pressure_sensor_object.c **** 
+ 177:Src/pressure_sensor_object.c **** 
+ 178:Src/pressure_sensor_object.c **** 
+ 179:Src/pressure_sensor_object.c **** double pressure_sensor_get_pressure()
+ 180:Src/pressure_sensor_object.c **** {
+ 662              		.loc 1 180 0
+ 663              		.cfi_startproc
+ 181:Src/pressure_sensor_object.c **** 	return P;
+ 664              		.loc 1 181 0
+ 665 0000 014B     		ldr	r3, .L21
+ 666 0002 1868     		ldr	r0, [r3]
+ 667 0004 5968     		ldr	r1, [r3, #4]
+ 182:Src/pressure_sensor_object.c **** }
+ 668              		.loc 1 182 0
+ 669              		@ sp needed
+ 670 0006 7047     		bx	lr
+ 671              	.L22:
+ 672              		.align	2
+ARM GAS  /tmp/cccoTwk0.s 			page 16
+
+
+ 673              	.L21:
+ 674 0008 00000000 		.word	.LANCHOR7
+ 675              		.cfi_endproc
+ 676              	.LFE39:
+ 678              		.section	.text.pressure_sensor_get_temperature,"ax",%progbits
+ 679              		.align	2
+ 680              		.global	pressure_sensor_get_temperature
+ 681              		.code	16
+ 682              		.thumb_func
+ 684              	pressure_sensor_get_temperature:
+ 685              	.LFB40:
+ 183:Src/pressure_sensor_object.c **** 
+ 184:Src/pressure_sensor_object.c **** double pressure_sensor_get_temperature()
+ 185:Src/pressure_sensor_object.c **** {
+ 686              		.loc 1 185 0
+ 687              		.cfi_startproc
+ 186:Src/pressure_sensor_object.c **** 	return actual_temperature;
+ 688              		.loc 1 186 0
+ 689 0000 014B     		ldr	r3, .L24
+ 690 0002 1868     		ldr	r0, [r3]
+ 691 0004 5968     		ldr	r1, [r3, #4]
+ 187:Src/pressure_sensor_object.c **** }
+ 692              		.loc 1 187 0
+ 693              		@ sp needed
+ 694 0006 7047     		bx	lr
+ 695              	.L25:
+ 696              		.align	2
+ 697              	.L24:
+ 698 0008 00000000 		.word	.LANCHOR4
+ 699              		.cfi_endproc
+ 700              	.LFE40:
+ 702              		.section	.bss.pressure,"aw",%nobits
+ 703              		.align	2
+ 704              		.set	.LANCHOR1,. + 0
+ 707              	pressure:
+ 708 0000 00000000 		.space	4
+ 709              		.section	.bss.actual_temperature,"aw",%nobits
+ 710              		.align	3
+ 711              		.set	.LANCHOR4,. + 0
+ 714              	actual_temperature:
+ 715 0000 00000000 		.space	8
+ 715      00000000 
+ 716              		.section	.bss.P,"aw",%nobits
+ 717              		.align	3
+ 718              		.set	.LANCHOR7,. + 0
+ 721              	P:
+ 722 0000 00000000 		.space	8
+ 722      00000000 
+ 723              		.section	.bss.temperature,"aw",%nobits
+ 724              		.align	2
+ 725              		.set	.LANCHOR2,. + 0
+ 728              	temperature:
+ 729 0000 00000000 		.space	4
+ 730              		.section	.bss.dT,"aw",%nobits
+ 731              		.align	3
+ 732              		.set	.LANCHOR3,. + 0
+ 735              	dT:
+ARM GAS  /tmp/cccoTwk0.s 			page 17
+
+
+ 736 0000 00000000 		.space	8
+ 736      00000000 
+ 737              		.section	.bss.OFF,"aw",%nobits
+ 738              		.align	3
+ 739              		.set	.LANCHOR5,. + 0
+ 742              	OFF:
+ 743 0000 00000000 		.space	8
+ 743      00000000 
+ 744              		.section	.bss.sensor_prom,"aw",%nobits
+ 745              		.align	2
+ 746              		.set	.LANCHOR0,. + 0
+ 749              	sensor_prom:
+ 750 0000 00000000 		.space	14
+ 750      00000000 
+ 750      00000000 
+ 750      0000
+ 751              		.section	.bss.SENS,"aw",%nobits
+ 752              		.align	3
+ 753              		.set	.LANCHOR6,. + 0
+ 756              	SENS:
+ 757 0000 00000000 		.space	8
+ 757      00000000 
+ 758              		.text
+ 759              	.Letext0:
+ 760              		.file 2 "/usr/include/newlib/machine/_default_types.h"
+ 761              		.file 3 "/usr/include/newlib/sys/_stdint.h"
+ 762              		.file 4 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l071xx.h"
+ 763              		.file 5 "Inc/pressure_sensor_object.h"
+ 764              		.file 6 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l0xx.h"
+ 765              		.file 7 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h"
+ARM GAS  /tmp/cccoTwk0.s 			page 18
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 pressure_sensor_object.c
+     /tmp/cccoTwk0.s:18     .text.write_byte:0000000000000000 $t
+     /tmp/cccoTwk0.s:23     .text.write_byte:0000000000000000 write_byte
+     /tmp/cccoTwk0.s:57     .text.write_byte:000000000000001c $d
+     /tmp/cccoTwk0.s:62     .text.pressure_sensor_object_init:0000000000000000 $t
+     /tmp/cccoTwk0.s:67     .text.pressure_sensor_object_init:0000000000000000 pressure_sensor_object_init
+     /tmp/cccoTwk0.s:148    .text.pressure_sensor_object_init:000000000000005c $d
+     /tmp/cccoTwk0.s:160    .text.pressure_sensor_measure_pressure_temperature:0000000000000000 $t
+     /tmp/cccoTwk0.s:165    .text.pressure_sensor_measure_pressure_temperature:0000000000000000 pressure_sensor_measure_pressure_temperature
+     /tmp/cccoTwk0.s:633    .text.pressure_sensor_measure_pressure_temperature:00000000000002e8 $d
+     /tmp/cccoTwk0.s:655    .text.pressure_sensor_get_pressure:0000000000000000 $t
+     /tmp/cccoTwk0.s:660    .text.pressure_sensor_get_pressure:0000000000000000 pressure_sensor_get_pressure
+     /tmp/cccoTwk0.s:674    .text.pressure_sensor_get_pressure:0000000000000008 $d
+     /tmp/cccoTwk0.s:679    .text.pressure_sensor_get_temperature:0000000000000000 $t
+     /tmp/cccoTwk0.s:684    .text.pressure_sensor_get_temperature:0000000000000000 pressure_sensor_get_temperature
+     /tmp/cccoTwk0.s:698    .text.pressure_sensor_get_temperature:0000000000000008 $d
+     /tmp/cccoTwk0.s:703    .bss.pressure:0000000000000000 $d
+     /tmp/cccoTwk0.s:707    .bss.pressure:0000000000000000 pressure
+     /tmp/cccoTwk0.s:710    .bss.actual_temperature:0000000000000000 $d
+     /tmp/cccoTwk0.s:714    .bss.actual_temperature:0000000000000000 actual_temperature
+     /tmp/cccoTwk0.s:717    .bss.P:0000000000000000 $d
+     /tmp/cccoTwk0.s:721    .bss.P:0000000000000000 P
+     /tmp/cccoTwk0.s:724    .bss.temperature:0000000000000000 $d
+     /tmp/cccoTwk0.s:728    .bss.temperature:0000000000000000 temperature
+     /tmp/cccoTwk0.s:731    .bss.dT:0000000000000000 $d
+     /tmp/cccoTwk0.s:735    .bss.dT:0000000000000000 dT
+     /tmp/cccoTwk0.s:738    .bss.OFF:0000000000000000 $d
+     /tmp/cccoTwk0.s:742    .bss.OFF:0000000000000000 OFF
+     /tmp/cccoTwk0.s:745    .bss.sensor_prom:0000000000000000 $d
+     /tmp/cccoTwk0.s:749    .bss.sensor_prom:0000000000000000 sensor_prom
+     /tmp/cccoTwk0.s:752    .bss.SENS:0000000000000000 $d
+     /tmp/cccoTwk0.s:756    .bss.SENS:0000000000000000 SENS
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+HAL_Delay
+__aeabi_uidiv
+__aeabi_ui2d
+__aeabi_dmul
+__aeabi_dsub
+__aeabi_dadd
+__aeabi_dcmpge
+__aeabi_dcmplt
