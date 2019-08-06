@@ -200,6 +200,15 @@ int main(void)
 	double depth = 7.0;
 
 	int odd_even = 0;
+
+	
+	while(1)
+	{
+		pressure_sensor_measure_pressure_temperature();                                                                                                   	
+	}
+
+
+
 	//************************   MAIN LOOP   *********************************
   	while (1)
   	{

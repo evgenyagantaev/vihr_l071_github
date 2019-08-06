@@ -139,8 +139,18 @@ int main(void)
 	one_second_timer_init();
 	one_second_timer_start();
 
+	pressure_sensor_object_init();
+	HAL_Delay(1000);
 
 	int odd_even = 0;
+
+	//while(1)
+	//{
+	//	pressure_sensor_measure_pressure_temperature();                                                                                                   	
+	//}
+
+
+
 	//************************   MAIN LOOP   *********************************
 	while(1)                                                     	    
 	{   
@@ -165,12 +175,10 @@ int main(void)
 		    double P = pressure_sensor_get_pressure();
 		    double actual_temperature = pressure_sensor_get_temperature();
 
-			uint32_t atm_pressure_buffer[4];
-
 			// debug
 			//*
 			ssd1306_Fill(Black);                                                                                         
-  		    ssd1306_SetCursor(3,0);
+  		    ssd1306_SetCursor(3,30);
 			if(odd_even)
 		        sprintf(message, "P%05d:T%03d" , (int)(P/10), (int)(actual_temperature/10));
 			else
