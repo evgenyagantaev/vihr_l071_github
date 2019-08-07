@@ -39,6 +39,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "string.h"
+#include "stdio.h"
 #include "stm32l0xx_hal.h"
 #include "adc.h"
 #include "i2c.h"
@@ -96,7 +97,6 @@ int main(void)
 	char message[256];
 	char timestamp[64];
 
-	char gps_message[256];
 
 	uint32_t seconds_in_minute = 60;
 	uint32_t seconds_in_hour = seconds_in_minute * 60;
@@ -151,7 +151,7 @@ int main(void)
 	//	pressure_sensor_measure_pressure_temperature();                                                                                                   	
 	//}
 
-
+//#define DEBUG
 
 	//************************   MAIN LOOP   *********************************
 
@@ -200,12 +200,15 @@ int main(void)
 #endif
 
 
+
+#ifndef DEBUG
+
+	ssd1306_Fill(Black);                                                                                         
+  
 	depth_switch_turn_signal_led(1);
 
 	uint32_t surface_pressure = 101325;
 
-  	/* Infinite loop */
-  	/* USER CODE BEGIN WHILE */
   	while (1)
   	{
 
@@ -234,20 +237,26 @@ int main(void)
 			{
 				depth_switch_action();		    
 
+				//ssd1306_Fill(Black);                                                                                         
   		        ssd1306_SetCursor(0,0);
 		        //sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
 		        sprintf(timestamp, "timestamp");
   		        ssd1306_WriteString(timestamp, Font_11x18, White);
   		        ssd1306_SetCursor(0,22);
-		        sprintf(message, "AVAR GL %02dm", (int)depth_switch_get_current_depth());
+		        //sprintf(message, "AVAR GL %02dm", (int)depth_switch_get_current_depth());
+		        sprintf(message, "AAAAAAAAAA");
+    //*
   		        ssd1306_WriteString(message, Font_11x18, White);
   		        ssd1306_SetCursor(0,44);
-		        sprintf(message, "akkum %02d%%", (int)accu_percentage);
+		        //sprintf(message, "akkum %02d%%", (int)accu_percentage);
+		        sprintf(message, "akkum");
   		        ssd1306_WriteString(message, Font_11x18, White);
   		        ssd1306_UpdateScreen();                                                                               
+	//*/
 			}
 			else // we are under water
 			{
+    /*
 				// calculate depth
 				double depth = ((double)(P - surface_pressure))/9800.0;
 
@@ -302,33 +311,12 @@ int main(void)
 					while(1);
 				}
 
+	*/
 			}
             
 
 
 
-			/*
-    	    ssd1306_set_i2c_port(&hi2c1);
-  		    ssd1306_SetCursor(0,0);
-		    sprintf(timestamp, "%02x:%02x:%02x %02x", sTime.Hours, sTime.Minutes, sTime.Seconds, sDate.Date);
-  		    ssd1306_WriteString(timestamp, Font_11x18, White);
-  		    ssd1306_SetCursor(0,22);
-		    sprintf(message, "%06d", (int)P);
-  		    ssd1306_WriteString(message, Font_11x18, White);
-  		    ssd1306_SetCursor(81,22);
-		    sprintf(message, "V%03d", (int)accu_voltage);
-  		    ssd1306_WriteString(message, Font_11x18, White);
-  		    ssd1306_SetCursor(0,44);
-		    sprintf(message, "T%04d", (int)actual_temperature);
-  		    ssd1306_WriteString(message, Font_11x18, White);
-  		    ssd1306_SetCursor(81,44);
-		    sprintf(message, "%03d%%", (int)accu_percentage);
-  		    ssd1306_WriteString(message, Font_11x18, White);
-  		    ssd1306_UpdateScreen();              
-			*/
-
-		
-			//HAL_Delay(1000);
 
 		}
 
@@ -336,6 +324,8 @@ int main(void)
 
 
 
+
+#endif
 
 
 

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccFLH43s.s 			page 1
+ARM GAS  /tmp/ccK9MPwZ.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccFLH43s.s 			page 1
   31:Src/main.c    ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
   32:Src/main.c    ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
   33:Src/main.c    ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-ARM GAS  /tmp/ccFLH43s.s 			page 2
+ARM GAS  /tmp/ccK9MPwZ.s 			page 2
 
 
   34:Src/main.c    ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
@@ -69,68 +69,69 @@ ARM GAS  /tmp/ccFLH43s.s 			page 1
   39:Src/main.c    **** /* Includes ------------------------------------------------------------------*/
   40:Src/main.c    **** #include "main.h"
   41:Src/main.c    **** #include "string.h"
-  42:Src/main.c    **** #include "stm32l0xx_hal.h"
-  43:Src/main.c    **** #include "adc.h"
-  44:Src/main.c    **** #include "i2c.h"
-  45:Src/main.c    **** #include "spi.h"
-  46:Src/main.c    **** #include "tim.h"
-  47:Src/main.c    **** #include "usart.h"
-  48:Src/main.c    **** #include "gpio.h"
-  49:Src/main.c    **** 
-  50:Src/main.c    **** #include "ssd1306.h"
-  51:Src/main.c    **** 
-  52:Src/main.c    **** #include "one_second_timer_interface.h"
-  53:Src/main.c    **** #include "pressure_sensor_object.h"
-  54:Src/main.c    **** #include "voltmeter_object.h"
-  55:Src/main.c    **** #include "depth_switch_interface.h"
-  56:Src/main.c    **** #include "rtc_ds3231_interface.h"
-  57:Src/main.c    **** #include "at24c32_interface.h"
-  58:Src/main.c    **** #include "atm_barometer_interface.h"
-  59:Src/main.c    **** #include "dive_meter_interface.h"
-  60:Src/main.c    **** 
+  42:Src/main.c    **** #include "stdio.h"
+  43:Src/main.c    **** #include "stm32l0xx_hal.h"
+  44:Src/main.c    **** #include "adc.h"
+  45:Src/main.c    **** #include "i2c.h"
+  46:Src/main.c    **** #include "spi.h"
+  47:Src/main.c    **** #include "tim.h"
+  48:Src/main.c    **** #include "usart.h"
+  49:Src/main.c    **** #include "gpio.h"
+  50:Src/main.c    **** 
+  51:Src/main.c    **** #include "ssd1306.h"
+  52:Src/main.c    **** 
+  53:Src/main.c    **** #include "one_second_timer_interface.h"
+  54:Src/main.c    **** #include "pressure_sensor_object.h"
+  55:Src/main.c    **** #include "voltmeter_object.h"
+  56:Src/main.c    **** #include "depth_switch_interface.h"
+  57:Src/main.c    **** #include "rtc_ds3231_interface.h"
+  58:Src/main.c    **** #include "at24c32_interface.h"
+  59:Src/main.c    **** #include "atm_barometer_interface.h"
+  60:Src/main.c    **** #include "dive_meter_interface.h"
   61:Src/main.c    **** 
   62:Src/main.c    **** 
-  63:Src/main.c    **** /* Private variables ---------------------------------------------------------*/
-  64:Src/main.c    **** 
-  65:Src/main.c    **** /* USER CODE BEGIN PV */
-  66:Src/main.c    **** /* Private variables ---------------------------------------------------------*/
-  67:Src/main.c    **** 
-  68:Src/main.c    **** /* USER CODE END PV */
-  69:Src/main.c    **** 
-  70:Src/main.c    **** /* Private function prototypes -----------------------------------------------*/
-  71:Src/main.c    **** void SystemClock_Config(void);
-  72:Src/main.c    **** 
-  73:Src/main.c    **** uint8_t primitive_delay()
-  74:Src/main.c    **** {
-  26              		.loc 1 74 0
+  63:Src/main.c    **** 
+  64:Src/main.c    **** /* Private variables ---------------------------------------------------------*/
+  65:Src/main.c    **** 
+  66:Src/main.c    **** /* USER CODE BEGIN PV */
+  67:Src/main.c    **** /* Private variables ---------------------------------------------------------*/
+  68:Src/main.c    **** 
+  69:Src/main.c    **** /* USER CODE END PV */
+  70:Src/main.c    **** 
+  71:Src/main.c    **** /* Private function prototypes -----------------------------------------------*/
+  72:Src/main.c    **** void SystemClock_Config(void);
+  73:Src/main.c    **** 
+  74:Src/main.c    **** uint8_t primitive_delay()
+  75:Src/main.c    **** {
+  26              		.loc 1 75 0
   27              		.cfi_startproc
   28 0000 82B0     		sub	sp, sp, #8
   29              	.LCFI0:
   30              		.cfi_def_cfa_offset 8
-  75:Src/main.c    **** 	uint32_t volatile i;
-  76:Src/main.c    **** 	for(i=0; i<300000; i++);
-  31              		.loc 1 76 0
+  76:Src/main.c    **** 	uint32_t volatile i;
+  77:Src/main.c    **** 	for(i=0; i<300000; i++);
+  31              		.loc 1 77 0
   32 0002 0023     		mov	r3, #0
   33 0004 0193     		str	r3, [sp, #4]
   34 0006 02E0     		b	.L2
   35              	.L3:
-  36              		.loc 1 76 0 is_stmt 0 discriminator 3
+  36              		.loc 1 77 0 is_stmt 0 discriminator 3
   37 0008 019B     		ldr	r3, [sp, #4]
   38 000a 0133     		add	r3, r3, #1
+ARM GAS  /tmp/ccK9MPwZ.s 			page 3
+
+
   39 000c 0193     		str	r3, [sp, #4]
-ARM GAS  /tmp/ccFLH43s.s 			page 3
-
-
   40              	.L2:
-  41              		.loc 1 76 0 discriminator 1
+  41              		.loc 1 77 0 discriminator 1
   42 000e 019A     		ldr	r2, [sp, #4]
   43 0010 024B     		ldr	r3, .L4
   44 0012 9A42     		cmp	r2, r3
   45 0014 F8D9     		bls	.L3
-  77:Src/main.c    **** 
-  78:Src/main.c    **** 	return 0;
-  79:Src/main.c    **** }
-  46              		.loc 1 79 0 is_stmt 1
+  78:Src/main.c    **** 
+  79:Src/main.c    **** 	return 0;
+  80:Src/main.c    **** }
+  46              		.loc 1 80 0 is_stmt 1
   47 0016 0020     		mov	r0, #0
   48 0018 02B0     		add	sp, sp, #8
   49              		@ sp needed
@@ -148,9 +149,8 @@ ARM GAS  /tmp/ccFLH43s.s 			page 1
   62              		.thumb_func
   64              	_Error_Handler:
   65              	.LFB39:
-  80:Src/main.c    **** /* Private function prototypes -----------------------------------------------*/
-  81:Src/main.c    **** 
-  82:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  81:Src/main.c    **** /* Private function prototypes -----------------------------------------------*/
+  82:Src/main.c    **** 
   83:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   84:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   85:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -161,403 +161,394 @@ ARM GAS  /tmp/ccFLH43s.s 			page 1
   90:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   91:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   92:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  93:Src/main.c    **** int main(void)
-  94:Src/main.c    **** {
-  95:Src/main.c    **** 
-  96:Src/main.c    **** 	char message[256];
-  97:Src/main.c    **** 	char timestamp[64];
-  98:Src/main.c    **** 
-  99:Src/main.c    **** 	char gps_message[256];
- 100:Src/main.c    **** 
- 101:Src/main.c    **** 	uint32_t seconds_in_minute = 60;
- 102:Src/main.c    **** 	uint32_t seconds_in_hour = seconds_in_minute * 60;
- 103:Src/main.c    **** 	uint32_t seconds_in_day = seconds_in_hour * 24;
- 104:Src/main.c    **** 	uint32_t rtc_time_counter;
- 105:Src/main.c    **** 
- 106:Src/main.c    **** 	/* Reset of all peripherals, Initializes the Flash interface and the Systick. */
- 107:Src/main.c    ****     HAL_Init();
- 108:Src/main.c    ****                                                                                     
- 109:Src/main.c    ****     /* Configure the system clock */
-ARM GAS  /tmp/ccFLH43s.s 			page 4
+  93:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  94:Src/main.c    **** int main(void)
+  95:Src/main.c    **** {
+  96:Src/main.c    **** 
+  97:Src/main.c    **** 	char message[256];
+  98:Src/main.c    **** 	char timestamp[64];
+  99:Src/main.c    **** 
+ 100:Src/main.c    **** 	char gps_message[256];
+ 101:Src/main.c    **** 
+ 102:Src/main.c    **** 	uint32_t seconds_in_minute = 60;
+ 103:Src/main.c    **** 	uint32_t seconds_in_hour = seconds_in_minute * 60;
+ 104:Src/main.c    **** 	uint32_t seconds_in_day = seconds_in_hour * 24;
+ 105:Src/main.c    **** 	uint32_t rtc_time_counter;
+ 106:Src/main.c    **** 
+ 107:Src/main.c    **** 	/* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+ 108:Src/main.c    ****     HAL_Init();
+ 109:Src/main.c    ****                                                                                     
+ARM GAS  /tmp/ccK9MPwZ.s 			page 4
 
 
- 110:Src/main.c    ****     SystemClock_Config();
- 111:Src/main.c    ****                                                                                     
- 112:Src/main.c    ****     /* Initialize all configured peripherals */
- 113:Src/main.c    ****     MX_GPIO_Init();
- 114:Src/main.c    ****     MX_ADC_Init();
- 115:Src/main.c    ****     MX_I2C1_Init();
- 116:Src/main.c    ****     MX_I2C2_Init();
- 117:Src/main.c    ****     MX_I2C3_Init();
- 118:Src/main.c    ****     MX_SPI1_Init();
- 119:Src/main.c    ****     // enable spi1
- 120:Src/main.c    ****     SPI1->CR1 |= SPI_CR1_SPE;
- 121:Src/main.c    ****     MX_USART1_UART_Init();
- 122:Src/main.c    **** 
- 123:Src/main.c    **** 	//--------init display1------------------------------
- 124:Src/main.c    ****     ssd1306_set_i2c_port(&hi2c1, 1);
- 125:Src/main.c    ****   	ssd1306_Init();
- 126:Src/main.c    ****   	HAL_Delay(100);
- 127:Src/main.c    ****   	ssd1306_Fill(White);
- 128:Src/main.c    ****   	ssd1306_UpdateScreen();
- 129:Src/main.c    ****   	HAL_Delay(100);
- 130:Src/main.c    ****   	ssd1306_Fill(Black);
- 131:Src/main.c    ****   	ssd1306_UpdateScreen();
- 132:Src/main.c    **** 
- 133:Src/main.c    ****   	HAL_Delay(100);
- 134:Src/main.c    **** 
- 135:Src/main.c    ****   	ssd1306_SetCursor(0,0);
- 136:Src/main.c    ****   	ssd1306_WriteString("DiveCmp", Font_16x26, White);
- 137:Src/main.c    ****   	ssd1306_SetCursor(0,30);
- 138:Src/main.c    ****   	ssd1306_WriteString("Start..", Font_16x26, White);
- 139:Src/main.c    ****   	ssd1306_UpdateScreen();
- 140:Src/main.c    **** 
- 141:Src/main.c    **** 	one_second_timer_init();
- 142:Src/main.c    **** 	one_second_timer_start();
- 143:Src/main.c    **** 
- 144:Src/main.c    **** 	pressure_sensor_object_init();
- 145:Src/main.c    **** 	HAL_Delay(1000);
- 146:Src/main.c    **** 
- 147:Src/main.c    **** 	int odd_even = 0;
- 148:Src/main.c    **** 
- 149:Src/main.c    **** 	//while(1)
- 150:Src/main.c    **** 	//{
- 151:Src/main.c    **** 	//	pressure_sensor_measure_pressure_temperature();                                                
- 152:Src/main.c    **** 	//}
- 153:Src/main.c    **** 
+ 110:Src/main.c    ****     /* Configure the system clock */
+ 111:Src/main.c    ****     SystemClock_Config();
+ 112:Src/main.c    ****                                                                                     
+ 113:Src/main.c    ****     /* Initialize all configured peripherals */
+ 114:Src/main.c    ****     MX_GPIO_Init();
+ 115:Src/main.c    ****     MX_ADC_Init();
+ 116:Src/main.c    ****     MX_I2C1_Init();
+ 117:Src/main.c    ****     MX_I2C2_Init();
+ 118:Src/main.c    ****     MX_I2C3_Init();
+ 119:Src/main.c    ****     MX_SPI1_Init();
+ 120:Src/main.c    ****     // enable spi1
+ 121:Src/main.c    ****     SPI1->CR1 |= SPI_CR1_SPE;
+ 122:Src/main.c    ****     MX_USART1_UART_Init();
+ 123:Src/main.c    **** 
+ 124:Src/main.c    **** 	//--------init display1------------------------------
+ 125:Src/main.c    ****     ssd1306_set_i2c_port(&hi2c1, 1);
+ 126:Src/main.c    ****   	ssd1306_Init();
+ 127:Src/main.c    ****   	HAL_Delay(100);
+ 128:Src/main.c    ****   	ssd1306_Fill(White);
+ 129:Src/main.c    ****   	ssd1306_UpdateScreen();
+ 130:Src/main.c    ****   	HAL_Delay(100);
+ 131:Src/main.c    ****   	ssd1306_Fill(Black);
+ 132:Src/main.c    ****   	ssd1306_UpdateScreen();
+ 133:Src/main.c    **** 
+ 134:Src/main.c    ****   	HAL_Delay(100);
+ 135:Src/main.c    **** 
+ 136:Src/main.c    ****   	ssd1306_SetCursor(0,0);
+ 137:Src/main.c    ****   	ssd1306_WriteString("DiveCmp", Font_16x26, White);
+ 138:Src/main.c    ****   	ssd1306_SetCursor(0,30);
+ 139:Src/main.c    ****   	ssd1306_WriteString("Start..", Font_16x26, White);
+ 140:Src/main.c    ****   	ssd1306_UpdateScreen();
+ 141:Src/main.c    **** 
+ 142:Src/main.c    **** 	one_second_timer_init();
+ 143:Src/main.c    **** 	one_second_timer_start();
+ 144:Src/main.c    **** 
+ 145:Src/main.c    **** 	pressure_sensor_object_init();
+ 146:Src/main.c    **** 	HAL_Delay(1000);
+ 147:Src/main.c    **** 
+ 148:Src/main.c    **** 	int odd_even = 0;
+ 149:Src/main.c    **** 
+ 150:Src/main.c    **** 	//while(1)
+ 151:Src/main.c    **** 	//{
+ 152:Src/main.c    **** 	//	pressure_sensor_measure_pressure_temperature();                                                
+ 153:Src/main.c    **** 	//}
  154:Src/main.c    **** 
- 155:Src/main.c    **** 
- 156:Src/main.c    **** 	//************************   MAIN LOOP   *********************************
- 157:Src/main.c    **** 
- 158:Src/main.c    **** #ifdef DEBUG
- 159:Src/main.c    **** 
- 160:Src/main.c    **** 	while(1)                                                     	    
- 161:Src/main.c    **** 	{   
- 162:Src/main.c    **** 
- 163:Src/main.c    **** 		// debug
- 164:Src/main.c    **** 		/*
- 165:Src/main.c    **** 	    HAL_GPIO_TogglePin(led0_GPIO_Port, led3_Pin); //           	    
- 166:Src/main.c    **** 	    //HAL_Delay(500);                                          	    
-ARM GAS  /tmp/ccFLH43s.s 			page 5
+ 155:Src/main.c    **** //#define DEBUG
+ 156:Src/main.c    **** 
+ 157:Src/main.c    **** 	//************************   MAIN LOOP   *********************************
+ 158:Src/main.c    **** 
+ 159:Src/main.c    **** #ifdef DEBUG
+ 160:Src/main.c    **** 
+ 161:Src/main.c    **** 	while(1)                                                     	    
+ 162:Src/main.c    **** 	{   
+ 163:Src/main.c    **** 
+ 164:Src/main.c    **** 		// debug
+ 165:Src/main.c    **** 		/*
+ 166:Src/main.c    **** 	    HAL_GPIO_TogglePin(led0_GPIO_Port, led3_Pin); //           	    
+ARM GAS  /tmp/ccK9MPwZ.s 			page 5
 
 
- 167:Src/main.c    **** 		primitive_delay();                                       		
- 168:Src/main.c    **** 	    HAL_GPIO_TogglePin(led0_GPIO_Port, led3_Pin); //           	    
- 169:Src/main.c    **** 	    //HAL_Delay(500);                                          	    
- 170:Src/main.c    **** 		primitive_delay();                                       		
- 171:Src/main.c    **** 		*/
- 172:Src/main.c    **** 
+ 167:Src/main.c    **** 	    //HAL_Delay(500);                                          	    
+ 168:Src/main.c    **** 		primitive_delay();                                       		
+ 169:Src/main.c    **** 	    HAL_GPIO_TogglePin(led0_GPIO_Port, led3_Pin); //           	    
+ 170:Src/main.c    **** 	    //HAL_Delay(500);                                          	    
+ 171:Src/main.c    **** 		primitive_delay();                                       		
+ 172:Src/main.c    **** 		*/
  173:Src/main.c    **** 
- 174:Src/main.c    **** 		if(one_second_timer_get_flag())
- 175:Src/main.c    **** 		{
- 176:Src/main.c    **** 			one_second_timer_reset_flag();
- 177:Src/main.c    **** 			odd_even = (odd_even+1)%2;
- 178:Src/main.c    **** 
- 179:Src/main.c    **** 			pressure_sensor_measure_pressure_temperature();                                                 
- 180:Src/main.c    **** 		    double P = pressure_sensor_get_pressure();
- 181:Src/main.c    **** 		    double actual_temperature = pressure_sensor_get_temperature();
- 182:Src/main.c    **** 
- 183:Src/main.c    **** 			// debug
- 184:Src/main.c    **** 			//*
- 185:Src/main.c    **** 			ssd1306_Fill(Black);                                                                            
- 186:Src/main.c    ****   		    ssd1306_SetCursor(3,30);
- 187:Src/main.c    **** 			if(odd_even)
- 188:Src/main.c    **** 		        sprintf(message, "P%05d:T%03d" , (int)(P/10), (int)(actual_temperature/10));
- 189:Src/main.c    **** 			else
- 190:Src/main.c    **** 		        sprintf(message, "P%05d T%03d" , (int)(P/10), (int)(actual_temperature/10));
- 191:Src/main.c    ****   		    ssd1306_WriteString(message, Font_11x18, White);
+ 174:Src/main.c    **** 
+ 175:Src/main.c    **** 		if(one_second_timer_get_flag())
+ 176:Src/main.c    **** 		{
+ 177:Src/main.c    **** 			one_second_timer_reset_flag();
+ 178:Src/main.c    **** 			odd_even = (odd_even+1)%2;
+ 179:Src/main.c    **** 
+ 180:Src/main.c    **** 			pressure_sensor_measure_pressure_temperature();                                                 
+ 181:Src/main.c    **** 		    double P = pressure_sensor_get_pressure();
+ 182:Src/main.c    **** 		    double actual_temperature = pressure_sensor_get_temperature();
+ 183:Src/main.c    **** 
+ 184:Src/main.c    **** 			// debug
+ 185:Src/main.c    **** 			//*
+ 186:Src/main.c    **** 			ssd1306_Fill(Black);                                                                            
+ 187:Src/main.c    ****   		    ssd1306_SetCursor(3,30);
+ 188:Src/main.c    **** 			if(odd_even)
+ 189:Src/main.c    **** 		        sprintf(message, "P%05d:T%03d" , (int)(P/10), (int)(actual_temperature/10));
+ 190:Src/main.c    **** 			else
+ 191:Src/main.c    **** 		        sprintf(message, "P%05d T%03d" , (int)(P/10), (int)(actual_temperature/10));
  192:Src/main.c    ****   		    ssd1306_WriteString(message, Font_11x18, White);
- 193:Src/main.c    ****   		    ssd1306_UpdateScreen();                                                                    
- 194:Src/main.c    **** 			//*/
- 195:Src/main.c    **** 
- 196:Src/main.c    **** 		}
- 197:Src/main.c    **** 
- 198:Src/main.c    **** 	}       
- 199:Src/main.c    **** 
- 200:Src/main.c    **** #endif
- 201:Src/main.c    **** 
+ 193:Src/main.c    ****   		    ssd1306_WriteString(message, Font_11x18, White);
+ 194:Src/main.c    ****   		    ssd1306_UpdateScreen();                                                                    
+ 195:Src/main.c    **** 			//*/
+ 196:Src/main.c    **** 
+ 197:Src/main.c    **** 		}
+ 198:Src/main.c    **** 
+ 199:Src/main.c    **** 	}       
+ 200:Src/main.c    **** 
+ 201:Src/main.c    **** #endif
  202:Src/main.c    **** 
- 203:Src/main.c    **** 	depth_switch_turn_signal_led(1);
+ 203:Src/main.c    **** 
  204:Src/main.c    **** 
- 205:Src/main.c    **** 	uint32_t surface_pressure = 101325;
+ 205:Src/main.c    **** #ifndef DEBUG
  206:Src/main.c    **** 
- 207:Src/main.c    ****   	/* Infinite loop */
- 208:Src/main.c    ****   	/* USER CODE BEGIN WHILE */
- 209:Src/main.c    ****   	while (1)
- 210:Src/main.c    ****   	{
- 211:Src/main.c    **** 
- 212:Src/main.c    **** 		if(one_second_timer_get_flag())
- 213:Src/main.c    **** 		{
- 214:Src/main.c    **** 			one_second_timer_reset_flag();
- 215:Src/main.c    ****   	
- 216:Src/main.c    **** 			pressure_sensor_measure_pressure_temperature();                                                 
- 217:Src/main.c    **** 		    double P = pressure_sensor_get_pressure();
- 218:Src/main.c    **** 		    double actual_temperature = pressure_sensor_get_temperature();
- 219:Src/main.c    ****                                                                                                    
- 220:Src/main.c    **** 		    voltmeter_measure_voltage();
- 221:Src/main.c    **** 		    double accu_voltage = voltmeter_get_voltage();
- 222:Src/main.c    **** 		    double accu_percentage = voltmeter_get_percentage();
- 223:Src/main.c    **** 	                                                                                                  
-ARM GAS  /tmp/ccFLH43s.s 			page 6
+ 207:Src/main.c    **** 	ssd1306_Fill(Black);                                                                              
+ 208:Src/main.c    ****   
+ 209:Src/main.c    **** 	depth_switch_turn_signal_led(1);
+ 210:Src/main.c    **** 
+ 211:Src/main.c    **** 	uint32_t surface_pressure = 101325;
+ 212:Src/main.c    **** 
+ 213:Src/main.c    ****   	while (1)
+ 214:Src/main.c    ****   	{
+ 215:Src/main.c    **** 
+ 216:Src/main.c    **** 		if(one_second_timer_get_flag())
+ 217:Src/main.c    **** 		{
+ 218:Src/main.c    **** 			one_second_timer_reset_flag();
+ 219:Src/main.c    ****   	
+ 220:Src/main.c    **** 			pressure_sensor_measure_pressure_temperature();                                                 
+ 221:Src/main.c    **** 		    double P = pressure_sensor_get_pressure();
+ 222:Src/main.c    **** 		    double actual_temperature = pressure_sensor_get_temperature();
+ 223:Src/main.c    ****                                                                                                    
+ARM GAS  /tmp/ccK9MPwZ.s 			page 6
 
 
- 224:Src/main.c    ****             
- 225:Src/main.c    **** 			if(P <= surface_pressure)
- 226:Src/main.c    **** 				surface_pressure = P;
- 227:Src/main.c    **** 
- 228:Src/main.c    **** 			int we_are_under_water = 0;
- 229:Src/main.c    **** 
- 230:Src/main.c    **** 			if(P > (surface_pressure + 9800)) // underwater
- 231:Src/main.c    **** 				we_are_under_water = 1;
- 232:Src/main.c    **** 
- 233:Src/main.c    **** 			if(!we_are_under_water)  // we are not under water
- 234:Src/main.c    **** 			{
- 235:Src/main.c    **** 				depth_switch_action();		    
+ 224:Src/main.c    **** 		    voltmeter_measure_voltage();
+ 225:Src/main.c    **** 		    double accu_voltage = voltmeter_get_voltage();
+ 226:Src/main.c    **** 		    double accu_percentage = voltmeter_get_percentage();
+ 227:Src/main.c    **** 	                                                                                                  
+ 228:Src/main.c    ****             
+ 229:Src/main.c    **** 			if(P <= surface_pressure)
+ 230:Src/main.c    **** 				surface_pressure = P;
+ 231:Src/main.c    **** 
+ 232:Src/main.c    **** 			int we_are_under_water = 0;
+ 233:Src/main.c    **** 
+ 234:Src/main.c    **** 			if(P > (surface_pressure + 9800)) // underwater
+ 235:Src/main.c    **** 				we_are_under_water = 1;
  236:Src/main.c    **** 
- 237:Src/main.c    ****   		        ssd1306_SetCursor(0,0);
- 238:Src/main.c    **** 		        //sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
- 239:Src/main.c    **** 		        sprintf(timestamp, "timestamp");
- 240:Src/main.c    ****   		        ssd1306_WriteString(timestamp, Font_11x18, White);
- 241:Src/main.c    ****   		        ssd1306_SetCursor(0,22);
- 242:Src/main.c    **** 		        sprintf(message, "AVAR GL %02dm", (int)depth_switch_get_current_depth());
- 243:Src/main.c    ****   		        ssd1306_WriteString(message, Font_11x18, White);
- 244:Src/main.c    ****   		        ssd1306_SetCursor(0,44);
- 245:Src/main.c    **** 		        sprintf(message, "akkum %02d%%", (int)accu_percentage);
- 246:Src/main.c    ****   		        ssd1306_WriteString(message, Font_11x18, White);
- 247:Src/main.c    ****   		        ssd1306_UpdateScreen();                                                                
- 248:Src/main.c    **** 			}
- 249:Src/main.c    **** 			else // we are under water
- 250:Src/main.c    **** 			{
- 251:Src/main.c    **** 				// calculate depth
- 252:Src/main.c    **** 				double depth = ((double)(P - surface_pressure))/9800.0;
- 253:Src/main.c    **** 
- 254:Src/main.c    **** 
- 255:Src/main.c    ****   		        ssd1306_SetCursor(0,0);
- 256:Src/main.c    **** 		        //sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
- 257:Src/main.c    **** 		        sprintf(timestamp, "timestamp");
- 258:Src/main.c    ****   		        ssd1306_WriteString(timestamp, Font_11x18, White);
- 259:Src/main.c    ****   		        ssd1306_SetCursor(0,22);
- 260:Src/main.c    **** 		        sprintf(message, "glubina %02dm", (int)depth);
- 261:Src/main.c    ****   		        ssd1306_WriteString(message, Font_11x18, White);
- 262:Src/main.c    ****   		        ssd1306_SetCursor(0,44);
- 263:Src/main.c    **** 		        sprintf(message, "akkum %02d%%", (int)accu_percentage);
- 264:Src/main.c    ****   		        ssd1306_WriteString(message, Font_11x18, White);
- 265:Src/main.c    ****   		        ssd1306_UpdateScreen();                                                                
- 266:Src/main.c    **** 
- 267:Src/main.c    **** 
- 268:Src/main.c    **** 
- 269:Src/main.c    **** 
- 270:Src/main.c    **** 				if(depth > depth_switch_get_current_depth())
- 271:Src/main.c    **** 				{
- 272:Src/main.c    **** 					// switch on actuators
- 273:Src/main.c    ****   					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11 | GPIO_PIN_12, GPIO_PIN_SET);// turn actuators on
- 274:Src/main.c    **** 
- 275:Src/main.c    **** 					// switch on signal leds
- 276:Src/main.c    ****   					HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3, GPIO_PIN_SET);//
+ 237:Src/main.c    **** 			if(!we_are_under_water)  // we are not under water
+ 238:Src/main.c    **** 			{
+ 239:Src/main.c    **** 				depth_switch_action();		    
+ 240:Src/main.c    **** 
+ 241:Src/main.c    **** 				//ssd1306_Fill(Black);                                                                         
+ 242:Src/main.c    ****   		        ssd1306_SetCursor(0,0);
+ 243:Src/main.c    **** 		        //sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
+ 244:Src/main.c    **** 		        sprintf(timestamp, "timestamp");
+ 245:Src/main.c    ****   		        ssd1306_WriteString(timestamp, Font_11x18, White);
+ 246:Src/main.c    ****   		        ssd1306_SetCursor(0,22);
+ 247:Src/main.c    **** 		        //sprintf(message, "AVAR GL %02dm", (int)depth_switch_get_current_depth());
+ 248:Src/main.c    **** 		        sprintf(message, "AAAAAAAAAA");
+ 249:Src/main.c    ****     //*
+ 250:Src/main.c    ****   		        ssd1306_WriteString(message, Font_11x18, White);
+ 251:Src/main.c    ****   		        ssd1306_SetCursor(0,44);
+ 252:Src/main.c    **** 		        //sprintf(message, "akkum %02d%%", (int)accu_percentage);
+ 253:Src/main.c    **** 		        sprintf(message, "akkum");
+ 254:Src/main.c    ****   		        ssd1306_WriteString(message, Font_11x18, White);
+ 255:Src/main.c    ****   		        ssd1306_UpdateScreen();                                                                
+ 256:Src/main.c    **** 	//*/
+ 257:Src/main.c    **** 			}
+ 258:Src/main.c    **** 			else // we are under water
+ 259:Src/main.c    **** 			{
+ 260:Src/main.c    ****     /*
+ 261:Src/main.c    **** 				// calculate depth
+ 262:Src/main.c    **** 				double depth = ((double)(P - surface_pressure))/9800.0;
+ 263:Src/main.c    **** 
+ 264:Src/main.c    **** 
+ 265:Src/main.c    ****   		        ssd1306_SetCursor(0,0);
+ 266:Src/main.c    **** 		        //sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
+ 267:Src/main.c    **** 		        sprintf(timestamp, "timestamp");
+ 268:Src/main.c    ****   		        ssd1306_WriteString(timestamp, Font_11x18, White);
+ 269:Src/main.c    ****   		        ssd1306_SetCursor(0,22);
+ 270:Src/main.c    **** 		        sprintf(message, "glubina %02dm", (int)depth);
+ 271:Src/main.c    ****   		        ssd1306_WriteString(message, Font_11x18, White);
+ 272:Src/main.c    ****   		        ssd1306_SetCursor(0,44);
+ 273:Src/main.c    **** 		        sprintf(message, "akkum %02d%%", (int)accu_percentage);
+ 274:Src/main.c    ****   		        ssd1306_WriteString(message, Font_11x18, White);
+ 275:Src/main.c    ****   		        ssd1306_UpdateScreen();                                                                
+ 276:Src/main.c    **** 
  277:Src/main.c    **** 
  278:Src/main.c    **** 
- 279:Src/main.c    **** 					// save info about activation conditions (time, depth, etc)
- 280:Src/main.c    **** 					ssd1306_Fill(Black);
-ARM GAS  /tmp/ccFLH43s.s 			page 7
+ 279:Src/main.c    **** 
+ 280:Src/main.c    **** 				if(depth > depth_switch_get_current_depth())
+ARM GAS  /tmp/ccK9MPwZ.s 			page 7
 
 
- 281:Src/main.c    ****   		        	ssd1306_SetCursor(0,0);
- 282:Src/main.c    **** 		        	//sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
- 283:Src/main.c    **** 		        	sprintf(timestamp, "timestamp");
- 284:Src/main.c    ****   		        	ssd1306_WriteString(timestamp, Font_11x18, White);
- 285:Src/main.c    ****   		        	ssd1306_SetCursor(0,22);
- 286:Src/main.c    **** 		        	sprintf(message, ">>>>> %02dm", (int)depth);
- 287:Src/main.c    ****   		        	ssd1306_WriteString(message, Font_11x18, White);
- 288:Src/main.c    ****   		        	ssd1306_SetCursor(0,44);
- 289:Src/main.c    **** 		        	sprintf(message, "activated!!!");
- 290:Src/main.c    ****   		        	ssd1306_WriteString(message, Font_11x18, White);
- 291:Src/main.c    ****   		        	ssd1306_UpdateScreen();                                                               
- 292:Src/main.c    **** 
- 293:Src/main.c    **** 
- 294:Src/main.c    **** 					// pause 21 sec
- 295:Src/main.c    **** 					HAL_Delay(21000);
- 296:Src/main.c    **** 
- 297:Src/main.c    **** 
- 298:Src/main.c    **** 					// switch off actuators
- 299:Src/main.c    ****   					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11 | GPIO_PIN_12, GPIO_PIN_RESET);// turn actuators off
- 300:Src/main.c    **** 
- 301:Src/main.c    **** 					// stop
- 302:Src/main.c    **** 					while(1);
- 303:Src/main.c    **** 				}
- 304:Src/main.c    **** 
- 305:Src/main.c    **** 			}
- 306:Src/main.c    ****             
+ 281:Src/main.c    **** 				{
+ 282:Src/main.c    **** 					// switch on actuators
+ 283:Src/main.c    ****   					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11 | GPIO_PIN_12, GPIO_PIN_SET);// turn actuators on
+ 284:Src/main.c    **** 
+ 285:Src/main.c    **** 					// switch on signal leds
+ 286:Src/main.c    ****   					HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3, GPIO_PIN_SET);//
+ 287:Src/main.c    **** 
+ 288:Src/main.c    **** 
+ 289:Src/main.c    **** 					// save info about activation conditions (time, depth, etc)
+ 290:Src/main.c    **** 					ssd1306_Fill(Black);
+ 291:Src/main.c    ****   		        	ssd1306_SetCursor(0,0);
+ 292:Src/main.c    **** 		        	//sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
+ 293:Src/main.c    **** 		        	sprintf(timestamp, "timestamp");
+ 294:Src/main.c    ****   		        	ssd1306_WriteString(timestamp, Font_11x18, White);
+ 295:Src/main.c    ****   		        	ssd1306_SetCursor(0,22);
+ 296:Src/main.c    **** 		        	sprintf(message, ">>>>> %02dm", (int)depth);
+ 297:Src/main.c    ****   		        	ssd1306_WriteString(message, Font_11x18, White);
+ 298:Src/main.c    ****   		        	ssd1306_SetCursor(0,44);
+ 299:Src/main.c    **** 		        	sprintf(message, "activated!!!");
+ 300:Src/main.c    ****   		        	ssd1306_WriteString(message, Font_11x18, White);
+ 301:Src/main.c    ****   		        	ssd1306_UpdateScreen();                                                               
+ 302:Src/main.c    **** 
+ 303:Src/main.c    **** 
+ 304:Src/main.c    **** 					// pause 21 sec
+ 305:Src/main.c    **** 					HAL_Delay(21000);
+ 306:Src/main.c    **** 
  307:Src/main.c    **** 
- 308:Src/main.c    **** 
- 309:Src/main.c    **** 
- 310:Src/main.c    **** 			/*
- 311:Src/main.c    ****     	    ssd1306_set_i2c_port(&hi2c1);
- 312:Src/main.c    ****   		    ssd1306_SetCursor(0,0);
- 313:Src/main.c    **** 		    sprintf(timestamp, "%02x:%02x:%02x %02x", sTime.Hours, sTime.Minutes, sTime.Seconds, sDate.Da
- 314:Src/main.c    ****   		    ssd1306_WriteString(timestamp, Font_11x18, White);
- 315:Src/main.c    ****   		    ssd1306_SetCursor(0,22);
- 316:Src/main.c    **** 		    sprintf(message, "%06d", (int)P);
- 317:Src/main.c    ****   		    ssd1306_WriteString(message, Font_11x18, White);
- 318:Src/main.c    ****   		    ssd1306_SetCursor(81,22);
- 319:Src/main.c    **** 		    sprintf(message, "V%03d", (int)accu_voltage);
- 320:Src/main.c    ****   		    ssd1306_WriteString(message, Font_11x18, White);
- 321:Src/main.c    ****   		    ssd1306_SetCursor(0,44);
- 322:Src/main.c    **** 		    sprintf(message, "T%04d", (int)actual_temperature);
- 323:Src/main.c    ****   		    ssd1306_WriteString(message, Font_11x18, White);
- 324:Src/main.c    ****   		    ssd1306_SetCursor(81,44);
- 325:Src/main.c    **** 		    sprintf(message, "%03d%%", (int)accu_percentage);
- 326:Src/main.c    ****   		    ssd1306_WriteString(message, Font_11x18, White);
- 327:Src/main.c    ****   		    ssd1306_UpdateScreen();              
- 328:Src/main.c    **** 			*/
- 329:Src/main.c    **** 
- 330:Src/main.c    **** 		
- 331:Src/main.c    **** 			//HAL_Delay(1000);
+ 308:Src/main.c    **** 					// switch off actuators
+ 309:Src/main.c    ****   					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11 | GPIO_PIN_12, GPIO_PIN_RESET);// turn actuators off
+ 310:Src/main.c    **** 
+ 311:Src/main.c    **** 					// stop
+ 312:Src/main.c    **** 					while(1);
+ 313:Src/main.c    **** 				}
+ 314:Src/main.c    **** 
+ 315:Src/main.c    **** 	*/
+ 316:Src/main.c    **** 			}
+ 317:Src/main.c    ****             
+ 318:Src/main.c    **** 
+ 319:Src/main.c    **** 
+ 320:Src/main.c    **** 
+ 321:Src/main.c    **** 
+ 322:Src/main.c    **** 		}
+ 323:Src/main.c    **** 
+ 324:Src/main.c    ****   	}// end while(1)
+ 325:Src/main.c    **** 
+ 326:Src/main.c    **** 
+ 327:Src/main.c    **** 
+ 328:Src/main.c    **** 
+ 329:Src/main.c    **** #endif
+ 330:Src/main.c    **** 
+ 331:Src/main.c    **** 
  332:Src/main.c    **** 
- 333:Src/main.c    **** 		}
+ 333:Src/main.c    **** 
  334:Src/main.c    **** 
- 335:Src/main.c    ****   	}// end while(1)
+ 335:Src/main.c    **** 
  336:Src/main.c    **** 
- 337:Src/main.c    **** 
-ARM GAS  /tmp/ccFLH43s.s 			page 8
+ 337:Src/main.c    **** }
+ARM GAS  /tmp/ccK9MPwZ.s 			page 8
 
 
- 338:Src/main.c    **** 
- 339:Src/main.c    **** 
- 340:Src/main.c    **** 
- 341:Src/main.c    **** 
- 342:Src/main.c    **** 
- 343:Src/main.c    **** 
- 344:Src/main.c    **** 
- 345:Src/main.c    **** 
- 346:Src/main.c    **** }
+ 338:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 339:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 340:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 341:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 342:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 343:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 344:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 345:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 346:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  347:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  348:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 349:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 350:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 351:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 352:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 353:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 354:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 355:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 356:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 357:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 358:Src/main.c    **** 
- 359:Src/main.c    **** /**
- 360:Src/main.c    ****   * @brief System Clock Configuration
- 361:Src/main.c    ****   * @retval None
- 362:Src/main.c    ****   */
- 363:Src/main.c    **** void SystemClock_Config(void)
- 364:Src/main.c    **** {
- 365:Src/main.c    **** 
- 366:Src/main.c    ****   RCC_OscInitTypeDef RCC_OscInitStruct;
- 367:Src/main.c    ****   RCC_ClkInitTypeDef RCC_ClkInitStruct;
- 368:Src/main.c    ****   RCC_PeriphCLKInitTypeDef PeriphClkInit;
- 369:Src/main.c    **** 
- 370:Src/main.c    ****     /**Configure the main internal regulator output voltage 
- 371:Src/main.c    ****     */
- 372:Src/main.c    ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
- 373:Src/main.c    **** 
- 374:Src/main.c    ****     /**Initializes the CPU, AHB and APB busses clocks 
- 375:Src/main.c    ****     */
- 376:Src/main.c    ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
- 377:Src/main.c    ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
- 378:Src/main.c    ****   RCC_OscInitStruct.HSICalibrationValue = 16;
- 379:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
- 380:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
- 381:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLLMUL_3;
- 382:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLDIV = RCC_PLLDIV_3;
- 383:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
- 384:Src/main.c    ****   {
- 385:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
- 386:Src/main.c    ****   }
+ 349:Src/main.c    **** 
+ 350:Src/main.c    **** /**
+ 351:Src/main.c    ****   * @brief System Clock Configuration
+ 352:Src/main.c    ****   * @retval None
+ 353:Src/main.c    ****   */
+ 354:Src/main.c    **** void SystemClock_Config(void)
+ 355:Src/main.c    **** {
+ 356:Src/main.c    **** 
+ 357:Src/main.c    ****   RCC_OscInitTypeDef RCC_OscInitStruct;
+ 358:Src/main.c    ****   RCC_ClkInitTypeDef RCC_ClkInitStruct;
+ 359:Src/main.c    ****   RCC_PeriphCLKInitTypeDef PeriphClkInit;
+ 360:Src/main.c    **** 
+ 361:Src/main.c    ****     /**Configure the main internal regulator output voltage 
+ 362:Src/main.c    ****     */
+ 363:Src/main.c    ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+ 364:Src/main.c    **** 
+ 365:Src/main.c    ****     /**Initializes the CPU, AHB and APB busses clocks 
+ 366:Src/main.c    ****     */
+ 367:Src/main.c    ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+ 368:Src/main.c    ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+ 369:Src/main.c    ****   RCC_OscInitStruct.HSICalibrationValue = 16;
+ 370:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+ 371:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+ 372:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLLMUL_3;
+ 373:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLDIV = RCC_PLLDIV_3;
+ 374:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 375:Src/main.c    ****   {
+ 376:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
+ 377:Src/main.c    ****   }
+ 378:Src/main.c    **** 
+ 379:Src/main.c    ****     /**Initializes the CPU, AHB and APB busses clocks 
+ 380:Src/main.c    ****     */
+ 381:Src/main.c    ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+ 382:Src/main.c    ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+ 383:Src/main.c    ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+ 384:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV8;
+ 385:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+ 386:Src/main.c    ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
  387:Src/main.c    **** 
- 388:Src/main.c    ****     /**Initializes the CPU, AHB and APB busses clocks 
- 389:Src/main.c    ****     */
- 390:Src/main.c    ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
- 391:Src/main.c    ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
- 392:Src/main.c    ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
- 393:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV8;
- 394:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
-ARM GAS  /tmp/ccFLH43s.s 			page 9
+ 388:Src/main.c    ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
+ 389:Src/main.c    ****   {
+ 390:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
+ 391:Src/main.c    ****   }
+ 392:Src/main.c    **** 
+ 393:Src/main.c    ****   PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART1|RCC_PERIPHCLK_I2C1
+ 394:Src/main.c    ****                               |RCC_PERIPHCLK_I2C3;
+ARM GAS  /tmp/ccK9MPwZ.s 			page 9
 
 
- 395:Src/main.c    ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
- 396:Src/main.c    **** 
- 397:Src/main.c    ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
- 398:Src/main.c    ****   {
- 399:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
- 400:Src/main.c    ****   }
- 401:Src/main.c    **** 
- 402:Src/main.c    ****   PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART1|RCC_PERIPHCLK_I2C1
- 403:Src/main.c    ****                               |RCC_PERIPHCLK_I2C3;
- 404:Src/main.c    ****   PeriphClkInit.Usart1ClockSelection = RCC_USART1CLKSOURCE_PCLK2;
- 405:Src/main.c    ****   PeriphClkInit.I2c1ClockSelection = RCC_I2C1CLKSOURCE_PCLK1;
- 406:Src/main.c    ****   PeriphClkInit.I2c3ClockSelection = RCC_I2C3CLKSOURCE_PCLK1;
- 407:Src/main.c    ****   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
- 408:Src/main.c    ****   {
- 409:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
- 410:Src/main.c    ****   }
- 411:Src/main.c    **** 
- 412:Src/main.c    ****     /**Configure the Systick interrupt time 
- 413:Src/main.c    ****     */
- 414:Src/main.c    ****   HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
- 415:Src/main.c    **** 
- 416:Src/main.c    ****     /**Configure the Systick 
- 417:Src/main.c    ****     */
- 418:Src/main.c    ****   HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
- 419:Src/main.c    **** 
- 420:Src/main.c    ****   /* SysTick_IRQn interrupt configuration */
- 421:Src/main.c    ****   HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
- 422:Src/main.c    **** }
- 423:Src/main.c    **** 
- 424:Src/main.c    **** /* USER CODE BEGIN 4 */
- 425:Src/main.c    **** 
- 426:Src/main.c    **** /* USER CODE END 4 */
- 427:Src/main.c    **** 
- 428:Src/main.c    **** /**
- 429:Src/main.c    ****   * @brief  This function is executed in case of error occurrence.
- 430:Src/main.c    ****   * @param  file: The file name as string.
- 431:Src/main.c    ****   * @param  line: The line in file as a number.
- 432:Src/main.c    ****   * @retval None
- 433:Src/main.c    ****   */
- 434:Src/main.c    **** void _Error_Handler(char *file, int line)
- 435:Src/main.c    **** {
-  66              		.loc 1 435 0
+ 395:Src/main.c    ****   PeriphClkInit.Usart1ClockSelection = RCC_USART1CLKSOURCE_PCLK2;
+ 396:Src/main.c    ****   PeriphClkInit.I2c1ClockSelection = RCC_I2C1CLKSOURCE_PCLK1;
+ 397:Src/main.c    ****   PeriphClkInit.I2c3ClockSelection = RCC_I2C3CLKSOURCE_PCLK1;
+ 398:Src/main.c    ****   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
+ 399:Src/main.c    ****   {
+ 400:Src/main.c    ****     _Error_Handler(__FILE__, __LINE__);
+ 401:Src/main.c    ****   }
+ 402:Src/main.c    **** 
+ 403:Src/main.c    ****     /**Configure the Systick interrupt time 
+ 404:Src/main.c    ****     */
+ 405:Src/main.c    ****   HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
+ 406:Src/main.c    **** 
+ 407:Src/main.c    ****     /**Configure the Systick 
+ 408:Src/main.c    ****     */
+ 409:Src/main.c    ****   HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
+ 410:Src/main.c    **** 
+ 411:Src/main.c    ****   /* SysTick_IRQn interrupt configuration */
+ 412:Src/main.c    ****   HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
+ 413:Src/main.c    **** }
+ 414:Src/main.c    **** 
+ 415:Src/main.c    **** /* USER CODE BEGIN 4 */
+ 416:Src/main.c    **** 
+ 417:Src/main.c    **** /* USER CODE END 4 */
+ 418:Src/main.c    **** 
+ 419:Src/main.c    **** /**
+ 420:Src/main.c    ****   * @brief  This function is executed in case of error occurrence.
+ 421:Src/main.c    ****   * @param  file: The file name as string.
+ 422:Src/main.c    ****   * @param  line: The line in file as a number.
+ 423:Src/main.c    ****   * @retval None
+ 424:Src/main.c    ****   */
+ 425:Src/main.c    **** void _Error_Handler(char *file, int line)
+ 426:Src/main.c    **** {
+  66              		.loc 1 426 0
   67              		.cfi_startproc
   68              	.LVL0:
   69              	.L7:
- 436:Src/main.c    ****   /* USER CODE BEGIN Error_Handler_Debug */
- 437:Src/main.c    ****   /* User can add his own implementation to report the HAL error return state */
- 438:Src/main.c    ****   while(1)
- 439:Src/main.c    ****   {
- 440:Src/main.c    ****   }
-  70              		.loc 1 440 0 discriminator 1
+ 427:Src/main.c    ****   /* USER CODE BEGIN Error_Handler_Debug */
+ 428:Src/main.c    ****   /* User can add his own implementation to report the HAL error return state */
+ 429:Src/main.c    ****   while(1)
+ 430:Src/main.c    ****   {
+ 431:Src/main.c    ****   }
+  70              		.loc 1 431 0 discriminator 1
   71 0000 FEE7     		b	.L7
   72              		.cfi_endproc
   73              	.LFE39:
   75              		.global	__aeabi_uidiv
   76 0002 C046     		.section	.text.SystemClock_Config,"ax",%progbits
   77              		.align	2
-ARM GAS  /tmp/ccFLH43s.s 			page 10
-
-
   78              		.global	SystemClock_Config
   79              		.code	16
   80              		.thumb_func
   82              	SystemClock_Config:
   83              	.LFB38:
- 364:Src/main.c    **** 
-  84              		.loc 1 364 0
+ 355:Src/main.c    **** 
+  84              		.loc 1 355 0
   85              		.cfi_startproc
   86 0000 00B5     		push	{lr}
+ARM GAS  /tmp/ccK9MPwZ.s 			page 10
+
+
   87              	.LCFI1:
   88              		.cfi_def_cfa_offset 4
   89              		.cfi_offset 14, -4
   90 0002 9BB0     		sub	sp, sp, #108
   91              	.LCFI2:
   92              		.cfi_def_cfa_offset 112
- 372:Src/main.c    **** 
-  93              		.loc 1 372 0
+ 363:Src/main.c    **** 
+  93              		.loc 1 363 0
   94 0004 2B4A     		ldr	r2, .L12
   95 0006 1168     		ldr	r1, [r2]
   96 0008 2B4B     		ldr	r3, .L12+4
@@ -566,121 +557,121 @@ ARM GAS  /tmp/ccFLH43s.s 			page 1
   99 000e 0901     		lsl	r1, r1, #4
  100 0010 0B43     		orr	r3, r1
  101 0012 1360     		str	r3, [r2]
- 376:Src/main.c    ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
- 102              		.loc 1 376 0
+ 367:Src/main.c    ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+ 102              		.loc 1 367 0
  103 0014 0223     		mov	r3, #2
  104 0016 0D93     		str	r3, [sp, #52]
- 377:Src/main.c    ****   RCC_OscInitStruct.HSICalibrationValue = 16;
- 105              		.loc 1 377 0
+ 368:Src/main.c    ****   RCC_OscInitStruct.HSICalibrationValue = 16;
+ 105              		.loc 1 368 0
  106 0018 0122     		mov	r2, #1
  107 001a 1092     		str	r2, [sp, #64]
- 378:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
- 108              		.loc 1 378 0
+ 369:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+ 108              		.loc 1 369 0
  109 001c 0F32     		add	r2, r2, #15
  110 001e 1192     		str	r2, [sp, #68]
- 379:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
- 111              		.loc 1 379 0
+ 370:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+ 111              		.loc 1 370 0
  112 0020 1693     		str	r3, [sp, #88]
- 380:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLLMUL_3;
- 113              		.loc 1 380 0
+ 371:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLLMUL_3;
+ 113              		.loc 1 371 0
  114 0022 0023     		mov	r3, #0
  115 0024 1793     		str	r3, [sp, #92]
- 381:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLDIV = RCC_PLLDIV_3;
- 116              		.loc 1 381 0
+ 372:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLDIV = RCC_PLLDIV_3;
+ 116              		.loc 1 372 0
  117 0026 1893     		str	r3, [sp, #96]
- 382:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
- 118              		.loc 1 382 0
+ 373:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 118              		.loc 1 373 0
  119 0028 8023     		mov	r3, #128
  120 002a 1B04     		lsl	r3, r3, #16
  121 002c 1993     		str	r3, [sp, #100]
- 383:Src/main.c    ****   {
- 122              		.loc 1 383 0
+ 374:Src/main.c    ****   {
+ 122              		.loc 1 374 0
  123 002e 0DA8     		add	r0, sp, #52
  124 0030 FFF7FEFF 		bl	HAL_RCC_OscConfig
  125              	.LVL1:
-ARM GAS  /tmp/ccFLH43s.s 			page 11
-
-
  126 0034 0028     		cmp	r0, #0
  127 0036 04D0     		beq	.L9
- 385:Src/main.c    ****   }
- 128              		.loc 1 385 0
+ 376:Src/main.c    ****   }
+ 128              		.loc 1 376 0
  129 0038 2048     		ldr	r0, .L12+8
- 130 003a 8221     		mov	r1, #130
- 131 003c FF31     		add	r1, r1, #255
+ 130 003a BC21     		mov	r1, #188
+ 131 003c 4900     		lsl	r1, r1, #1
  132 003e FFF7FEFF 		bl	_Error_Handler
  133              	.LVL2:
+ARM GAS  /tmp/ccK9MPwZ.s 			page 11
+
+
  134              	.L9:
- 390:Src/main.c    ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
- 135              		.loc 1 390 0
+ 381:Src/main.c    ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+ 135              		.loc 1 381 0
  136 0042 0F23     		mov	r3, #15
  137 0044 0893     		str	r3, [sp, #32]
- 392:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV8;
- 138              		.loc 1 392 0
+ 383:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV8;
+ 138              		.loc 1 383 0
  139 0046 0C3B     		sub	r3, r3, #12
  140 0048 0993     		str	r3, [sp, #36]
- 393:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
- 141              		.loc 1 393 0
+ 384:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+ 141              		.loc 1 384 0
  142 004a 9D33     		add	r3, r3, #157
  143 004c 0A93     		str	r3, [sp, #40]
- 394:Src/main.c    ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
- 144              		.loc 1 394 0
+ 385:Src/main.c    ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+ 144              		.loc 1 385 0
  145 004e 0023     		mov	r3, #0
  146 0050 0B93     		str	r3, [sp, #44]
- 395:Src/main.c    **** 
- 147              		.loc 1 395 0
+ 386:Src/main.c    **** 
+ 147              		.loc 1 386 0
  148 0052 0C93     		str	r3, [sp, #48]
- 397:Src/main.c    ****   {
- 149              		.loc 1 397 0
+ 388:Src/main.c    ****   {
+ 149              		.loc 1 388 0
  150 0054 08A8     		add	r0, sp, #32
  151 0056 0021     		mov	r1, #0
  152 0058 FFF7FEFF 		bl	HAL_RCC_ClockConfig
  153              	.LVL3:
  154 005c 0028     		cmp	r0, #0
  155 005e 04D0     		beq	.L10
- 399:Src/main.c    ****   }
- 156              		.loc 1 399 0
+ 390:Src/main.c    ****   }
+ 156              		.loc 1 390 0
  157 0060 1648     		ldr	r0, .L12+8
- 158 0062 9021     		mov	r1, #144
- 159 0064 FF31     		add	r1, r1, #255
+ 158 0062 C321     		mov	r1, #195
+ 159 0064 4900     		lsl	r1, r1, #1
  160 0066 FFF7FEFF 		bl	_Error_Handler
  161              	.LVL4:
  162              	.L10:
- 402:Src/main.c    ****                               |RCC_PERIPHCLK_I2C3;
- 163              		.loc 1 402 0
+ 393:Src/main.c    ****                               |RCC_PERIPHCLK_I2C3;
+ 163              		.loc 1 393 0
  164 006a 0A23     		mov	r3, #10
  165 006c FF33     		add	r3, r3, #255
  166 006e 0093     		str	r3, [sp]
- 404:Src/main.c    ****   PeriphClkInit.I2c1ClockSelection = RCC_I2C1CLKSOURCE_PCLK1;
- 167              		.loc 1 404 0
+ 395:Src/main.c    ****   PeriphClkInit.I2c1ClockSelection = RCC_I2C1CLKSOURCE_PCLK1;
+ 167              		.loc 1 395 0
  168 0070 0023     		mov	r3, #0
  169 0072 0293     		str	r3, [sp, #8]
- 405:Src/main.c    ****   PeriphClkInit.I2c3ClockSelection = RCC_I2C3CLKSOURCE_PCLK1;
- 170              		.loc 1 405 0
+ 396:Src/main.c    ****   PeriphClkInit.I2c3ClockSelection = RCC_I2C3CLKSOURCE_PCLK1;
+ 170              		.loc 1 396 0
  171 0074 0593     		str	r3, [sp, #20]
-ARM GAS  /tmp/ccFLH43s.s 			page 12
-
-
- 406:Src/main.c    ****   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
- 172              		.loc 1 406 0
+ 397:Src/main.c    ****   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
+ 172              		.loc 1 397 0
  173 0076 0693     		str	r3, [sp, #24]
- 407:Src/main.c    ****   {
- 174              		.loc 1 407 0
+ 398:Src/main.c    ****   {
+ 174              		.loc 1 398 0
  175 0078 6846     		mov	r0, sp
  176 007a FFF7FEFF 		bl	HAL_RCCEx_PeriphCLKConfig
  177              	.LVL5:
  178 007e 0028     		cmp	r0, #0
+ARM GAS  /tmp/ccK9MPwZ.s 			page 12
+
+
  179 0080 04D0     		beq	.L11
- 409:Src/main.c    ****   }
- 180              		.loc 1 409 0
+ 400:Src/main.c    ****   }
+ 180              		.loc 1 400 0
  181 0082 0E48     		ldr	r0, .L12+8
- 182 0084 9A21     		mov	r1, #154
- 183 0086 FF31     		add	r1, r1, #255
+ 182 0084 C821     		mov	r1, #200
+ 183 0086 4900     		lsl	r1, r1, #1
  184 0088 FFF7FEFF 		bl	_Error_Handler
  185              	.LVL6:
  186              	.L11:
- 414:Src/main.c    **** 
- 187              		.loc 1 414 0
+ 405:Src/main.c    **** 
+ 187              		.loc 1 405 0
  188 008c FFF7FEFF 		bl	HAL_RCC_GetHCLKFreq
  189              	.LVL7:
  190 0090 FA21     		mov	r1, #250
@@ -689,21 +680,21 @@ ARM GAS  /tmp/ccFLH43s.s 			page 1
  193              	.LVL8:
  194 0098 FFF7FEFF 		bl	HAL_SYSTICK_Config
  195              	.LVL9:
- 418:Src/main.c    **** 
- 196              		.loc 1 418 0
+ 409:Src/main.c    **** 
+ 196              		.loc 1 409 0
  197 009c 0420     		mov	r0, #4
  198 009e FFF7FEFF 		bl	HAL_SYSTICK_CLKSourceConfig
  199              	.LVL10:
- 421:Src/main.c    **** }
- 200              		.loc 1 421 0
+ 412:Src/main.c    **** }
+ 200              		.loc 1 412 0
  201 00a2 0120     		mov	r0, #1
  202 00a4 4042     		neg	r0, r0
  203 00a6 0021     		mov	r1, #0
  204 00a8 0022     		mov	r2, #0
  205 00aa FFF7FEFF 		bl	HAL_NVIC_SetPriority
  206              	.LVL11:
- 422:Src/main.c    **** 
- 207              		.loc 1 422 0
+ 413:Src/main.c    **** 
+ 207              		.loc 1 413 0
  208 00ae 1BB0     		add	sp, sp, #108
  209              		@ sp needed
  210 00b0 00BD     		pop	{pc}
@@ -718,723 +709,451 @@ ARM GAS  /tmp/ccFLH43s.s 			page 1
  220              		.global	__aeabi_ui2d
  221              		.global	__aeabi_dcmpge
  222              		.global	__aeabi_d2uiz
-ARM GAS  /tmp/ccFLH43s.s 			page 13
-
-
  223              		.global	__aeabi_dcmplt
- 224              		.global	__aeabi_d2iz
- 225              		.global	__aeabi_dsub
- 226              		.global	__aeabi_ddiv
- 227              		.section	.text.main,"ax",%progbits
- 228              		.align	2
- 229              		.global	main
- 230              		.code	16
- 231              		.thumb_func
- 233              	main:
- 234              	.LFB37:
-  94:Src/main.c    **** 
- 235              		.loc 1 94 0
- 236              		.cfi_startproc
- 237 0000 F0B5     		push	{r4, r5, r6, r7, lr}
- 238              	.LCFI3:
- 239              		.cfi_def_cfa_offset 20
- 240              		.cfi_offset 4, -20
- 241              		.cfi_offset 5, -16
- 242              		.cfi_offset 6, -12
- 243              		.cfi_offset 7, -8
- 244              		.cfi_offset 14, -4
- 245 0002 D5B0     		sub	sp, sp, #340
- 246              	.LCFI4:
- 247              		.cfi_def_cfa_offset 360
- 248              	.LVL12:
- 107:Src/main.c    ****                                                                                     
- 249              		.loc 1 107 0
- 250 0004 FFF7FEFF 		bl	HAL_Init
- 251              	.LVL13:
- 110:Src/main.c    ****                                                                                     
- 252              		.loc 1 110 0
- 253 0008 FFF7FEFF 		bl	SystemClock_Config
- 254              	.LVL14:
- 113:Src/main.c    ****     MX_ADC_Init();
- 255              		.loc 1 113 0
- 256 000c FFF7FEFF 		bl	MX_GPIO_Init
- 257              	.LVL15:
- 114:Src/main.c    ****     MX_I2C1_Init();
- 258              		.loc 1 114 0
- 259 0010 FFF7FEFF 		bl	MX_ADC_Init
- 260              	.LVL16:
- 115:Src/main.c    ****     MX_I2C2_Init();
- 261              		.loc 1 115 0
- 262 0014 FFF7FEFF 		bl	MX_I2C1_Init
- 263              	.LVL17:
- 116:Src/main.c    ****     MX_I2C3_Init();
- 264              		.loc 1 116 0
- 265 0018 FFF7FEFF 		bl	MX_I2C2_Init
- 266              	.LVL18:
- 117:Src/main.c    ****     MX_SPI1_Init();
- 267              		.loc 1 117 0
- 268 001c FFF7FEFF 		bl	MX_I2C3_Init
- 269              	.LVL19:
- 118:Src/main.c    ****     // enable spi1
- 270              		.loc 1 118 0
- 271 0020 FFF7FEFF 		bl	MX_SPI1_Init
-ARM GAS  /tmp/ccFLH43s.s 			page 14
+ 224              		.section	.text.main,"ax",%progbits
+ 225              		.align	2
+ 226              		.global	main
+ 227              		.code	16
+ 228              		.thumb_func
+ 230              	main:
+ 231              	.LFB37:
+  95:Src/main.c    **** 
+ARM GAS  /tmp/ccK9MPwZ.s 			page 13
 
 
- 272              	.LVL20:
- 120:Src/main.c    ****     MX_USART1_UART_Init();
- 273              		.loc 1 120 0
- 274 0024 A94A     		ldr	r2, .L27
- 275 0026 1168     		ldr	r1, [r2]
- 276 0028 4023     		mov	r3, #64
- 277 002a 0B43     		orr	r3, r1
- 278 002c 1360     		str	r3, [r2]
- 121:Src/main.c    **** 
- 279              		.loc 1 121 0
- 280 002e FFF7FEFF 		bl	MX_USART1_UART_Init
- 281              	.LVL21:
- 124:Src/main.c    ****   	ssd1306_Init();
- 282              		.loc 1 124 0
- 283 0032 A748     		ldr	r0, .L27+4
- 284 0034 0121     		mov	r1, #1
- 285 0036 FFF7FEFF 		bl	ssd1306_set_i2c_port
- 286              	.LVL22:
- 125:Src/main.c    ****   	HAL_Delay(100);
- 287              		.loc 1 125 0
- 288 003a FFF7FEFF 		bl	ssd1306_Init
- 289              	.LVL23:
- 126:Src/main.c    ****   	ssd1306_Fill(White);
- 290              		.loc 1 126 0
- 291 003e 6420     		mov	r0, #100
- 292 0040 FFF7FEFF 		bl	HAL_Delay
- 293              	.LVL24:
- 127:Src/main.c    ****   	ssd1306_UpdateScreen();
- 294              		.loc 1 127 0
- 295 0044 0120     		mov	r0, #1
- 296 0046 FFF7FEFF 		bl	ssd1306_Fill
- 297              	.LVL25:
- 128:Src/main.c    ****   	HAL_Delay(100);
- 298              		.loc 1 128 0
- 299 004a FFF7FEFF 		bl	ssd1306_UpdateScreen
- 300              	.LVL26:
- 129:Src/main.c    ****   	ssd1306_Fill(Black);
- 301              		.loc 1 129 0
- 302 004e 6420     		mov	r0, #100
- 303 0050 FFF7FEFF 		bl	HAL_Delay
- 304              	.LVL27:
- 130:Src/main.c    ****   	ssd1306_UpdateScreen();
- 305              		.loc 1 130 0
- 306 0054 0020     		mov	r0, #0
- 307 0056 FFF7FEFF 		bl	ssd1306_Fill
- 308              	.LVL28:
- 131:Src/main.c    **** 
- 309              		.loc 1 131 0
- 310 005a FFF7FEFF 		bl	ssd1306_UpdateScreen
- 311              	.LVL29:
- 133:Src/main.c    **** 
- 312              		.loc 1 133 0
- 313 005e 6420     		mov	r0, #100
- 314 0060 FFF7FEFF 		bl	HAL_Delay
- 315              	.LVL30:
- 135:Src/main.c    ****   	ssd1306_WriteString("DiveCmp", Font_16x26, White);
- 316              		.loc 1 135 0
-ARM GAS  /tmp/ccFLH43s.s 			page 15
+ 232              		.loc 1 95 0
+ 233              		.cfi_startproc
+ 234 0000 70B5     		push	{r4, r5, r6, lr}
+ 235              	.LCFI3:
+ 236              		.cfi_def_cfa_offset 16
+ 237              		.cfi_offset 4, -16
+ 238              		.cfi_offset 5, -12
+ 239              		.cfi_offset 6, -8
+ 240              		.cfi_offset 14, -4
+ 241 0002 D0B0     		sub	sp, sp, #320
+ 242              	.LCFI4:
+ 243              		.cfi_def_cfa_offset 336
+ 244              	.LVL12:
+ 108:Src/main.c    ****                                                                                     
+ 245              		.loc 1 108 0
+ 246 0004 FFF7FEFF 		bl	HAL_Init
+ 247              	.LVL13:
+ 111:Src/main.c    ****                                                                                     
+ 248              		.loc 1 111 0
+ 249 0008 FFF7FEFF 		bl	SystemClock_Config
+ 250              	.LVL14:
+ 114:Src/main.c    ****     MX_ADC_Init();
+ 251              		.loc 1 114 0
+ 252 000c FFF7FEFF 		bl	MX_GPIO_Init
+ 253              	.LVL15:
+ 115:Src/main.c    ****     MX_I2C1_Init();
+ 254              		.loc 1 115 0
+ 255 0010 FFF7FEFF 		bl	MX_ADC_Init
+ 256              	.LVL16:
+ 116:Src/main.c    ****     MX_I2C2_Init();
+ 257              		.loc 1 116 0
+ 258 0014 FFF7FEFF 		bl	MX_I2C1_Init
+ 259              	.LVL17:
+ 117:Src/main.c    ****     MX_I2C3_Init();
+ 260              		.loc 1 117 0
+ 261 0018 FFF7FEFF 		bl	MX_I2C2_Init
+ 262              	.LVL18:
+ 118:Src/main.c    ****     MX_SPI1_Init();
+ 263              		.loc 1 118 0
+ 264 001c FFF7FEFF 		bl	MX_I2C3_Init
+ 265              	.LVL19:
+ 119:Src/main.c    ****     // enable spi1
+ 266              		.loc 1 119 0
+ 267 0020 FFF7FEFF 		bl	MX_SPI1_Init
+ 268              	.LVL20:
+ 121:Src/main.c    ****     MX_USART1_UART_Init();
+ 269              		.loc 1 121 0
+ 270 0024 584A     		ldr	r2, .L23
+ 271 0026 1168     		ldr	r1, [r2]
+ 272 0028 4023     		mov	r3, #64
+ 273 002a 0B43     		orr	r3, r1
+ 274 002c 1360     		str	r3, [r2]
+ 122:Src/main.c    **** 
+ 275              		.loc 1 122 0
+ 276 002e FFF7FEFF 		bl	MX_USART1_UART_Init
+ 277              	.LVL21:
+ 125:Src/main.c    ****   	ssd1306_Init();
+ARM GAS  /tmp/ccK9MPwZ.s 			page 14
 
 
- 317 0064 0020     		mov	r0, #0
- 318 0066 0021     		mov	r1, #0
- 319 0068 FFF7FEFF 		bl	ssd1306_SetCursor
- 320              	.LVL31:
- 136:Src/main.c    ****   	ssd1306_SetCursor(0,30);
- 321              		.loc 1 136 0
- 322 006c 994C     		ldr	r4, .L27+8
- 323 006e 9A48     		ldr	r0, .L27+12
- 324 0070 2168     		ldr	r1, [r4]
- 325 0072 6268     		ldr	r2, [r4, #4]
- 326 0074 0123     		mov	r3, #1
- 327 0076 FFF7FEFF 		bl	ssd1306_WriteString
- 328              	.LVL32:
- 137:Src/main.c    ****   	ssd1306_WriteString("Start..", Font_16x26, White);
- 329              		.loc 1 137 0
- 330 007a 0020     		mov	r0, #0
- 331 007c 1E21     		mov	r1, #30
- 332 007e FFF7FEFF 		bl	ssd1306_SetCursor
- 333              	.LVL33:
- 138:Src/main.c    ****   	ssd1306_UpdateScreen();
- 334              		.loc 1 138 0
- 335 0082 9648     		ldr	r0, .L27+16
- 336 0084 2168     		ldr	r1, [r4]
- 337 0086 6268     		ldr	r2, [r4, #4]
- 338 0088 0123     		mov	r3, #1
- 339 008a FFF7FEFF 		bl	ssd1306_WriteString
- 340              	.LVL34:
- 139:Src/main.c    **** 
- 341              		.loc 1 139 0
- 342 008e FFF7FEFF 		bl	ssd1306_UpdateScreen
- 343              	.LVL35:
- 141:Src/main.c    **** 	one_second_timer_start();
- 344              		.loc 1 141 0
- 345 0092 FFF7FEFF 		bl	one_second_timer_init
- 346              	.LVL36:
- 142:Src/main.c    **** 
- 347              		.loc 1 142 0
- 348 0096 FFF7FEFF 		bl	one_second_timer_start
- 349              	.LVL37:
- 144:Src/main.c    **** 	HAL_Delay(1000);
- 350              		.loc 1 144 0
- 351 009a FFF7FEFF 		bl	pressure_sensor_object_init
- 352              	.LVL38:
- 145:Src/main.c    **** 
- 353              		.loc 1 145 0
- 354 009e FA20     		mov	r0, #250
- 355 00a0 8000     		lsl	r0, r0, #2
- 356 00a2 FFF7FEFF 		bl	HAL_Delay
- 357              	.LVL39:
- 203:Src/main.c    **** 
- 358              		.loc 1 203 0
- 359 00a6 0120     		mov	r0, #1
- 360 00a8 FFF7FEFF 		bl	depth_switch_turn_signal_led
- 361              	.LVL40:
- 205:Src/main.c    **** 
- 362              		.loc 1 205 0
- 363 00ac 8C4C     		ldr	r4, .L27+20
-ARM GAS  /tmp/ccFLH43s.s 			page 16
+ 278              		.loc 1 125 0
+ 279 0032 5648     		ldr	r0, .L23+4
+ 280 0034 0121     		mov	r1, #1
+ 281 0036 FFF7FEFF 		bl	ssd1306_set_i2c_port
+ 282              	.LVL22:
+ 126:Src/main.c    ****   	HAL_Delay(100);
+ 283              		.loc 1 126 0
+ 284 003a FFF7FEFF 		bl	ssd1306_Init
+ 285              	.LVL23:
+ 127:Src/main.c    ****   	ssd1306_Fill(White);
+ 286              		.loc 1 127 0
+ 287 003e 6420     		mov	r0, #100
+ 288 0040 FFF7FEFF 		bl	HAL_Delay
+ 289              	.LVL24:
+ 128:Src/main.c    ****   	ssd1306_UpdateScreen();
+ 290              		.loc 1 128 0
+ 291 0044 0120     		mov	r0, #1
+ 292 0046 FFF7FEFF 		bl	ssd1306_Fill
+ 293              	.LVL25:
+ 129:Src/main.c    ****   	HAL_Delay(100);
+ 294              		.loc 1 129 0
+ 295 004a FFF7FEFF 		bl	ssd1306_UpdateScreen
+ 296              	.LVL26:
+ 130:Src/main.c    ****   	ssd1306_Fill(Black);
+ 297              		.loc 1 130 0
+ 298 004e 6420     		mov	r0, #100
+ 299 0050 FFF7FEFF 		bl	HAL_Delay
+ 300              	.LVL27:
+ 131:Src/main.c    ****   	ssd1306_UpdateScreen();
+ 301              		.loc 1 131 0
+ 302 0054 0020     		mov	r0, #0
+ 303 0056 FFF7FEFF 		bl	ssd1306_Fill
+ 304              	.LVL28:
+ 132:Src/main.c    **** 
+ 305              		.loc 1 132 0
+ 306 005a FFF7FEFF 		bl	ssd1306_UpdateScreen
+ 307              	.LVL29:
+ 134:Src/main.c    **** 
+ 308              		.loc 1 134 0
+ 309 005e 6420     		mov	r0, #100
+ 310 0060 FFF7FEFF 		bl	HAL_Delay
+ 311              	.LVL30:
+ 136:Src/main.c    ****   	ssd1306_WriteString("DiveCmp", Font_16x26, White);
+ 312              		.loc 1 136 0
+ 313 0064 0020     		mov	r0, #0
+ 314 0066 0021     		mov	r1, #0
+ 315 0068 FFF7FEFF 		bl	ssd1306_SetCursor
+ 316              	.LVL31:
+ 137:Src/main.c    ****   	ssd1306_SetCursor(0,30);
+ 317              		.loc 1 137 0
+ 318 006c 484C     		ldr	r4, .L23+8
+ 319 006e 4948     		ldr	r0, .L23+12
+ 320 0070 2168     		ldr	r1, [r4]
+ 321 0072 6268     		ldr	r2, [r4, #4]
+ 322 0074 0123     		mov	r3, #1
+ 323 0076 FFF7FEFF 		bl	ssd1306_WriteString
+ 324              	.LVL32:
+ARM GAS  /tmp/ccK9MPwZ.s 			page 15
 
 
- 364              	.LVL41:
+ 138:Src/main.c    ****   	ssd1306_WriteString("Start..", Font_16x26, White);
+ 325              		.loc 1 138 0
+ 326 007a 0020     		mov	r0, #0
+ 327 007c 1E21     		mov	r1, #30
+ 328 007e FFF7FEFF 		bl	ssd1306_SetCursor
+ 329              	.LVL33:
+ 139:Src/main.c    ****   	ssd1306_UpdateScreen();
+ 330              		.loc 1 139 0
+ 331 0082 4548     		ldr	r0, .L23+16
+ 332 0084 2168     		ldr	r1, [r4]
+ 333 0086 6268     		ldr	r2, [r4, #4]
+ 334 0088 0123     		mov	r3, #1
+ 335 008a FFF7FEFF 		bl	ssd1306_WriteString
+ 336              	.LVL34:
+ 140:Src/main.c    **** 
+ 337              		.loc 1 140 0
+ 338 008e FFF7FEFF 		bl	ssd1306_UpdateScreen
+ 339              	.LVL35:
+ 142:Src/main.c    **** 	one_second_timer_start();
+ 340              		.loc 1 142 0
+ 341 0092 FFF7FEFF 		bl	one_second_timer_init
+ 342              	.LVL36:
+ 143:Src/main.c    **** 
+ 343              		.loc 1 143 0
+ 344 0096 FFF7FEFF 		bl	one_second_timer_start
+ 345              	.LVL37:
+ 145:Src/main.c    **** 	HAL_Delay(1000);
+ 346              		.loc 1 145 0
+ 347 009a FFF7FEFF 		bl	pressure_sensor_object_init
+ 348              	.LVL38:
+ 146:Src/main.c    **** 
+ 349              		.loc 1 146 0
+ 350 009e FA20     		mov	r0, #250
+ 351 00a0 8000     		lsl	r0, r0, #2
+ 352 00a2 FFF7FEFF 		bl	HAL_Delay
+ 353              	.LVL39:
+ 207:Src/main.c    ****   
+ 354              		.loc 1 207 0
+ 355 00a6 0020     		mov	r0, #0
+ 356 00a8 FFF7FEFF 		bl	ssd1306_Fill
+ 357              	.LVL40:
+ 209:Src/main.c    **** 
+ 358              		.loc 1 209 0
+ 359 00ac 0120     		mov	r0, #1
+ 360 00ae FFF7FEFF 		bl	depth_switch_turn_signal_led
+ 361              	.LVL41:
+ 211:Src/main.c    **** 
+ 362              		.loc 1 211 0
+ 363 00b2 3A4E     		ldr	r6, .L23+20
+ 364              	.LVL42:
  365              	.L16:
- 212:Src/main.c    **** 		{
- 366              		.loc 1 212 0
- 367 00ae FFF7FEFF 		bl	one_second_timer_get_flag
- 368              	.LVL42:
- 369 00b2 0028     		cmp	r0, #0
- 370 00b4 FBD0     		beq	.L16
+ 216:Src/main.c    **** 		{
+ 366              		.loc 1 216 0
+ 367 00b4 FFF7FEFF 		bl	one_second_timer_get_flag
+ 368              	.LVL43:
+ 369 00b8 0028     		cmp	r0, #0
+ 370 00ba FBD0     		beq	.L16
+ARM GAS  /tmp/ccK9MPwZ.s 			page 16
+
+
  371              	.LBB2:
- 214:Src/main.c    ****   	
- 372              		.loc 1 214 0
- 373 00b6 FFF7FEFF 		bl	one_second_timer_reset_flag
- 374              	.LVL43:
- 216:Src/main.c    **** 		    double P = pressure_sensor_get_pressure();
- 375              		.loc 1 216 0
- 376 00ba FFF7FEFF 		bl	pressure_sensor_measure_pressure_temperature
- 377              	.LVL44:
- 217:Src/main.c    **** 		    double actual_temperature = pressure_sensor_get_temperature();
- 378              		.loc 1 217 0
- 379 00be FFF7FEFF 		bl	pressure_sensor_get_pressure
- 380              	.LVL45:
- 381 00c2 061C     		mov	r6, r0
- 382 00c4 0F1C     		mov	r7, r1
- 383              	.LVL46:
- 218:Src/main.c    ****                                                                                                    
- 384              		.loc 1 218 0
- 385 00c6 FFF7FEFF 		bl	pressure_sensor_get_temperature
- 386              	.LVL47:
- 220:Src/main.c    **** 		    double accu_voltage = voltmeter_get_voltage();
- 387              		.loc 1 220 0
- 388 00ca FFF7FEFF 		bl	voltmeter_measure_voltage
- 389              	.LVL48:
- 221:Src/main.c    **** 		    double accu_percentage = voltmeter_get_percentage();
- 390              		.loc 1 221 0
- 391 00ce FFF7FEFF 		bl	voltmeter_get_voltage
- 392              	.LVL49:
- 222:Src/main.c    **** 	                                                                                                  
- 393              		.loc 1 222 0
- 394 00d2 FFF7FEFF 		bl	voltmeter_get_percentage
- 395              	.LVL50:
- 396 00d6 0090     		str	r0, [sp]
- 397 00d8 0191     		str	r1, [sp, #4]
- 398              	.LVL51:
- 225:Src/main.c    **** 				surface_pressure = P;
- 399              		.loc 1 225 0
- 400 00da 201C     		mov	r0, r4
- 401              	.LVL52:
- 402 00dc FFF7FEFF 		bl	__aeabi_ui2d
+ 218:Src/main.c    ****   	
+ 372              		.loc 1 218 0
+ 373 00bc FFF7FEFF 		bl	one_second_timer_reset_flag
+ 374              	.LVL44:
+ 220:Src/main.c    **** 		    double P = pressure_sensor_get_pressure();
+ 375              		.loc 1 220 0
+ 376 00c0 FFF7FEFF 		bl	pressure_sensor_measure_pressure_temperature
+ 377              	.LVL45:
+ 221:Src/main.c    **** 		    double actual_temperature = pressure_sensor_get_temperature();
+ 378              		.loc 1 221 0
+ 379 00c4 FFF7FEFF 		bl	pressure_sensor_get_pressure
+ 380              	.LVL46:
+ 381 00c8 041C     		mov	r4, r0
+ 382 00ca 0D1C     		mov	r5, r1
+ 383              	.LVL47:
+ 222:Src/main.c    ****                                                                                                    
+ 384              		.loc 1 222 0
+ 385 00cc FFF7FEFF 		bl	pressure_sensor_get_temperature
+ 386              	.LVL48:
+ 224:Src/main.c    **** 		    double accu_voltage = voltmeter_get_voltage();
+ 387              		.loc 1 224 0
+ 388 00d0 FFF7FEFF 		bl	voltmeter_measure_voltage
+ 389              	.LVL49:
+ 225:Src/main.c    **** 		    double accu_percentage = voltmeter_get_percentage();
+ 390              		.loc 1 225 0
+ 391 00d4 FFF7FEFF 		bl	voltmeter_get_voltage
+ 392              	.LVL50:
+ 226:Src/main.c    **** 	                                                                                                  
+ 393              		.loc 1 226 0
+ 394 00d8 FFF7FEFF 		bl	voltmeter_get_percentage
+ 395              	.LVL51:
+ 229:Src/main.c    **** 				surface_pressure = P;
+ 396              		.loc 1 229 0
+ 397 00dc 301C     		mov	r0, r6
+ 398 00de FFF7FEFF 		bl	__aeabi_ui2d
+ 399              	.LVL52:
+ 400 00e2 221C     		mov	r2, r4
+ 401 00e4 2B1C     		mov	r3, r5
+ 402 00e6 FFF7FEFF 		bl	__aeabi_dcmpge
  403              	.LVL53:
- 404 00e0 321C     		mov	r2, r6
- 405 00e2 3B1C     		mov	r3, r7
- 406 00e4 FFF7FEFF 		bl	__aeabi_dcmpge
- 407              	.LVL54:
- 408 00e8 0028     		cmp	r0, #0
- 409 00ea 04D0     		beq	.L17
- 226:Src/main.c    **** 
- 410              		.loc 1 226 0
-ARM GAS  /tmp/ccFLH43s.s 			page 17
+ 404 00ea 0028     		cmp	r0, #0
+ 405 00ec 04D0     		beq	.L17
+ 230:Src/main.c    **** 
+ 406              		.loc 1 230 0
+ 407 00ee 201C     		mov	r0, r4
+ 408 00f0 291C     		mov	r1, r5
+ 409 00f2 FFF7FEFF 		bl	__aeabi_d2uiz
+ 410              	.LVL54:
+ 411 00f6 061C     		mov	r6, r0
+ 412              	.LVL55:
+ 413              	.L17:
+ 234:Src/main.c    **** 				we_are_under_water = 1;
+ 414              		.loc 1 234 0
+ 415 00f8 294B     		ldr	r3, .L23+24
+ 416 00fa F018     		add	r0, r6, r3
+ 417 00fc FFF7FEFF 		bl	__aeabi_ui2d
+ARM GAS  /tmp/ccK9MPwZ.s 			page 17
 
 
- 411 00ec 301C     		mov	r0, r6
- 412 00ee 391C     		mov	r1, r7
- 413 00f0 FFF7FEFF 		bl	__aeabi_d2uiz
- 414              	.LVL55:
- 415 00f4 041C     		mov	r4, r0
- 416              	.LVL56:
- 417              	.L17:
- 230:Src/main.c    **** 				we_are_under_water = 1;
- 418              		.loc 1 230 0
- 419 00f6 7B4B     		ldr	r3, .L27+24
- 420 00f8 E018     		add	r0, r4, r3
- 421 00fa FFF7FEFF 		bl	__aeabi_ui2d
+ 418              	.LVL56:
+ 419 0100 221C     		mov	r2, r4
+ 420 0102 2B1C     		mov	r3, r5
+ 421 0104 FFF7FEFF 		bl	__aeabi_dcmplt
  422              	.LVL57:
- 423 00fe 321C     		mov	r2, r6
- 424 0100 3B1C     		mov	r3, r7
- 425 0102 FFF7FEFF 		bl	__aeabi_dcmplt
- 426              	.LVL58:
- 427 0106 0028     		cmp	r0, #0
- 428 0108 01D1     		bne	.L24
- 228:Src/main.c    **** 
- 429              		.loc 1 228 0
- 430 010a 0023     		mov	r3, #0
- 431 010c 00E0     		b	.L19
- 432              	.L24:
- 231:Src/main.c    **** 
- 433              		.loc 1 231 0
- 434 010e 0123     		mov	r3, #1
- 435              	.L19:
- 436              	.LVL59:
- 233:Src/main.c    **** 			{
- 437              		.loc 1 233 0
- 438 0110 002B     		cmp	r3, #0
- 439 0112 3BD1     		bne	.L20
+ 423 0108 0028     		cmp	r0, #0
+ 424 010a 01D1     		bne	.L21
+ 232:Src/main.c    **** 
+ 425              		.loc 1 232 0
+ 426 010c 0023     		mov	r3, #0
+ 427 010e 00E0     		b	.L19
+ 428              	.L21:
  235:Src/main.c    **** 
- 440              		.loc 1 235 0
- 441 0114 FFF7FEFF 		bl	depth_switch_action
- 442              	.LVL60:
- 237:Src/main.c    **** 		        //sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
- 443              		.loc 1 237 0
- 444 0118 0020     		mov	r0, #0
- 445 011a 0021     		mov	r1, #0
- 446 011c FFF7FEFF 		bl	ssd1306_SetCursor
- 447              	.LVL61:
- 239:Src/main.c    ****   		        ssd1306_WriteString(timestamp, Font_11x18, White);
- 448              		.loc 1 239 0
- 449 0120 04A8     		add	r0, sp, #16
- 450 0122 714B     		ldr	r3, .L27+28
- 451 0124 021C     		mov	r2, r0
- 452 0126 22CB     		ldmia	r3!, {r1, r5}
- 453 0128 22C2     		stmia	r2!, {r1, r5}
- 454 012a 1B88     		ldrh	r3, [r3]
- 455 012c 1380     		strh	r3, [r2]
- 240:Src/main.c    ****   		        ssd1306_SetCursor(0,22);
- 456              		.loc 1 240 0
- 457 012e 6F4D     		ldr	r5, .L27+32
- 458 0130 2968     		ldr	r1, [r5]
- 459 0132 6A68     		ldr	r2, [r5, #4]
-ARM GAS  /tmp/ccFLH43s.s 			page 18
+ 429              		.loc 1 235 0
+ 430 0110 0123     		mov	r3, #1
+ 431              	.L19:
+ 432              	.LVL58:
+ 237:Src/main.c    **** 			{
+ 433              		.loc 1 237 0
+ 434 0112 002B     		cmp	r3, #0
+ 435 0114 CED1     		bne	.L16
+ 239:Src/main.c    **** 
+ 436              		.loc 1 239 0
+ 437 0116 FFF7FEFF 		bl	depth_switch_action
+ 438              	.LVL59:
+ 242:Src/main.c    **** 		        //sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
+ 439              		.loc 1 242 0
+ 440 011a 0020     		mov	r0, #0
+ 441 011c 0021     		mov	r1, #0
+ 442 011e FFF7FEFF 		bl	ssd1306_SetCursor
+ 443              	.LVL60:
+ 244:Src/main.c    ****   		        ssd1306_WriteString(timestamp, Font_11x18, White);
+ 444              		.loc 1 244 0
+ 445 0122 6846     		mov	r0, sp
+ 446 0124 1F4B     		ldr	r3, .L23+28
+ 447 0126 6A46     		mov	r2, sp
+ 448 0128 12CB     		ldmia	r3!, {r1, r4}
+ 449 012a 12C2     		stmia	r2!, {r1, r4}
+ 450              	.LVL61:
+ 451 012c 1B88     		ldrh	r3, [r3]
+ 452 012e 1380     		strh	r3, [r2]
+ 245:Src/main.c    ****   		        ssd1306_SetCursor(0,22);
+ 453              		.loc 1 245 0
+ 454 0130 1D4D     		ldr	r5, .L23+32
+ 455 0132 2968     		ldr	r1, [r5]
+ 456 0134 6A68     		ldr	r2, [r5, #4]
+ 457 0136 0123     		mov	r3, #1
+ 458 0138 FFF7FEFF 		bl	ssd1306_WriteString
+ 459              	.LVL62:
+ 246:Src/main.c    **** 		        //sprintf(message, "AVAR GL %02dm", (int)depth_switch_get_current_depth());
+ 460              		.loc 1 246 0
+ 461 013c 0020     		mov	r0, #0
+ 462 013e 1621     		mov	r1, #22
+ 463 0140 FFF7FEFF 		bl	ssd1306_SetCursor
+ 464              	.LVL63:
+ 248:Src/main.c    ****     //*
+ 465              		.loc 1 248 0
+ARM GAS  /tmp/ccK9MPwZ.s 			page 18
 
 
- 460 0134 0123     		mov	r3, #1
- 461 0136 FFF7FEFF 		bl	ssd1306_WriteString
- 462              	.LVL62:
- 241:Src/main.c    **** 		        sprintf(message, "AVAR GL %02dm", (int)depth_switch_get_current_depth());
- 463              		.loc 1 241 0
- 464 013a 0020     		mov	r0, #0
- 465 013c 1621     		mov	r1, #22
- 466 013e FFF7FEFF 		bl	ssd1306_SetCursor
- 467              	.LVL63:
- 242:Src/main.c    ****   		        ssd1306_WriteString(message, Font_11x18, White);
- 468              		.loc 1 242 0
- 469 0142 FFF7FEFF 		bl	depth_switch_get_current_depth
- 470              	.LVL64:
- 471 0146 FFF7FEFF 		bl	__aeabi_d2iz
- 472              	.LVL65:
- 473 014a 021C     		mov	r2, r0
- 474 014c 14A8     		add	r0, sp, #80
- 475 014e 6849     		ldr	r1, .L27+36
- 476 0150 FFF7FEFF 		bl	sprintf
- 477              	.LVL66:
- 243:Src/main.c    ****   		        ssd1306_SetCursor(0,44);
- 478              		.loc 1 243 0
- 479 0154 14A8     		add	r0, sp, #80
- 480 0156 2968     		ldr	r1, [r5]
- 481 0158 6A68     		ldr	r2, [r5, #4]
- 482 015a 0123     		mov	r3, #1
- 483 015c FFF7FEFF 		bl	ssd1306_WriteString
- 484              	.LVL67:
- 244:Src/main.c    **** 		        sprintf(message, "akkum %02d%%", (int)accu_percentage);
- 485              		.loc 1 244 0
- 486 0160 0020     		mov	r0, #0
- 487 0162 2C21     		mov	r1, #44
- 488 0164 FFF7FEFF 		bl	ssd1306_SetCursor
- 489              	.LVL68:
- 245:Src/main.c    ****   		        ssd1306_WriteString(message, Font_11x18, White);
- 490              		.loc 1 245 0
- 491 0168 0098     		ldr	r0, [sp]
- 492 016a 0199     		ldr	r1, [sp, #4]
- 493 016c FFF7FEFF 		bl	__aeabi_d2iz
- 494              	.LVL69:
- 495 0170 021C     		mov	r2, r0
- 496 0172 14A8     		add	r0, sp, #80
- 497 0174 5F49     		ldr	r1, .L27+40
- 498 0176 FFF7FEFF 		bl	sprintf
- 499              	.LVL70:
- 246:Src/main.c    ****   		        ssd1306_UpdateScreen();                                                                
- 500              		.loc 1 246 0
- 501 017a 14A8     		add	r0, sp, #80
- 502 017c 2968     		ldr	r1, [r5]
- 503 017e 6A68     		ldr	r2, [r5, #4]
- 504 0180 0123     		mov	r3, #1
- 505 0182 FFF7FEFF 		bl	ssd1306_WriteString
- 506              	.LVL71:
- 247:Src/main.c    **** 			}
- 507              		.loc 1 247 0
- 508 0186 FFF7FEFF 		bl	ssd1306_UpdateScreen
- 509              	.LVL72:
-ARM GAS  /tmp/ccFLH43s.s 			page 19
+ 466 0144 10AC     		add	r4, sp, #64
+ 467 0146 194B     		ldr	r3, .L23+36
+ 468 0148 221C     		mov	r2, r4
+ 469 014a 03CB     		ldmia	r3!, {r0, r1}
+ 470 014c 03C2     		stmia	r2!, {r0, r1}
+ 471 014e 191C     		mov	r1, r3
+ 472 0150 1B88     		ldrh	r3, [r3]
+ 473 0152 1380     		strh	r3, [r2]
+ 474 0154 8B78     		ldrb	r3, [r1, #2]
+ 475 0156 9370     		strb	r3, [r2, #2]
+ 250:Src/main.c    ****   		        ssd1306_SetCursor(0,44);
+ 476              		.loc 1 250 0
+ 477 0158 201C     		mov	r0, r4
+ 478 015a 2968     		ldr	r1, [r5]
+ 479 015c 6A68     		ldr	r2, [r5, #4]
+ 480 015e 0123     		mov	r3, #1
+ 481 0160 FFF7FEFF 		bl	ssd1306_WriteString
+ 482              	.LVL64:
+ 251:Src/main.c    **** 		        //sprintf(message, "akkum %02d%%", (int)accu_percentage);
+ 483              		.loc 1 251 0
+ 484 0164 0020     		mov	r0, #0
+ 485 0166 2C21     		mov	r1, #44
+ 486 0168 FFF7FEFF 		bl	ssd1306_SetCursor
+ 487              	.LVL65:
+ 253:Src/main.c    ****   		        ssd1306_WriteString(message, Font_11x18, White);
+ 488              		.loc 1 253 0
+ 489 016c 104B     		ldr	r3, .L23+40
+ 490 016e 1A68     		ldr	r2, [r3]
+ 491 0170 1092     		str	r2, [sp, #64]
+ 492 0172 9B88     		ldrh	r3, [r3, #4]
+ 493 0174 A380     		strh	r3, [r4, #4]
+ 254:Src/main.c    ****   		        ssd1306_UpdateScreen();                                                                
+ 494              		.loc 1 254 0
+ 495 0176 201C     		mov	r0, r4
+ 496 0178 2968     		ldr	r1, [r5]
+ 497 017a 6A68     		ldr	r2, [r5, #4]
+ 498 017c 0123     		mov	r3, #1
+ 499 017e FFF7FEFF 		bl	ssd1306_WriteString
+ 500              	.LVL66:
+ 255:Src/main.c    **** 	//*/
+ 501              		.loc 1 255 0
+ 502 0182 FFF7FEFF 		bl	ssd1306_UpdateScreen
+ 503              	.LVL67:
+ 504 0186 95E7     		b	.L16
+ 505              	.L24:
+ 506              		.align	2
+ 507              	.L23:
+ 508 0188 00300140 		.word	1073819648
+ 509 018c 00000000 		.word	hi2c1
+ 510 0190 00000000 		.word	Font_16x26
+ 511 0194 0C000000 		.word	.LC3
+ 512 0198 14000000 		.word	.LC6
+ 513 019c CD8B0100 		.word	101325
+ 514 01a0 48260000 		.word	9800
+ 515 01a4 1C000000 		.word	.LC8
+ 516 01a8 00000000 		.word	Font_11x18
+ 517 01ac 28000000 		.word	.LC11
+ARM GAS  /tmp/ccK9MPwZ.s 			page 19
 
 
- 510 018a 90E7     		b	.L16
- 511              	.LVL73:
- 512              	.L20:
- 513              	.LBB3:
- 252:Src/main.c    **** 
- 514              		.loc 1 252 0
- 515 018c 201C     		mov	r0, r4
- 516 018e FFF7FEFF 		bl	__aeabi_ui2d
- 517              	.LVL74:
- 518 0192 021C     		mov	r2, r0
- 519 0194 0B1C     		mov	r3, r1
- 520 0196 301C     		mov	r0, r6
- 521 0198 391C     		mov	r1, r7
- 522 019a FFF7FEFF 		bl	__aeabi_dsub
- 523              	.LVL75:
- 524 019e 0022     		mov	r2, #0
- 525 01a0 554B     		ldr	r3, .L27+44
- 526 01a2 FFF7FEFF 		bl	__aeabi_ddiv
- 527              	.LVL76:
- 528 01a6 061C     		mov	r6, r0
- 529              	.LVL77:
- 530 01a8 0F1C     		mov	r7, r1
- 531              	.LVL78:
- 255:Src/main.c    **** 		        //sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
- 532              		.loc 1 255 0
- 533 01aa 0020     		mov	r0, #0
- 534 01ac 0021     		mov	r1, #0
- 535 01ae FFF7FEFF 		bl	ssd1306_SetCursor
- 536              	.LVL79:
- 257:Src/main.c    ****   		        ssd1306_WriteString(timestamp, Font_11x18, White);
- 537              		.loc 1 257 0
- 538 01b2 04A8     		add	r0, sp, #16
- 539 01b4 4C4B     		ldr	r3, .L27+28
- 540 01b6 021C     		mov	r2, r0
- 541 01b8 22CB     		ldmia	r3!, {r1, r5}
- 542 01ba 22C2     		stmia	r2!, {r1, r5}
- 543 01bc 1B88     		ldrh	r3, [r3]
- 544 01be 1380     		strh	r3, [r2]
- 258:Src/main.c    ****   		        ssd1306_SetCursor(0,22);
- 545              		.loc 1 258 0
- 546 01c0 4A4D     		ldr	r5, .L27+32
- 547 01c2 2968     		ldr	r1, [r5]
- 548 01c4 6A68     		ldr	r2, [r5, #4]
- 549 01c6 0123     		mov	r3, #1
- 550 01c8 FFF7FEFF 		bl	ssd1306_WriteString
- 551              	.LVL80:
- 259:Src/main.c    **** 		        sprintf(message, "glubina %02dm", (int)depth);
- 552              		.loc 1 259 0
- 553 01cc 0020     		mov	r0, #0
- 554 01ce 1621     		mov	r1, #22
- 555 01d0 FFF7FEFF 		bl	ssd1306_SetCursor
- 556              	.LVL81:
- 260:Src/main.c    ****   		        ssd1306_WriteString(message, Font_11x18, White);
- 557              		.loc 1 260 0
- 558 01d4 301C     		mov	r0, r6
- 559 01d6 391C     		mov	r1, r7
- 560 01d8 FFF7FEFF 		bl	__aeabi_d2iz
-ARM GAS  /tmp/ccFLH43s.s 			page 20
-
-
- 561              	.LVL82:
- 562 01dc 021C     		mov	r2, r0
- 563 01de 0390     		str	r0, [sp, #12]
- 564 01e0 14A8     		add	r0, sp, #80
- 565 01e2 4649     		ldr	r1, .L27+48
- 566 01e4 FFF7FEFF 		bl	sprintf
- 567              	.LVL83:
- 261:Src/main.c    ****   		        ssd1306_SetCursor(0,44);
- 568              		.loc 1 261 0
- 569 01e8 14A8     		add	r0, sp, #80
- 570 01ea 2968     		ldr	r1, [r5]
- 571 01ec 6A68     		ldr	r2, [r5, #4]
- 572 01ee 0123     		mov	r3, #1
- 573 01f0 FFF7FEFF 		bl	ssd1306_WriteString
- 574              	.LVL84:
- 262:Src/main.c    **** 		        sprintf(message, "akkum %02d%%", (int)accu_percentage);
- 575              		.loc 1 262 0
- 576 01f4 0020     		mov	r0, #0
- 577 01f6 2C21     		mov	r1, #44
- 578 01f8 FFF7FEFF 		bl	ssd1306_SetCursor
- 579              	.LVL85:
- 263:Src/main.c    ****   		        ssd1306_WriteString(message, Font_11x18, White);
- 580              		.loc 1 263 0
- 581 01fc 0098     		ldr	r0, [sp]
- 582 01fe 0199     		ldr	r1, [sp, #4]
- 583 0200 FFF7FEFF 		bl	__aeabi_d2iz
- 584              	.LVL86:
- 585 0204 021C     		mov	r2, r0
- 586 0206 14A8     		add	r0, sp, #80
- 587 0208 3A49     		ldr	r1, .L27+40
- 588 020a FFF7FEFF 		bl	sprintf
- 589              	.LVL87:
- 264:Src/main.c    ****   		        ssd1306_UpdateScreen();                                                                
- 590              		.loc 1 264 0
- 591 020e 14A8     		add	r0, sp, #80
- 592 0210 2968     		ldr	r1, [r5]
- 593 0212 6A68     		ldr	r2, [r5, #4]
- 594 0214 0123     		mov	r3, #1
- 595 0216 FFF7FEFF 		bl	ssd1306_WriteString
- 596              	.LVL88:
- 265:Src/main.c    **** 
- 597              		.loc 1 265 0
- 598 021a FFF7FEFF 		bl	ssd1306_UpdateScreen
- 599              	.LVL89:
- 270:Src/main.c    **** 				{
- 600              		.loc 1 270 0
- 601 021e FFF7FEFF 		bl	depth_switch_get_current_depth
- 602              	.LVL90:
- 603 0222 321C     		mov	r2, r6
- 604 0224 3B1C     		mov	r3, r7
- 605 0226 FFF7FEFF 		bl	__aeabi_dcmplt
- 606              	.LVL91:
- 607 022a 0028     		cmp	r0, #0
- 608 022c 00D1     		bne	.LCB495
- 609 022e 3EE7     		b	.L16	@long jump
- 610              	.LCB495:
- 273:Src/main.c    **** 
-ARM GAS  /tmp/ccFLH43s.s 			page 21
-
-
- 611              		.loc 1 273 0
- 612 0230 A027     		mov	r7, #160
- 613 0232 FF05     		lsl	r7, r7, #23
- 614 0234 381C     		mov	r0, r7
- 615 0236 C021     		mov	r1, #192
- 616 0238 4901     		lsl	r1, r1, #5
- 617 023a 0122     		mov	r2, #1
- 618 023c FFF7FEFF 		bl	HAL_GPIO_WritePin
- 619              	.LVL92:
- 276:Src/main.c    **** 
- 620              		.loc 1 276 0
- 621 0240 2F48     		ldr	r0, .L27+52
- 622 0242 0F21     		mov	r1, #15
- 623 0244 0122     		mov	r2, #1
- 624 0246 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 625              	.LVL93:
- 280:Src/main.c    ****   		        	ssd1306_SetCursor(0,0);
- 626              		.loc 1 280 0
- 627 024a 0020     		mov	r0, #0
- 628 024c FFF7FEFF 		bl	ssd1306_Fill
- 629              	.LVL94:
- 281:Src/main.c    **** 		        	//sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
- 630              		.loc 1 281 0
- 631 0250 0020     		mov	r0, #0
- 632 0252 0021     		mov	r1, #0
- 633 0254 FFF7FEFF 		bl	ssd1306_SetCursor
- 634              	.LVL95:
- 283:Src/main.c    ****   		        	ssd1306_WriteString(timestamp, Font_11x18, White);
- 635              		.loc 1 283 0
- 636 0258 04A8     		add	r0, sp, #16
- 637 025a 234B     		ldr	r3, .L27+28
- 638 025c 021C     		mov	r2, r0
- 639 025e 12CB     		ldmia	r3!, {r1, r4}
- 640 0260 12C2     		stmia	r2!, {r1, r4}
- 641              	.LVL96:
- 642 0262 1B88     		ldrh	r3, [r3]
- 643 0264 1380     		strh	r3, [r2]
- 284:Src/main.c    ****   		        	ssd1306_SetCursor(0,22);
- 644              		.loc 1 284 0
- 645 0266 214D     		ldr	r5, .L27+32
- 646 0268 2968     		ldr	r1, [r5]
- 647 026a 6A68     		ldr	r2, [r5, #4]
- 648 026c 0123     		mov	r3, #1
- 649 026e FFF7FEFF 		bl	ssd1306_WriteString
- 650              	.LVL97:
- 285:Src/main.c    **** 		        	sprintf(message, ">>>>> %02dm", (int)depth);
- 651              		.loc 1 285 0
- 652 0272 0020     		mov	r0, #0
- 653 0274 1621     		mov	r1, #22
- 654 0276 FFF7FEFF 		bl	ssd1306_SetCursor
- 655              	.LVL98:
- 286:Src/main.c    ****   		        	ssd1306_WriteString(message, Font_11x18, White);
- 656              		.loc 1 286 0
- 657 027a 14AC     		add	r4, sp, #80
- 658 027c 201C     		mov	r0, r4
- 659 027e 2149     		ldr	r1, .L27+56
- 660 0280 039A     		ldr	r2, [sp, #12]
-ARM GAS  /tmp/ccFLH43s.s 			page 22
-
-
- 661 0282 FFF7FEFF 		bl	sprintf
- 662              	.LVL99:
- 287:Src/main.c    ****   		        	ssd1306_SetCursor(0,44);
- 663              		.loc 1 287 0
- 664 0286 201C     		mov	r0, r4
- 665 0288 2968     		ldr	r1, [r5]
- 666 028a 6A68     		ldr	r2, [r5, #4]
- 667 028c 0123     		mov	r3, #1
- 668 028e FFF7FEFF 		bl	ssd1306_WriteString
- 669              	.LVL100:
- 288:Src/main.c    **** 		        	sprintf(message, "activated!!!");
- 670              		.loc 1 288 0
- 671 0292 0020     		mov	r0, #0
- 672 0294 2C21     		mov	r1, #44
- 673 0296 FFF7FEFF 		bl	ssd1306_SetCursor
- 674              	.LVL101:
- 289:Src/main.c    ****   		        	ssd1306_WriteString(message, Font_11x18, White);
- 675              		.loc 1 289 0
- 676 029a 1B4B     		ldr	r3, .L27+60
- 677 029c 221C     		mov	r2, r4
- 678 029e 43CB     		ldmia	r3!, {r0, r1, r6}
- 679 02a0 43C2     		stmia	r2!, {r0, r1, r6}
- 680              	.LVL102:
- 681 02a2 1B78     		ldrb	r3, [r3]
- 682 02a4 1370     		strb	r3, [r2]
- 290:Src/main.c    ****   		        	ssd1306_UpdateScreen();                                                               
- 683              		.loc 1 290 0
- 684 02a6 201C     		mov	r0, r4
- 685 02a8 2968     		ldr	r1, [r5]
- 686 02aa 6A68     		ldr	r2, [r5, #4]
- 687 02ac 0123     		mov	r3, #1
- 688 02ae FFF7FEFF 		bl	ssd1306_WriteString
- 689              	.LVL103:
- 291:Src/main.c    **** 
- 690              		.loc 1 291 0
- 691 02b2 FFF7FEFF 		bl	ssd1306_UpdateScreen
- 692              	.LVL104:
- 295:Src/main.c    **** 
- 693              		.loc 1 295 0
- 694 02b6 1548     		ldr	r0, .L27+64
- 695 02b8 FFF7FEFF 		bl	HAL_Delay
- 696              	.LVL105:
- 299:Src/main.c    **** 
- 697              		.loc 1 299 0
- 698 02bc 381C     		mov	r0, r7
- 699 02be C021     		mov	r1, #192
- 700 02c0 4901     		lsl	r1, r1, #5
- 701 02c2 0022     		mov	r2, #0
- 702 02c4 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 703              	.LVL106:
- 704              	.L23:
- 302:Src/main.c    **** 				}
- 705              		.loc 1 302 0 discriminator 1
- 706 02c8 FEE7     		b	.L23
- 707              	.L28:
- 708 02ca C046     		.align	2
- 709              	.L27:
-ARM GAS  /tmp/ccFLH43s.s 			page 23
-
-
- 710 02cc 00300140 		.word	1073819648
- 711 02d0 00000000 		.word	hi2c1
- 712 02d4 00000000 		.word	Font_16x26
- 713 02d8 0C000000 		.word	.LC3
- 714 02dc 14000000 		.word	.LC6
- 715 02e0 CD8B0100 		.word	101325
- 716 02e4 48260000 		.word	9800
- 717 02e8 1C000000 		.word	.LC8
- 718 02ec 00000000 		.word	Font_11x18
- 719 02f0 28000000 		.word	.LC11
- 720 02f4 38000000 		.word	.LC13
- 721 02f8 0024C340 		.word	1086530560
- 722 02fc 48000000 		.word	.LC15
- 723 0300 00040050 		.word	1342178304
- 724 0304 58000000 		.word	.LC17
- 725 0308 64000000 		.word	.LC19
- 726 030c 08520000 		.word	21000
- 727              	.LBE3:
- 728              	.LBE2:
- 729              		.cfi_endproc
- 730              	.LFE37:
- 732              		.comm	SSD1306_I2C_PORT,4,4
- 733              		.section	.rodata.str1.4,"aMS",%progbits,1
- 734              		.align	2
- 735              	.LC0:
- 736 0000 5372632F 		.ascii	"Src/main.c\000"
- 736      6D61696E 
- 736      2E6300
- 737 000b 00       		.space	1
- 738              	.LC3:
- 739 000c 44697665 		.ascii	"DiveCmp\000"
- 739      436D7000 
- 740              	.LC6:
- 741 0014 53746172 		.ascii	"Start..\000"
- 741      742E2E00 
- 742              	.LC8:
- 743 001c 74696D65 		.ascii	"timestamp\000"
- 743      7374616D 
- 743      7000
- 744 0026 0000     		.space	2
- 745              	.LC11:
- 746 0028 41564152 		.ascii	"AVAR GL %02dm\000"
- 746      20474C20 
- 746      25303264 
- 746      6D00
- 747 0036 0000     		.space	2
- 748              	.LC13:
- 749 0038 616B6B75 		.ascii	"akkum %02d%%\000"
- 749      6D202530 
- 749      32642525 
- 749      00
- 750 0045 000000   		.space	3
- 751              	.LC15:
- 752 0048 676C7562 		.ascii	"glubina %02dm\000"
- 752      696E6120 
- 752      25303264 
- 752      6D00
-ARM GAS  /tmp/ccFLH43s.s 			page 24
-
-
- 753 0056 0000     		.space	2
- 754              	.LC17:
- 755 0058 3E3E3E3E 		.ascii	">>>>> %02dm\000"
- 755      3E202530 
- 755      32646D00 
- 756              	.LC19:
- 757 0064 61637469 		.ascii	"activated!!!\000"
- 757      76617465 
- 757      64212121 
- 757      00
- 758              		.text
- 759              	.Letext0:
- 760              		.file 2 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l071xx.h"
- 761              		.file 3 "/usr/include/newlib/machine/_default_types.h"
- 762              		.file 4 "/usr/include/newlib/sys/_stdint.h"
- 763              		.file 5 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_def.h"
- 764              		.file 6 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_rcc.h"
- 765              		.file 7 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_rcc_ex.h"
- 766              		.file 8 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_gpio.h"
- 767              		.file 9 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_dma.h"
- 768              		.file 10 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_i2c.h"
- 769              		.file 11 "Inc/fonts.h"
- 770              		.file 12 "Inc/ssd1306.h"
- 771              		.file 13 "Inc/pressure_sensor_object.h"
- 772              		.file 14 "Inc/voltmeter_object.h"
- 773              		.file 15 "Inc/dive_meter_object.h"
- 774              		.file 16 "Inc/i2c.h"
- 775              		.file 17 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_cortex.h"
- 776              		.file 18 "/usr/include/newlib/stdio.h"
- 777              		.file 19 "Inc/depth_switch_interface.h"
- 778              		.file 20 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h"
- 779              		.file 21 "Inc/one_second_timer_interface.h"
- 780              		.file 22 "Inc/gpio.h"
- 781              		.file 23 "Inc/adc.h"
- 782              		.file 24 "Inc/spi.h"
- 783              		.file 25 "Inc/usart.h"
-ARM GAS  /tmp/ccFLH43s.s 			page 25
+ 518 01b0 34000000 		.word	.LC13
+ 519              	.LBE2:
+ 520              		.cfi_endproc
+ 521              	.LFE37:
+ 523              		.comm	SSD1306_I2C_PORT,4,4
+ 524              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 525              		.align	2
+ 526              	.LC0:
+ 527 0000 5372632F 		.ascii	"Src/main.c\000"
+ 527      6D61696E 
+ 527      2E6300
+ 528 000b 00       		.space	1
+ 529              	.LC3:
+ 530 000c 44697665 		.ascii	"DiveCmp\000"
+ 530      436D7000 
+ 531              	.LC6:
+ 532 0014 53746172 		.ascii	"Start..\000"
+ 532      742E2E00 
+ 533              	.LC8:
+ 534 001c 74696D65 		.ascii	"timestamp\000"
+ 534      7374616D 
+ 534      7000
+ 535 0026 0000     		.space	2
+ 536              	.LC11:
+ 537 0028 41414141 		.ascii	"AAAAAAAAAA\000"
+ 537      41414141 
+ 537      414100
+ 538 0033 00       		.space	1
+ 539              	.LC13:
+ 540 0034 616B6B75 		.ascii	"akkum\000"
+ 540      6D00
+ 541              		.text
+ 542              	.Letext0:
+ 543              		.file 2 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l071xx.h"
+ 544              		.file 3 "/usr/include/newlib/machine/_default_types.h"
+ 545              		.file 4 "/usr/include/newlib/sys/_stdint.h"
+ 546              		.file 5 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_def.h"
+ 547              		.file 6 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_rcc.h"
+ 548              		.file 7 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_rcc_ex.h"
+ 549              		.file 8 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_dma.h"
+ 550              		.file 9 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_i2c.h"
+ 551              		.file 10 "Inc/fonts.h"
+ 552              		.file 11 "Inc/ssd1306.h"
+ 553              		.file 12 "Inc/pressure_sensor_object.h"
+ 554              		.file 13 "Inc/voltmeter_object.h"
+ 555              		.file 14 "Inc/dive_meter_object.h"
+ 556              		.file 15 "Inc/i2c.h"
+ 557              		.file 16 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_cortex.h"
+ 558              		.file 17 "Inc/one_second_timer_interface.h"
+ 559              		.file 18 "Inc/depth_switch_interface.h"
+ 560              		.file 19 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h"
+ 561              		.file 20 "Inc/gpio.h"
+ 562              		.file 21 "Inc/adc.h"
+ 563              		.file 22 "Inc/spi.h"
+ 564              		.file 23 "Inc/usart.h"
+ARM GAS  /tmp/ccK9MPwZ.s 			page 20
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-     /tmp/ccFLH43s.s:18     .text.primitive_delay:0000000000000000 $t
-     /tmp/ccFLH43s.s:23     .text.primitive_delay:0000000000000000 primitive_delay
-     /tmp/ccFLH43s.s:54     .text.primitive_delay:000000000000001c $d
-     /tmp/ccFLH43s.s:59     .text._Error_Handler:0000000000000000 $t
-     /tmp/ccFLH43s.s:64     .text._Error_Handler:0000000000000000 _Error_Handler
-     /tmp/ccFLH43s.s:77     .text.SystemClock_Config:0000000000000000 $t
-     /tmp/ccFLH43s.s:82     .text.SystemClock_Config:0000000000000000 SystemClock_Config
-     /tmp/ccFLH43s.s:214    .text.SystemClock_Config:00000000000000b4 $d
-     /tmp/ccFLH43s.s:228    .text.main:0000000000000000 $t
-     /tmp/ccFLH43s.s:233    .text.main:0000000000000000 main
-     /tmp/ccFLH43s.s:710    .text.main:00000000000002cc $d
+     /tmp/ccK9MPwZ.s:18     .text.primitive_delay:0000000000000000 $t
+     /tmp/ccK9MPwZ.s:23     .text.primitive_delay:0000000000000000 primitive_delay
+     /tmp/ccK9MPwZ.s:54     .text.primitive_delay:000000000000001c $d
+     /tmp/ccK9MPwZ.s:59     .text._Error_Handler:0000000000000000 $t
+     /tmp/ccK9MPwZ.s:64     .text._Error_Handler:0000000000000000 _Error_Handler
+     /tmp/ccK9MPwZ.s:77     .text.SystemClock_Config:0000000000000000 $t
+     /tmp/ccK9MPwZ.s:82     .text.SystemClock_Config:0000000000000000 SystemClock_Config
+     /tmp/ccK9MPwZ.s:214    .text.SystemClock_Config:00000000000000b4 $d
+     /tmp/ccK9MPwZ.s:225    .text.main:0000000000000000 $t
+     /tmp/ccK9MPwZ.s:230    .text.main:0000000000000000 main
+     /tmp/ccK9MPwZ.s:508    .text.main:0000000000000188 $d
                             *COM*:0000000000000004 SSD1306_I2C_PORT
-     /tmp/ccFLH43s.s:734    .rodata.str1.4:0000000000000000 $d
+     /tmp/ccK9MPwZ.s:525    .rodata.str1.4:0000000000000000 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
@@ -1450,9 +1169,6 @@ __aeabi_ui2d
 __aeabi_dcmpge
 __aeabi_d2uiz
 __aeabi_dcmplt
-__aeabi_d2iz
-__aeabi_dsub
-__aeabi_ddiv
 HAL_Init
 MX_GPIO_Init
 MX_ADC_Init
@@ -1477,16 +1193,13 @@ one_second_timer_reset_flag
 pressure_sensor_measure_pressure_temperature
 pressure_sensor_get_pressure
 pressure_sensor_get_temperature
-ARM GAS  /tmp/ccFLH43s.s 			page 26
-
-
 voltmeter_measure_voltage
 voltmeter_get_voltage
 voltmeter_get_percentage
+ARM GAS  /tmp/ccK9MPwZ.s 			page 21
+
+
 depth_switch_action
-depth_switch_get_current_depth
-sprintf
-HAL_GPIO_WritePin
 hi2c1
 Font_16x26
 Font_11x18
