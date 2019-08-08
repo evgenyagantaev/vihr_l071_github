@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccIKJoft.s 			page 1
+ARM GAS  /tmp/ccYx6NXH.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccIKJoft.s 			page 1
   39              	.L2:
   40              	.LVL0:
   18:Src/depth_switch_object.c ****   	}
-ARM GAS  /tmp/ccIKJoft.s 			page 2
+ARM GAS  /tmp/ccYx6NXH.s 			page 2
 
 
   19:Src/depth_switch_object.c **** 
@@ -94,485 +94,462 @@ ARM GAS  /tmp/ccIKJoft.s 			page 1
   66              		.cfi_offset 14, -4
   67 0002 041C     		mov	r4, r0
   26:Src/depth_switch_object.c **** 	// turn all leds off
-  27:Src/depth_switch_object.c ****   	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5, GPIO_PIN_SET);// turn leds off
+  27:Src/depth_switch_object.c ****   	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2| GPIO_PIN_3, GPIO_PIN_SET);// turn
   68              		.loc 1 27 0
-  69 0004 1E48     		ldr	r0, .L12
+  69 0004 1648     		ldr	r0, .L12
   70              	.LVL2:
-  71 0006 3821     		mov	r1, #56
+  71 0006 0F21     		mov	r1, #15
   72 0008 0122     		mov	r2, #1
   73 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
   74              	.LVL3:
-  28:Src/depth_switch_object.c ****   	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_SET);// turn leds off
-  75              		.loc 1 28 0
-  76 000e A020     		mov	r0, #160
-  77 0010 C005     		lsl	r0, r0, #23
-  78 0012 8021     		mov	r1, #128
-  79 0014 0902     		lsl	r1, r1, #8
-  80 0016 0122     		mov	r2, #1
-  81 0018 FFF7FEFF 		bl	HAL_GPIO_WritePin
-  82              	.LVL4:
-  29:Src/depth_switch_object.c **** 
-  30:Src/depth_switch_object.c **** 	if(led_number == 1)
-  83              		.loc 1 30 0
-  84 001c 012C     		cmp	r4, #1
-  85 001e 07D1     		bne	.L7
-  31:Src/depth_switch_object.c ****   		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_RESET);
+  28:Src/depth_switch_object.c **** 
+  29:Src/depth_switch_object.c **** 	if(led_number == 1)
+  75              		.loc 1 29 0
+  76 000e 012C     		cmp	r4, #1
+  77 0010 05D1     		bne	.L7
+  30:Src/depth_switch_object.c ****   		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);
+  78              		.loc 1 30 0
+  79 0012 1348     		ldr	r0, .L12
+  80 0014 0121     		mov	r1, #1
+  81 0016 0022     		mov	r2, #0
+  82 0018 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  83              	.LVL4:
+  84 001c 1EE0     		b	.L6
+  85              	.L7:
+  31:Src/depth_switch_object.c **** 	else if(led_number == 2)
   86              		.loc 1 31 0
-ARM GAS  /tmp/ccIKJoft.s 			page 3
+ARM GAS  /tmp/ccYx6NXH.s 			page 3
 
 
-  87 0020 A020     		mov	r0, #160
-  88 0022 C005     		lsl	r0, r0, #23
-  89 0024 8021     		mov	r1, #128
-  90 0026 0902     		lsl	r1, r1, #8
-  91 0028 0022     		mov	r2, #0
-  92 002a FFF7FEFF 		bl	HAL_GPIO_WritePin
-  93              	.LVL5:
-  94 002e 25E0     		b	.L6
-  95              	.L7:
-  32:Src/depth_switch_object.c **** 	else if(led_number == 2)
-  96              		.loc 1 32 0
-  97 0030 022C     		cmp	r4, #2
-  98 0032 05D1     		bne	.L9
-  33:Src/depth_switch_object.c ****   		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_3, GPIO_PIN_RESET);
-  99              		.loc 1 33 0
- 100 0034 1248     		ldr	r0, .L12
- 101 0036 0821     		mov	r1, #8
- 102 0038 0022     		mov	r2, #0
- 103 003a FFF7FEFF 		bl	HAL_GPIO_WritePin
- 104              	.LVL6:
- 105 003e 1DE0     		b	.L6
- 106              	.L9:
-  34:Src/depth_switch_object.c **** 	else if(led_number == 3)
- 107              		.loc 1 34 0
- 108 0040 032C     		cmp	r4, #3
- 109 0042 05D1     		bne	.L10
-  35:Src/depth_switch_object.c ****   		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_RESET);
- 110              		.loc 1 35 0
- 111 0044 0E48     		ldr	r0, .L12
- 112 0046 1021     		mov	r1, #16
- 113 0048 0022     		mov	r2, #0
- 114 004a FFF7FEFF 		bl	HAL_GPIO_WritePin
- 115              	.LVL7:
- 116 004e 15E0     		b	.L6
- 117              	.L10:
-  36:Src/depth_switch_object.c **** 	else if(led_number == 4)
- 118              		.loc 1 36 0
- 119 0050 042C     		cmp	r4, #4
- 120 0052 05D1     		bne	.L11
-  37:Src/depth_switch_object.c ****   		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_RESET);
- 121              		.loc 1 37 0
- 122 0054 0A48     		ldr	r0, .L12
- 123 0056 2021     		mov	r1, #32
- 124 0058 0022     		mov	r2, #0
- 125 005a FFF7FEFF 		bl	HAL_GPIO_WritePin
- 126              	.LVL8:
- 127 005e 0DE0     		b	.L6
- 128              	.L11:
-  38:Src/depth_switch_object.c **** 	else if(led_number == 5) // test mode all leds on
- 129              		.loc 1 38 0
- 130 0060 052C     		cmp	r4, #5
- 131 0062 0BD1     		bne	.L6
-  39:Src/depth_switch_object.c **** 	{
-  40:Src/depth_switch_object.c ****   		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5, GPIO_PIN_RESET);
- 132              		.loc 1 40 0
- 133 0064 0648     		ldr	r0, .L12
- 134 0066 3821     		mov	r1, #56
-ARM GAS  /tmp/ccIKJoft.s 			page 4
-
-
- 135 0068 0022     		mov	r2, #0
- 136 006a FFF7FEFF 		bl	HAL_GPIO_WritePin
- 137              	.LVL9:
-  41:Src/depth_switch_object.c ****   		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_RESET);
- 138              		.loc 1 41 0
- 139 006e A020     		mov	r0, #160
- 140 0070 C005     		lsl	r0, r0, #23
- 141 0072 8021     		mov	r1, #128
- 142 0074 0902     		lsl	r1, r1, #8
- 143 0076 0022     		mov	r2, #0
- 144 0078 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 145              	.LVL10:
- 146              	.L6:
+  87 001e 022C     		cmp	r4, #2
+  88 0020 05D1     		bne	.L9
+  32:Src/depth_switch_object.c ****   		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_RESET);
+  89              		.loc 1 32 0
+  90 0022 0F48     		ldr	r0, .L12
+  91 0024 0221     		mov	r1, #2
+  92 0026 0022     		mov	r2, #0
+  93 0028 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  94              	.LVL5:
+  95 002c 16E0     		b	.L6
+  96              	.L9:
+  33:Src/depth_switch_object.c **** 	else if(led_number == 3)
+  97              		.loc 1 33 0
+  98 002e 032C     		cmp	r4, #3
+  99 0030 05D1     		bne	.L10
+  34:Src/depth_switch_object.c ****   		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_RESET);
+ 100              		.loc 1 34 0
+ 101 0032 0B48     		ldr	r0, .L12
+ 102 0034 0421     		mov	r1, #4
+ 103 0036 0022     		mov	r2, #0
+ 104 0038 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 105              	.LVL6:
+ 106 003c 0EE0     		b	.L6
+ 107              	.L10:
+  35:Src/depth_switch_object.c **** 	else if(led_number == 4)
+ 108              		.loc 1 35 0
+ 109 003e 042C     		cmp	r4, #4
+ 110 0040 05D1     		bne	.L11
+  36:Src/depth_switch_object.c ****   		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_3, GPIO_PIN_RESET);
+ 111              		.loc 1 36 0
+ 112 0042 0748     		ldr	r0, .L12
+ 113 0044 0821     		mov	r1, #8
+ 114 0046 0022     		mov	r2, #0
+ 115 0048 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 116              	.LVL7:
+ 117 004c 06E0     		b	.L6
+ 118              	.L11:
+  37:Src/depth_switch_object.c **** 	else if(led_number == 5) // test mode all leds on
+ 119              		.loc 1 37 0
+ 120 004e 052C     		cmp	r4, #5
+ 121 0050 04D1     		bne	.L6
+  38:Src/depth_switch_object.c **** 	{
+  39:Src/depth_switch_object.c ****   		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2| GPIO_PIN_3, GPIO_PIN_RESET);// t
+ 122              		.loc 1 39 0
+ 123 0052 0348     		ldr	r0, .L12
+ 124 0054 0F21     		mov	r1, #15
+ 125 0056 0022     		mov	r2, #0
+ 126 0058 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 127              	.LVL8:
+ 128              	.L6:
+  40:Src/depth_switch_object.c **** 
+  41:Src/depth_switch_object.c **** 	}
   42:Src/depth_switch_object.c **** 
-  43:Src/depth_switch_object.c **** 	}
+  43:Src/depth_switch_object.c **** }
+ 129              		.loc 1 43 0
+ 130              		@ sp needed
+ 131              	.LVL9:
+ARM GAS  /tmp/ccYx6NXH.s 			page 4
+
+
+ 132 005c 10BD     		pop	{r4, pc}
+ 133              	.L13:
+ 134 005e C046     		.align	2
+ 135              	.L12:
+ 136 0060 00040050 		.word	1342178304
+ 137              		.cfi_endproc
+ 138              	.LFE37:
+ 140              		.global	__aeabi_dcmpeq
+ 141              		.section	.text.depth_switch_step_current_depth,"ax",%progbits
+ 142              		.align	2
+ 143              		.global	depth_switch_step_current_depth
+ 144              		.code	16
+ 145              		.thumb_func
+ 147              	depth_switch_step_current_depth:
+ 148              	.LFB38:
   44:Src/depth_switch_object.c **** 
-  45:Src/depth_switch_object.c **** }
- 147              		.loc 1 45 0
- 148              		@ sp needed
- 149              	.LVL11:
- 150 007c 10BD     		pop	{r4, pc}
- 151              	.L13:
- 152 007e C046     		.align	2
- 153              	.L12:
- 154 0080 00040050 		.word	1342178304
- 155              		.cfi_endproc
- 156              	.LFE37:
- 158              		.global	__aeabi_dcmpeq
- 159              		.section	.text.depth_switch_step_current_depth,"ax",%progbits
- 160              		.align	2
- 161              		.global	depth_switch_step_current_depth
- 162              		.code	16
- 163              		.thumb_func
- 165              	depth_switch_step_current_depth:
- 166              	.LFB38:
+  45:Src/depth_switch_object.c **** 
   46:Src/depth_switch_object.c **** 
-  47:Src/depth_switch_object.c **** 
-  48:Src/depth_switch_object.c **** 
-  49:Src/depth_switch_object.c **** void depth_switch_step_current_depth()
-  50:Src/depth_switch_object.c **** {
- 167              		.loc 1 50 0
- 168              		.cfi_startproc
- 169 0000 38B5     		push	{r3, r4, r5, lr}
- 170              	.LCFI1:
- 171              		.cfi_def_cfa_offset 16
- 172              		.cfi_offset 3, -16
- 173              		.cfi_offset 4, -12
- 174              		.cfi_offset 5, -8
- 175              		.cfi_offset 14, -4
-  51:Src/depth_switch_object.c **** 	if(current_depth != DEPTH0)
- 176              		.loc 1 51 0
- 177 0002 274B     		ldr	r3, .L32
- 178 0004 1C68     		ldr	r4, [r3]
- 179 0006 5D68     		ldr	r5, [r3, #4]
- 180 0008 201C     		mov	r0, r4
- 181 000a 291C     		mov	r1, r5
- 182 000c 0022     		mov	r2, #0
-ARM GAS  /tmp/ccIKJoft.s 			page 5
+  47:Src/depth_switch_object.c **** void depth_switch_step_current_depth()
+  48:Src/depth_switch_object.c **** {
+ 149              		.loc 1 48 0
+ 150              		.cfi_startproc
+ 151 0000 38B5     		push	{r3, r4, r5, lr}
+ 152              	.LCFI1:
+ 153              		.cfi_def_cfa_offset 16
+ 154              		.cfi_offset 3, -16
+ 155              		.cfi_offset 4, -12
+ 156              		.cfi_offset 5, -8
+ 157              		.cfi_offset 14, -4
+  49:Src/depth_switch_object.c **** 	if(current_depth != DEPTH0)
+ 158              		.loc 1 49 0
+ 159 0002 274B     		ldr	r3, .L32
+ 160 0004 1C68     		ldr	r4, [r3]
+ 161 0006 5D68     		ldr	r5, [r3, #4]
+ 162 0008 201C     		mov	r0, r4
+ 163 000a 291C     		mov	r1, r5
+ 164 000c 0022     		mov	r2, #0
+ 165 000e 254B     		ldr	r3, .L32+4
+ 166 0010 FFF7FEFF 		bl	__aeabi_dcmpeq
+ 167              	.LVL10:
+ 168 0014 0028     		cmp	r0, #0
+ 169 0016 42D1     		bne	.L14
+  50:Src/depth_switch_object.c **** 	{
+  51:Src/depth_switch_object.c **** 		if(current_depth == DEPTH1)
+ 170              		.loc 1 51 0
+ 171 0018 201C     		mov	r0, r4
+ 172 001a 291C     		mov	r1, r5
+ 173 001c 0022     		mov	r2, #0
+ 174 001e 224B     		ldr	r3, .L32+8
+ 175 0020 FFF7FEFF 		bl	__aeabi_dcmpeq
+ 176              	.LVL11:
+ 177 0024 0028     		cmp	r0, #0
+ 178 0026 08D0     		beq	.L29
+  52:Src/depth_switch_object.c **** 		{
+  53:Src/depth_switch_object.c **** 			current_depth = DEPTH2;
+ 179              		.loc 1 53 0
+ 180 0028 0020     		mov	r0, #0
+ARM GAS  /tmp/ccYx6NXH.s 			page 5
 
 
- 183 000e 254B     		ldr	r3, .L32+4
- 184 0010 FFF7FEFF 		bl	__aeabi_dcmpeq
- 185              	.LVL12:
- 186 0014 0028     		cmp	r0, #0
- 187 0016 42D1     		bne	.L14
-  52:Src/depth_switch_object.c **** 	{
-  53:Src/depth_switch_object.c **** 		if(current_depth == DEPTH1)
- 188              		.loc 1 53 0
- 189 0018 201C     		mov	r0, r4
- 190 001a 291C     		mov	r1, r5
- 191 001c 0022     		mov	r2, #0
- 192 001e 224B     		ldr	r3, .L32+8
- 193 0020 FFF7FEFF 		bl	__aeabi_dcmpeq
- 194              	.LVL13:
- 195 0024 0028     		cmp	r0, #0
- 196 0026 08D0     		beq	.L29
-  54:Src/depth_switch_object.c **** 		{
-  55:Src/depth_switch_object.c **** 			current_depth = DEPTH2;
- 197              		.loc 1 55 0
- 198 0028 0020     		mov	r0, #0
- 199 002a 2049     		ldr	r1, .L32+12
- 200 002c 1C4B     		ldr	r3, .L32
- 201 002e 1860     		str	r0, [r3]
- 202 0030 5960     		str	r1, [r3, #4]
-  56:Src/depth_switch_object.c **** 			depth_switch_turn_signal_led(2);
- 203              		.loc 1 56 0
- 204 0032 0220     		mov	r0, #2
- 205 0034 FFF7FEFF 		bl	depth_switch_turn_signal_led
- 206              	.LVL14:
- 207 0038 31E0     		b	.L14
- 208              	.L29:
-  57:Src/depth_switch_object.c **** 		}
-  58:Src/depth_switch_object.c **** 		else if(current_depth == DEPTH2)
- 209              		.loc 1 58 0
- 210 003a 201C     		mov	r0, r4
- 211 003c 291C     		mov	r1, r5
- 212 003e 0022     		mov	r2, #0
- 213 0040 1A4B     		ldr	r3, .L32+12
- 214 0042 FFF7FEFF 		bl	__aeabi_dcmpeq
- 215              	.LVL15:
- 216 0046 0028     		cmp	r0, #0
- 217 0048 08D0     		beq	.L30
-  59:Src/depth_switch_object.c **** 		{
-  60:Src/depth_switch_object.c **** 			current_depth = DEPTH3;
- 218              		.loc 1 60 0
- 219 004a 0020     		mov	r0, #0
- 220 004c 1849     		ldr	r1, .L32+16
- 221 004e 144B     		ldr	r3, .L32
- 222 0050 1860     		str	r0, [r3]
- 223 0052 5960     		str	r1, [r3, #4]
-  61:Src/depth_switch_object.c **** 			depth_switch_turn_signal_led(3);
- 224              		.loc 1 61 0
- 225 0054 0320     		mov	r0, #3
- 226 0056 FFF7FEFF 		bl	depth_switch_turn_signal_led
- 227              	.LVL16:
- 228 005a 20E0     		b	.L14
- 229              	.L30:
-ARM GAS  /tmp/ccIKJoft.s 			page 6
+ 181 002a 2049     		ldr	r1, .L32+12
+ 182 002c 1C4B     		ldr	r3, .L32
+ 183 002e 1860     		str	r0, [r3]
+ 184 0030 5960     		str	r1, [r3, #4]
+  54:Src/depth_switch_object.c **** 			depth_switch_turn_signal_led(2);
+ 185              		.loc 1 54 0
+ 186 0032 0220     		mov	r0, #2
+ 187 0034 FFF7FEFF 		bl	depth_switch_turn_signal_led
+ 188              	.LVL12:
+ 189 0038 31E0     		b	.L14
+ 190              	.L29:
+  55:Src/depth_switch_object.c **** 		}
+  56:Src/depth_switch_object.c **** 		else if(current_depth == DEPTH2)
+ 191              		.loc 1 56 0
+ 192 003a 201C     		mov	r0, r4
+ 193 003c 291C     		mov	r1, r5
+ 194 003e 0022     		mov	r2, #0
+ 195 0040 1A4B     		ldr	r3, .L32+12
+ 196 0042 FFF7FEFF 		bl	__aeabi_dcmpeq
+ 197              	.LVL13:
+ 198 0046 0028     		cmp	r0, #0
+ 199 0048 08D0     		beq	.L30
+  57:Src/depth_switch_object.c **** 		{
+  58:Src/depth_switch_object.c **** 			current_depth = DEPTH3;
+ 200              		.loc 1 58 0
+ 201 004a 0020     		mov	r0, #0
+ 202 004c 1849     		ldr	r1, .L32+16
+ 203 004e 144B     		ldr	r3, .L32
+ 204 0050 1860     		str	r0, [r3]
+ 205 0052 5960     		str	r1, [r3, #4]
+  59:Src/depth_switch_object.c **** 			depth_switch_turn_signal_led(3);
+ 206              		.loc 1 59 0
+ 207 0054 0320     		mov	r0, #3
+ 208 0056 FFF7FEFF 		bl	depth_switch_turn_signal_led
+ 209              	.LVL14:
+ 210 005a 20E0     		b	.L14
+ 211              	.L30:
+  60:Src/depth_switch_object.c **** 		}
+  61:Src/depth_switch_object.c **** 		else if(current_depth == DEPTH3)
+ 212              		.loc 1 61 0
+ 213 005c 201C     		mov	r0, r4
+ 214 005e 291C     		mov	r1, r5
+ 215 0060 0022     		mov	r2, #0
+ 216 0062 134B     		ldr	r3, .L32+16
+ 217 0064 FFF7FEFF 		bl	__aeabi_dcmpeq
+ 218              	.LVL15:
+ 219 0068 0028     		cmp	r0, #0
+ 220 006a 08D0     		beq	.L31
+  62:Src/depth_switch_object.c **** 		{
+  63:Src/depth_switch_object.c **** 			current_depth = DEPTH4;
+ 221              		.loc 1 63 0
+ 222 006c 0020     		mov	r0, #0
+ 223 006e 1149     		ldr	r1, .L32+20
+ 224 0070 0B4B     		ldr	r3, .L32
+ 225 0072 1860     		str	r0, [r3]
+ 226 0074 5960     		str	r1, [r3, #4]
+  64:Src/depth_switch_object.c **** 			depth_switch_turn_signal_led(4);
+ARM GAS  /tmp/ccYx6NXH.s 			page 6
 
 
-  62:Src/depth_switch_object.c **** 		}
-  63:Src/depth_switch_object.c **** 		else if(current_depth == DEPTH3)
- 230              		.loc 1 63 0
- 231 005c 201C     		mov	r0, r4
- 232 005e 291C     		mov	r1, r5
- 233 0060 0022     		mov	r2, #0
- 234 0062 134B     		ldr	r3, .L32+16
- 235 0064 FFF7FEFF 		bl	__aeabi_dcmpeq
- 236              	.LVL17:
- 237 0068 0028     		cmp	r0, #0
- 238 006a 08D0     		beq	.L31
-  64:Src/depth_switch_object.c **** 		{
-  65:Src/depth_switch_object.c **** 			current_depth = DEPTH4;
- 239              		.loc 1 65 0
- 240 006c 0020     		mov	r0, #0
- 241 006e 1149     		ldr	r1, .L32+20
- 242 0070 0B4B     		ldr	r3, .L32
- 243 0072 1860     		str	r0, [r3]
- 244 0074 5960     		str	r1, [r3, #4]
-  66:Src/depth_switch_object.c **** 			depth_switch_turn_signal_led(4);
- 245              		.loc 1 66 0
- 246 0076 0420     		mov	r0, #4
- 247 0078 FFF7FEFF 		bl	depth_switch_turn_signal_led
- 248              	.LVL18:
- 249 007c 0FE0     		b	.L14
- 250              	.L31:
-  67:Src/depth_switch_object.c **** 		}
-  68:Src/depth_switch_object.c **** 		else if(current_depth == DEPTH4)
- 251              		.loc 1 68 0
- 252 007e 201C     		mov	r0, r4
- 253 0080 291C     		mov	r1, r5
- 254 0082 0022     		mov	r2, #0
- 255 0084 0B4B     		ldr	r3, .L32+20
- 256 0086 FFF7FEFF 		bl	__aeabi_dcmpeq
- 257              	.LVL19:
- 258 008a 0028     		cmp	r0, #0
- 259 008c 07D0     		beq	.L14
-  69:Src/depth_switch_object.c **** 		{
-  70:Src/depth_switch_object.c **** 			current_depth = DEPTH1;
- 260              		.loc 1 70 0
- 261 008e 0020     		mov	r0, #0
- 262 0090 0549     		ldr	r1, .L32+8
- 263 0092 034B     		ldr	r3, .L32
- 264 0094 1860     		str	r0, [r3]
- 265 0096 5960     		str	r1, [r3, #4]
-  71:Src/depth_switch_object.c **** 			depth_switch_turn_signal_led(1);
- 266              		.loc 1 71 0
- 267 0098 0120     		mov	r0, #1
- 268 009a FFF7FEFF 		bl	depth_switch_turn_signal_led
- 269              	.LVL20:
- 270              	.L14:
-  72:Src/depth_switch_object.c **** 		}
-  73:Src/depth_switch_object.c **** 	}
-  74:Src/depth_switch_object.c **** }
- 271              		.loc 1 74 0
- 272              		@ sp needed
- 273 009e 38BD     		pop	{r3, r4, r5, pc}
-ARM GAS  /tmp/ccIKJoft.s 			page 7
+ 227              		.loc 1 64 0
+ 228 0076 0420     		mov	r0, #4
+ 229 0078 FFF7FEFF 		bl	depth_switch_turn_signal_led
+ 230              	.LVL16:
+ 231 007c 0FE0     		b	.L14
+ 232              	.L31:
+  65:Src/depth_switch_object.c **** 		}
+  66:Src/depth_switch_object.c **** 		else if(current_depth == DEPTH4)
+ 233              		.loc 1 66 0
+ 234 007e 201C     		mov	r0, r4
+ 235 0080 291C     		mov	r1, r5
+ 236 0082 0022     		mov	r2, #0
+ 237 0084 0B4B     		ldr	r3, .L32+20
+ 238 0086 FFF7FEFF 		bl	__aeabi_dcmpeq
+ 239              	.LVL17:
+ 240 008a 0028     		cmp	r0, #0
+ 241 008c 07D0     		beq	.L14
+  67:Src/depth_switch_object.c **** 		{
+  68:Src/depth_switch_object.c **** 			current_depth = DEPTH1;
+ 242              		.loc 1 68 0
+ 243 008e 0020     		mov	r0, #0
+ 244 0090 0549     		ldr	r1, .L32+8
+ 245 0092 034B     		ldr	r3, .L32
+ 246 0094 1860     		str	r0, [r3]
+ 247 0096 5960     		str	r1, [r3, #4]
+  69:Src/depth_switch_object.c **** 			depth_switch_turn_signal_led(1);
+ 248              		.loc 1 69 0
+ 249 0098 0120     		mov	r0, #1
+ 250 009a FFF7FEFF 		bl	depth_switch_turn_signal_led
+ 251              	.LVL18:
+ 252              	.L14:
+  70:Src/depth_switch_object.c **** 		}
+  71:Src/depth_switch_object.c **** 	}
+  72:Src/depth_switch_object.c **** }
+ 253              		.loc 1 72 0
+ 254              		@ sp needed
+ 255 009e 38BD     		pop	{r3, r4, r5, pc}
+ 256              	.L33:
+ 257              		.align	2
+ 258              	.L32:
+ 259 00a0 00000000 		.word	.LANCHOR0
+ 260 00a4 0000F03F 		.word	1072693248
+ 261 00a8 00002E40 		.word	1076756480
+ 262 00ac 00003440 		.word	1077149696
+ 263 00b0 00003940 		.word	1077477376
+ 264 00b4 00003E40 		.word	1077805056
+ 265              		.cfi_endproc
+ 266              	.LFE38:
+ 268              		.section	.text.depth_switch_step_to_test,"ax",%progbits
+ 269              		.align	2
+ 270              		.global	depth_switch_step_to_test
+ 271              		.code	16
+ 272              		.thumb_func
+ 274              	depth_switch_step_to_test:
+ 275              	.LFB39:
+  73:Src/depth_switch_object.c **** 
+  74:Src/depth_switch_object.c **** 
+ARM GAS  /tmp/ccYx6NXH.s 			page 7
 
 
- 274              	.L33:
- 275              		.align	2
- 276              	.L32:
- 277 00a0 00000000 		.word	.LANCHOR0
- 278 00a4 0000F03F 		.word	1072693248
- 279 00a8 00002E40 		.word	1076756480
- 280 00ac 00003440 		.word	1077149696
- 281 00b0 00003940 		.word	1077477376
- 282 00b4 00003E40 		.word	1077805056
- 283              		.cfi_endproc
- 284              	.LFE38:
- 286              		.section	.text.depth_switch_step_to_test,"ax",%progbits
- 287              		.align	2
- 288              		.global	depth_switch_step_to_test
- 289              		.code	16
- 290              		.thumb_func
- 292              	depth_switch_step_to_test:
- 293              	.LFB39:
-  75:Src/depth_switch_object.c **** 
-  76:Src/depth_switch_object.c **** 
-  77:Src/depth_switch_object.c **** void depth_switch_step_to_test()
-  78:Src/depth_switch_object.c **** {
- 294              		.loc 1 78 0
- 295              		.cfi_startproc
- 296 0000 08B5     		push	{r3, lr}
- 297              	.LCFI2:
- 298              		.cfi_def_cfa_offset 8
- 299              		.cfi_offset 3, -8
- 300              		.cfi_offset 14, -4
-  79:Src/depth_switch_object.c **** 	current_depth = DEPTH0;
- 301              		.loc 1 79 0
- 302 0002 0020     		mov	r0, #0
- 303 0004 0349     		ldr	r1, .L35
- 304 0006 044B     		ldr	r3, .L35+4
- 305 0008 1860     		str	r0, [r3]
- 306 000a 5960     		str	r1, [r3, #4]
-  80:Src/depth_switch_object.c **** 	depth_switch_turn_signal_led(5);
- 307              		.loc 1 80 0
- 308 000c 0520     		mov	r0, #5
- 309 000e FFF7FEFF 		bl	depth_switch_turn_signal_led
- 310              	.LVL21:
-  81:Src/depth_switch_object.c **** }
- 311              		.loc 1 81 0
- 312              		@ sp needed
- 313 0012 08BD     		pop	{r3, pc}
- 314              	.L36:
- 315              		.align	2
- 316              	.L35:
- 317 0014 0000F03F 		.word	1072693248
- 318 0018 00000000 		.word	.LANCHOR0
- 319              		.cfi_endproc
- 320              	.LFE39:
- 322              		.section	.text.depth_switch_get_current_depth,"ax",%progbits
- 323              		.align	2
- 324              		.global	depth_switch_get_current_depth
- 325              		.code	16
- 326              		.thumb_func
-ARM GAS  /tmp/ccIKJoft.s 			page 8
+  75:Src/depth_switch_object.c **** void depth_switch_step_to_test()
+  76:Src/depth_switch_object.c **** {
+ 276              		.loc 1 76 0
+ 277              		.cfi_startproc
+ 278 0000 08B5     		push	{r3, lr}
+ 279              	.LCFI2:
+ 280              		.cfi_def_cfa_offset 8
+ 281              		.cfi_offset 3, -8
+ 282              		.cfi_offset 14, -4
+  77:Src/depth_switch_object.c **** 	current_depth = DEPTH0;
+ 283              		.loc 1 77 0
+ 284 0002 0020     		mov	r0, #0
+ 285 0004 0349     		ldr	r1, .L35
+ 286 0006 044B     		ldr	r3, .L35+4
+ 287 0008 1860     		str	r0, [r3]
+ 288 000a 5960     		str	r1, [r3, #4]
+  78:Src/depth_switch_object.c **** 	depth_switch_turn_signal_led(5);
+ 289              		.loc 1 78 0
+ 290 000c 0520     		mov	r0, #5
+ 291 000e FFF7FEFF 		bl	depth_switch_turn_signal_led
+ 292              	.LVL19:
+  79:Src/depth_switch_object.c **** }
+ 293              		.loc 1 79 0
+ 294              		@ sp needed
+ 295 0012 08BD     		pop	{r3, pc}
+ 296              	.L36:
+ 297              		.align	2
+ 298              	.L35:
+ 299 0014 0000F03F 		.word	1072693248
+ 300 0018 00000000 		.word	.LANCHOR0
+ 301              		.cfi_endproc
+ 302              	.LFE39:
+ 304              		.section	.text.depth_switch_get_current_depth,"ax",%progbits
+ 305              		.align	2
+ 306              		.global	depth_switch_get_current_depth
+ 307              		.code	16
+ 308              		.thumb_func
+ 310              	depth_switch_get_current_depth:
+ 311              	.LFB40:
+  80:Src/depth_switch_object.c **** 
+  81:Src/depth_switch_object.c **** double depth_switch_get_current_depth()
+  82:Src/depth_switch_object.c **** {
+ 312              		.loc 1 82 0
+ 313              		.cfi_startproc
+  83:Src/depth_switch_object.c **** 	return current_depth;
+ 314              		.loc 1 83 0
+ 315 0000 014B     		ldr	r3, .L38
+ 316 0002 1868     		ldr	r0, [r3]
+ 317 0004 5968     		ldr	r1, [r3, #4]
+  84:Src/depth_switch_object.c **** }
+ 318              		.loc 1 84 0
+ 319              		@ sp needed
+ 320 0006 7047     		bx	lr
+ 321              	.L39:
+ 322              		.align	2
+ 323              	.L38:
+ 324 0008 00000000 		.word	.LANCHOR0
+ARM GAS  /tmp/ccYx6NXH.s 			page 8
 
 
- 328              	depth_switch_get_current_depth:
- 329              	.LFB40:
-  82:Src/depth_switch_object.c **** 
-  83:Src/depth_switch_object.c **** double depth_switch_get_current_depth()
-  84:Src/depth_switch_object.c **** {
- 330              		.loc 1 84 0
- 331              		.cfi_startproc
-  85:Src/depth_switch_object.c **** 	return current_depth;
- 332              		.loc 1 85 0
- 333 0000 014B     		ldr	r3, .L38
- 334 0002 1868     		ldr	r0, [r3]
- 335 0004 5968     		ldr	r1, [r3, #4]
-  86:Src/depth_switch_object.c **** }
- 336              		.loc 1 86 0
- 337              		@ sp needed
- 338 0006 7047     		bx	lr
- 339              	.L39:
- 340              		.align	2
- 341              	.L38:
- 342 0008 00000000 		.word	.LANCHOR0
- 343              		.cfi_endproc
- 344              	.LFE40:
- 346              		.section	.text.depth_switch_action,"ax",%progbits
- 347              		.align	2
- 348              		.global	depth_switch_action
- 349              		.code	16
- 350              		.thumb_func
- 352              	depth_switch_action:
- 353              	.LFB41:
+ 325              		.cfi_endproc
+ 326              	.LFE40:
+ 328              		.section	.text.depth_switch_action,"ax",%progbits
+ 329              		.align	2
+ 330              		.global	depth_switch_action
+ 331              		.code	16
+ 332              		.thumb_func
+ 334              	depth_switch_action:
+ 335              	.LFB41:
+  85:Src/depth_switch_object.c **** 
+  86:Src/depth_switch_object.c **** 
   87:Src/depth_switch_object.c **** 
   88:Src/depth_switch_object.c **** 
-  89:Src/depth_switch_object.c **** 
-  90:Src/depth_switch_object.c **** 
-  91:Src/depth_switch_object.c **** void depth_switch_action()
-  92:Src/depth_switch_object.c **** {
- 354              		.loc 1 92 0
- 355              		.cfi_startproc
- 356 0000 08B5     		push	{r3, lr}
- 357              	.LCFI3:
- 358              		.cfi_def_cfa_offset 8
- 359              		.cfi_offset 3, -8
- 360              		.cfi_offset 14, -4
-  93:Src/depth_switch_object.c **** 	if(!depth_switch_check_gpio()) // key pressed
- 361              		.loc 1 93 0
- 362 0002 FFF7FEFF 		bl	depth_switch_check_gpio
- 363              	.LVL22:
- 364 0006 0028     		cmp	r0, #0
- 365 0008 04D1     		bne	.L41
-  94:Src/depth_switch_object.c **** 		depth_switch_key_press_period_counter++;
- 366              		.loc 1 94 0
- 367 000a 0A4A     		ldr	r2, .L45
- 368 000c 1368     		ldr	r3, [r2]
- 369 000e 0133     		add	r3, r3, #1
- 370 0010 1360     		str	r3, [r2]
- 371 0012 0DE0     		b	.L40
- 372              	.L41:
-  95:Src/depth_switch_object.c **** 	else  // key is not pressed
-ARM GAS  /tmp/ccIKJoft.s 			page 9
+  89:Src/depth_switch_object.c **** void depth_switch_action()
+  90:Src/depth_switch_object.c **** {
+ 336              		.loc 1 90 0
+ 337              		.cfi_startproc
+ 338 0000 08B5     		push	{r3, lr}
+ 339              	.LCFI3:
+ 340              		.cfi_def_cfa_offset 8
+ 341              		.cfi_offset 3, -8
+ 342              		.cfi_offset 14, -4
+  91:Src/depth_switch_object.c **** 	if(!depth_switch_check_gpio()) // key pressed
+ 343              		.loc 1 91 0
+ 344 0002 FFF7FEFF 		bl	depth_switch_check_gpio
+ 345              	.LVL20:
+ 346 0006 0028     		cmp	r0, #0
+ 347 0008 04D1     		bne	.L41
+  92:Src/depth_switch_object.c **** 		depth_switch_key_press_period_counter++;
+ 348              		.loc 1 92 0
+ 349 000a 0A4A     		ldr	r2, .L45
+ 350 000c 1368     		ldr	r3, [r2]
+ 351 000e 0133     		add	r3, r3, #1
+ 352 0010 1360     		str	r3, [r2]
+ 353 0012 0DE0     		b	.L40
+ 354              	.L41:
+  93:Src/depth_switch_object.c **** 	else  // key is not pressed
+  94:Src/depth_switch_object.c **** 	{
+  95:Src/depth_switch_object.c **** 		if(depth_switch_key_press_period_counter > 0)
+ 355              		.loc 1 95 0
+ 356 0014 074B     		ldr	r3, .L45
+ 357 0016 1B68     		ldr	r3, [r3]
+ 358 0018 002B     		cmp	r3, #0
+ 359 001a 09DD     		ble	.L40
+  96:Src/depth_switch_object.c **** 		{
+  97:Src/depth_switch_object.c **** 			if(depth_switch_key_press_period_counter <= 3)     // less then 2 seconds
+ 360              		.loc 1 97 0
+ 361 001c 032B     		cmp	r3, #3
+ 362 001e 02DC     		bgt	.L43
+  98:Src/depth_switch_object.c **** 				depth_switch_step_current_depth();
+ 363              		.loc 1 98 0
+ 364 0020 FFF7FEFF 		bl	depth_switch_step_current_depth
+ 365              	.LVL21:
+ 366 0024 01E0     		b	.L44
+ 367              	.L43:
+  99:Src/depth_switch_object.c **** 			else   // more then 3 seconds
+ 100:Src/depth_switch_object.c **** 				depth_switch_step_to_test();
+ARM GAS  /tmp/ccYx6NXH.s 			page 9
 
 
-  96:Src/depth_switch_object.c **** 	{
-  97:Src/depth_switch_object.c **** 		if(depth_switch_key_press_period_counter > 0)
- 373              		.loc 1 97 0
- 374 0014 074B     		ldr	r3, .L45
- 375 0016 1B68     		ldr	r3, [r3]
- 376 0018 002B     		cmp	r3, #0
- 377 001a 09DD     		ble	.L40
-  98:Src/depth_switch_object.c **** 		{
-  99:Src/depth_switch_object.c **** 			if(depth_switch_key_press_period_counter <= 3)     // less then 2 seconds
- 378              		.loc 1 99 0
- 379 001c 032B     		cmp	r3, #3
- 380 001e 02DC     		bgt	.L43
- 100:Src/depth_switch_object.c **** 				depth_switch_step_current_depth();
- 381              		.loc 1 100 0
- 382 0020 FFF7FEFF 		bl	depth_switch_step_current_depth
- 383              	.LVL23:
- 384 0024 01E0     		b	.L44
- 385              	.L43:
- 101:Src/depth_switch_object.c **** 			else   // more then 3 seconds
- 102:Src/depth_switch_object.c **** 				depth_switch_step_to_test();
- 386              		.loc 1 102 0
- 387 0026 FFF7FEFF 		bl	depth_switch_step_to_test
- 388              	.LVL24:
- 389              	.L44:
- 103:Src/depth_switch_object.c **** 
- 104:Src/depth_switch_object.c **** 			depth_switch_key_press_period_counter = 0;
- 390              		.loc 1 104 0
- 391 002a 0022     		mov	r2, #0
- 392 002c 014B     		ldr	r3, .L45
- 393 002e 1A60     		str	r2, [r3]
- 394              	.L40:
- 105:Src/depth_switch_object.c **** 		}
- 106:Src/depth_switch_object.c **** 
- 107:Src/depth_switch_object.c **** 	}
- 108:Src/depth_switch_object.c **** }
- 395              		.loc 1 108 0
- 396              		@ sp needed
- 397 0030 08BD     		pop	{r3, pc}
- 398              	.L46:
- 399 0032 C046     		.align	2
- 400              	.L45:
- 401 0034 00000000 		.word	.LANCHOR1
- 402              		.cfi_endproc
- 403              	.LFE41:
- 405              		.section	.data.current_depth,"aw",%progbits
- 406              		.align	3
- 407              		.set	.LANCHOR0,. + 0
- 410              	current_depth:
- 411 0000 00000000 		.word	0
- 412 0004 00002E40 		.word	1076756480
- 413              		.section	.bss.depth_switch_key_press_period_counter,"aw",%nobits
- 414              		.align	2
- 415              		.set	.LANCHOR1,. + 0
- 418              	depth_switch_key_press_period_counter:
- 419 0000 00000000 		.space	4
- 420              		.text
- 421              	.Letext0:
-ARM GAS  /tmp/ccIKJoft.s 			page 10
-
-
- 422              		.file 2 "/usr/include/newlib/machine/_default_types.h"
- 423              		.file 3 "/usr/include/newlib/sys/_stdint.h"
- 424              		.file 4 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l071xx.h"
- 425              		.file 5 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_gpio.h"
- 426              		.file 6 "Inc/depth_switch_object.h"
-ARM GAS  /tmp/ccIKJoft.s 			page 11
+ 368              		.loc 1 100 0
+ 369 0026 FFF7FEFF 		bl	depth_switch_step_to_test
+ 370              	.LVL22:
+ 371              	.L44:
+ 101:Src/depth_switch_object.c **** 
+ 102:Src/depth_switch_object.c **** 			depth_switch_key_press_period_counter = 0;
+ 372              		.loc 1 102 0
+ 373 002a 0022     		mov	r2, #0
+ 374 002c 014B     		ldr	r3, .L45
+ 375 002e 1A60     		str	r2, [r3]
+ 376              	.L40:
+ 103:Src/depth_switch_object.c **** 		}
+ 104:Src/depth_switch_object.c **** 
+ 105:Src/depth_switch_object.c **** 	}
+ 106:Src/depth_switch_object.c **** }
+ 377              		.loc 1 106 0
+ 378              		@ sp needed
+ 379 0030 08BD     		pop	{r3, pc}
+ 380              	.L46:
+ 381 0032 C046     		.align	2
+ 382              	.L45:
+ 383 0034 00000000 		.word	.LANCHOR1
+ 384              		.cfi_endproc
+ 385              	.LFE41:
+ 387              		.section	.data.current_depth,"aw",%progbits
+ 388              		.align	3
+ 389              		.set	.LANCHOR0,. + 0
+ 392              	current_depth:
+ 393 0000 00000000 		.word	0
+ 394 0004 00002E40 		.word	1076756480
+ 395              		.section	.bss.depth_switch_key_press_period_counter,"aw",%nobits
+ 396              		.align	2
+ 397              		.set	.LANCHOR1,. + 0
+ 400              	depth_switch_key_press_period_counter:
+ 401 0000 00000000 		.space	4
+ 402              		.text
+ 403              	.Letext0:
+ 404              		.file 2 "/usr/include/newlib/machine/_default_types.h"
+ 405              		.file 3 "/usr/include/newlib/sys/_stdint.h"
+ 406              		.file 4 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l071xx.h"
+ 407              		.file 5 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_gpio.h"
+ 408              		.file 6 "Inc/depth_switch_object.h"
+ARM GAS  /tmp/ccYx6NXH.s 			page 10
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 depth_switch_object.c
-     /tmp/ccIKJoft.s:18     .text.depth_switch_check_gpio:0000000000000000 $t
-     /tmp/ccIKJoft.s:23     .text.depth_switch_check_gpio:0000000000000000 depth_switch_check_gpio
-     /tmp/ccIKJoft.s:47     .text.depth_switch_check_gpio:0000000000000010 $d
-     /tmp/ccIKJoft.s:52     .text.depth_switch_turn_signal_led:0000000000000000 $t
-     /tmp/ccIKJoft.s:57     .text.depth_switch_turn_signal_led:0000000000000000 depth_switch_turn_signal_led
-     /tmp/ccIKJoft.s:154    .text.depth_switch_turn_signal_led:0000000000000080 $d
-     /tmp/ccIKJoft.s:160    .text.depth_switch_step_current_depth:0000000000000000 $t
-     /tmp/ccIKJoft.s:165    .text.depth_switch_step_current_depth:0000000000000000 depth_switch_step_current_depth
-     /tmp/ccIKJoft.s:277    .text.depth_switch_step_current_depth:00000000000000a0 $d
-     /tmp/ccIKJoft.s:287    .text.depth_switch_step_to_test:0000000000000000 $t
-     /tmp/ccIKJoft.s:292    .text.depth_switch_step_to_test:0000000000000000 depth_switch_step_to_test
-     /tmp/ccIKJoft.s:317    .text.depth_switch_step_to_test:0000000000000014 $d
-     /tmp/ccIKJoft.s:323    .text.depth_switch_get_current_depth:0000000000000000 $t
-     /tmp/ccIKJoft.s:328    .text.depth_switch_get_current_depth:0000000000000000 depth_switch_get_current_depth
-     /tmp/ccIKJoft.s:342    .text.depth_switch_get_current_depth:0000000000000008 $d
-     /tmp/ccIKJoft.s:347    .text.depth_switch_action:0000000000000000 $t
-     /tmp/ccIKJoft.s:352    .text.depth_switch_action:0000000000000000 depth_switch_action
-     /tmp/ccIKJoft.s:401    .text.depth_switch_action:0000000000000034 $d
-     /tmp/ccIKJoft.s:406    .data.current_depth:0000000000000000 $d
-     /tmp/ccIKJoft.s:410    .data.current_depth:0000000000000000 current_depth
-     /tmp/ccIKJoft.s:414    .bss.depth_switch_key_press_period_counter:0000000000000000 $d
-     /tmp/ccIKJoft.s:418    .bss.depth_switch_key_press_period_counter:0000000000000000 depth_switch_key_press_period_counter
+     /tmp/ccYx6NXH.s:18     .text.depth_switch_check_gpio:0000000000000000 $t
+     /tmp/ccYx6NXH.s:23     .text.depth_switch_check_gpio:0000000000000000 depth_switch_check_gpio
+     /tmp/ccYx6NXH.s:47     .text.depth_switch_check_gpio:0000000000000010 $d
+     /tmp/ccYx6NXH.s:52     .text.depth_switch_turn_signal_led:0000000000000000 $t
+     /tmp/ccYx6NXH.s:57     .text.depth_switch_turn_signal_led:0000000000000000 depth_switch_turn_signal_led
+     /tmp/ccYx6NXH.s:136    .text.depth_switch_turn_signal_led:0000000000000060 $d
+     /tmp/ccYx6NXH.s:142    .text.depth_switch_step_current_depth:0000000000000000 $t
+     /tmp/ccYx6NXH.s:147    .text.depth_switch_step_current_depth:0000000000000000 depth_switch_step_current_depth
+     /tmp/ccYx6NXH.s:259    .text.depth_switch_step_current_depth:00000000000000a0 $d
+     /tmp/ccYx6NXH.s:269    .text.depth_switch_step_to_test:0000000000000000 $t
+     /tmp/ccYx6NXH.s:274    .text.depth_switch_step_to_test:0000000000000000 depth_switch_step_to_test
+     /tmp/ccYx6NXH.s:299    .text.depth_switch_step_to_test:0000000000000014 $d
+     /tmp/ccYx6NXH.s:305    .text.depth_switch_get_current_depth:0000000000000000 $t
+     /tmp/ccYx6NXH.s:310    .text.depth_switch_get_current_depth:0000000000000000 depth_switch_get_current_depth
+     /tmp/ccYx6NXH.s:324    .text.depth_switch_get_current_depth:0000000000000008 $d
+     /tmp/ccYx6NXH.s:329    .text.depth_switch_action:0000000000000000 $t
+     /tmp/ccYx6NXH.s:334    .text.depth_switch_action:0000000000000000 depth_switch_action
+     /tmp/ccYx6NXH.s:383    .text.depth_switch_action:0000000000000034 $d
+     /tmp/ccYx6NXH.s:388    .data.current_depth:0000000000000000 $d
+     /tmp/ccYx6NXH.s:392    .data.current_depth:0000000000000000 current_depth
+     /tmp/ccYx6NXH.s:396    .bss.depth_switch_key_press_period_counter:0000000000000000 $d
+     /tmp/ccYx6NXH.s:400    .bss.depth_switch_key_press_period_counter:0000000000000000 depth_switch_key_press_period_counter
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

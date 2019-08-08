@@ -66,7 +66,8 @@
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
 
-/* USER CODE END PV */
+static char message[256];
+static char timestamp[64];
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
@@ -94,8 +95,6 @@ uint8_t primitive_delay()
 int main(void)
 {
 
-	char message[256];
-	char timestamp[64];
 
 
 	uint32_t seconds_in_minute = 60;
@@ -146,16 +145,15 @@ int main(void)
 
 	int odd_even = 0;
 
-	//while(1)
-	//{
-	//	pressure_sensor_measure_pressure_temperature();                                                                                                   	
-	//}
+
 
 //#define DEBUG
 
 	//************************   MAIN LOOP   *********************************
 
 #ifdef DEBUG
+
+	int led_counter = 0;
 
 	while(1)                                                     	    
 	{   
@@ -193,6 +191,12 @@ int main(void)
   		    ssd1306_UpdateScreen();                                                                                         
 			//*/
 
+			led_counter++;
+			depth_switch_turn_signal_led(led_counter);
+			if(led_counter == 5)
+				led_counter = 0;
+
+
 		}
 
 	}       
@@ -202,128 +206,48 @@ int main(void)
 
 
 #ifndef DEBUG
-
-	ssd1306_Fill(Black);                                                                                         
-  
+	
 	depth_switch_turn_signal_led(1);
 
 	uint32_t surface_pressure = 101325;
+	ssd1306_Fill(Black);                                                                                         
 
-  	while (1)
-  	{
+	while(1)                                                     	    
+	{   
 
 		if(one_second_timer_get_flag())
 		{
 			one_second_timer_reset_flag();
-  	
+			odd_even = (odd_even+1)%2;
+
 			pressure_sensor_measure_pressure_temperature();                                                                                                   	
-		    double P = pressure_sensor_get_pressure();
-		    double actual_temperature = pressure_sensor_get_temperature();
-                                                                                                                                                              
-		    voltmeter_measure_voltage();
-		    double accu_voltage = voltmeter_get_voltage();
+		    //double P = pressure_sensor_get_pressure();
+		    //double actual_temperature = pressure_sensor_get_temperature();
+		    
+			voltmeter_measure_voltage();
+		    //double accu_voltage = voltmeter_get_voltage();
 		    double accu_percentage = voltmeter_get_percentage();
-	                                                                                                                                                          
-            
-			if(P <= surface_pressure)
-				surface_pressure = P;
 
-			int we_are_under_water = 0;
+			// debug
+			//*
+			//ssd1306_Fill(Black);                                                                                         
+  		    ssd1306_SetCursor(3,30);
+			if(odd_even)
+		        sprintf(message, "P%05d:T%03d" , (int)(P/10), (int)(actual_temperature/10));
+			else
+		        sprintf(message, "P%05d T%03d" , (int)(P/10), (int)(actual_temperature/10));
+  		    ssd1306_WriteString(message, Font_11x18, White);
+  		    ssd1306_WriteString(message, Font_11x18, White);
+  		    ssd1306_UpdateScreen();                                                                                         
+			//*/
 
-			if(P > (surface_pressure + 9800)) // underwater
-				we_are_under_water = 1;
-
-			if(!we_are_under_water)  // we are not under water
-			{
-				depth_switch_action();		    
-
-				//ssd1306_Fill(Black);                                                                                         
-  		        ssd1306_SetCursor(0,0);
-		        //sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
-		        sprintf(timestamp, "timestamp");
-  		        ssd1306_WriteString(timestamp, Font_11x18, White);
-  		        ssd1306_SetCursor(0,22);
-		        //sprintf(message, "AVAR GL %02dm", (int)depth_switch_get_current_depth());
-		        sprintf(message, "AAAAAAAAAA");
-    //*
-  		        ssd1306_WriteString(message, Font_11x18, White);
-  		        ssd1306_SetCursor(0,44);
-		        //sprintf(message, "akkum %02d%%", (int)accu_percentage);
-		        sprintf(message, "akkum");
-  		        ssd1306_WriteString(message, Font_11x18, White);
-  		        ssd1306_UpdateScreen();                                                                               
-	//*/
-			}
-			else // we are under water
-			{
-    /*
-				// calculate depth
-				double depth = ((double)(P - surface_pressure))/9800.0;
-
-
-  		        ssd1306_SetCursor(0,0);
-		        //sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
-		        sprintf(timestamp, "timestamp");
-  		        ssd1306_WriteString(timestamp, Font_11x18, White);
-  		        ssd1306_SetCursor(0,22);
-		        sprintf(message, "glubina %02dm", (int)depth);
-  		        ssd1306_WriteString(message, Font_11x18, White);
-  		        ssd1306_SetCursor(0,44);
-		        sprintf(message, "akkum %02d%%", (int)accu_percentage);
-  		        ssd1306_WriteString(message, Font_11x18, White);
-  		        ssd1306_UpdateScreen();                                                                               
-
-
-
-
-				if(depth > depth_switch_get_current_depth())
-				{
-					// switch on actuators
-  					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11 | GPIO_PIN_12, GPIO_PIN_SET);// turn actuators on
-
-					// switch on signal leds
-  					HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3, GPIO_PIN_SET);// turn leds off
-
-
-					// save info about activation conditions (time, depth, etc)
-					ssd1306_Fill(Black);
-  		        	ssd1306_SetCursor(0,0);
-		        	//sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
-		        	sprintf(timestamp, "timestamp");
-  		        	ssd1306_WriteString(timestamp, Font_11x18, White);
-  		        	ssd1306_SetCursor(0,22);
-		        	sprintf(message, ">>>>> %02dm", (int)depth);
-  		        	ssd1306_WriteString(message, Font_11x18, White);
-  		        	ssd1306_SetCursor(0,44);
-		        	sprintf(message, "activated!!!");
-  		        	ssd1306_WriteString(message, Font_11x18, White);
-  		        	ssd1306_UpdateScreen();                                                                               
-
-
-					// pause 21 sec
-					HAL_Delay(21000);
-
-
-					// switch off actuators
-  					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11 | GPIO_PIN_12, GPIO_PIN_RESET);// turn actuators off
-
-					// stop
-					while(1);
-				}
-
-	*/
-			}
-            
-
-
-
-
+  		    ssd1306_SetCursor(0,0);                                                          
+		    sprintf(message, "akkum %02d%%", (int)accu_percentage);                        
+  		    ssd1306_WriteString(message, Font_11x18, White);                                 
+  		    ssd1306_UpdateScreen();                                                                                   
 		}
 
   	}// end while(1)
-
-
-
 
 #endif
 
@@ -401,14 +325,14 @@ void SystemClock_Config(void)
 
     /**Configure the Systick interrupt time 
     */
-  HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
+  //HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
 
     /**Configure the Systick 
     */
-  HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
+  //HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
 
   /* SysTick_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
+  //HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
 }
 
 /* USER CODE BEGIN 4 */
