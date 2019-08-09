@@ -54,15 +54,18 @@ Src/tim.c \
 Src/usart.c \
 Src/i2c.c \
 Src/spi.c \
+Src/adc.c \
 Src/stm32l0xx_it.c \
 Src/depth_switch_object.c \
 Src/rtc_ds3231_object.c \
 Src/pressure_sensor_object.c \
+Src/voltmeter_object.c \
 Src/one_second_timer_object.c
 C_SOURCES +=  \
 Src/system_stm32l0xx.c \
 Src/stm32l0xx_hal_msp.c  
 C_SOURCES +=  \
+Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc.c \
 Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c \
 Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart.c \
 Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c \

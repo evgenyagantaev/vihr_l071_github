@@ -5,17 +5,19 @@
 #include "usart.h"
 #include "i2c.h"
 #include "spi.h"
+#include "adc.h"
 
 
 #include "one_second_timer_interface.h"
 #include "pressure_sensor_object.h"
 #include "depth_switch_interface.h"
 #include "rtc_ds3231_interface.h"
+#include "voltmeter_object.h"
 
 
 
 static char message[256];
-static char timestamp[256];
+static char timestamp[64];
 
 
 /* Private function prototypes -----------------------------------------------*/
@@ -60,6 +62,7 @@ int main(void)
     MX_SPI1_Init();
     // enable spi1
     SPI1->CR1 |= SPI_CR1_SPE;
+    MX_ADC_Init();
 
 	//---------------------------------
   	//HAL_Delay(100);
@@ -111,6 +114,12 @@ int main(void)
 		    double P = pressure_sensor_get_pressure();
 		    double actual_temperature = pressure_sensor_get_temperature();
 
+		    voltmeter_measure_voltage();
+		    double accu_voltage = voltmeter_get_voltage();
+		    double accu_percentage = voltmeter_get_percentage();
+
+		    sprintf(message, "%02dV akkum %02d%%\r\n", (int)accu_voltage, (int)accu_percentage);
+			
 			if(odd_even)
 		        sprintf(message, "P%05d:T%03d\r\n" , (int)(P/10), (int)(actual_temperature/10));
 			else
