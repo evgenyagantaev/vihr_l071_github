@@ -1,5 +1,21 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "tim.h"
+#include "gpio.h"
+#include "usart.h"
+#include "i2c.h"
+
+
+#include "one_second_timer_interface.h"
+#include "depth_switch_interface.h"
+#include "rtc_ds3231_interface.h"
+
+
+
+static char message[256];
+static char timestamp[256];
+
+
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 uint8_t primitive_delay()
@@ -34,8 +50,62 @@ int main(void)
   	/* Configure the system clock */
   	SystemClock_Config();
 
+    MX_GPIO_Init();
+    MX_USART1_UART_Init();
+  	MX_I2C1_Init();
+  	MX_I2C2_Init();
+  	MX_I2C3_Init();
 
-	while(1);
+	//---------------------------------
+  	//HAL_Delay(100);
+	rtc_ds3231_set_i2c_handle(&hi2c3);
+	//rtc_ds3231_set_time(18, 2, 0);
+	//rtc_ds3231_set_date(9, 8, 19);
+
+	one_second_timer_init();
+	one_second_timer_start();
+
+
+	rtc_ds3231_action();
+	int odd_even = 0;
+	int led_counter = 0;
+
+	while(1)
+	{
+
+
+		if(one_second_timer_get_flag())
+		{
+			one_second_timer_reset_flag();
+			odd_even = (odd_even+1)%2;
+
+			rtc_ds3231_action();
+			// time-date calculation ----------------------------------------
+			uint8_t seconds, minutes, hours;
+			rtc_ds3231_get_time(&hours, &minutes, &seconds);
+			uint8_t date, month, year;
+			rtc_ds3231_get_date(&date, &month, &year);
+			//--------------------------------------------------------------
+
+			led_counter++;
+			depth_switch_turn_signal_led(led_counter);
+			if(led_counter == 5)
+				led_counter = 0;
+
+			if(odd_even)
+		        sprintf(timestamp, "%02d:%02d:%02d %02d.%02d\r\n", hours, minutes, seconds, date, month);
+			else
+		        sprintf(timestamp, "%02d %02d %02d %02d.%02d\r\n", hours, minutes, seconds, date, month);
+
+			HAL_UART_Transmit(&huart1, (uint8_t *)timestamp, strlen((const char *)timestamp), 500);
+
+
+			//sprintf(message, "Hello\r\n");
+			//HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+		}
+
+
+	}
 
 
 }
@@ -125,7 +195,7 @@ void SystemClock_Config(void)
   /* SysTick_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
 
-  SysTick->CTRL = 0;    //Disable Systick
+  //SysTick->CTRL = 0;    //Disable Systick
 }
 
 /* USER CODE BEGIN 4 */

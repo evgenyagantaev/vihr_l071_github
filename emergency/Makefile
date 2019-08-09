@@ -48,7 +48,15 @@ BUILD_DIR = build
 ######################################
 # C sources
 C_SOURCES =  \
-Src/main.c 
+Src/main.c \
+Src/gpio.c \
+Src/tim.c \
+Src/usart.c \
+Src/i2c.c \
+Src/stm32l0xx_it.c \
+Src/depth_switch_object.c \
+Src/rtc_ds3231_object.c \
+Src/one_second_timer_object.c
 C_SOURCES +=  \
 Src/system_stm32l0xx.c \
 Src/stm32l0xx_hal_msp.c  

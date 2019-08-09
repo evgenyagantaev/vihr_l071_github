@@ -45,6 +45,24 @@
 #include "stm32l0xx.h"
 /* Private define ------------------------------------------------------------*/
 
+#define spi1_cs_pressure_Pin GPIO_PIN_4
+#define spi1_cs_pressure_GPIO_Port GPIOA
+#define led0_Pin GPIO_PIN_0
+#define led0_GPIO_Port GPIOB
+#define led1_Pin GPIO_PIN_1
+#define led1_GPIO_Port GPIOB
+#define led2_Pin GPIO_PIN_2
+#define led2_GPIO_Port GPIOB
+#define btn0_Pin GPIO_PIN_9
+#define btn0_GPIO_Port GPIOA
+#define btn1_Pin GPIO_PIN_10
+#define btn1_GPIO_Port GPIOA
+#define actuator0_Pin GPIO_PIN_11
+#define actuator0_GPIO_Port GPIOA
+#define actuator1_Pin GPIO_PIN_12
+#define actuator1_GPIO_Port GPIOA
+#define led3_Pin GPIO_PIN_3
+#define led3_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
