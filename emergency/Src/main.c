@@ -4,9 +4,11 @@
 #include "gpio.h"
 #include "usart.h"
 #include "i2c.h"
+#include "spi.h"
 
 
 #include "one_second_timer_interface.h"
+#include "pressure_sensor_object.h"
 #include "depth_switch_interface.h"
 #include "rtc_ds3231_interface.h"
 
@@ -55,6 +57,9 @@ int main(void)
   	MX_I2C1_Init();
   	MX_I2C2_Init();
   	MX_I2C3_Init();
+    MX_SPI1_Init();
+    // enable spi1
+    SPI1->CR1 |= SPI_CR1_SPE;
 
 	//---------------------------------
   	//HAL_Delay(100);
@@ -65,6 +70,8 @@ int main(void)
 	one_second_timer_init();
 	one_second_timer_start();
 
+	pressure_sensor_object_init();
+	HAL_Delay(1000);
 
 	rtc_ds3231_action();
 	int odd_even = 0;
@@ -99,6 +106,15 @@ int main(void)
 
 			HAL_UART_Transmit(&huart1, (uint8_t *)timestamp, strlen((const char *)timestamp), 500);
 
+
+			pressure_sensor_measure_pressure_temperature();                                                                                                   	
+		    double P = pressure_sensor_get_pressure();
+		    double actual_temperature = pressure_sensor_get_temperature();
+
+			if(odd_even)
+		        sprintf(message, "P%05d:T%03d\r\n" , (int)(P/10), (int)(actual_temperature/10));
+			else
+			HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
 
 			//sprintf(message, "Hello\r\n");
 			//HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
