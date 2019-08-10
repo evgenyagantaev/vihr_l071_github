@@ -13,6 +13,7 @@
 #include "depth_switch_interface.h"
 #include "rtc_ds3231_interface.h"
 #include "voltmeter_object.h"
+#include "at24c32_interface.h"
 
 
 
@@ -48,6 +49,8 @@ uint8_t primitive_delay()
 int main(void)
 {
 
+	int i;
+
   	/* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   	HAL_Init();
 
@@ -69,6 +72,7 @@ int main(void)
 	rtc_ds3231_set_i2c_handle(&hi2c3);
 	//rtc_ds3231_set_time(18, 2, 0);
 	//rtc_ds3231_set_date(9, 8, 19);
+	at24c32_set_i2c_handle(&hi2c2);
 
 	one_second_timer_init();
 	one_second_timer_start();
@@ -77,8 +81,11 @@ int main(void)
 	HAL_Delay(1000);
 
 	rtc_ds3231_action();
+	atm_barometer_init();
 	int odd_even = 0;
 	int led_counter = 0;
+
+	int mem_test_base = 0;
 
 	while(1)
 	{
@@ -123,10 +130,34 @@ int main(void)
 			if(odd_even)
 		        sprintf(message, "P%05d:T%03d\r\n" , (int)(P/10), (int)(actual_temperature/10));
 			else
+		        sprintf(message, "P%05d T%03d\r\n" , (int)(P/10), (int)(actual_temperature/10));
 			HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
 
 			//sprintf(message, "Hello\r\n");
 			//HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+
+
+			atm_barometer_action();
+			uint32_t atm_pressure_buffer[4];
+			atm_barometer_get_history(atm_pressure_buffer);
+
+			// test eeprom
+			for(i=mem_test_base; i<(mem_test_base+7); i++)
+				at24c32_write_32((uint16_t)(i*4), (uint32_t)i);
+			// debug
+			// control read from eeprom
+			for(i=mem_test_base; i<(mem_test_base+7); i++)
+			{
+				uint32_t aux;
+				at24c32_read_32((uint16_t)(i*4), &aux);
+				sprintf(message, "%d  ", aux);
+				HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+			}
+			sprintf(message, "\r\n");
+			HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+			// debug
+			mem_test_base++;
+
 		}
 
 
