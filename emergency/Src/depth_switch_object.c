@@ -8,7 +8,7 @@ int depth_switch_check_gpio()
 {
 	int bitstatus;
 
-	if ((GPIOB->IDR & GPIO_PIN_12) != (uint32_t)GPIO_PIN_RESET)
+	if ((GPIOA->IDR & GPIO_PIN_9) != (uint32_t)GPIO_PIN_RESET)
   	{
     	bitstatus = 1;
   	}

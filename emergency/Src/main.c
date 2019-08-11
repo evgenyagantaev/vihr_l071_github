@@ -79,6 +79,8 @@ int main(void)
 
 	pressure_sensor_object_init();
 	HAL_Delay(1000);
+	uint32_t surface_pressure = 101325;
+	depth_switch_turn_signal_led(1);
 
 	rtc_ds3231_action();
 	atm_barometer_init();
@@ -90,7 +92,11 @@ int main(void)
 	while(1)
 	{
 
-
+		/*
+		// debug start filling
+		//***************************************************
+		//***************************************************
+		//***************************************************
 		if(one_second_timer_get_flag())
 		{
 			one_second_timer_reset_flag();
@@ -158,10 +164,157 @@ int main(void)
 			// debug
 			mem_test_base++;
 
-		}
+		}// end if
+
+		// debug start filling
+		//***************************************************
+		//***************************************************
+		//***************************************************
+		*/
 
 
-	}
+
+
+		if(one_second_timer_get_flag())
+		{
+			one_second_timer_reset_flag();
+			odd_even = (odd_even+1)%2;
+  	
+			pressure_sensor_measure_pressure_temperature();                                                                                                   	
+		    double P = pressure_sensor_get_pressure();
+		    double actual_temperature = pressure_sensor_get_temperature();
+                                                                                                                                                              
+		    voltmeter_measure_voltage();
+		    double accu_voltage = voltmeter_get_voltage();
+		    double accu_percentage = voltmeter_get_percentage();
+	                                                                                                                                                          
+			rtc_ds3231_action();
+			// time-date calculation ----------------------------------------
+			uint8_t seconds, minutes, hours;
+			rtc_ds3231_get_time(&hours, &minutes, &seconds);
+			uint8_t date, month, year;
+			rtc_ds3231_get_date(&date, &month, &year);
+			//--------------------------------------------------------------
+            
+			if(P <= surface_pressure)
+				surface_pressure = P;
+
+			int we_are_under_water = 0;
+
+			if(P > (surface_pressure + 9800)) // underwater
+				we_are_under_water = 1;
+
+			if(!we_are_under_water)  // we are not under water
+			{
+				depth_switch_action();		    
+
+				//ssd1306_Fill(Black);                                                                                         
+  		        //ssd1306_SetCursor(0,0);
+		        //sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
+		        //sprintf(timestamp, "timestamp");
+  		        //ssd1306_WriteString(timestamp, Font_11x18, White);
+  		        //ssd1306_SetCursor(0,22);
+		        //sprintf(message, "AVAR GL %02dm", (int)depth_switch_get_current_depth());
+		        //sprintf(message, "AAA");
+    //*
+  		        //ssd1306_WriteString(message, Font_11x18, White);
+  		        //ssd1306_SetCursor(0,44);
+		        //sprintf(message, "akkum %02d%%", (int)accu_percentage);
+		        //sprintf(message, "akkum");
+  		        //ssd1306_WriteString(message, Font_11x18, White);
+  		        //ssd1306_UpdateScreen();                                                                               
+	//*/
+				if(odd_even)
+		        	sprintf(timestamp, "%02d:%02d:%02d %02d.%02d\r\n", hours, minutes, seconds, date, month);
+				else
+		        	sprintf(timestamp, "%02d %02d %02d %02d.%02d\r\n", hours, minutes, seconds, date, month);
+				HAL_UART_Transmit(&huart1, (uint8_t *)timestamp, strlen((const char *)timestamp), 500);
+		        sprintf(message, "AVAR GL %02dm\r\n", (int)depth_switch_get_current_depth());
+				HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+		        sprintf(message, "akkum %02d%%\r\n", (int)accu_percentage);
+				HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+
+			}
+			else // we are under water
+			{
+    //*
+				// calculate depth
+				double depth = ((double)(P - surface_pressure))/9800.0;
+
+
+  		        //ssd1306_SetCursor(0,0);
+		        //sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
+		        //sprintf(timestamp, "timestamp");
+  		        //ssd1306_WriteString(timestamp, Font_11x18, White);
+  		        //ssd1306_SetCursor(0,22);
+		        //sprintf(message, "glubina %02dm", (int)depth);
+  		        //ssd1306_WriteString(message, Font_11x18, White);
+  		        //ssd1306_SetCursor(0,44);
+		        //sprintf(message, "akkum %02d%%", (int)accu_percentage);
+  		        //ssd1306_WriteString(message, Font_11x18, White);
+  		        //ssd1306_UpdateScreen();                                                                               
+		        sprintf(timestamp, "%02d:%02d:%02d %02d.%02d\r\n", hours, minutes, seconds, date, month);
+				HAL_UART_Transmit(&huart1, (uint8_t *)timestamp, strlen((const char *)timestamp), 500);
+		        sprintf(message, "glubina %02dm\r\n", (int)depth);
+				HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+
+
+
+
+				if(depth > depth_switch_get_current_depth())
+				{
+					// switch on actuators
+  					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11 | GPIO_PIN_12, GPIO_PIN_SET);// turn actuators on
+
+					// switch on signal leds
+  					HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3, GPIO_PIN_SET);// turn leds off
+
+
+					// save info about activation conditions (time, depth, etc)
+					//ssd1306_Fill(Black);
+  		        	//ssd1306_SetCursor(0,0);
+		        	//sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
+		        	//sprintf(timestamp, "timestamp");
+  		        	//ssd1306_WriteString(timestamp, Font_11x18, White);
+  		        	//ssd1306_SetCursor(0,22);
+		        	//sprintf(message, ">>>>> %02dm", (int)depth);
+  		        	//ssd1306_WriteString(message, Font_11x18, White);
+  		        	//ssd1306_SetCursor(0,44);
+		        	//sprintf(message, "activated!!!");
+  		        	//ssd1306_WriteString(message, Font_11x18, White);
+  		        	//ssd1306_UpdateScreen();                                                                               
+		        	sprintf(timestamp, "%02d:%02d:%02d %02d.%02d\r\n", hours, minutes, seconds, date, month);
+					HAL_UART_Transmit(&huart1, (uint8_t *)timestamp, strlen((const char *)timestamp), 500);
+		        	sprintf(message, ">>>>> %02dm\r\n", (int)depth);
+					HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+		        	sprintf(message, "activated!!!\r\n");
+					HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+
+
+					// pause 21 sec
+					HAL_Delay(21000);
+
+
+					// switch off actuators
+  					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11 | GPIO_PIN_12, GPIO_PIN_RESET);// turn actuators off
+
+					// stop
+					while(1);
+				}
+
+	//*/
+			}// end if(!we_are_under_water)  // we are not under water
+            
+
+
+
+
+		}// end if(one_second_timer_get_flag())
+
+
+
+
+	}// end while
 
 
 }
