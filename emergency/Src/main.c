@@ -7,6 +7,7 @@
 #include "spi.h"
 #include "adc.h"
 
+#include "ssd1306.h"
 
 #include "one_second_timer_interface.h"
 #include "pressure_sensor_object.h"
@@ -62,7 +63,28 @@ int main(void)
   	MX_I2C1_Init();
   	MX_I2C2_Init();
   	MX_I2C3_Init();
-    MX_SPI1_Init();
+
+
+//--------init display1------------------------------
+    ssd1306_set_i2c_port(&hi2c1, 1);
+  	ssd1306_Init();
+  	HAL_Delay(100);
+  	ssd1306_Fill(White);
+  	ssd1306_UpdateScreen();
+  	HAL_Delay(100);
+  	ssd1306_Fill(Black);
+  	ssd1306_UpdateScreen();
+
+  	HAL_Delay(100);
+
+  	ssd1306_SetCursor(0,0);
+  	ssd1306_WriteString("DiveCmp", Font_16x26, White);
+  	ssd1306_SetCursor(0,30);
+  	ssd1306_WriteString("Start..", Font_16x26, White);
+  	ssd1306_UpdateScreen();
+ 
+ 
+ 	MX_SPI1_Init();
     // enable spi1
     SPI1->CR1 |= SPI_CR1_SPE;
     MX_ADC_Init();
