@@ -273,19 +273,19 @@ int main(void)
 		        //sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
 		        //sprintf(timestamp, "timestamp");
   		        //ssd1306_WriteString(timestamp, Font_11x18, White);
-  		        //ssd1306_SetCursor(0,22);
-		        //sprintf(message, "glubina %02dm", (int)depth);
-  		        //ssd1306_WriteString(message, Font_11x18, White);
+  		        ssd1306_SetCursor(0,22);
+		        sprintf(message, "glubina %02dm", (int)depth);
+  		        ssd1306_WriteString(message, Font_11x18, White);
   		        //ssd1306_SetCursor(0,44);
 		        //sprintf(message, "akkum %02d%%", (int)accu_percentage);
   		        //ssd1306_WriteString(message, Font_11x18, White);
-  		        //ssd1306_UpdateScreen();                                                                               
+  		        ssd1306_UpdateScreen();                                                                               
 		        sprintf(timestamp, "%02d:%02d:%02d %02d.%02d\r\n", hours, minutes, seconds, date, month);
 				HAL_UART_Transmit(&huart1, (uint8_t *)timestamp, strlen((const char *)timestamp), 500);
 		        sprintf(message, "glubina %02dm\r\n", (int)depth);
 				HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
 
-
+				// log depth
 
 
 				if(depth > depth_switch_get_current_depth())
