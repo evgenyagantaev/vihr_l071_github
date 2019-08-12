@@ -44,8 +44,9 @@ void depth_switch_turn_signal_led(int led_number)
 
 
 
-void depth_switch_step_current_depth()
+double depth_switch_step_current_depth(double increment)
 {
+	/*
 	if(current_depth != DEPTH0)
 	{
 		if(current_depth == DEPTH1)
@@ -69,6 +70,23 @@ void depth_switch_step_current_depth()
 			depth_switch_turn_signal_led(1);
 		}
 	}
+	*/
+
+
+	if(increment == INC_ONE)
+	{
+		order0++;
+		if(order0 >= 10)
+			order0 = 0;
+	}
+	else if(increment == INC_TEN)
+	{
+		order1++;
+		if(order1 >= 5)
+			order1 = 0;
+	}
+
+	current_depth = order1*10.0 + order0;
 }
 
 
@@ -95,7 +113,9 @@ void depth_switch_action()
 		if(depth_switch_key_press_period_counter > 0)
 		{
 			if(depth_switch_key_press_period_counter <= 3)     // less then 2 seconds
-				depth_switch_step_current_depth();
+				depth_switch_step_current_depth(INC_ONE);
+			else if((depth_switch_key_press_period_counter > 3) && (depth_switch_key_press_period_counter <= 5))     // 
+				depth_switch_step_current_depth(INC_TEN);
 			else   // more then 3 seconds
 				depth_switch_step_to_test();
 
