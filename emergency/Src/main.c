@@ -65,7 +65,8 @@ int main(void)
   	MX_I2C3_Init();
 
 
-//--------init display1------------------------------
+    //--------init display1------------------------------
+	/*
     ssd1306_set_i2c_port(&hi2c1, 1);
   	ssd1306_Init();
   	HAL_Delay(100);
@@ -82,6 +83,10 @@ int main(void)
   	ssd1306_SetCursor(0,30);
   	ssd1306_WriteString("Start..", Font_16x26, White);
   	ssd1306_UpdateScreen();
+	*/
+    ssd1306_set_i2c_port(&hi2c1, 1);
+  	ssd1306_Init();
+  	HAL_Delay(100);
  
  
  	MX_SPI1_Init();
@@ -92,8 +97,8 @@ int main(void)
 	//---------------------------------
   	//HAL_Delay(100);
 	rtc_ds3231_set_i2c_handle(&hi2c3);
-	//rtc_ds3231_set_time(18, 2, 0);
-	//rtc_ds3231_set_date(9, 8, 19);
+	//rtc_ds3231_set_time(14, 9, 0);
+	//rtc_ds3231_set_date(12, 8, 19);
 	at24c32_set_i2c_handle(&hi2c2);
 
 	one_second_timer_init();
@@ -235,16 +240,16 @@ int main(void)
 		        //sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
 		        //sprintf(timestamp, "timestamp");
   		        //ssd1306_WriteString(timestamp, Font_11x18, White);
-  		        //ssd1306_SetCursor(0,22);
-		        //sprintf(message, "AVAR GL %02dm", (int)depth_switch_get_current_depth());
+  		        ssd1306_SetCursor(0,22);
+		        sprintf(message, "AVAR GL %02dm", (int)depth_switch_get_current_depth());
 		        //sprintf(message, "AAA");
     //*
-  		        //ssd1306_WriteString(message, Font_11x18, White);
+  		        ssd1306_WriteString(message, Font_11x18, White);
   		        //ssd1306_SetCursor(0,44);
 		        //sprintf(message, "akkum %02d%%", (int)accu_percentage);
 		        //sprintf(message, "akkum");
   		        //ssd1306_WriteString(message, Font_11x18, White);
-  		        //ssd1306_UpdateScreen();                                                                               
+  		        ssd1306_UpdateScreen();                                                                               
 	//*/
 				if(odd_even)
 		        	sprintf(timestamp, "%02d:%02d:%02d %02d.%02d\r\n", hours, minutes, seconds, date, month);
@@ -293,18 +298,18 @@ int main(void)
 
 
 					// save info about activation conditions (time, depth, etc)
-					//ssd1306_Fill(Black);
-  		        	//ssd1306_SetCursor(0,0);
-		        	//sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
+					ssd1306_Fill(Black);
+  		        	ssd1306_SetCursor(0,0);
+		        	sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
 		        	//sprintf(timestamp, "timestamp");
-  		        	//ssd1306_WriteString(timestamp, Font_11x18, White);
-  		        	//ssd1306_SetCursor(0,22);
-		        	//sprintf(message, ">>>>> %02dm", (int)depth);
-  		        	//ssd1306_WriteString(message, Font_11x18, White);
+  		        	ssd1306_WriteString(timestamp, Font_11x18, White);
+  		        	ssd1306_SetCursor(0,22);
+		        	sprintf(message, ">>>>> %02dm", (int)depth);
+  		        	ssd1306_WriteString(message, Font_11x18, White);
   		        	//ssd1306_SetCursor(0,44);
 		        	//sprintf(message, "activated!!!");
   		        	//ssd1306_WriteString(message, Font_11x18, White);
-  		        	//ssd1306_UpdateScreen();                                                                               
+  		        	ssd1306_UpdateScreen();                                                                               
 		        	sprintf(timestamp, "%02d:%02d:%02d %02d.%02d\r\n", hours, minutes, seconds, date, month);
 					HAL_UART_Transmit(&huart1, (uint8_t *)timestamp, strlen((const char *)timestamp), 500);
 		        	sprintf(message, ">>>>> %02dm\r\n", (int)depth);

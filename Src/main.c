@@ -113,8 +113,8 @@ int main(void)
   	HAL_Delay(100);
 	rtc_ds3231_set_i2c_handle(&hi2c2);
 	at24c32_set_i2c_handle(&hi2c1);
-	//rtc_ds3231_set_time(14, 50, 0);
-	//rtc_ds3231_set_date(24, 10, 18);
+	rtc_ds3231_set_time(12, 31, 0);
+	rtc_ds3231_set_date(12, 8, 19);
 	//---------------------------------
     MX_SPI1_Init();
     // enable spi1
