@@ -236,19 +236,19 @@ int main(void)
 				depth_switch_action();		    
 
 				//ssd1306_Fill(Black);                                                                                         
-  		        //ssd1306_SetCursor(0,0);
-		        //sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
+  		        ssd1306_SetCursor(0,0);
+		        sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
 		        //sprintf(timestamp, "timestamp");
-  		        //ssd1306_WriteString(timestamp, Font_11x18, White);
+  		        ssd1306_WriteString(timestamp, Font_11x18, White);
   		        ssd1306_SetCursor(0,22);
 		        sprintf(message, "AVAR GL %02dm", (int)depth_switch_get_current_depth());
 		        //sprintf(message, "AAA");
     //*
   		        ssd1306_WriteString(message, Font_11x18, White);
-  		        //ssd1306_SetCursor(0,44);
-		        //sprintf(message, "akkum %02d%%", (int)accu_percentage);
+  		        ssd1306_SetCursor(0,44);
+		        sprintf(message, "akkum %02d%%", (int)accu_percentage);
 		        //sprintf(message, "akkum");
-  		        //ssd1306_WriteString(message, Font_11x18, White);
+  		        ssd1306_WriteString(message, Font_11x18, White);
   		        ssd1306_UpdateScreen();                                                                               
 	//*/
 				if(odd_even)
@@ -269,16 +269,16 @@ int main(void)
 				double depth = ((double)(P - surface_pressure))/9800.0;
 
 
-  		        //ssd1306_SetCursor(0,0);
-		        //sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
+  		        ssd1306_SetCursor(0,0);
+		        sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
 		        //sprintf(timestamp, "timestamp");
-  		        //ssd1306_WriteString(timestamp, Font_11x18, White);
+  		        ssd1306_WriteString(timestamp, Font_11x18, White);
   		        ssd1306_SetCursor(0,22);
 		        sprintf(message, "glubina %02dm", (int)depth);
   		        ssd1306_WriteString(message, Font_11x18, White);
-  		        //ssd1306_SetCursor(0,44);
-		        //sprintf(message, "akkum %02d%%", (int)accu_percentage);
-  		        //ssd1306_WriteString(message, Font_11x18, White);
+  		        ssd1306_SetCursor(0,44);
+		        sprintf(message, "akkum %02d%%", (int)accu_percentage);
+  		        ssd1306_WriteString(message, Font_11x18, White);
   		        ssd1306_UpdateScreen();                                                                               
 		        sprintf(timestamp, "%02d:%02d:%02d %02d.%02d\r\n", hours, minutes, seconds, date, month);
 				HAL_UART_Transmit(&huart1, (uint8_t *)timestamp, strlen((const char *)timestamp), 500);
