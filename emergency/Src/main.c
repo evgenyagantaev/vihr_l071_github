@@ -237,12 +237,14 @@ int main(void)
 
 				//ssd1306_Fill(Black);                                                                                         
   		        ssd1306_SetCursor(0,0);
-		        sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
-		        //sprintf(timestamp, "timestamp");
+		        //sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
+				if(odd_even)
+		        	sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
+				else
+		        	sprintf(timestamp, "%02d %02d %02d %02d", hours, minutes, date, month);
   		        ssd1306_WriteString(timestamp, Font_11x18, White);
   		        ssd1306_SetCursor(0,22);
 		        sprintf(message, "AVAR GL %02dm", (int)depth_switch_get_current_depth());
-		        //sprintf(message, "AAA");
     //*
   		        ssd1306_WriteString(message, Font_11x18, White);
   		        ssd1306_SetCursor(0,44);
@@ -270,7 +272,11 @@ int main(void)
 
 
   		        ssd1306_SetCursor(0,0);
-		        sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
+		        //sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
+				if(odd_even)
+		        	sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
+				else
+		        	sprintf(timestamp, "%02d %02d %02d %02d", hours, minutes, date, month);
 		        //sprintf(timestamp, "timestamp");
   		        ssd1306_WriteString(timestamp, Font_11x18, White);
   		        ssd1306_SetCursor(0,22);
