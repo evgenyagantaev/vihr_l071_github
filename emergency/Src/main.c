@@ -116,6 +116,10 @@ int main(void)
 
 	int mem_test_base = 0;
 
+	uint16_t eeprom_address = 0;
+	int eeprom_number_of_records = 0;
+
+
 	while(1)
 	{
 
@@ -292,6 +296,33 @@ int main(void)
 				HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
 
 				// log depth
+				//--------------------------------------------------------------------------
+
+				if(eeprom_number_of_records == 0)
+				{
+					uint16_t *data;
+					// no records yet
+					// write timestamp
+					data = &timestamp[0];
+					at24c32_write_16(eeprom_address, *data)
+					eeprom_address+=2;
+					data = &timestamp[3];
+					at24c32_write_16(eeprom_address, *data)
+					eeprom_address+=2;
+					data = &timestamp[6];
+					at24c32_write_16(eeprom_address, *data)
+					eeprom_address+=2;
+					data = &timestamp[9];
+					at24c32_write_16(eeprom_address, *data)
+					eeprom_address+=2;
+
+				}
+
+
+
+
+
+				//--------------------------------------------------------------------------
 
 
 				if(depth > depth_switch_get_current_depth())
