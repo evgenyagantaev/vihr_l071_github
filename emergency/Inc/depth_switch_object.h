@@ -14,9 +14,9 @@
 #define INC_ONE 1.0
 #define INC_TEN 10.0
 
-static double current_depth = DEPTH1;
-static double order0 = 5;
-static double order1 = 1;
+static double current_depth = 2.0;
+static double order0 = 2.0;
+static double order1 = 0.0;
 
 static int depth_switch_key_press_period_counter = 0;
 
