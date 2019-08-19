@@ -1,5 +1,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "math.h"
 #include "tim.h"
 #include "gpio.h"
 #include "usart.h"
@@ -14,7 +15,7 @@
 #include "depth_switch_interface.h"
 #include "rtc_ds3231_interface.h"
 #include "voltmeter_object.h"
-#include "at24c32_interface.h"
+//#include "at24c32_interface.h"
 
 
 
@@ -24,13 +25,13 @@ static char timestamp[64];
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-uint8_t primitive_delay()
-{
-	uint32_t volatile i;
-	for(i=0; i<300000; i++);
+//uint8_t primitive_delay()
+//{
+	//uint32_t volatile i;
+	//for(i=0; i<300000; i++);
 
-	return 0;
-}
+	//return 0;
+//}
 /* Private function prototypes -----------------------------------------------*/
 
 
@@ -99,7 +100,7 @@ int main(void)
 	rtc_ds3231_set_i2c_handle(&hi2c3);
 	//rtc_ds3231_set_time(14, 9, 0);
 	//rtc_ds3231_set_date(12, 8, 19);
-	at24c32_set_i2c_handle(&hi2c2);
+	//at24c32_set_i2c_handle(&hi2c2);
 
 	one_second_timer_init();
 	one_second_timer_start();
@@ -110,7 +111,7 @@ int main(void)
 	depth_switch_turn_signal_led(1);
 
 	rtc_ds3231_action();
-	atm_barometer_init();
+	//atm_barometer_init();
 	int odd_even = 0;
 	int led_counter = 0;
 
@@ -120,6 +121,16 @@ int main(void)
 	uint16_t eeprom_debug_address = 64;
 	int eeprom_number_of_records = 0;
 	uint32_t log_counter = 0;
+
+
+	// log debug
+	//****************************************
+	//int sin_counter = 0;
+	//double dt = 2.0*3.14/30.0;
+	// log debug
+	//****************************************
+
+	int actuator_counter = 0;
 
 	while(1)
 	{
@@ -227,7 +238,19 @@ int main(void)
 			uint8_t date, month, year;
 			rtc_ds3231_get_date(&date, &month, &year);
 			//--------------------------------------------------------------
-            
+           
+
+			// log debug
+			//****************************************
+
+			//P = ((sin(sin_counter*dt+3.14) + 1) * 10.0) * 9800;
+			//P = sin_counter*dt*9800;
+			//sin_counter++;
+
+			// log debug
+			//****************************************
+
+
 			if(P <= surface_pressure)
 				surface_pressure = P;
 
@@ -240,33 +263,37 @@ int main(void)
 			{
 				depth_switch_action();		    
 
-				//ssd1306_Fill(Black);                                                                                         
-  		        ssd1306_SetCursor(0,0);
-		        //sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
-				if(odd_even)
-		        	sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
-				else
-		        	sprintf(timestamp, "%02d %02d %02d %02d", hours, minutes, date, month);
-  		        ssd1306_WriteString(timestamp, Font_11x18, White);
-  		        ssd1306_SetCursor(0,22);
-		        sprintf(message, "AVAR GL %02dm", (int)depth_switch_get_current_depth());
+				
+				if(actuator_counter == 0)
+				{
+					//ssd1306_Fill(Black);                                                                                         
+  		        	ssd1306_SetCursor(0,0);
+		        	//sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
+					if(odd_even)
+		        		sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
+					else
+		        		sprintf(timestamp, "%02d %02d %02d %02d", hours, minutes, date, month);
+  		        	ssd1306_WriteString(timestamp, Font_11x18, White);
+  		        	ssd1306_SetCursor(0,22);
+		        	sprintf(message, "AVAR GL %02dm", (int)depth_switch_get_current_depth());
     //*
-  		        ssd1306_WriteString(message, Font_11x18, White);
-  		        ssd1306_SetCursor(0,44);
-		        sprintf(message, "akkum %02d%%", (int)accu_percentage);
-		        //sprintf(message, "akkum");
-  		        ssd1306_WriteString(message, Font_11x18, White);
-  		        ssd1306_UpdateScreen();                                                                               
+  		        	ssd1306_WriteString(message, Font_11x18, White);
+  		        	ssd1306_SetCursor(0,44);
+		        	sprintf(message, "akkum %02d%%", (int)accu_percentage);
+		        	//sprintf(message, "akkum");
+  		        	ssd1306_WriteString(message, Font_11x18, White);
+  		        	ssd1306_UpdateScreen();                                                                               
 	//*/
-				if(odd_even)
-		        	sprintf(timestamp, "%02d:%02d:%02d %02d.%02d\r\n", hours, minutes, seconds, date, month);
-				else
-		        	sprintf(timestamp, "%02d %02d %02d %02d.%02d\r\n", hours, minutes, seconds, date, month);
-				HAL_UART_Transmit(&huart1, (uint8_t *)timestamp, strlen((const char *)timestamp), 500);
-		        sprintf(message, "AVAR GL %02dm\r\n", (int)depth_switch_get_current_depth());
-				HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
-		        sprintf(message, "akkum %02d%%\r\n", (int)accu_percentage);
-				HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+					if(odd_even)
+		        		sprintf(timestamp, "%02d:%02d:%02d %02d.%02d\r\n", hours, minutes, seconds, date, month);
+					else
+		        		sprintf(timestamp, "%02d %02d %02d %02d.%02d\r\n", hours, minutes, seconds, date, month);
+					HAL_UART_Transmit(&huart1, (uint8_t *)timestamp, strlen((const char *)timestamp), 500);
+		        	sprintf(message, "AVAR GL %02dm\r\n", (int)depth_switch_get_current_depth());
+					HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+		        	sprintf(message, "akkum %02d%%\r\n", (int)accu_percentage);
+					HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+				}
 
 				/*
 				// test eeprom                                                                                      	
@@ -348,31 +375,33 @@ int main(void)
 				else
 					depth = 0.0;
 
-
-  		        ssd1306_SetCursor(0,0);
-		        //sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
-				if(odd_even)
-		        	sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
-				else
-		        	sprintf(timestamp, "%02d %02d %02d %02d", hours, minutes, date, month);
-		        //sprintf(timestamp, "timestamp");
-  		        ssd1306_WriteString(timestamp, Font_11x18, White);
-  		        ssd1306_SetCursor(0,22);
-		        sprintf(message, "glubina %02dm", (int)depth);
-  		        ssd1306_WriteString(message, Font_11x18, White);
-  		        ssd1306_SetCursor(0,44);
-		        sprintf(message, "akkum %02d%%", (int)accu_percentage);
-  		        ssd1306_WriteString(message, Font_11x18, White);
-  		        ssd1306_UpdateScreen();                                                                               
-		        sprintf(timestamp, "%02d:%02d:%02d %02d.%02d\r\n", hours, minutes, seconds, date, month);
-				HAL_UART_Transmit(&huart1, (uint8_t *)timestamp, strlen((const char *)timestamp), 500);
-		        sprintf(message, "glubina %02dm\r\n", (int)depth);
-				HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+				if(actuator_counter == 0)
+				{
+  		        	ssd1306_SetCursor(0,0);
+		        	//sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
+					if(odd_even)
+		        		sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
+					else
+		        		sprintf(timestamp, "%02d %02d %02d %02d", hours, minutes, date, month);
+		        	//sprintf(timestamp, "timestamp");
+  		        	ssd1306_WriteString(timestamp, Font_11x18, White);
+  		        	ssd1306_SetCursor(0,22);
+		        	sprintf(message, "glubina %02dm", (int)depth);
+  		        	ssd1306_WriteString(message, Font_11x18, White);
+  		        	ssd1306_SetCursor(0,44);
+		        	sprintf(message, "akkum %02d%%", (int)accu_percentage);
+  		        	ssd1306_WriteString(message, Font_11x18, White);
+  		        	ssd1306_UpdateScreen();                                                                               
+		        	sprintf(timestamp, "%02d:%02d:%02d %02d.%02d\r\n", hours, minutes, seconds, date, month);
+					HAL_UART_Transmit(&huart1, (uint8_t *)timestamp, strlen((const char *)timestamp), 500);
+		        	sprintf(message, "glubina %02dm\r\n", (int)depth);
+					HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+				}
 
 				// log depth
 				//--------------------------------------------------------------------------
 				uint8_t b0;
-				int write_delay = 3;
+				int write_delay = 5;
 				uint8_t at24c32_shifted_address = 0x50 << 1;
 				static I2C_HandleTypeDef *at24c32_i2c_handle = &hi2c2;
 
@@ -503,9 +532,25 @@ int main(void)
 
 				//--------------------------------------------------------------------------
 
-
-				if(depth >= (depth_switch_get_current_depth()))
+				if((actuator_counter > 0) && (actuator_counter < 100))
 				{
+					if(actuator_counter >= 21)
+					{
+						// switch off actuators
+  						HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11 | GPIO_PIN_12, GPIO_PIN_RESET);// turn actuators off
+						actuator_counter = 100;
+					}
+					else
+					{
+						actuator_counter++;
+					}
+				}
+
+
+				if((depth >= (depth_switch_get_current_depth())) && actuator_counter == 0)
+				{
+
+					actuator_counter++;
 					// switch on actuators
   					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11 | GPIO_PIN_12, GPIO_PIN_SET);// turn actuators on
 
@@ -562,14 +607,14 @@ int main(void)
 					*/
 
 					// pause 21 sec
-					HAL_Delay(21000);
+					//HAL_Delay(21000);
 
 
 					// switch off actuators
-  					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11 | GPIO_PIN_12, GPIO_PIN_RESET);// turn actuators off
+  					//HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11 | GPIO_PIN_12, GPIO_PIN_RESET);// turn actuators off
 
 					// stop
-					while(1);
+					//while(1);
 				}
 
 	//*/

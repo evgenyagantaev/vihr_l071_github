@@ -109,6 +109,14 @@ int main(void)
 	uint8_t at24c32_shifted_address = 0x50 << 1;
 	static I2C_HandleTypeDef *at24c32_i2c_handle = &hi2c2;
 
+	sprintf(message, "\r\n");
+	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+
+	sprintf(message, "log start\r\n***********\r\n");
+	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+
 	while(!end_of_log_reached)
 	{
 		/*
@@ -135,10 +143,13 @@ int main(void)
 		HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);	
 		message[0] = b0;                                                                                                        		
 		eeprom_debug_address++;                                                                                                 		
+		HAL_Delay(3);
+
 		HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);		
 		message[1] = b0;                                                                                                        		
 		eeprom_debug_address++;                                                                                                 		
-		if(((message[0] == 0) && (message[1] == 0)) || ((message[0] == 1) && (message[1] == 1)))
+		//if(((message[0] == 0) && (message[1] == 0)) || ((message[0] == 1) && (message[1] == 1)))
+		if((message[0] == 0) && (message[1] == 0))
 		{
 			end_of_log_reached = 1;
 		}
@@ -150,6 +161,11 @@ int main(void)
 			HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);                                     	    
 		}
 	}
+	
+	sprintf(message, "\r\n");
+	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+	sprintf(message, "**********\r\nlog finish\r\n");
+	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
 
 	while(1)
 	{

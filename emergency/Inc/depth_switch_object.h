@@ -17,6 +17,9 @@
 static double current_depth = 2.0;
 static double order0 = 2.0;
 static double order1 = 0.0;
+//static double current_depth = 40.0;
+//static double order0 = 4.0;
+//static double order1 = 0.0;
 
 static int depth_switch_key_press_period_counter = 0;
 

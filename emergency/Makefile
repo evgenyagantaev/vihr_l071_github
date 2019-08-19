@@ -60,8 +60,6 @@ Src/depth_switch_object.c \
 Src/rtc_ds3231_object.c \
 Src/pressure_sensor_object.c \
 Src/voltmeter_object.c \
-Src/atm_barometer_object.c \
-Src/at24c32_object.c \
 Src/fonts.c \
 Src/ssd1306.c \
 Src/one_second_timer_object.c
