@@ -1,3 +1,5 @@
 **/*.[od]
 build/*
+*.txt
+*.xls
 
