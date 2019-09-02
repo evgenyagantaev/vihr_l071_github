@@ -386,7 +386,8 @@ int main(void)
 		        	//sprintf(timestamp, "timestamp");
   		        	ssd1306_WriteString(timestamp, Font_11x18, White);
   		        	ssd1306_SetCursor(0,22);
-		        	sprintf(message, "glubina %02dm", (int)depth);
+		        	//sprintf(message, "glubina %02dm", (int)depth);
+		        	sprintf(message, "glubina %02d.%01dm", (int)depth, (int)((depth - (int)depth)*10.0));
   		        	ssd1306_WriteString(message, Font_11x18, White);
   		        	ssd1306_SetCursor(0,44);
 		        	sprintf(message, "akkum %02d%%", (int)accu_percentage);
@@ -462,6 +463,7 @@ int main(void)
 					*/
 
 					// write first depth record
+					/*
 		        	sprintf(message, "%02d", (int)depth);
 					b0 = message[0];
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
@@ -480,14 +482,36 @@ int main(void)
 					HAL_Delay(write_delay);
 					eeprom_debug_address--;
 					eeprom_number_of_records++;
-
-					/*
-					data = (uint16_t)(((uint16_t)(message[0])<<8) + (uint16_t)message[1]);
-					at24c32_write_16(eeprom_address, data);
-					eeprom_address+=2;
-					at24c32_write_16(eeprom_address, (uint16_t)0);
-					eeprom_number_of_records++;
 					*/
+
+					// write first depth record
+		        	//sprintf(message, "%02d", (int)depth);
+		        	sprintf(message, "glubina %02d.%01d", (int)depth, (int)((depth - (int)depth)*10.0));
+					b0 = message[0];
+					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+					HAL_Delay(write_delay);
+					eeprom_debug_address++;
+					b0 = message[1];
+					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+					HAL_Delay(write_delay);
+					eeprom_debug_address++;
+					b0 = message[2];
+					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+					HAL_Delay(write_delay);
+					eeprom_debug_address++;
+					b0 = message[3];
+					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+					HAL_Delay(write_delay);
+					eeprom_debug_address++;
+					b0 = 0;
+					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+					HAL_Delay(write_delay);
+					eeprom_debug_address++;
+					b0 = 0;
+					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+					HAL_Delay(write_delay);
+					eeprom_debug_address--;
+					eeprom_number_of_records++;
 
 				}
 				else
@@ -501,6 +525,14 @@ int main(void)
 					HAL_Delay(write_delay);
 					eeprom_debug_address++;
 					b0 = message[1];
+					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+					HAL_Delay(write_delay);
+					eeprom_debug_address++;
+					b0 = message[2];
+					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+					HAL_Delay(write_delay);
+					eeprom_debug_address++;
+					b0 = message[3];
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
 					eeprom_debug_address++;
@@ -585,6 +617,14 @@ int main(void)
 					HAL_Delay(write_delay);
 					eeprom_debug_address++;
 					b0 = message[1];
+					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+					HAL_Delay(write_delay);
+					eeprom_debug_address++;
+					b0 = message[2];
+					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+					HAL_Delay(write_delay);
+					eeprom_debug_address++;
+					b0 = message[3];
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
 					eeprom_debug_address++;
