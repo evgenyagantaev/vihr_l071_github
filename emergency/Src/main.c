@@ -132,90 +132,11 @@ int main(void)
 
 	int actuator_counter = 0;
 
+	// debug!!!
+	//double P_sym = surface_pressure;
+
 	while(1)
 	{
-
-		/*
-		// debug start filling
-		//***************************************************
-		//***************************************************
-		//***************************************************
-		if(one_second_timer_get_flag())
-		{
-			one_second_timer_reset_flag();
-			odd_even = (odd_even+1)%2;
-
-			rtc_ds3231_action();
-			// time-date calculation ----------------------------------------
-			uint8_t seconds, minutes, hours;
-			rtc_ds3231_get_time(&hours, &minutes, &seconds);
-			uint8_t date, month, year;
-			rtc_ds3231_get_date(&date, &month, &year);
-			//--------------------------------------------------------------
-
-			led_counter++;
-			depth_switch_turn_signal_led(led_counter);
-			if(led_counter == 5)
-				led_counter = 0;
-
-			if(odd_even)
-		        sprintf(timestamp, "%02d:%02d:%02d %02d.%02d\r\n", hours, minutes, seconds, date, month);
-			else
-		        sprintf(timestamp, "%02d %02d %02d %02d.%02d\r\n", hours, minutes, seconds, date, month);
-
-			HAL_UART_Transmit(&huart1, (uint8_t *)timestamp, strlen((const char *)timestamp), 500);
-
-
-			pressure_sensor_measure_pressure_temperature();                                                                                                   	
-		    double P = pressure_sensor_get_pressure();
-		    double actual_temperature = pressure_sensor_get_temperature();
-
-		    voltmeter_measure_voltage();
-		    double accu_voltage = voltmeter_get_voltage();
-		    double accu_percentage = voltmeter_get_percentage();
-
-		    sprintf(message, "%02dV akkum %02d%%\r\n", (int)accu_voltage, (int)accu_percentage);
-			
-			if(odd_even)
-		        sprintf(message, "P%05d:T%03d\r\n" , (int)(P/10), (int)(actual_temperature/10));
-			else
-		        sprintf(message, "P%05d T%03d\r\n" , (int)(P/10), (int)(actual_temperature/10));
-			HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
-
-			//sprintf(message, "Hello\r\n");
-			//HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
-
-
-			atm_barometer_action();
-			uint32_t atm_pressure_buffer[4];
-			atm_barometer_get_history(atm_pressure_buffer);
-
-			// test eeprom
-			for(i=mem_test_base; i<(mem_test_base+7); i++)
-				at24c32_write_32((uint16_t)(i*4), (uint32_t)i);
-			// debug
-			// control read from eeprom
-			for(i=mem_test_base; i<(mem_test_base+7); i++)
-			{
-				uint32_t aux;
-				at24c32_read_32((uint16_t)(i*4), &aux);
-				sprintf(message, "%d  ", aux);
-				HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
-			}
-			sprintf(message, "\r\n");
-			HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
-			// debug
-			mem_test_base++;
-
-		}// end if
-
-		// debug start filling
-		//***************************************************
-		//***************************************************
-		//***************************************************
-		*/
-
-
 
 
 		if(one_second_timer_get_flag())
@@ -238,17 +159,11 @@ int main(void)
 			uint8_t date, month, year;
 			rtc_ds3231_get_date(&date, &month, &year);
 			//--------------------------------------------------------------
-           
+          
 
-			// log debug
-			//****************************************
-
-			//P = ((sin(sin_counter*dt+3.14) + 1) * 10.0) * 9800;
-			//P = sin_counter*dt*9800;
-			//sin_counter++;
-
-			// log debug
-			//****************************************
+			// debug!!!
+		  	//P_sym += 980;
+			//P = P_sym;
 
 
 			if(P <= surface_pressure)
@@ -284,6 +199,7 @@ int main(void)
   		        	ssd1306_WriteString(message, Font_11x18, White);
   		        	ssd1306_UpdateScreen();                                                                               
 	//*/
+					/*
 					if(odd_even)
 		        		sprintf(timestamp, "%02d:%02d:%02d %02d.%02d\r\n", hours, minutes, seconds, date, month);
 					else
@@ -293,71 +209,9 @@ int main(void)
 					HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
 		        	sprintf(message, "akkum %02d%%\r\n", (int)accu_percentage);
 					HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+					*/
 				}
 
-				/*
-				// test eeprom                                                                                      	
-			    for(i=mem_test_base; i<(mem_test_base+7); i++)
-			    	at24c32_write_32((uint16_t)(i*4), (uint32_t)i);
-			    // debug
-			    // control read from eeprom
-			    for(i=mem_test_base; i<(mem_test_base+7); i++)
-			    {
-			    	uint32_t aux;
-			    	at24c32_read_32((uint16_t)(i*4), &aux);
-			    	sprintf(message, "%d  ", aux);
-			    	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
-			    }
-			    sprintf(message, "\r\n");
-			    HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
-			    // debug
-			    mem_test_base++;
-				*/
-				// test eeprom                                                                                      	
-				/*
-				uint16_t eeprom_debug_address = 0;
-				uint8_t b0;
-				int write_delay = 3;
-				uint8_t at24c32_shifted_address = 0x50 << 1;
-				static I2C_HandleTypeDef *at24c32_i2c_handle = &hi2c2;
-				b0 = 'A';
-				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
-				HAL_Delay(write_delay);
-				eeprom_debug_address++;
-				b0 = 'B';
-				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
-				HAL_Delay(write_delay);
-				eeprom_debug_address++;
-				b0 = 'C';
-				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
-				HAL_Delay(write_delay);
-				eeprom_debug_address++;
-				b0 = 'D';
-				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
-				HAL_Delay(write_delay);
-				eeprom_debug_address++;
-				b0 = 'E';
-				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
-				HAL_Delay(write_delay);
-
-				eeprom_debug_address = 0;
-				HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
-				message[0] = b0;
-				eeprom_debug_address++;
-				HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
-				message[1] = b0;
-				eeprom_debug_address++;
-				HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
-				message[2] = b0;
-				eeprom_debug_address++;
-				HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
-				message[3] = b0;
-				eeprom_debug_address++;
-				HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
-				message[4] = b0;
-				message[5] = 0;
-			    HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
-				*/
 				
 
 			}
@@ -387,16 +241,19 @@ int main(void)
   		        	ssd1306_WriteString(timestamp, Font_11x18, White);
   		        	ssd1306_SetCursor(0,22);
 		        	//sprintf(message, "glubina %02dm", (int)depth);
-		        	sprintf(message, "glubina %02d.%01dm", (int)depth, (int)((depth - (int)depth)*10.0));
+		        	sprintf(message, "gl--> %02d.%01dm", (int)depth, (int)((depth - (int)depth)*10.0));
   		        	ssd1306_WriteString(message, Font_11x18, White);
   		        	ssd1306_SetCursor(0,44);
 		        	sprintf(message, "akkum %02d%%", (int)accu_percentage);
   		        	ssd1306_WriteString(message, Font_11x18, White);
-  		        	ssd1306_UpdateScreen();                                                                               
+  		        	ssd1306_UpdateScreen();  
+
+					/*
 		        	sprintf(timestamp, "%02d:%02d:%02d %02d.%02d\r\n", hours, minutes, seconds, date, month);
 					HAL_UART_Transmit(&huart1, (uint8_t *)timestamp, strlen((const char *)timestamp), 500);
 		        	sprintf(message, "glubina %02dm\r\n", (int)depth);
 					HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+					*/
 				}
 
 				// log depth
@@ -486,7 +343,7 @@ int main(void)
 
 					// write first depth record
 		        	//sprintf(message, "%02d", (int)depth);
-		        	sprintf(message, "glubina %02d.%01d", (int)depth, (int)((depth - (int)depth)*10.0));
+		        	sprintf(message, "%02d.%01d", (int)depth, (int)((depth - (int)depth)*10.0));
 					b0 = message[0];
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
@@ -519,7 +376,14 @@ int main(void)
 					// there are depth records
 
 					// write new record
-		        	sprintf(message, "%02d", (int)depth);
+		        	//sprintf(message, "%02d", (int)depth);
+					b0 = 0;
+					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address + 4, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+					HAL_Delay(write_delay);
+					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address + 5, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+					HAL_Delay(write_delay);
+					eeprom_number_of_records++;
+		        	sprintf(message, "%02d.%01d", (int)depth, (int)((depth - (int)depth)*10.0));
 					b0 = message[0];
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
@@ -536,15 +400,6 @@ int main(void)
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
 					eeprom_debug_address++;
-					b0 = 0;
-					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
-					HAL_Delay(write_delay);
-					eeprom_debug_address++;
-					b0 = 0;
-					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
-					HAL_Delay(write_delay);
-					eeprom_debug_address--;
-					eeprom_number_of_records++;
 
 
 					/*
@@ -602,16 +457,20 @@ int main(void)
   		        	//ssd1306_SetCursor(0,44);
 		        	//sprintf(message, "activated!!!");
   		        	//ssd1306_WriteString(message, Font_11x18, White);
-  		        	ssd1306_UpdateScreen();                                                                               
+  		        	ssd1306_UpdateScreen();   
+
+					/*
 		        	sprintf(timestamp, "%02d:%02d:%02d %02d.%02d\r\n", hours, minutes, seconds, date, month);
 					HAL_UART_Transmit(&huart1, (uint8_t *)timestamp, strlen((const char *)timestamp), 500);
 		        	sprintf(message, ">>>>> %02dm\r\n", (int)depth);
 					HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
 		        	sprintf(message, "activated!!!\r\n");
 					HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+					*/
 
 					// write depth of activation 
-		        	sprintf(message, "%02d", (int)depth);
+		        	//sprintf(message, "%02d", (int)depth);
+		        	sprintf(message, "%02d.%01d", (int)depth, (int)((depth - (int)depth)*10.0));
 					b0 = message[0];
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
@@ -628,11 +487,21 @@ int main(void)
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
 					eeprom_debug_address++;
-					b0 = 1;
+					b0 = '$';
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
 					eeprom_debug_address++;
-					b0 = 1;
+					b0 = '$';
+					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+					HAL_Delay(write_delay);
+					eeprom_debug_address++;
+					eeprom_number_of_records++;
+					b0 = '$';
+					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+					HAL_Delay(write_delay);
+					eeprom_debug_address++;
+					eeprom_number_of_records++;
+					b0 = '$';
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
 					eeprom_debug_address++;

@@ -148,6 +148,14 @@ int main(void)
 		HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);		
 		message[1] = b0;                                                                                                        		
 		eeprom_debug_address++;                                                                                                 		
+
+		HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);		
+		message[2] = b0;                                                                                                        		
+		eeprom_debug_address++;                                                                                                 		
+
+		HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);		
+		message[3] = b0;                                                                                                        		
+		eeprom_debug_address++;                                                                                                 		
 		//if(((message[0] == 0) && (message[1] == 0)) || ((message[0] == 1) && (message[1] == 1)))
 		if((message[0] == 0) && (message[1] == 0))
 		{
@@ -155,9 +163,9 @@ int main(void)
 		}
 		else
 		{
-			message[2] = '\r';                                                                                                        		
-			message[3] = '\n';                                                                                                        		
-			message[4] = 0;                                                                                                        		
+			message[4] = '\r';                                                                                                        		
+			message[5] = '\n';                                                                                                        		
+			message[6] = 0;                                                                                                        		
 			HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);                                     	    
 		}
 	}
