@@ -112,9 +112,9 @@ void depth_switch_action()
 	{
 		if(depth_switch_key_press_period_counter > 0)
 		{
-			if(depth_switch_key_press_period_counter <= 3)     // less then 2 seconds
+			if(depth_switch_key_press_period_counter <= 3)     // less then 3 seconds
 				depth_switch_step_current_depth(INC_ONE);
-			else if((depth_switch_key_press_period_counter > 3) && (depth_switch_key_press_period_counter <= 5))     // 
+			else if((depth_switch_key_press_period_counter > 3) && (depth_switch_key_press_period_counter <= 17))     // 
 				depth_switch_step_current_depth(INC_TEN);
 			else   // more then 3 seconds
 				depth_switch_step_to_test();

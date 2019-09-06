@@ -117,6 +117,7 @@ int main(void)
 
 	int mem_test_base = 0;
 
+	uint8_t at24c32_shifted_address = 0x50 << 1;
 	uint16_t eeprom_address = 64;
 	uint16_t eeprom_debug_address = 64;
 	int eeprom_number_of_records = 0;
@@ -260,12 +261,32 @@ int main(void)
 				//--------------------------------------------------------------------------
 				uint8_t b0;
 				int write_delay = 5;
-				uint8_t at24c32_shifted_address = 0x50 << 1;
 				static I2C_HandleTypeDef *at24c32_i2c_handle = &hi2c2;
 
 				if(eeprom_number_of_records == 0)
 				{
 					// no records yet
+					
+					// read memory bank id
+					HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, 0, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);	
+
+					if(b0 == 1)   // pishem v bank 1
+					{
+						// pri sleduyuschem zapuske budem pisat' v bank 0
+						b0 = 0;
+						HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, 0, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+						HAL_Delay(write_delay);
+
+						// nastraivaem address i2c banka pamyati (nomer 1)
+						at24c32_shifted_address = 0x51 << 1;
+					}
+					else
+					{
+						// pri sleduyuschem zapuske budem pisat' v bank 1
+						b0 = 1;
+						HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, 0, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+						HAL_Delay(write_delay);
+					}
 
 
 					// write timestamp
@@ -304,45 +325,8 @@ int main(void)
 					eeprom_debug_address++;
 
 
-					/*
-					data = (uint16_t)(((uint16_t)(timestamp[0])<<8) + (uint16_t)timestamp[1]);
-					at24c32_write_16(eeprom_address, data);
-					eeprom_address+=2;
-					data = (uint16_t)(((uint16_t)(timestamp[3])<<8) + (uint16_t)timestamp[4]);
-					at24c32_write_16(eeprom_address, data);
-					eeprom_address+=2;
-					data = (uint16_t)(((uint16_t)(timestamp[6])<<8) + (uint16_t)timestamp[7]);
-					at24c32_write_16(eeprom_address, data);
-					eeprom_address+=2;
-					data = (uint16_t)(((uint16_t)(timestamp[9])<<8) + (uint16_t)timestamp[10]);
-					at24c32_write_16(eeprom_address, data);
-					eeprom_address+=2;
-					*/
 
 					// write first depth record
-					/*
-		        	sprintf(message, "%02d", (int)depth);
-					b0 = message[0];
-					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
-					HAL_Delay(write_delay);
-					eeprom_debug_address++;
-					b0 = message[1];
-					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
-					HAL_Delay(write_delay);
-					eeprom_debug_address++;
-					b0 = 0;
-					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
-					HAL_Delay(write_delay);
-					eeprom_debug_address++;
-					b0 = 0;
-					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
-					HAL_Delay(write_delay);
-					eeprom_debug_address--;
-					eeprom_number_of_records++;
-					*/
-
-					// write first depth record
-		        	//sprintf(message, "%02d", (int)depth);
 		        	sprintf(message, "%02d.%01d", (int)depth, (int)((depth - (int)depth)*10.0));
 					b0 = message[0];
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
@@ -376,7 +360,6 @@ int main(void)
 					// there are depth records
 
 					// write new record
-		        	//sprintf(message, "%02d", (int)depth);
 					b0 = 0;
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address + 4, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
@@ -400,16 +383,6 @@ int main(void)
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
 					eeprom_debug_address++;
-
-
-					/*
-		        	sprintf(message, "%02d", (int)depth);
-					data = (uint16_t)(((uint16_t)(message[0])<<8) + (uint16_t)message[1]);
-					at24c32_write_16(eeprom_address, data);
-					eeprom_address+=2;
-					at24c32_write_16(eeprom_address, (uint16_t)0);
-					eeprom_number_of_records++;
-					*/
 
 				}
 
