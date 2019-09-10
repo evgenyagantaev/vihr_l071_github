@@ -19,8 +19,9 @@
 
 
 
-static char message[256];
+static char message[64];
 static char timestamp[64];
+static char temperature_message[64];
 
 
 /* Private function prototypes -----------------------------------------------*/
@@ -307,6 +308,10 @@ int main(void)
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
 					eeprom_debug_address++;
+					//b0 = ' ';
+					//HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+					//HAL_Delay(write_delay);
+					//eeprom_debug_address++;
 					b0 = timestamp[6];
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
@@ -323,11 +328,16 @@ int main(void)
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
 					eeprom_debug_address++;
+					//b0 = ' ';
+					//HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+					//HAL_Delay(write_delay);
+					//eeprom_debug_address++;
 
 
 
 					// write first depth record
 		        	sprintf(message, "%02d.%01d", (int)depth, (int)((depth - (int)depth)*10.0));
+		       		sprintf(temperature_message, "%02d", (int)(actual_temperature/100.0));
 					b0 = message[0];
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
@@ -336,11 +346,19 @@ int main(void)
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
 					eeprom_debug_address++;
-					b0 = message[2];
+					//b0 = message[2];
+					//HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+					//HAL_Delay(write_delay);
+					//eeprom_debug_address++;
+					b0 = message[3];
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
 					eeprom_debug_address++;
-					b0 = message[3];
+					b0 = temperature_message[0];
+					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+					HAL_Delay(write_delay);
+					eeprom_debug_address++;
+					b0 = temperature_message[1];
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
 					eeprom_debug_address++;
@@ -361,12 +379,13 @@ int main(void)
 
 					// write new record
 					b0 = 0;
-					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address + 4, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
-					HAL_Delay(write_delay);
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address + 5, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+					HAL_Delay(write_delay);
+					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address + 6, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
 					eeprom_number_of_records++;
 		        	sprintf(message, "%02d.%01d", (int)depth, (int)((depth - (int)depth)*10.0));
+		       		sprintf(temperature_message, "%02d", (int)(actual_temperature/100.0));
 					b0 = message[0];
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
@@ -375,11 +394,19 @@ int main(void)
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
 					eeprom_debug_address++;
-					b0 = message[2];
+					//b0 = message[2];
+					//HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+					//HAL_Delay(write_delay);
+					//eeprom_debug_address++;
+					b0 = message[3];
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
 					eeprom_debug_address++;
-					b0 = message[3];
+					b0 = temperature_message[0];
+					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+					HAL_Delay(write_delay);
+					eeprom_debug_address++;
+					b0 = temperature_message[1];
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
 					eeprom_debug_address++;
@@ -444,6 +471,7 @@ int main(void)
 					// write depth of activation 
 		        	//sprintf(message, "%02d", (int)depth);
 		        	sprintf(message, "%02d.%01d", (int)depth, (int)((depth - (int)depth)*10.0));
+		       		sprintf(temperature_message, "%02d", (int)(actual_temperature/100.0));
 					b0 = message[0];
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
@@ -452,11 +480,19 @@ int main(void)
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
 					eeprom_debug_address++;
-					b0 = message[2];
+					//b0 = message[2];
+					//HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+					//HAL_Delay(write_delay);
+					//eeprom_debug_address++;
+					b0 = message[3];
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
 					eeprom_debug_address++;
-					b0 = message[3];
+					b0 = temperature_message[0];
+					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+					HAL_Delay(write_delay);
+					eeprom_debug_address++;
+					b0 = temperature_message[1];
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
 					eeprom_debug_address++;
@@ -464,6 +500,11 @@ int main(void)
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
 					eeprom_debug_address++;
+					b0 = '$';
+					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+					HAL_Delay(write_delay);
+					eeprom_debug_address++;
+					eeprom_number_of_records++;
 					b0 = '$';
 					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
 					HAL_Delay(write_delay);
