@@ -159,16 +159,16 @@ int main(void)
 	{   
 
 		// debug
+		//*
+	    HAL_GPIO_TogglePin(led0_GPIO_Port, led3_Pin); //           	    
+	    //HAL_Delay(500);                                          	    
+		primitive_delay();                                       		
+	    HAL_GPIO_TogglePin(led0_GPIO_Port, led3_Pin); //           	    
+	    //HAL_Delay(500);                                          	    
+		primitive_delay();                                       		
+		//*/
+
 		/*
-	    HAL_GPIO_TogglePin(led0_GPIO_Port, led3_Pin); //           	    
-	    //HAL_Delay(500);                                          	    
-		primitive_delay();                                       		
-	    HAL_GPIO_TogglePin(led0_GPIO_Port, led3_Pin); //           	    
-	    //HAL_Delay(500);                                          	    
-		primitive_delay();                                       		
-		*/
-
-
 		if(one_second_timer_get_flag())
 		{
 			one_second_timer_reset_flag();
@@ -178,18 +178,6 @@ int main(void)
 		    double P = pressure_sensor_get_pressure();
 		    double actual_temperature = pressure_sensor_get_temperature();
 
-			// debug
-			//*
-			ssd1306_Fill(Black);                                                                                         
-  		    ssd1306_SetCursor(3,30);
-			if(odd_even)
-		        sprintf(message, "P%05d:T%03d" , (int)(P/10), (int)(actual_temperature/10));
-			else
-		        sprintf(message, "P%05d T%03d" , (int)(P/10), (int)(actual_temperature/10));
-  		    ssd1306_WriteString(message, Font_11x18, White);
-  		    ssd1306_WriteString(message, Font_11x18, White);
-  		    ssd1306_UpdateScreen();                                                                                         
-			//*/
 
 			led_counter++;
 			depth_switch_turn_signal_led(led_counter);
@@ -198,6 +186,7 @@ int main(void)
 
 
 		}
+		*/
 
 	}       
 

@@ -1,0 +1,355 @@
+ARM GAS  /tmp/ccR5Ck1X.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 1
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"stm32l0xx_it.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.NMI_Handler,"ax",%progbits
+  18              		.align	2
+  19              		.global	NMI_Handler
+  20              		.code	16
+  21              		.thumb_func
+  23              	NMI_Handler:
+  24              	.LFB34:
+  25              		.file 1 "Src/stm32l0xx_it.c"
+   1:Src/stm32l0xx_it.c **** /**
+   2:Src/stm32l0xx_it.c ****   ******************************************************************************
+   3:Src/stm32l0xx_it.c ****   * @file    stm32l0xx_it.c
+   4:Src/stm32l0xx_it.c ****   * @brief   Interrupt Service Routines.
+   5:Src/stm32l0xx_it.c ****   ******************************************************************************
+   6:Src/stm32l0xx_it.c ****   *
+   7:Src/stm32l0xx_it.c ****   * COPYRIGHT(c) 2019 STMicroelectronics
+   8:Src/stm32l0xx_it.c ****   *
+   9:Src/stm32l0xx_it.c ****   * Redistribution and use in source and binary forms, with or without modification,
+  10:Src/stm32l0xx_it.c ****   * are permitted provided that the following conditions are met:
+  11:Src/stm32l0xx_it.c ****   *   1. Redistributions of source code must retain the above copyright notice,
+  12:Src/stm32l0xx_it.c ****   *      this list of conditions and the following disclaimer.
+  13:Src/stm32l0xx_it.c ****   *   2. Redistributions in binary form must reproduce the above copyright notice,
+  14:Src/stm32l0xx_it.c ****   *      this list of conditions and the following disclaimer in the documentation
+  15:Src/stm32l0xx_it.c ****   *      and/or other materials provided with the distribution.
+  16:Src/stm32l0xx_it.c ****   *   3. Neither the name of STMicroelectronics nor the names of its contributors
+  17:Src/stm32l0xx_it.c ****   *      may be used to endorse or promote products derived from this software
+  18:Src/stm32l0xx_it.c ****   *      without specific prior written permission.
+  19:Src/stm32l0xx_it.c ****   *
+  20:Src/stm32l0xx_it.c ****   * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  21:Src/stm32l0xx_it.c ****   * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  22:Src/stm32l0xx_it.c ****   * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  23:Src/stm32l0xx_it.c ****   * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  24:Src/stm32l0xx_it.c ****   * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  25:Src/stm32l0xx_it.c ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  26:Src/stm32l0xx_it.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  27:Src/stm32l0xx_it.c ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  28:Src/stm32l0xx_it.c ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  29:Src/stm32l0xx_it.c ****   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  30:Src/stm32l0xx_it.c ****   *
+  31:Src/stm32l0xx_it.c ****   ******************************************************************************
+  32:Src/stm32l0xx_it.c ****   */
+  33:Src/stm32l0xx_it.c **** /* Includes ------------------------------------------------------------------*/
+ARM GAS  /tmp/ccR5Ck1X.s 			page 2
+
+
+  34:Src/stm32l0xx_it.c **** #include "stm32l0xx_hal.h"
+  35:Src/stm32l0xx_it.c **** #include "stm32l0xx.h"
+  36:Src/stm32l0xx_it.c **** #include "stm32l0xx_it.h"
+  37:Src/stm32l0xx_it.c **** 
+  38:Src/stm32l0xx_it.c **** #include "one_second_timer_interface.h"
+  39:Src/stm32l0xx_it.c **** 
+  40:Src/stm32l0xx_it.c **** 
+  41:Src/stm32l0xx_it.c **** 
+  42:Src/stm32l0xx_it.c **** /* External variables --------------------------------------------------------*/
+  43:Src/stm32l0xx_it.c **** extern TIM_HandleTypeDef htim2;
+  44:Src/stm32l0xx_it.c **** 
+  45:Src/stm32l0xx_it.c **** /******************************************************************************/
+  46:Src/stm32l0xx_it.c **** /*            Cortex-M0+ Processor Interruption and Exception Handlers         */ 
+  47:Src/stm32l0xx_it.c **** /******************************************************************************/
+  48:Src/stm32l0xx_it.c **** 
+  49:Src/stm32l0xx_it.c **** /**
+  50:Src/stm32l0xx_it.c **** * @brief This function handles Non maskable Interrupt.
+  51:Src/stm32l0xx_it.c **** */
+  52:Src/stm32l0xx_it.c **** void NMI_Handler(void)
+  53:Src/stm32l0xx_it.c **** {
+  26              		.loc 1 53 0
+  27              		.cfi_startproc
+  54:Src/stm32l0xx_it.c ****   /* USER CODE BEGIN NonMaskableInt_IRQn 0 */
+  55:Src/stm32l0xx_it.c **** 
+  56:Src/stm32l0xx_it.c ****   /* USER CODE END NonMaskableInt_IRQn 0 */
+  57:Src/stm32l0xx_it.c ****   /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
+  58:Src/stm32l0xx_it.c **** 
+  59:Src/stm32l0xx_it.c ****   /* USER CODE END NonMaskableInt_IRQn 1 */
+  60:Src/stm32l0xx_it.c **** }
+  28              		.loc 1 60 0
+  29              		@ sp needed
+  30 0000 7047     		bx	lr
+  31              		.cfi_endproc
+  32              	.LFE34:
+  34 0002 C046     		.section	.text.HardFault_Handler,"ax",%progbits
+  35              		.align	2
+  36              		.global	HardFault_Handler
+  37              		.code	16
+  38              		.thumb_func
+  40              	HardFault_Handler:
+  41              	.LFB35:
+  61:Src/stm32l0xx_it.c **** 
+  62:Src/stm32l0xx_it.c **** /**
+  63:Src/stm32l0xx_it.c **** * @brief This function handles Hard fault interrupt.
+  64:Src/stm32l0xx_it.c **** */
+  65:Src/stm32l0xx_it.c **** void HardFault_Handler(void)
+  66:Src/stm32l0xx_it.c **** {
+  42              		.loc 1 66 0
+  43              		.cfi_startproc
+  44              	.L3:
+  67:Src/stm32l0xx_it.c ****   /* USER CODE BEGIN HardFault_IRQn 0 */
+  68:Src/stm32l0xx_it.c **** 
+  69:Src/stm32l0xx_it.c ****   /* USER CODE END HardFault_IRQn 0 */
+  70:Src/stm32l0xx_it.c ****   while (1)
+  71:Src/stm32l0xx_it.c ****   {
+  72:Src/stm32l0xx_it.c ****     /* USER CODE BEGIN W1_HardFault_IRQn 0 */
+  73:Src/stm32l0xx_it.c ****     /* USER CODE END W1_HardFault_IRQn 0 */
+ARM GAS  /tmp/ccR5Ck1X.s 			page 3
+
+
+  74:Src/stm32l0xx_it.c ****   }
+  45              		.loc 1 74 0 discriminator 1
+  46 0000 FEE7     		b	.L3
+  47              		.cfi_endproc
+  48              	.LFE35:
+  50 0002 C046     		.section	.text.SVC_Handler,"ax",%progbits
+  51              		.align	2
+  52              		.global	SVC_Handler
+  53              		.code	16
+  54              		.thumb_func
+  56              	SVC_Handler:
+  57              	.LFB36:
+  75:Src/stm32l0xx_it.c ****   /* USER CODE BEGIN HardFault_IRQn 1 */
+  76:Src/stm32l0xx_it.c **** 
+  77:Src/stm32l0xx_it.c ****   /* USER CODE END HardFault_IRQn 1 */
+  78:Src/stm32l0xx_it.c **** }
+  79:Src/stm32l0xx_it.c **** 
+  80:Src/stm32l0xx_it.c **** /**
+  81:Src/stm32l0xx_it.c **** * @brief This function handles System service call via SWI instruction.
+  82:Src/stm32l0xx_it.c **** */
+  83:Src/stm32l0xx_it.c **** void SVC_Handler(void)
+  84:Src/stm32l0xx_it.c **** {
+  58              		.loc 1 84 0
+  59              		.cfi_startproc
+  85:Src/stm32l0xx_it.c ****   /* USER CODE BEGIN SVC_IRQn 0 */
+  86:Src/stm32l0xx_it.c **** 
+  87:Src/stm32l0xx_it.c ****   /* USER CODE END SVC_IRQn 0 */
+  88:Src/stm32l0xx_it.c ****   /* USER CODE BEGIN SVC_IRQn 1 */
+  89:Src/stm32l0xx_it.c **** 
+  90:Src/stm32l0xx_it.c ****   /* USER CODE END SVC_IRQn 1 */
+  91:Src/stm32l0xx_it.c **** }
+  60              		.loc 1 91 0
+  61              		@ sp needed
+  62 0000 7047     		bx	lr
+  63              		.cfi_endproc
+  64              	.LFE36:
+  66 0002 C046     		.section	.text.PendSV_Handler,"ax",%progbits
+  67              		.align	2
+  68              		.global	PendSV_Handler
+  69              		.code	16
+  70              		.thumb_func
+  72              	PendSV_Handler:
+  73              	.LFB37:
+  92:Src/stm32l0xx_it.c **** 
+  93:Src/stm32l0xx_it.c **** /**
+  94:Src/stm32l0xx_it.c **** * @brief This function handles Pendable request for system service.
+  95:Src/stm32l0xx_it.c **** */
+  96:Src/stm32l0xx_it.c **** void PendSV_Handler(void)
+  97:Src/stm32l0xx_it.c **** {
+  74              		.loc 1 97 0
+  75              		.cfi_startproc
+  98:Src/stm32l0xx_it.c ****   /* USER CODE BEGIN PendSV_IRQn 0 */
+  99:Src/stm32l0xx_it.c **** 
+ 100:Src/stm32l0xx_it.c ****   /* USER CODE END PendSV_IRQn 0 */
+ 101:Src/stm32l0xx_it.c ****   /* USER CODE BEGIN PendSV_IRQn 1 */
+ 102:Src/stm32l0xx_it.c **** 
+ 103:Src/stm32l0xx_it.c ****   /* USER CODE END PendSV_IRQn 1 */
+ARM GAS  /tmp/ccR5Ck1X.s 			page 4
+
+
+ 104:Src/stm32l0xx_it.c **** }
+  76              		.loc 1 104 0
+  77              		@ sp needed
+  78 0000 7047     		bx	lr
+  79              		.cfi_endproc
+  80              	.LFE37:
+  82 0002 C046     		.section	.text.SysTick_Handler,"ax",%progbits
+  83              		.align	2
+  84              		.global	SysTick_Handler
+  85              		.code	16
+  86              		.thumb_func
+  88              	SysTick_Handler:
+  89              	.LFB38:
+ 105:Src/stm32l0xx_it.c **** 
+ 106:Src/stm32l0xx_it.c **** /**
+ 107:Src/stm32l0xx_it.c **** * @brief This function handles System tick timer.
+ 108:Src/stm32l0xx_it.c **** */
+ 109:Src/stm32l0xx_it.c **** void SysTick_Handler(void)
+ 110:Src/stm32l0xx_it.c **** {
+  90              		.loc 1 110 0
+  91              		.cfi_startproc
+  92 0000 08B5     		push	{r3, lr}
+  93              	.LCFI0:
+  94              		.cfi_def_cfa_offset 8
+  95              		.cfi_offset 3, -8
+  96              		.cfi_offset 14, -4
+ 111:Src/stm32l0xx_it.c ****   /* USER CODE BEGIN SysTick_IRQn 0 */
+ 112:Src/stm32l0xx_it.c **** 
+ 113:Src/stm32l0xx_it.c ****   /* USER CODE END SysTick_IRQn 0 */
+ 114:Src/stm32l0xx_it.c ****   HAL_IncTick();
+  97              		.loc 1 114 0
+  98 0002 FFF7FEFF 		bl	HAL_IncTick
+  99              	.LVL0:
+ 115:Src/stm32l0xx_it.c ****   HAL_SYSTICK_IRQHandler();
+ 100              		.loc 1 115 0
+ 101 0006 FFF7FEFF 		bl	HAL_SYSTICK_IRQHandler
+ 102              	.LVL1:
+ 116:Src/stm32l0xx_it.c ****   /* USER CODE BEGIN SysTick_IRQn 1 */
+ 117:Src/stm32l0xx_it.c **** 
+ 118:Src/stm32l0xx_it.c ****   /* USER CODE END SysTick_IRQn 1 */
+ 119:Src/stm32l0xx_it.c **** }
+ 103              		.loc 1 119 0
+ 104              		@ sp needed
+ 105 000a 08BD     		pop	{r3, pc}
+ 106              		.cfi_endproc
+ 107              	.LFE38:
+ 109              		.section	.text.TIM2_IRQHandler,"ax",%progbits
+ 110              		.align	2
+ 111              		.global	TIM2_IRQHandler
+ 112              		.code	16
+ 113              		.thumb_func
+ 115              	TIM2_IRQHandler:
+ 116              	.LFB39:
+ 120:Src/stm32l0xx_it.c **** 
+ 121:Src/stm32l0xx_it.c **** 
+ 122:Src/stm32l0xx_it.c **** 
+ 123:Src/stm32l0xx_it.c **** void TIM2_IRQHandler(void)
+ARM GAS  /tmp/ccR5Ck1X.s 			page 5
+
+
+ 124:Src/stm32l0xx_it.c **** {
+ 117              		.loc 1 124 0
+ 118              		.cfi_startproc
+ 119 0000 08B5     		push	{r3, lr}
+ 120              	.LCFI1:
+ 121              		.cfi_def_cfa_offset 8
+ 122              		.cfi_offset 3, -8
+ 123              		.cfi_offset 14, -4
+ 125:Src/stm32l0xx_it.c **** 	HAL_TIM_IRQHandler(&htim2);
+ 124              		.loc 1 125 0
+ 125 0002 0248     		ldr	r0, .L8
+ 126 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
+ 127              	.LVL2:
+ 126:Src/stm32l0xx_it.c **** 
+ 127:Src/stm32l0xx_it.c **** 
+ 128:Src/stm32l0xx_it.c **** }
+ 128              		.loc 1 128 0
+ 129              		@ sp needed
+ 130 0008 08BD     		pop	{r3, pc}
+ 131              	.L9:
+ 132 000a C046     		.align	2
+ 133              	.L8:
+ 134 000c 00000000 		.word	htim2
+ 135              		.cfi_endproc
+ 136              	.LFE39:
+ 138              		.section	.text.HAL_TIM_PeriodElapsedCallback,"ax",%progbits
+ 139              		.align	2
+ 140              		.global	HAL_TIM_PeriodElapsedCallback
+ 141              		.code	16
+ 142              		.thumb_func
+ 144              	HAL_TIM_PeriodElapsedCallback:
+ 145              	.LFB40:
+ 129:Src/stm32l0xx_it.c **** 
+ 130:Src/stm32l0xx_it.c **** void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+ 131:Src/stm32l0xx_it.c **** {
+ 146              		.loc 1 131 0
+ 147              		.cfi_startproc
+ 148              	.LVL3:
+ 149 0000 08B5     		push	{r3, lr}
+ 150              	.LCFI2:
+ 151              		.cfi_def_cfa_offset 8
+ 152              		.cfi_offset 3, -8
+ 153              		.cfi_offset 14, -4
+ 132:Src/stm32l0xx_it.c **** 	
+ 133:Src/stm32l0xx_it.c **** 	if(htim->Instance==TIM2)
+ 154              		.loc 1 133 0
+ 155 0002 0268     		ldr	r2, [r0]
+ 156 0004 8023     		mov	r3, #128
+ 157 0006 DB05     		lsl	r3, r3, #23
+ 158 0008 9A42     		cmp	r2, r3
+ 159 000a 03D1     		bne	.L10
+ 134:Src/stm32l0xx_it.c **** 	{
+ 135:Src/stm32l0xx_it.c **** 		//HAL_GPIO_TogglePin(GPIOC, led0_Pin);
+ 136:Src/stm32l0xx_it.c **** 		one_second_timer_increment_counter();
+ 160              		.loc 1 136 0
+ 161 000c FFF7FEFF 		bl	one_second_timer_increment_counter
+ 162              	.LVL4:
+ARM GAS  /tmp/ccR5Ck1X.s 			page 6
+
+
+ 137:Src/stm32l0xx_it.c **** 		one_second_timer_set_flag();
+ 163              		.loc 1 137 0
+ 164 0010 FFF7FEFF 		bl	one_second_timer_set_flag
+ 165              	.LVL5:
+ 166              	.L10:
+ 138:Src/stm32l0xx_it.c **** 	}
+ 139:Src/stm32l0xx_it.c **** }
+ 167              		.loc 1 139 0
+ 168              		@ sp needed
+ 169 0014 08BD     		pop	{r3, pc}
+ 170              		.cfi_endproc
+ 171              	.LFE40:
+ 173 0016 C046     		.text
+ 174              	.Letext0:
+ 175              		.file 2 "/usr/include/newlib/machine/_default_types.h"
+ 176              		.file 3 "/usr/include/newlib/sys/_stdint.h"
+ 177              		.file 4 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l071xx.h"
+ 178              		.file 5 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_def.h"
+ 179              		.file 6 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_dma.h"
+ 180              		.file 7 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim.h"
+ 181              		.file 8 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h"
+ 182              		.file 9 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_cortex.h"
+ 183              		.file 10 "Inc/one_second_timer_interface.h"
+ARM GAS  /tmp/ccR5Ck1X.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 stm32l0xx_it.c
+     /tmp/ccR5Ck1X.s:18     .text.NMI_Handler:0000000000000000 $t
+     /tmp/ccR5Ck1X.s:23     .text.NMI_Handler:0000000000000000 NMI_Handler
+     /tmp/ccR5Ck1X.s:35     .text.HardFault_Handler:0000000000000000 $t
+     /tmp/ccR5Ck1X.s:40     .text.HardFault_Handler:0000000000000000 HardFault_Handler
+     /tmp/ccR5Ck1X.s:51     .text.SVC_Handler:0000000000000000 $t
+     /tmp/ccR5Ck1X.s:56     .text.SVC_Handler:0000000000000000 SVC_Handler
+     /tmp/ccR5Ck1X.s:67     .text.PendSV_Handler:0000000000000000 $t
+     /tmp/ccR5Ck1X.s:72     .text.PendSV_Handler:0000000000000000 PendSV_Handler
+     /tmp/ccR5Ck1X.s:83     .text.SysTick_Handler:0000000000000000 $t
+     /tmp/ccR5Ck1X.s:88     .text.SysTick_Handler:0000000000000000 SysTick_Handler
+     /tmp/ccR5Ck1X.s:110    .text.TIM2_IRQHandler:0000000000000000 $t
+     /tmp/ccR5Ck1X.s:115    .text.TIM2_IRQHandler:0000000000000000 TIM2_IRQHandler
+     /tmp/ccR5Ck1X.s:134    .text.TIM2_IRQHandler:000000000000000c $d
+     /tmp/ccR5Ck1X.s:139    .text.HAL_TIM_PeriodElapsedCallback:0000000000000000 $t
+     /tmp/ccR5Ck1X.s:144    .text.HAL_TIM_PeriodElapsedCallback:0000000000000000 HAL_TIM_PeriodElapsedCallback
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+HAL_IncTick
+HAL_SYSTICK_IRQHandler
+HAL_TIM_IRQHandler
+htim2
+one_second_timer_increment_counter
+one_second_timer_set_flag

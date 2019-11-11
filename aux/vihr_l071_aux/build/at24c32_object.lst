@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccTiZiSL.s 			page 1
+ARM GAS  /tmp/ccK6eUDp.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccTiZiSL.s 			page 1
   49              	.LFB37:
   10:Src/at24c32_object.c **** 
   11:Src/at24c32_object.c **** void at24c32_write_32(uint16_t address, uint32_t data)
-ARM GAS  /tmp/ccTiZiSL.s 			page 2
+ARM GAS  /tmp/ccK6eUDp.s 			page 2
 
 
   12:Src/at24c32_object.c **** {
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccTiZiSL.s 			page 1
   20:Src/at24c32_object.c **** 	int write_delay = 3;
   21:Src/at24c32_object.c **** 
   22:Src/at24c32_object.c **** 	HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, address, I2C_MEMADD_SIZE_16BIT, &b0
-ARM GAS  /tmp/ccTiZiSL.s 			page 3
+ARM GAS  /tmp/ccK6eUDp.s 			page 3
 
 
   96              		.loc 1 22 0
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccTiZiSL.s 			page 1
  146 0084 4B46     		mov	r3, r9
  147 0086 0193     		str	r3, [sp, #4]
  148 0088 4346     		mov	r3, r8
-ARM GAS  /tmp/ccTiZiSL.s 			page 4
+ARM GAS  /tmp/ccK6eUDp.s 			page 4
 
 
  149 008a 0293     		str	r3, [sp, #8]
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccTiZiSL.s 			page 1
  199              	at24c32_read_32:
  200              	.LFB38:
   33:Src/at24c32_object.c **** 
-ARM GAS  /tmp/ccTiZiSL.s 			page 5
+ARM GAS  /tmp/ccK6eUDp.s 			page 5
 
 
   34:Src/at24c32_object.c **** 
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccTiZiSL.s 			page 1
   40:Src/at24c32_object.c **** 	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, address+1, I2C_MEMADD_SIZE_16BIT, &b
  249              		.loc 1 40 0
  250 0036 5B46     		mov	r3, fp
-ARM GAS  /tmp/ccTiZiSL.s 			page 6
+ARM GAS  /tmp/ccK6eUDp.s 			page 6
 
 
  251 0038 1868     		ldr	r0, [r3]
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccTiZiSL.s 			page 1
  301 0096 6B46     		mov	r3, sp
  302 0098 5B7D     		ldrb	r3, [r3, #21]
  303 009a 1B04     		lsl	r3, r3, #16
-ARM GAS  /tmp/ccTiZiSL.s 			page 7
+ARM GAS  /tmp/ccK6eUDp.s 			page 7
 
 
  304 009c D218     		add	r2, r2, r3
@@ -410,23 +410,23 @@ ARM GAS  /tmp/ccTiZiSL.s 			page 1
  351              		.file 7 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_i2c.h"
  352              		.file 8 "Inc/at24c32_object.h"
  353              		.file 9 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h"
-ARM GAS  /tmp/ccTiZiSL.s 			page 8
+ARM GAS  /tmp/ccK6eUDp.s 			page 8
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 at24c32_object.c
-     /tmp/ccTiZiSL.s:18     .text.at24c32_set_i2c_handle:0000000000000000 $t
-     /tmp/ccTiZiSL.s:23     .text.at24c32_set_i2c_handle:0000000000000000 at24c32_set_i2c_handle
-     /tmp/ccTiZiSL.s:38     .text.at24c32_set_i2c_handle:0000000000000008 $d
-     /tmp/ccTiZiSL.s:43     .text.at24c32_write_32:0000000000000000 $t
-     /tmp/ccTiZiSL.s:48     .text.at24c32_write_32:0000000000000000 at24c32_write_32
-     /tmp/ccTiZiSL.s:188    .text.at24c32_write_32:00000000000000c8 $d
-     /tmp/ccTiZiSL.s:194    .text.at24c32_read_32:0000000000000000 $t
-     /tmp/ccTiZiSL.s:199    .text.at24c32_read_32:0000000000000000 at24c32_read_32
-     /tmp/ccTiZiSL.s:325    .text.at24c32_read_32:00000000000000b8 $d
-     /tmp/ccTiZiSL.s:335    .data.at24c32_shifted_address:0000000000000000 at24c32_shifted_address
-     /tmp/ccTiZiSL.s:338    .bss.at24c32_i2c_handle:0000000000000000 $d
-     /tmp/ccTiZiSL.s:342    .bss.at24c32_i2c_handle:0000000000000000 at24c32_i2c_handle
+     /tmp/ccK6eUDp.s:18     .text.at24c32_set_i2c_handle:0000000000000000 $t
+     /tmp/ccK6eUDp.s:23     .text.at24c32_set_i2c_handle:0000000000000000 at24c32_set_i2c_handle
+     /tmp/ccK6eUDp.s:38     .text.at24c32_set_i2c_handle:0000000000000008 $d
+     /tmp/ccK6eUDp.s:43     .text.at24c32_write_32:0000000000000000 $t
+     /tmp/ccK6eUDp.s:48     .text.at24c32_write_32:0000000000000000 at24c32_write_32
+     /tmp/ccK6eUDp.s:188    .text.at24c32_write_32:00000000000000c8 $d
+     /tmp/ccK6eUDp.s:194    .text.at24c32_read_32:0000000000000000 $t
+     /tmp/ccK6eUDp.s:199    .text.at24c32_read_32:0000000000000000 at24c32_read_32
+     /tmp/ccK6eUDp.s:325    .text.at24c32_read_32:00000000000000b8 $d
+     /tmp/ccK6eUDp.s:335    .data.at24c32_shifted_address:0000000000000000 at24c32_shifted_address
+     /tmp/ccK6eUDp.s:338    .bss.at24c32_i2c_handle:0000000000000000 $d
+     /tmp/ccK6eUDp.s:342    .bss.at24c32_i2c_handle:0000000000000000 at24c32_i2c_handle
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

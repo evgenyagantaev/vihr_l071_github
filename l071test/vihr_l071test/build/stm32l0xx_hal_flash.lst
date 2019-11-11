@@ -1,0 +1,2279 @@
+ARM GAS  /tmp/ccw9D8C4.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 1
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"stm32l0xx_hal_flash.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.FLASH_SetErrorCode,"ax",%progbits
+  18              		.align	2
+  19              		.code	16
+  20              		.thumb_func
+  22              	FLASH_SetErrorCode:
+  23              	.LFB46:
+  24              		.file 1 "Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c"
+   1:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /**
+   2:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   ******************************************************************************
+   3:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @file    stm32l0xx_hal_flash.c
+   4:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @author  MCD Application Team
+   5:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @brief   FLASH HAL module driver.
+   6:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   *          This file provides firmware functions to manage the following 
+   7:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   *          functionalities of the internal FLASH memory:
+   8:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   *           + Program operations functions
+   9:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   *           + Memory Control functions 
+  10:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   *           + Peripheral State functions
+  11:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   *         
+  12:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   @verbatim
+  13:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   ==============================================================================
+  14:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****                         ##### FLASH peripheral features #####
+  15:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   ==============================================================================
+  16:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   [..] The Flash memory interface manages CPU AHB I-Code and D-Code accesses 
+  17:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****        to the Flash memory. It implements the erase and program Flash memory operations 
+  18:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****        and the read and write protection mechanisms.
+  19:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+  20:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   [..] The Flash memory interface accelerates code execution with a system of instruction
+  21:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       prefetch. 
+  22:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+  23:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   [..] The FLASH main features are:
+  24:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       (+) Flash memory read operations
+  25:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       (+) Flash memory program/erase operations
+  26:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       (+) Read / write protections
+  27:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       (+) Prefetch on I-Code
+  28:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       (+) Option Bytes programming
+  29:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+  30:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+  31:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****                      ##### How to use this driver #####
+  32:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   ==============================================================================
+  33:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   [..]                             
+  34:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       This driver provides functions and macros to configure and program the FLASH 
+ARM GAS  /tmp/ccw9D8C4.s 			page 2
+
+
+  35:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       memory of all STM32L0xx devices.
+  36:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     
+  37:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       (#) FLASH Memory I/O Programming functions: this group includes all needed
+  38:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           functions to erase and program the main memory:
+  39:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         (++) Lock and Unlock the FLASH interface
+  40:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         (++) Erase function: Erase page
+  41:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         (++) Program functions: Fast Word and Half Page(should be 
+  42:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         executed from internal SRAM).
+  43:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   
+  44:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       (#) DATA EEPROM Programming functions: this group includes all 
+  45:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           needed functions to erase and program the DATA EEPROM memory:
+  46:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         (++) Lock and Unlock the DATA EEPROM interface.
+  47:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         (++) Erase function: Erase Byte, erase HalfWord, erase Word, erase 
+  48:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****              Double Word (should be executed from internal SRAM).
+  49:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         (++) Program functions: Fast Program Byte, Fast Program Half-Word, 
+  50:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****              FastProgramWord, Program Byte, Program Half-Word, 
+  51:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****              Program Word and Program Double-Word (should be executed 
+  52:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****              from internal SRAM).
+  53:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+  54:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       (#) FLASH Option Bytes Programming functions: this group includes all needed
+  55:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           functions to manage the Option Bytes:
+  56:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         (++) Lock and Unlock the Option Bytes
+  57:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         (++) Set/Reset the write protection
+  58:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         (++) Set the Read protection Level
+  59:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         (++) Program the user Option Bytes
+  60:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         (++) Launch the Option Bytes loader
+  61:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         (++) Set/Get the Read protection Level.
+  62:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         (++) Set/Get the BOR level.
+  63:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         (++) Get the Write protection.
+  64:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         (++) Get the user option bytes.
+  65:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     
+  66:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       (#) Interrupts and flags management functions : this group 
+  67:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           includes all needed functions to:
+  68:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         (++) Handle FLASH interrupts
+  69:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         (++) Wait for last FLASH operation according to its status
+  70:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         (++) Get error flag status
+  71:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+  72:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     (#) FLASH Interface configuration functions: this group includes 
+  73:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       the management of following features:
+  74:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       (++) Enable/Disable the RUN PowerDown mode.
+  75:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       (++) Enable/Disable the SLEEP PowerDown mode.  
+  76:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   
+  77:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     (#) FLASH Peripheral State methods: this group includes 
+  78:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       the management of following features:
+  79:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       (++) Wait for the FLASH operation
+  80:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       (++)  Get the specific FLASH error flag
+  81:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     
+  82:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   [..] In addition to these function, this driver includes a set of macros allowing
+  83:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****        to handle the following operations:
+  84:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       
+  85:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       (+) Set/Get the latency
+  86:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       (+) Enable/Disable the prefetch buffer
+  87:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       (+) Enable/Disable the preread buffer
+  88:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       (+) Enable/Disable the Flash power-down
+  89:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       (+) Enable/Disable the FLASH interrupts
+  90:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       (+) Monitor the FLASH flags status
+  91:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           
+ARM GAS  /tmp/ccw9D8C4.s 			page 3
+
+
+  92:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****                  ##### Programming operation functions #####
+  93:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   ===============================================================================  
+  94:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      [..]
+  95:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      This subsection provides a set of functions allowing to manage the FLASH 
+  96:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      program operations.
+  97:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   
+  98:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     [..] The FLASH Memory Programming functions, includes the following functions:
+  99:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      (+) HAL_FLASH_Unlock(void);
+ 100:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      (+) HAL_FLASH_Lock(void);
+ 101:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      (+) HAL_FLASH_Program(uint32_t TypeProgram, uint32_t Address, uint32_t Data)
+ 102:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      (+) HAL_FLASH_Program_IT(uint32_t TypeProgram, uint32_t Address, uint32_t Data)
+ 103:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     
+ 104:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      [..] Any operation of erase or program should follow these steps:
+ 105:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      (#) Call the HAL_FLASH_Unlock() function to enable the flash control register and 
+ 106:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****          program memory access.
+ 107:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      (#) Call the desired function to erase page or program data.
+ 108:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      (#) Call the HAL_FLASH_Lock() to disable the flash program memory access 
+ 109:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         (recommended to protect the FLASH memory against possible unwanted operation).
+ 110:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   
+ 111:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****                ##### Option Bytes Programming functions ##### 
+ 112:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****    ==============================================================================  
+ 113:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   
+ 114:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      [..] The FLASH_Option Bytes Programming_functions, includes the following functions:
+ 115:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      (+) HAL_FLASH_OB_Unlock(void);
+ 116:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      (+) HAL_FLASH_OB_Lock(void);
+ 117:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      (+) HAL_FLASH_OB_Launch(void);
+ 118:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      (+) HAL_FLASHEx_OBProgram(FLASH_OBProgramInitTypeDef *pOBInit);
+ 119:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      (+) HAL_FLASHEx_OBGetConfig(FLASH_OBProgramInitTypeDef *pOBInit);
+ 120:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     
+ 121:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      [..] Any operation of erase or program should follow these steps:
+ 122:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      (#) Call the HAL_FLASH_OB_Unlock() function to enable the Flash option control 
+ 123:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****          register access.
+ 124:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      (#) Call the following functions to program the desired option bytes.
+ 125:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****          (++) HAL_FLASHEx_OBProgram(FLASH_OBProgramInitTypeDef *pOBInit);      
+ 126:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      (#) Once all needed option bytes to be programmed are correctly written, call the
+ 127:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****          HAL_FLASH_OB_Launch(void) function to launch the Option Bytes programming process.
+ 128:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      (#) Call the HAL_FLASH_OB_Lock() to disable the Flash option control register access (recommen
+ 129:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****          to protect the option Bytes against possible unwanted operations).
+ 130:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   
+ 131:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     [..] Proprietary code Read Out Protection (PcROP):    
+ 132:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     (#) The PcROP sector is selected by using the same option bytes as the Write
+ 133:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         protection. As a result, these 2 options are exclusive each other.
+ 134:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     (#) To activate PCROP mode for Flash sectors(s), you need to follow the sequence below:
+ 135:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         (++) Use this function HAL_FLASHEx_AdvOBProgram with PCROPState = OB_PCROP_STATE_ENABLE.
+ 136:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 137:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   @endverbatim
+ 138:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   ******************************************************************************
+ 139:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @attention
+ 140:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   *
+ 141:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * <h2><center>&copy; Copyright (c) 2016 STMicroelectronics. 
+ 142:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * All rights reserved.</center></h2>
+ 143:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   *
+ 144:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * This software component is licensed by ST under BSD 3-Clause license,
+ 145:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * the "License"; You may not use this file except in compliance with the 
+ 146:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * License. You may obtain a copy of the License at:
+ 147:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   *                        opensource.org/licenses/BSD-3-Clause
+ 148:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   *
+ARM GAS  /tmp/ccw9D8C4.s 			page 4
+
+
+ 149:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   ******************************************************************************  
+ 150:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 151:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 152:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /* Includes ------------------------------------------------------------------*/
+ 153:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** #include "stm32l0xx_hal.h"
+ 154:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 155:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /** @addtogroup STM32L0xx_HAL_Driver
+ 156:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @{
+ 157:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 158:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 159:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** #ifdef HAL_FLASH_MODULE_ENABLED
+ 160:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 161:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /** @defgroup FLASH FLASH
+ 162:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @brief FLASH HAL module driver
+ 163:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @{
+ 164:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 165:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 166:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /* Private typedef -----------------------------------------------------------*/
+ 167:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /* Private define ------------------------------------------------------------*/
+ 168:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /** @defgroup FLASH_Private_Constants FLASH Private Constants
+ 169:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @{
+ 170:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 171:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /**
+ 172:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @}
+ 173:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 174:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 175:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /* Private macro ---------------------------- ---------------------------------*/
+ 176:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /** @defgroup FLASH_Private_Macros FLASH Private Macros
+ 177:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @{
+ 178:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 179:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****  
+ 180:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /**
+ 181:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @}
+ 182:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 183:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 184:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /* Private variables ---------------------------------------------------------*/
+ 185:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /** @defgroup FLASH_Private_Variables FLASH Private Variables
+ 186:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @{
+ 187:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 188:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /* Variables used for Erase pages under interruption*/
+ 189:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** FLASH_ProcessTypeDef pFlash;
+ 190:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /**
+ 191:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @}
+ 192:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 193:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 194:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /* Private function prototypes -----------------------------------------------*/
+ 195:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /** @defgroup FLASH_Private_Functions FLASH Private Functions
+ 196:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @{
+ 197:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 198:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** static  void   FLASH_SetErrorCode(void);
+ 199:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** extern void    FLASH_PageErase(uint32_t PageAddress);
+ 200:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /**
+ 201:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @}
+ 202:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 203:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 204:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /* Exported functions ---------------------------------------------------------*/
+ 205:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /** @defgroup FLASH_Exported_Functions FLASH Exported Functions
+ARM GAS  /tmp/ccw9D8C4.s 			page 5
+
+
+ 206:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @{
+ 207:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 208:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   
+ 209:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /** @defgroup FLASH_Exported_Functions_Group1 Programming operation functions 
+ 210:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   *  @brief   Programming operation functions 
+ 211:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   *
+ 212:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** @verbatim   
+ 213:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** @endverbatim
+ 214:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @{
+ 215:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 216:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 217:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /**
+ 218:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @brief  Program word at a specified address
+ 219:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @note   To correctly run this function, the HAL_FLASH_Unlock() function
+ 220:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   *         must be called before.
+ 221:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   *         Call the HAL_FLASH_Lock() to disable the flash memory access
+ 222:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   *         (recommended to protect the FLASH memory against possible unwanted operation).
+ 223:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   *
+ 224:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @param  TypeProgram   Indicate the way to program at a specified address.
+ 225:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   *                       This parameter can be a value of @ref FLASH_Type_Program
+ 226:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @param  Address       Specifie the address to be programmed.
+ 227:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @param  Data          Specifie the data to be programmed
+ 228:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * 
+ 229:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @retval HAL_StatusTypeDef HAL Status
+ 230:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 231:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** HAL_StatusTypeDef HAL_FLASH_Program(uint32_t TypeProgram, uint32_t Address, uint32_t Data)
+ 232:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** {
+ 233:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   HAL_StatusTypeDef status = HAL_ERROR;
+ 234:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   
+ 235:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* Process Locked */
+ 236:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   __HAL_LOCK(&pFlash);
+ 237:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 238:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* Check the parameters */
+ 239:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   assert_param(IS_FLASH_TYPEPROGRAM(TypeProgram));
+ 240:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   assert_param(IS_FLASH_PROGRAM_ADDRESS(Address));
+ 241:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 242:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* Wait for last operation to be completed */
+ 243:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   status = FLASH_WaitForLastOperation(FLASH_TIMEOUT_VALUE);
+ 244:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   
+ 245:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   if(status == HAL_OK)
+ 246:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   {
+ 247:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     /* Clean the error context */
+ 248:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     pFlash.ErrorCode = HAL_FLASH_ERROR_NONE;
+ 249:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 250:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     /*Program word (32-bit) at a specified address.*/
+ 251:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     *(__IO uint32_t *)Address = Data;
+ 252:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 253:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     /* Wait for last operation to be completed */
+ 254:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     status = FLASH_WaitForLastOperation(FLASH_TIMEOUT_VALUE);
+ 255:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   }
+ 256:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 257:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* Process Unlocked */
+ 258:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   __HAL_UNLOCK(&pFlash);
+ 259:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 260:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   return status;
+ 261:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** }
+ 262:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ARM GAS  /tmp/ccw9D8C4.s 			page 6
+
+
+ 263:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /**
+ 264:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @brief   Program word at a specified address  with interrupt enabled.
+ 265:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   *
+ 266:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @param  TypeProgram  Indicate the way to program at a specified address.
+ 267:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   *                      This parameter can be a value of @ref FLASH_Type_Program
+ 268:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @param  Address      Specifie the address to be programmed.
+ 269:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @param  Data         Specifie the data to be programmed
+ 270:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * 
+ 271:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @retval HAL_StatusTypeDef HAL Status
+ 272:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 273:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** HAL_StatusTypeDef HAL_FLASH_Program_IT(uint32_t TypeProgram, uint32_t Address, uint32_t Data)
+ 274:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** {
+ 275:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 276:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   
+ 277:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* Process Locked */
+ 278:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   __HAL_LOCK(&pFlash);
+ 279:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 280:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* Check the parameters */
+ 281:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   assert_param(IS_FLASH_TYPEPROGRAM(TypeProgram));
+ 282:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   assert_param(IS_FLASH_PROGRAM_ADDRESS(Address));
+ 283:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 284:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* Enable End of FLASH Operation and Error source interrupts */
+ 285:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   __HAL_FLASH_ENABLE_IT(FLASH_IT_EOP | FLASH_IT_ERR);
+ 286:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   
+ 287:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   pFlash.Address = Address;
+ 288:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   pFlash.ProcedureOnGoing = FLASH_PROC_PROGRAM;
+ 289:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* Clean the error context */
+ 290:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   pFlash.ErrorCode = HAL_FLASH_ERROR_NONE;
+ 291:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 292:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   if(TypeProgram == FLASH_TYPEPROGRAM_WORD)
+ 293:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   {
+ 294:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     /* Program word (32-bit) at a specified address. */
+ 295:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     *(__IO uint32_t *)Address = Data;
+ 296:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   }
+ 297:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   return status;
+ 298:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** }
+ 299:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 300:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /**
+ 301:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @brief This function handles FLASH interrupt request.
+ 302:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @retval None
+ 303:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 304:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** void HAL_FLASH_IRQHandler(void)
+ 305:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** {
+ 306:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   uint32_t addresstmp = 0;
+ 307:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   
+ 308:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* Check FLASH operation error flags */
+ 309:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 310:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* WARNING : On the first cut of STM32L031xx and STM32L041xx devices,
+ 311:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****    *           (RefID = 0x1000) the FLASH_FLAG_OPTVERR bit was not behaving
+ 312:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****    *           as expected. If the user run an application using the first
+ 313:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****    *           cut of the STM32L031xx device or the first cut of the STM32L041xx
+ 314:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****    *           device, the check on the FLASH_FLAG_OPTVERR bit should be ignored.
+ 315:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****    *
+ 316:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****    *           Note :The revId of the device can be retrieved via the HAL_GetREVID()
+ 317:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****    *           function.
+ 318:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****    *
+ 319:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****    */
+ARM GAS  /tmp/ccw9D8C4.s 			page 7
+
+
+ 320:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 321:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   if( __HAL_FLASH_GET_FLAG(FLASH_FLAG_WRPERR)     || 
+ 322:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_PGAERR)     || 
+ 323:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_SIZERR)     || 
+ 324:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_OPTVERR)    || 
+ 325:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_RDERR)      || 
+ 326:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_FWWERR)     || 
+ 327:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_NOTZEROERR) )
+ 328:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   {
+ 329:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     if(pFlash.ProcedureOnGoing == FLASH_PROC_PAGEERASE)
+ 330:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     {
+ 331:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       /* Return the faulty sector */
+ 332:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       addresstmp = pFlash.Page;
+ 333:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       pFlash.Page = 0xFFFFFFFFU;
+ 334:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     }
+ 335:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     else
+ 336:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     {
+ 337:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       /* Return the faulty address */
+ 338:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       addresstmp = pFlash.Address;
+ 339:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     }
+ 340:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     /* Save the Error code */
+ 341:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     FLASH_SetErrorCode();
+ 342:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     
+ 343:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     /* FLASH error interrupt user callback */
+ 344:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     HAL_FLASH_OperationErrorCallback(addresstmp);
+ 345:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 346:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     /* Stop the procedure ongoing */
+ 347:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     pFlash.ProcedureOnGoing = FLASH_PROC_NONE;
+ 348:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   }
+ 349:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 350:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* Check FLASH End of Operation flag  */
+ 351:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   if(__HAL_FLASH_GET_FLAG(FLASH_FLAG_EOP))
+ 352:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   {
+ 353:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     /* Clear FLASH End of Operation pending bit */
+ 354:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP);
+ 355:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     
+ 356:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     /* Process can continue only if no error detected */
+ 357:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     if(pFlash.ProcedureOnGoing != FLASH_PROC_NONE)
+ 358:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     {
+ 359:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       if(pFlash.ProcedureOnGoing == FLASH_PROC_PAGEERASE)
+ 360:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       {
+ 361:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         /* Nb of pages to erased can be decreased */
+ 362:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         pFlash.NbPagesToErase--;
+ 363:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 364:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         /* Check if there are still pages to erase */
+ 365:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         if(pFlash.NbPagesToErase != 0U)
+ 366:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         {
+ 367:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           addresstmp = pFlash.Page;
+ 368:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           /*Indicate user which sector has been erased */
+ 369:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           HAL_FLASH_EndOfOperationCallback(addresstmp);
+ 370:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 371:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           /*Increment sector number*/
+ 372:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           addresstmp = pFlash.Page + FLASH_PAGE_SIZE;
+ 373:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           pFlash.Page = addresstmp;
+ 374:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 375:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           /* If the erase operation is completed, disable the ERASE Bit */
+ 376:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           CLEAR_BIT(FLASH->PECR, FLASH_PECR_ERASE);
+ARM GAS  /tmp/ccw9D8C4.s 			page 8
+
+
+ 377:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 378:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           FLASH_PageErase(addresstmp);
+ 379:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         }
+ 380:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         else
+ 381:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         {
+ 382:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           /* No more pages to Erase, user callback can be called. */
+ 383:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           /* Reset Sector and stop Erase pages procedure */
+ 384:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           pFlash.Page = addresstmp = 0xFFFFFFFFU;
+ 385:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           pFlash.ProcedureOnGoing = FLASH_PROC_NONE;
+ 386:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           /* FLASH EOP interrupt user callback */
+ 387:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           HAL_FLASH_EndOfOperationCallback(addresstmp);
+ 388:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         }
+ 389:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       }
+ 390:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       else
+ 391:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       {
+ 392:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           /* If the program operation is completed, disable the PROG Bit */
+ 393:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           CLEAR_BIT(FLASH->PECR, FLASH_PECR_PROG);
+ 394:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 395:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           /* Program ended. Return the selected address */
+ 396:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           /* FLASH EOP interrupt user callback */
+ 397:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           HAL_FLASH_EndOfOperationCallback(pFlash.Address);
+ 398:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         
+ 399:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           /* Reset Address and stop Program procedure */
+ 400:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           pFlash.Address = 0xFFFFFFFFU;
+ 401:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           pFlash.ProcedureOnGoing = FLASH_PROC_NONE;
+ 402:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       }
+ 403:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     }
+ 404:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   }
+ 405:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   
+ 406:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 407:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   if(pFlash.ProcedureOnGoing == FLASH_PROC_NONE)
+ 408:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   {
+ 409:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     /* Operation is completed, disable the PROG and ERASE */
+ 410:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     CLEAR_BIT(FLASH->PECR, (FLASH_PECR_ERASE | FLASH_PECR_PROG));
+ 411:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 412:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     /* Disable End of FLASH Operation and Error source interrupts */
+ 413:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     __HAL_FLASH_DISABLE_IT(FLASH_IT_EOP | FLASH_IT_ERR);
+ 414:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 415:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     /* Process Unlocked */
+ 416:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     __HAL_UNLOCK(&pFlash);
+ 417:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   }
+ 418:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** }
+ 419:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 420:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /**
+ 421:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @brief  FLASH end of operation interrupt callback
+ 422:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @param  ReturnValue The value saved in this parameter depends on the ongoing procedure
+ 423:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   *                 - Pages Erase: Address of the page which has been erased 
+ 424:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   *                    (if 0xFFFFFFFF, it means that all the selected pages have been erased)
+ 425:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   *                 - Program: Address which was selected for data program
+ 426:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @retval none
+ 427:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 428:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** __weak void HAL_FLASH_EndOfOperationCallback(uint32_t ReturnValue)
+ 429:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** {
+ 430:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* Prevent unused argument(s) compilation warning */
+ 431:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   UNUSED(ReturnValue);
+ 432:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 433:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* NOTE : This function Should not be modified, when the callback is needed,
+ARM GAS  /tmp/ccw9D8C4.s 			page 9
+
+
+ 434:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****             the HAL_FLASH_EndOfOperationCallback could be implemented in the user file
+ 435:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****    */ 
+ 436:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** }
+ 437:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 438:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /**
+ 439:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @brief  FLASH operation error interrupt callback
+ 440:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @param  ReturnValue The value saved in this parameter depends on the ongoing procedure
+ 441:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   *                 - Pages Erase: Address of the page which returned an error
+ 442:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   *                 - Program: Address which was selected for data program
+ 443:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @retval none
+ 444:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 445:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** __weak void HAL_FLASH_OperationErrorCallback(uint32_t ReturnValue)
+ 446:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** {
+ 447:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* Prevent unused argument(s) compilation warning */
+ 448:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   UNUSED(ReturnValue);
+ 449:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 450:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* NOTE : This function Should not be modified, when the callback is needed,
+ 451:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****             the HAL_FLASH_OperationErrorCallback could be implemented in the user file
+ 452:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****    */ 
+ 453:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** }
+ 454:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 455:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /**
+ 456:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @}
+ 457:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 458:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 459:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /** @defgroup FLASH_Exported_Functions_Group2 Peripheral Control functions 
+ 460:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****  *  @brief   management functions 
+ 461:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****  *
+ 462:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** @verbatim   
+ 463:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****  ===============================================================================
+ 464:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****                       ##### Peripheral Control functions #####
+ 465:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****  ===============================================================================  
+ 466:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     [..]
+ 467:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     This subsection provides a set of functions allowing to control the FLASH 
+ 468:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     memory operations.
+ 469:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 470:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** @endverbatim
+ 471:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @{
+ 472:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 473:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 474:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /**
+ 475:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @brief  Unlock the FLASH control register access
+ 476:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @retval HAL Status
+ 477:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 478:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** HAL_StatusTypeDef HAL_FLASH_Unlock(void)
+ 479:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** {
+ 480:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   uint32_t primask_bit;
+ 481:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 482:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* Unlocking FLASH_PECR register access*/
+ 483:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   if(HAL_IS_BIT_SET(FLASH->PECR, FLASH_PECR_PELOCK))
+ 484:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   {
+ 485:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     /* Disable interrupts to avoid any interruption during unlock sequence */
+ 486:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     primask_bit = __get_PRIMASK();
+ 487:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     __disable_irq();
+ 488:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 489:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     WRITE_REG(FLASH->PEKEYR, FLASH_PEKEY1);
+ 490:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     WRITE_REG(FLASH->PEKEYR, FLASH_PEKEY2);
+ARM GAS  /tmp/ccw9D8C4.s 			page 10
+
+
+ 491:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 492:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     /* Re-enable the interrupts: restore previous priority mask */
+ 493:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     __set_PRIMASK(primask_bit);
+ 494:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 495:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     if(HAL_IS_BIT_SET(FLASH->PECR, FLASH_PECR_PELOCK))
+ 496:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     {
+ 497:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       return HAL_ERROR;
+ 498:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     }
+ 499:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   }
+ 500:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 501:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   if (HAL_IS_BIT_SET(FLASH->PECR, FLASH_PECR_PRGLOCK))
+ 502:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   {
+ 503:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     /* Disable interrupts to avoid any interruption during unlock sequence */
+ 504:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     primask_bit = __get_PRIMASK();
+ 505:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     __disable_irq();
+ 506:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 507:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     /* Unlocking the program memory access */
+ 508:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     WRITE_REG(FLASH->PRGKEYR, FLASH_PRGKEY1);
+ 509:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     WRITE_REG(FLASH->PRGKEYR, FLASH_PRGKEY2);  
+ 510:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 511:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     /* Re-enable the interrupts: restore previous priority mask */
+ 512:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     __set_PRIMASK(primask_bit);
+ 513:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 514:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     if (HAL_IS_BIT_SET(FLASH->PECR, FLASH_PECR_PRGLOCK))
+ 515:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     {
+ 516:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       return HAL_ERROR;
+ 517:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     }
+ 518:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   }
+ 519:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 520:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   return HAL_OK; 
+ 521:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** }
+ 522:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 523:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /**
+ 524:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @brief  Locks the FLASH control register access
+ 525:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @retval HAL Status
+ 526:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 527:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** HAL_StatusTypeDef HAL_FLASH_Lock(void)
+ 528:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** {
+ 529:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* Set the PRGLOCK Bit to lock the FLASH Registers access */
+ 530:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   SET_BIT(FLASH->PECR, FLASH_PECR_PRGLOCK);
+ 531:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   
+ 532:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* Set the PELOCK Bit to lock the PECR Register access */
+ 533:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   SET_BIT(FLASH->PECR, FLASH_PECR_PELOCK);
+ 534:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 535:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   return HAL_OK;  
+ 536:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** }
+ 537:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 538:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /**
+ 539:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @brief  Unlock the FLASH Option Control Registers access.
+ 540:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @retval HAL Status
+ 541:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 542:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** HAL_StatusTypeDef HAL_FLASH_OB_Unlock(void)
+ 543:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** {
+ 544:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   uint32_t primask_bit;
+ 545:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 546:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   if(HAL_IS_BIT_SET(FLASH->PECR, FLASH_PECR_OPTLOCK))
+ 547:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   {
+ARM GAS  /tmp/ccw9D8C4.s 			page 11
+
+
+ 548:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     /* Disable interrupts to avoid any interruption during unlock sequence */
+ 549:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     primask_bit = __get_PRIMASK();
+ 550:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     __disable_irq();
+ 551:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 552:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     /* Unlocking FLASH_PECR register access*/
+ 553:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     if(HAL_IS_BIT_SET(FLASH->PECR, FLASH_PECR_PELOCK))
+ 554:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     {  
+ 555:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       /* Unlocking FLASH_PECR register access*/
+ 556:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       WRITE_REG(FLASH->PEKEYR, FLASH_PEKEY1);
+ 557:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       WRITE_REG(FLASH->PEKEYR, FLASH_PEKEY2);
+ 558:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     }
+ 559:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 560:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     /* Unlocking the option bytes block access */
+ 561:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     WRITE_REG(FLASH->OPTKEYR, FLASH_OPTKEY1);
+ 562:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     WRITE_REG(FLASH->OPTKEYR, FLASH_OPTKEY2);
+ 563:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 564:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     /* Re-enable the interrupts: restore previous priority mask */
+ 565:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     __set_PRIMASK(primask_bit);
+ 566:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   }
+ 567:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   else
+ 568:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   {
+ 569:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     return HAL_ERROR;
+ 570:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   }  
+ 571:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   
+ 572:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   return HAL_OK;  
+ 573:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** }
+ 574:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 575:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /**
+ 576:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @brief  Lock the FLASH Option Control Registers access.
+ 577:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @retval HAL Status 
+ 578:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 579:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** HAL_StatusTypeDef HAL_FLASH_OB_Lock(void)
+ 580:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** {
+ 581:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* Set the OPTLOCK Bit to lock the option bytes block access */
+ 582:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   SET_BIT(FLASH->PECR, FLASH_PECR_OPTLOCK);
+ 583:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   
+ 584:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   return HAL_OK;  
+ 585:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** }
+ 586:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   
+ 587:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /**
+ 588:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @brief  Launch the option byte loading.
+ 589:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @note   This function will reset automatically the MCU.
+ 590:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @retval HAL Status
+ 591:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 592:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** HAL_StatusTypeDef HAL_FLASH_OB_Launch(void)
+ 593:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** {
+ 594:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* Set the OBL_Launch bit to launch the option byte loading */
+ 595:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   SET_BIT(FLASH->PECR, FLASH_PECR_OBL_LAUNCH);
+ 596:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   
+ 597:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* Wait for last operation to be completed */
+ 598:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   return(FLASH_WaitForLastOperation(FLASH_TIMEOUT_VALUE));
+ 599:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** }
+ 600:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 601:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /**
+ 602:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @}
+ 603:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */  
+ 604:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ARM GAS  /tmp/ccw9D8C4.s 			page 12
+
+
+ 605:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /** @defgroup FLASH_Exported_Functions_Group3 Peripheral errors functions 
+ 606:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****  *  @brief    Peripheral errors functions 
+ 607:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****  *
+ 608:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** @verbatim   
+ 609:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****  ===============================================================================
+ 610:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****                       ##### Peripheral Errors functions #####
+ 611:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****  ===============================================================================  
+ 612:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     [..]
+ 613:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     This subsection permit to get in run-time errors of  the FLASH peripheral.
+ 614:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 615:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** @endverbatim
+ 616:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @{
+ 617:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 618:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 619:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /**
+ 620:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @brief  Get the specific FLASH error flag.
+ 621:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @retval FLASH_ErrorCode The returned value can be:
+ 622:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   *            @ref FLASH_Error_Codes
+ 623:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 624:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** uint32_t HAL_FLASH_GetError(void)
+ 625:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** {
+ 626:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****    return pFlash.ErrorCode;
+ 627:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** }
+ 628:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 629:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /**
+ 630:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @}
+ 631:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 632:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 633:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /**
+ 634:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @}
+ 635:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 636:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 637:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /** @addtogroup FLASH_Private_Functions
+ 638:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****  * @{
+ 639:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****  */
+ 640:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 641:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /**
+ 642:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @brief  Wait for a FLASH operation to complete.
+ 643:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @param  Timeout  maximum flash operation timeout
+ 644:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @retval HAL Status
+ 645:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 646:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** HAL_StatusTypeDef FLASH_WaitForLastOperation(uint32_t Timeout)
+ 647:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** {
+ 648:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* Wait for the FLASH operation to complete by polling on BUSY flag to be reset.
+ 649:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      Even if the FLASH operation fails, the BUSY flag will be reset and an error
+ 650:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      flag will be set */
+ 651:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      
+ 652:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   uint32_t tickstart = HAL_GetTick();
+ 653:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      
+ 654:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   while(__HAL_FLASH_GET_FLAG(FLASH_FLAG_BSY)) 
+ 655:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   { 
+ 656:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     if (Timeout != HAL_MAX_DELAY)
+ 657:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     {
+ 658:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       if((Timeout == 0U) || ((HAL_GetTick()-tickstart) > Timeout))
+ 659:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       {
+ 660:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         return HAL_TIMEOUT;
+ 661:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       }
+ARM GAS  /tmp/ccw9D8C4.s 			page 13
+
+
+ 662:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     }
+ 663:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   }
+ 664:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   
+ 665:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* Check FLASH End of Operation flag  */
+ 666:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   if (__HAL_FLASH_GET_FLAG(FLASH_FLAG_EOP))
+ 667:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   {
+ 668:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     /* Clear FLASH End of Operation pending bit */
+ 669:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP);
+ 670:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   }
+ 671:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   
+ 672:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   if( __HAL_FLASH_GET_FLAG(FLASH_FLAG_WRPERR)     || 
+ 673:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_PGAERR)     || 
+ 674:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_SIZERR)     || 
+ 675:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_OPTVERR)    || 
+ 676:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_RDERR)      || 
+ 677:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_FWWERR)     || 
+ 678:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_NOTZEROERR) )
+ 679:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   {
+ 680:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     /*Save the error code*/
+ 681:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 682:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     /* WARNING : On the first cut of STM32L031xx and STM32L041xx devices,
+ 683:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      *           (RefID = 0x1000) the FLASH_FLAG_OPTVERR bit was not behaving
+ 684:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      *           as expected. If the user run an application using the first
+ 685:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      *           cut of the STM32L031xx device or the first cut of the STM32L041xx
+ 686:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      *           device, this error should be ignored. The revId of the device
+ 687:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      *           can be retrieved via the HAL_GetREVID() function.
+ 688:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      *
+ 689:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      */
+ 690:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     FLASH_SetErrorCode();
+ 691:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     return HAL_ERROR;
+ 692:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   }
+ 693:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 694:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* There is no error flag set */
+ 695:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   return HAL_OK;
+ 696:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** }
+ 697:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 698:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 699:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** /**
+ 700:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @brief  Set the specific FLASH error flag.
+ 701:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   * @retval None
+ 702:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   */
+ 703:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** static void FLASH_SetErrorCode(void)
+ 704:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** {
+  25              		.loc 1 704 0
+  26              		.cfi_startproc
+  27              	.LVL0:
+ 705:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   uint32_t flags = 0;
+ 706:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   
+ 707:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   if(__HAL_FLASH_GET_FLAG(FLASH_FLAG_WRPERR))
+  28              		.loc 1 707 0
+  29 0000 2A4B     		ldr	r3, .L10
+  30 0002 9B69     		ldr	r3, [r3, #24]
+  31 0004 DB05     		lsl	r3, r3, #23
+  32 0006 07D5     		bpl	.L9
+ 708:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   {
+ 709:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     pFlash.ErrorCode |= HAL_FLASH_ERROR_WRP;
+  33              		.loc 1 709 0
+ARM GAS  /tmp/ccw9D8C4.s 			page 14
+
+
+  34 0008 294A     		ldr	r2, .L10+4
+  35 000a 5169     		ldr	r1, [r2, #20]
+  36 000c 0223     		mov	r3, #2
+  37 000e 0B43     		orr	r3, r1
+  38 0010 5361     		str	r3, [r2, #20]
+  39              	.LVL1:
+ 710:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     flags |= FLASH_FLAG_WRPERR;
+  40              		.loc 1 710 0
+  41 0012 8023     		mov	r3, #128
+  42 0014 5B00     		lsl	r3, r3, #1
+  43 0016 00E0     		b	.L2
+  44              	.LVL2:
+  45              	.L9:
+ 705:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   uint32_t flags = 0;
+  46              		.loc 1 705 0
+  47 0018 0023     		mov	r3, #0
+  48              	.LVL3:
+  49              	.L2:
+ 711:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   }
+ 712:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   if(__HAL_FLASH_GET_FLAG(FLASH_FLAG_PGAERR))
+  50              		.loc 1 712 0
+  51 001a 244A     		ldr	r2, .L10
+  52 001c 9269     		ldr	r2, [r2, #24]
+  53 001e 9205     		lsl	r2, r2, #22
+  54 0020 07D5     		bpl	.L3
+ 713:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   {
+ 714:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     pFlash.ErrorCode |= HAL_FLASH_ERROR_PGA;
+  55              		.loc 1 714 0
+  56 0022 2349     		ldr	r1, .L10+4
+  57 0024 4869     		ldr	r0, [r1, #20]
+  58 0026 0122     		mov	r2, #1
+  59 0028 0243     		orr	r2, r0
+  60 002a 4A61     		str	r2, [r1, #20]
+ 715:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     flags |= FLASH_FLAG_PGAERR;
+  61              		.loc 1 715 0
+  62 002c 8022     		mov	r2, #128
+  63 002e 9200     		lsl	r2, r2, #2
+  64 0030 1343     		orr	r3, r2
+  65              	.LVL4:
+  66              	.L3:
+ 716:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   }
+ 717:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   if(__HAL_FLASH_GET_FLAG(FLASH_FLAG_SIZERR))
+  67              		.loc 1 717 0
+  68 0032 1E4A     		ldr	r2, .L10
+  69 0034 9269     		ldr	r2, [r2, #24]
+  70 0036 5205     		lsl	r2, r2, #21
+  71 0038 07D5     		bpl	.L4
+ 718:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   { 
+ 719:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     pFlash.ErrorCode |= HAL_FLASH_ERROR_SIZE;
+  72              		.loc 1 719 0
+  73 003a 1D49     		ldr	r1, .L10+4
+  74 003c 4869     		ldr	r0, [r1, #20]
+  75 003e 0822     		mov	r2, #8
+  76 0040 0243     		orr	r2, r0
+  77 0042 4A61     		str	r2, [r1, #20]
+ 720:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     flags |= FLASH_FLAG_SIZERR;
+  78              		.loc 1 720 0
+ARM GAS  /tmp/ccw9D8C4.s 			page 15
+
+
+  79 0044 8022     		mov	r2, #128
+  80 0046 D200     		lsl	r2, r2, #3
+  81 0048 1343     		orr	r3, r2
+  82              	.LVL5:
+  83              	.L4:
+ 721:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   }
+ 722:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   if(__HAL_FLASH_GET_FLAG(FLASH_FLAG_OPTVERR))
+  84              		.loc 1 722 0
+  85 004a 184A     		ldr	r2, .L10
+  86 004c 9269     		ldr	r2, [r2, #24]
+  87 004e 1205     		lsl	r2, r2, #20
+  88 0050 07D5     		bpl	.L5
+ 723:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   {
+ 724:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     /* WARNING : On the first cut of STM32L031xx and STM32L041xx devices,
+ 725:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      *           (RefID = 0x1000) the FLASH_FLAG_OPTVERR bit was not behaving
+ 726:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      *           as expected. If the user run an application using the first
+ 727:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      *           cut of the STM32L031xx device or the first cut of the STM32L041xx
+ 728:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      *           device, this error should be ignored. The revId of the device
+ 729:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      *           can be retrieved via the HAL_GetREVID() function.
+ 730:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      *
+ 731:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      */
+ 732:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     pFlash.ErrorCode |= HAL_FLASH_ERROR_OPTV;
+  89              		.loc 1 732 0
+  90 0052 1749     		ldr	r1, .L10+4
+  91 0054 4869     		ldr	r0, [r1, #20]
+  92 0056 0422     		mov	r2, #4
+  93 0058 0243     		orr	r2, r0
+  94 005a 4A61     		str	r2, [r1, #20]
+ 733:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     flags |= FLASH_FLAG_OPTVERR;
+  95              		.loc 1 733 0
+  96 005c 8022     		mov	r2, #128
+  97 005e 1201     		lsl	r2, r2, #4
+  98 0060 1343     		orr	r3, r2
+  99              	.LVL6:
+ 100              	.L5:
+ 734:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   }
+ 735:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 736:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   if(__HAL_FLASH_GET_FLAG(FLASH_FLAG_RDERR))
+ 101              		.loc 1 736 0
+ 102 0062 124A     		ldr	r2, .L10
+ 103 0064 9269     		ldr	r2, [r2, #24]
+ 104 0066 9204     		lsl	r2, r2, #18
+ 105 0068 07D5     		bpl	.L6
+ 737:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   {
+ 738:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     pFlash.ErrorCode |= HAL_FLASH_ERROR_RD;
+ 106              		.loc 1 738 0
+ 107 006a 1149     		ldr	r1, .L10+4
+ 108 006c 4869     		ldr	r0, [r1, #20]
+ 109 006e 1022     		mov	r2, #16
+ 110 0070 0243     		orr	r2, r0
+ 111 0072 4A61     		str	r2, [r1, #20]
+ 739:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     flags |= FLASH_FLAG_RDERR;
+ 112              		.loc 1 739 0
+ 113 0074 8022     		mov	r2, #128
+ 114 0076 9201     		lsl	r2, r2, #6
+ 115 0078 1343     		orr	r3, r2
+ 116              	.LVL7:
+ARM GAS  /tmp/ccw9D8C4.s 			page 16
+
+
+ 117              	.L6:
+ 740:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   }
+ 741:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   if(__HAL_FLASH_GET_FLAG(FLASH_FLAG_FWWERR))
+ 118              		.loc 1 741 0
+ 119 007a 0C4A     		ldr	r2, .L10
+ 120 007c 9269     		ldr	r2, [r2, #24]
+ 121 007e 9203     		lsl	r2, r2, #14
+ 122 0080 05D5     		bpl	.L7
+ 742:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   { 
+ 743:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     pFlash.ErrorCode |= HAL_FLASH_ERROR_FWWERR;
+ 123              		.loc 1 743 0
+ 124 0082 0B48     		ldr	r0, .L10+4
+ 125 0084 4269     		ldr	r2, [r0, #20]
+ 126 0086 2021     		mov	r1, #32
+ 127 0088 0A43     		orr	r2, r1
+ 128 008a 4261     		str	r2, [r0, #20]
+ 744:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     flags |= HAL_FLASH_ERROR_FWWERR;
+ 129              		.loc 1 744 0
+ 130 008c 0B43     		orr	r3, r1
+ 131              	.LVL8:
+ 132              	.L7:
+ 745:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   }
+ 746:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   if(__HAL_FLASH_GET_FLAG(FLASH_FLAG_NOTZEROERR))
+ 133              		.loc 1 746 0
+ 134 008e 074A     		ldr	r2, .L10
+ 135 0090 9269     		ldr	r2, [r2, #24]
+ 136 0092 D203     		lsl	r2, r2, #15
+ 137 0094 07D5     		bpl	.L8
+ 747:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   { 
+ 748:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     pFlash.ErrorCode |= HAL_FLASH_ERROR_NOTZERO;
+ 138              		.loc 1 748 0
+ 139 0096 0649     		ldr	r1, .L10+4
+ 140 0098 4869     		ldr	r0, [r1, #20]
+ 141 009a 4022     		mov	r2, #64
+ 142 009c 0243     		orr	r2, r0
+ 143 009e 4A61     		str	r2, [r1, #20]
+ 749:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     flags |= FLASH_FLAG_NOTZEROERR;
+ 144              		.loc 1 749 0
+ 145 00a0 8022     		mov	r2, #128
+ 146 00a2 5202     		lsl	r2, r2, #9
+ 147 00a4 1343     		orr	r3, r2
+ 148              	.LVL9:
+ 149              	.L8:
+ 750:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   }
+ 751:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 752:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* Clear FLASH error pending bits */
+ 753:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   __HAL_FLASH_CLEAR_FLAG(flags);
+ 150              		.loc 1 753 0
+ 151 00a6 014A     		ldr	r2, .L10
+ 152 00a8 9361     		str	r3, [r2, #24]
+ 754:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** }  
+ 153              		.loc 1 754 0
+ 154              		@ sp needed
+ 155 00aa 7047     		bx	lr
+ 156              	.L11:
+ 157              		.align	2
+ 158              	.L10:
+ARM GAS  /tmp/ccw9D8C4.s 			page 17
+
+
+ 159 00ac 00200240 		.word	1073881088
+ 160 00b0 00000000 		.word	pFlash
+ 161              		.cfi_endproc
+ 162              	.LFE46:
+ 164              		.section	.text.HAL_FLASH_Program_IT,"ax",%progbits
+ 165              		.align	2
+ 166              		.global	HAL_FLASH_Program_IT
+ 167              		.code	16
+ 168              		.thumb_func
+ 170              	HAL_FLASH_Program_IT:
+ 171              	.LFB35:
+ 274:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 172              		.loc 1 274 0
+ 173              		.cfi_startproc
+ 174              	.LVL10:
+ 175 0000 70B5     		push	{r4, r5, r6, lr}
+ 176              	.LCFI0:
+ 177              		.cfi_def_cfa_offset 16
+ 178              		.cfi_offset 4, -16
+ 179              		.cfi_offset 5, -12
+ 180              		.cfi_offset 6, -8
+ 181              		.cfi_offset 14, -4
+ 182              	.LVL11:
+ 278:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 183              		.loc 1 278 0
+ 184 0002 0D4B     		ldr	r3, .L16
+ 185 0004 1B7C     		ldrb	r3, [r3, #16]
+ 186 0006 012B     		cmp	r3, #1
+ 187 0008 12D0     		beq	.L14
+ 278:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 188              		.loc 1 278 0 is_stmt 0 discriminator 2
+ 189 000a 0B4B     		ldr	r3, .L16
+ 190 000c 0124     		mov	r4, #1
+ 191 000e 1C74     		strb	r4, [r3, #16]
+ 285:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   
+ 192              		.loc 1 285 0 is_stmt 1 discriminator 2
+ 193 0010 0A4D     		ldr	r5, .L16+4
+ 194 0012 6C68     		ldr	r4, [r5, #4]
+ 195 0014 C026     		mov	r6, #192
+ 196 0016 B602     		lsl	r6, r6, #10
+ 197 0018 3443     		orr	r4, r6
+ 198 001a 6C60     		str	r4, [r5, #4]
+ 287:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   pFlash.ProcedureOnGoing = FLASH_PROC_PROGRAM;
+ 199              		.loc 1 287 0 discriminator 2
+ 200 001c 9960     		str	r1, [r3, #8]
+ 288:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* Clean the error context */
+ 201              		.loc 1 288 0 discriminator 2
+ 202 001e 0224     		mov	r4, #2
+ 203 0020 1C70     		strb	r4, [r3]
+ 290:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 204              		.loc 1 290 0 discriminator 2
+ 205 0022 0024     		mov	r4, #0
+ 206 0024 5C61     		str	r4, [r3, #20]
+ 292:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   {
+ 207              		.loc 1 292 0 discriminator 2
+ 208 0026 0228     		cmp	r0, #2
+ 209 0028 04D1     		bne	.L15
+ARM GAS  /tmp/ccw9D8C4.s 			page 18
+
+
+ 295:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   }
+ 210              		.loc 1 295 0
+ 211 002a 0A60     		str	r2, [r1]
+ 297:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** }
+ 212              		.loc 1 297 0
+ 213 002c 0020     		mov	r0, #0
+ 214              	.LVL12:
+ 215 002e 02E0     		b	.L13
+ 216              	.LVL13:
+ 217              	.L14:
+ 278:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 218              		.loc 1 278 0
+ 219 0030 0220     		mov	r0, #2
+ 220              	.LVL14:
+ 221 0032 00E0     		b	.L13
+ 222              	.LVL15:
+ 223              	.L15:
+ 297:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** }
+ 224              		.loc 1 297 0
+ 225 0034 0020     		mov	r0, #0
+ 226              	.LVL16:
+ 227              	.L13:
+ 298:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 228              		.loc 1 298 0
+ 229              		@ sp needed
+ 230 0036 70BD     		pop	{r4, r5, r6, pc}
+ 231              	.L17:
+ 232              		.align	2
+ 233              	.L16:
+ 234 0038 00000000 		.word	pFlash
+ 235 003c 00200240 		.word	1073881088
+ 236              		.cfi_endproc
+ 237              	.LFE35:
+ 239              		.section	.text.HAL_FLASH_EndOfOperationCallback,"ax",%progbits
+ 240              		.align	2
+ 241              		.weak	HAL_FLASH_EndOfOperationCallback
+ 242              		.code	16
+ 243              		.thumb_func
+ 245              	HAL_FLASH_EndOfOperationCallback:
+ 246              	.LFB37:
+ 429:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* Prevent unused argument(s) compilation warning */
+ 247              		.loc 1 429 0
+ 248              		.cfi_startproc
+ 249              	.LVL17:
+ 436:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 250              		.loc 1 436 0
+ 251              		@ sp needed
+ 252 0000 7047     		bx	lr
+ 253              		.cfi_endproc
+ 254              	.LFE37:
+ 256 0002 C046     		.section	.text.HAL_FLASH_OperationErrorCallback,"ax",%progbits
+ 257              		.align	2
+ 258              		.weak	HAL_FLASH_OperationErrorCallback
+ 259              		.code	16
+ 260              		.thumb_func
+ 262              	HAL_FLASH_OperationErrorCallback:
+ 263              	.LFB38:
+ARM GAS  /tmp/ccw9D8C4.s 			page 19
+
+
+ 446:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* Prevent unused argument(s) compilation warning */
+ 264              		.loc 1 446 0
+ 265              		.cfi_startproc
+ 266              	.LVL18:
+ 453:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 267              		.loc 1 453 0
+ 268              		@ sp needed
+ 269 0000 7047     		bx	lr
+ 270              		.cfi_endproc
+ 271              	.LFE38:
+ 273 0002 C046     		.section	.text.HAL_FLASH_IRQHandler,"ax",%progbits
+ 274              		.align	2
+ 275              		.global	HAL_FLASH_IRQHandler
+ 276              		.code	16
+ 277              		.thumb_func
+ 279              	HAL_FLASH_IRQHandler:
+ 280              	.LFB36:
+ 305:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   uint32_t addresstmp = 0;
+ 281              		.loc 1 305 0
+ 282              		.cfi_startproc
+ 283 0000 10B5     		push	{r4, lr}
+ 284              	.LCFI1:
+ 285              		.cfi_def_cfa_offset 8
+ 286              		.cfi_offset 4, -8
+ 287              		.cfi_offset 14, -4
+ 288              	.LVL19:
+ 321:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_PGAERR)     || 
+ 289              		.loc 1 321 0
+ 290 0002 3E4B     		ldr	r3, .L29
+ 291 0004 9B69     		ldr	r3, [r3, #24]
+ 292 0006 DB05     		lsl	r3, r3, #23
+ 293 0008 17D4     		bmi	.L21
+ 322:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_SIZERR)     || 
+ 294              		.loc 1 322 0 discriminator 1
+ 295 000a 3C4B     		ldr	r3, .L29
+ 296 000c 9B69     		ldr	r3, [r3, #24]
+ 321:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_PGAERR)     || 
+ 297              		.loc 1 321 0 discriminator 1
+ 298 000e 9B05     		lsl	r3, r3, #22
+ 299 0010 13D4     		bmi	.L21
+ 323:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_OPTVERR)    || 
+ 300              		.loc 1 323 0
+ 301 0012 3A4B     		ldr	r3, .L29
+ 302 0014 9B69     		ldr	r3, [r3, #24]
+ 322:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_SIZERR)     || 
+ 303              		.loc 1 322 0
+ 304 0016 5B05     		lsl	r3, r3, #21
+ 305 0018 0FD4     		bmi	.L21
+ 324:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_RDERR)      || 
+ 306              		.loc 1 324 0
+ 307 001a 384B     		ldr	r3, .L29
+ 308 001c 9B69     		ldr	r3, [r3, #24]
+ 323:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_OPTVERR)    || 
+ 309              		.loc 1 323 0
+ 310 001e 1B05     		lsl	r3, r3, #20
+ 311 0020 0BD4     		bmi	.L21
+ 325:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_FWWERR)     || 
+ARM GAS  /tmp/ccw9D8C4.s 			page 20
+
+
+ 312              		.loc 1 325 0
+ 313 0022 364B     		ldr	r3, .L29
+ 314 0024 9B69     		ldr	r3, [r3, #24]
+ 324:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_RDERR)      || 
+ 315              		.loc 1 324 0
+ 316 0026 9B04     		lsl	r3, r3, #18
+ 317 0028 07D4     		bmi	.L21
+ 326:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_NOTZEROERR) )
+ 318              		.loc 1 326 0
+ 319 002a 344B     		ldr	r3, .L29
+ 320 002c 9B69     		ldr	r3, [r3, #24]
+ 325:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_FWWERR)     || 
+ 321              		.loc 1 325 0
+ 322 002e 9B03     		lsl	r3, r3, #14
+ 323 0030 03D4     		bmi	.L21
+ 327:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   {
+ 324              		.loc 1 327 0
+ 325 0032 324B     		ldr	r3, .L29
+ 326 0034 9B69     		ldr	r3, [r3, #24]
+ 326:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_NOTZEROERR) )
+ 327              		.loc 1 326 0
+ 328 0036 DB03     		lsl	r3, r3, #15
+ 329 0038 13D5     		bpl	.L22
+ 330              	.L21:
+ 329:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     {
+ 331              		.loc 1 329 0
+ 332 003a 314B     		ldr	r3, .L29+4
+ 333 003c 1B78     		ldrb	r3, [r3]
+ 334 003e 012B     		cmp	r3, #1
+ 335 0040 05D1     		bne	.L23
+ 332:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       pFlash.Page = 0xFFFFFFFFU;
+ 336              		.loc 1 332 0
+ 337 0042 2F4B     		ldr	r3, .L29+4
+ 338 0044 DC68     		ldr	r4, [r3, #12]
+ 339              	.LVL20:
+ 333:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     }
+ 340              		.loc 1 333 0
+ 341 0046 0122     		mov	r2, #1
+ 342 0048 5242     		neg	r2, r2
+ 343 004a DA60     		str	r2, [r3, #12]
+ 344 004c 01E0     		b	.L24
+ 345              	.LVL21:
+ 346              	.L23:
+ 338:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     }
+ 347              		.loc 1 338 0
+ 348 004e 2C4B     		ldr	r3, .L29+4
+ 349 0050 9C68     		ldr	r4, [r3, #8]
+ 350              	.LVL22:
+ 351              	.L24:
+ 341:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     
+ 352              		.loc 1 341 0
+ 353 0052 FFF7FEFF 		bl	FLASH_SetErrorCode
+ 354              	.LVL23:
+ 344:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 355              		.loc 1 344 0
+ 356 0056 201C     		mov	r0, r4
+ 357 0058 FFF7FEFF 		bl	HAL_FLASH_OperationErrorCallback
+ARM GAS  /tmp/ccw9D8C4.s 			page 21
+
+
+ 358              	.LVL24:
+ 347:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   }
+ 359              		.loc 1 347 0
+ 360 005c 0022     		mov	r2, #0
+ 361 005e 284B     		ldr	r3, .L29+4
+ 362 0060 1A70     		strb	r2, [r3]
+ 363              	.LVL25:
+ 364              	.L22:
+ 351:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   {
+ 365              		.loc 1 351 0
+ 366 0062 264B     		ldr	r3, .L29
+ 367 0064 9B69     		ldr	r3, [r3, #24]
+ 368 0066 9B07     		lsl	r3, r3, #30
+ 369 0068 37D5     		bpl	.L25
+ 354:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     
+ 370              		.loc 1 354 0
+ 371 006a 0222     		mov	r2, #2
+ 372 006c 234B     		ldr	r3, .L29
+ 373 006e 9A61     		str	r2, [r3, #24]
+ 357:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     {
+ 374              		.loc 1 357 0
+ 375 0070 234B     		ldr	r3, .L29+4
+ 376 0072 1B78     		ldrb	r3, [r3]
+ 377 0074 002B     		cmp	r3, #0
+ 378 0076 30D0     		beq	.L25
+ 359:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       {
+ 379              		.loc 1 359 0
+ 380 0078 214B     		ldr	r3, .L29+4
+ 381 007a 1B78     		ldrb	r3, [r3]
+ 382 007c 012B     		cmp	r3, #1
+ 383 007e 1ED1     		bne	.L26
+ 362:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 384              		.loc 1 362 0
+ 385 0080 1F4B     		ldr	r3, .L29+4
+ 386 0082 5A68     		ldr	r2, [r3, #4]
+ 387 0084 013A     		sub	r2, r2, #1
+ 388 0086 5A60     		str	r2, [r3, #4]
+ 365:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         {
+ 389              		.loc 1 365 0
+ 390 0088 5B68     		ldr	r3, [r3, #4]
+ 391 008a 002B     		cmp	r3, #0
+ 392 008c 0ED0     		beq	.L27
+ 367:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           /*Indicate user which sector has been erased */
+ 393              		.loc 1 367 0
+ 394 008e 1C4C     		ldr	r4, .L29+4
+ 395 0090 E068     		ldr	r0, [r4, #12]
+ 396              	.LVL26:
+ 369:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 397              		.loc 1 369 0
+ 398 0092 FFF7FEFF 		bl	HAL_FLASH_EndOfOperationCallback
+ 399              	.LVL27:
+ 372:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           pFlash.Page = addresstmp;
+ 400              		.loc 1 372 0
+ 401 0096 E068     		ldr	r0, [r4, #12]
+ 402 0098 8030     		add	r0, r0, #128
+ 403              	.LVL28:
+ 373:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ARM GAS  /tmp/ccw9D8C4.s 			page 22
+
+
+ 404              		.loc 1 373 0
+ 405 009a E060     		str	r0, [r4, #12]
+ 376:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 406              		.loc 1 376 0
+ 407 009c 174A     		ldr	r2, .L29
+ 408 009e 5168     		ldr	r1, [r2, #4]
+ 409 00a0 184B     		ldr	r3, .L29+8
+ 410 00a2 0B40     		and	r3, r1
+ 411 00a4 5360     		str	r3, [r2, #4]
+ 378:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         }
+ 412              		.loc 1 378 0
+ 413 00a6 FFF7FEFF 		bl	FLASH_PageErase
+ 414              	.LVL29:
+ 415 00aa 16E0     		b	.L25
+ 416              	.L27:
+ 417              	.LVL30:
+ 384:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           pFlash.ProcedureOnGoing = FLASH_PROC_NONE;
+ 418              		.loc 1 384 0
+ 419 00ac 144B     		ldr	r3, .L29+4
+ 420 00ae 0120     		mov	r0, #1
+ 421 00b0 4042     		neg	r0, r0
+ 422 00b2 D860     		str	r0, [r3, #12]
+ 385:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           /* FLASH EOP interrupt user callback */
+ 423              		.loc 1 385 0
+ 424 00b4 0022     		mov	r2, #0
+ 425 00b6 1A70     		strb	r2, [r3]
+ 387:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         }
+ 426              		.loc 1 387 0
+ 427 00b8 FFF7FEFF 		bl	HAL_FLASH_EndOfOperationCallback
+ 428              	.LVL31:
+ 429 00bc 0DE0     		b	.L25
+ 430              	.LVL32:
+ 431              	.L26:
+ 393:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 432              		.loc 1 393 0
+ 433 00be 0F4A     		ldr	r2, .L29
+ 434 00c0 5368     		ldr	r3, [r2, #4]
+ 435 00c2 0821     		mov	r1, #8
+ 436 00c4 8B43     		bic	r3, r1
+ 437 00c6 5360     		str	r3, [r2, #4]
+ 397:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****         
+ 438              		.loc 1 397 0
+ 439 00c8 0D4C     		ldr	r4, .L29+4
+ 440 00ca A068     		ldr	r0, [r4, #8]
+ 441 00cc FFF7FEFF 		bl	HAL_FLASH_EndOfOperationCallback
+ 442              	.LVL33:
+ 400:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****           pFlash.ProcedureOnGoing = FLASH_PROC_NONE;
+ 443              		.loc 1 400 0
+ 444 00d0 0123     		mov	r3, #1
+ 445 00d2 5B42     		neg	r3, r3
+ 446 00d4 A360     		str	r3, [r4, #8]
+ 401:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       }
+ 447              		.loc 1 401 0
+ 448 00d6 0023     		mov	r3, #0
+ 449 00d8 2370     		strb	r3, [r4]
+ 450              	.L25:
+ 407:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   {
+ARM GAS  /tmp/ccw9D8C4.s 			page 23
+
+
+ 451              		.loc 1 407 0
+ 452 00da 094B     		ldr	r3, .L29+4
+ 453 00dc 1B78     		ldrb	r3, [r3]
+ 454 00de 002B     		cmp	r3, #0
+ 455 00e0 0BD1     		bne	.L20
+ 410:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 456              		.loc 1 410 0
+ 457 00e2 064B     		ldr	r3, .L29
+ 458 00e4 5968     		ldr	r1, [r3, #4]
+ 459 00e6 084A     		ldr	r2, .L29+12
+ 460 00e8 0A40     		and	r2, r1
+ 461 00ea 5A60     		str	r2, [r3, #4]
+ 413:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 462              		.loc 1 413 0
+ 463 00ec 5968     		ldr	r1, [r3, #4]
+ 464 00ee 074A     		ldr	r2, .L29+16
+ 465 00f0 0A40     		and	r2, r1
+ 466 00f2 5A60     		str	r2, [r3, #4]
+ 416:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   }
+ 467              		.loc 1 416 0
+ 468 00f4 0022     		mov	r2, #0
+ 469 00f6 024B     		ldr	r3, .L29+4
+ 470 00f8 1A74     		strb	r2, [r3, #16]
+ 471              	.L20:
+ 418:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 472              		.loc 1 418 0
+ 473              		@ sp needed
+ 474 00fa 10BD     		pop	{r4, pc}
+ 475              	.L30:
+ 476              		.align	2
+ 477              	.L29:
+ 478 00fc 00200240 		.word	1073881088
+ 479 0100 00000000 		.word	pFlash
+ 480 0104 FFFDFFFF 		.word	-513
+ 481 0108 F7FDFFFF 		.word	-521
+ 482 010c FFFFFCFF 		.word	-196609
+ 483              		.cfi_endproc
+ 484              	.LFE36:
+ 486              		.section	.text.HAL_FLASH_Unlock,"ax",%progbits
+ 487              		.align	2
+ 488              		.global	HAL_FLASH_Unlock
+ 489              		.code	16
+ 490              		.thumb_func
+ 492              	HAL_FLASH_Unlock:
+ 493              	.LFB39:
+ 479:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   uint32_t primask_bit;
+ 494              		.loc 1 479 0
+ 495              		.cfi_startproc
+ 483:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   {
+ 496              		.loc 1 483 0
+ 497 0000 144B     		ldr	r3, .L37
+ 498 0002 5B68     		ldr	r3, [r3, #4]
+ 499 0004 DB07     		lsl	r3, r3, #31
+ 500 0006 0CD5     		bpl	.L32
+ 501              	.LBB20:
+ 502              	.LBB21:
+ 503              		.file 2 "Drivers/CMSIS/Include/cmsis_gcc.h"
+ARM GAS  /tmp/ccw9D8C4.s 			page 24
+
+
+   1:Drivers/CMSIS/Include/cmsis_gcc.h **** /**************************************************************************//**
+   2:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @file     cmsis_gcc.h
+   3:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @brief    CMSIS Cortex-M Core Function/Instruction Header File
+   4:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @version  V4.30
+   5:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @date     20. October 2015
+   6:Drivers/CMSIS/Include/cmsis_gcc.h ****  ******************************************************************************/
+   7:Drivers/CMSIS/Include/cmsis_gcc.h **** /* Copyright (c) 2009 - 2015 ARM LIMITED
+   8:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+   9:Drivers/CMSIS/Include/cmsis_gcc.h ****    All rights reserved.
+  10:Drivers/CMSIS/Include/cmsis_gcc.h ****    Redistribution and use in source and binary forms, with or without
+  11:Drivers/CMSIS/Include/cmsis_gcc.h ****    modification, are permitted provided that the following conditions are met:
+  12:Drivers/CMSIS/Include/cmsis_gcc.h ****    - Redistributions of source code must retain the above copyright
+  13:Drivers/CMSIS/Include/cmsis_gcc.h ****      notice, this list of conditions and the following disclaimer.
+  14:Drivers/CMSIS/Include/cmsis_gcc.h ****    - Redistributions in binary form must reproduce the above copyright
+  15:Drivers/CMSIS/Include/cmsis_gcc.h ****      notice, this list of conditions and the following disclaimer in the
+  16:Drivers/CMSIS/Include/cmsis_gcc.h ****      documentation and/or other materials provided with the distribution.
+  17:Drivers/CMSIS/Include/cmsis_gcc.h ****    - Neither the name of ARM nor the names of its contributors may be used
+  18:Drivers/CMSIS/Include/cmsis_gcc.h ****      to endorse or promote products derived from this software without
+  19:Drivers/CMSIS/Include/cmsis_gcc.h ****      specific prior written permission.
+  20:Drivers/CMSIS/Include/cmsis_gcc.h ****    *
+  21:Drivers/CMSIS/Include/cmsis_gcc.h ****    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  22:Drivers/CMSIS/Include/cmsis_gcc.h ****    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  23:Drivers/CMSIS/Include/cmsis_gcc.h ****    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+  24:Drivers/CMSIS/Include/cmsis_gcc.h ****    ARE DISCLAIMED. IN NO EVENT SHALL COPYRIGHT HOLDERS AND CONTRIBUTORS BE
+  25:Drivers/CMSIS/Include/cmsis_gcc.h ****    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+  26:Drivers/CMSIS/Include/cmsis_gcc.h ****    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+  27:Drivers/CMSIS/Include/cmsis_gcc.h ****    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  28:Drivers/CMSIS/Include/cmsis_gcc.h ****    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  29:Drivers/CMSIS/Include/cmsis_gcc.h ****    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  30:Drivers/CMSIS/Include/cmsis_gcc.h ****    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+  31:Drivers/CMSIS/Include/cmsis_gcc.h ****    POSSIBILITY OF SUCH DAMAGE.
+  32:Drivers/CMSIS/Include/cmsis_gcc.h ****    ---------------------------------------------------------------------------*/
+  33:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  34:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  35:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __CMSIS_GCC_H
+  36:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __CMSIS_GCC_H
+  37:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  38:Drivers/CMSIS/Include/cmsis_gcc.h **** /* ignore some GCC warnings */
+  39:Drivers/CMSIS/Include/cmsis_gcc.h **** #if defined ( __GNUC__ )
+  40:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic push
+  41:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wsign-conversion"
+  42:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wconversion"
+  43:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wunused-parameter"
+  44:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  45:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  46:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  47:Drivers/CMSIS/Include/cmsis_gcc.h **** /* ###########################  Core Function Access  ########################### */
+  48:Drivers/CMSIS/Include/cmsis_gcc.h **** /** \ingroup  CMSIS_Core_FunctionInterface
+  49:Drivers/CMSIS/Include/cmsis_gcc.h ****     \defgroup CMSIS_Core_RegAccFunctions CMSIS Core Register Access Functions
+  50:Drivers/CMSIS/Include/cmsis_gcc.h ****   @{
+  51:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+  52:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  53:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+  54:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Enable IRQ Interrupts
+  55:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Enables IRQ interrupts by clearing the I-bit in the CPSR.
+  56:Drivers/CMSIS/Include/cmsis_gcc.h ****            Can only be executed in Privileged modes.
+  57:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ARM GAS  /tmp/ccw9D8C4.s 			page 25
+
+
+  58:Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE void __enable_irq(void)
+  59:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+  60:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsie i" : : : "memory");
+  61:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+  62:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  63:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  64:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+  65:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Disable IRQ Interrupts
+  66:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Disables IRQ interrupts by setting the I-bit in the CPSR.
+  67:Drivers/CMSIS/Include/cmsis_gcc.h ****   Can only be executed in Privileged modes.
+  68:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+  69:Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE void __disable_irq(void)
+  70:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+  71:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsid i" : : : "memory");
+  72:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+  73:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  74:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  75:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+  76:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Get Control Register
+  77:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the content of the Control Register.
+  78:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               Control Register value
+  79:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+  80:Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE uint32_t __get_CONTROL(void)
+  81:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+  82:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
+  83:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  84:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, control" : "=r" (result) );
+  85:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
+  86:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+  87:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  88:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  89:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+  90:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Set Control Register
+  91:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Writes the given value to the Control Register.
+  92:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    control  Control Register value to set
+  93:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+  94:Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE void __set_CONTROL(uint32_t control)
+  95:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+  96:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MSR control, %0" : : "r" (control) : "memory");
+  97:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+  98:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  99:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 100:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+ 101:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Get IPSR Register
+ 102:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the content of the IPSR Register.
+ 103:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               IPSR Register value
+ 104:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ 105:Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE uint32_t __get_IPSR(void)
+ 106:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ 107:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
+ 108:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 109:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, ipsr" : "=r" (result) );
+ 110:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
+ 111:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ 112:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 113:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 114:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+ARM GAS  /tmp/ccw9D8C4.s 			page 26
+
+
+ 115:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Get APSR Register
+ 116:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the content of the APSR Register.
+ 117:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               APSR Register value
+ 118:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ 119:Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE uint32_t __get_APSR(void)
+ 120:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ 121:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
+ 122:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 123:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, apsr" : "=r" (result) );
+ 124:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
+ 125:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ 126:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 127:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 128:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+ 129:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Get xPSR Register
+ 130:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the content of the xPSR Register.
+ 131:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 132:Drivers/CMSIS/Include/cmsis_gcc.h ****     \return               xPSR Register value
+ 133:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ 134:Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE uint32_t __get_xPSR(void)
+ 135:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ 136:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
+ 137:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 138:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, xpsr" : "=r" (result) );
+ 139:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
+ 140:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ 141:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 142:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 143:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+ 144:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Get Process Stack Pointer
+ 145:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the current value of the Process Stack Pointer (PSP).
+ 146:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               PSP Register value
+ 147:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ 148:Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE uint32_t __get_PSP(void)
+ 149:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ 150:Drivers/CMSIS/Include/cmsis_gcc.h ****   register uint32_t result;
+ 151:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 152:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, psp\n"  : "=r" (result) );
+ 153:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
+ 154:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ 155:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 156:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 157:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+ 158:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Set Process Stack Pointer
+ 159:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Assigns the given value to the Process Stack Pointer (PSP).
+ 160:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    topOfProcStack  Process Stack Pointer value to set
+ 161:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ 162:Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE void __set_PSP(uint32_t topOfProcStack)
+ 163:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ 164:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MSR psp, %0\n" : : "r" (topOfProcStack) : "sp");
+ 165:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ 166:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 167:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 168:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+ 169:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Get Main Stack Pointer
+ 170:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the current value of the Main Stack Pointer (MSP).
+ 171:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               MSP Register value
+ARM GAS  /tmp/ccw9D8C4.s 			page 27
+
+
+ 172:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ 173:Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE uint32_t __get_MSP(void)
+ 174:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ 175:Drivers/CMSIS/Include/cmsis_gcc.h ****   register uint32_t result;
+ 176:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 177:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, msp\n" : "=r" (result) );
+ 178:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
+ 179:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ 180:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 181:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 182:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+ 183:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Set Main Stack Pointer
+ 184:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Assigns the given value to the Main Stack Pointer (MSP).
+ 185:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 186:Drivers/CMSIS/Include/cmsis_gcc.h ****     \param [in]    topOfMainStack  Main Stack Pointer value to set
+ 187:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ 188:Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE void __set_MSP(uint32_t topOfMainStack)
+ 189:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ 190:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MSR msp, %0\n" : : "r" (topOfMainStack) : "sp");
+ 191:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ 192:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 193:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 194:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+ 195:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Get Priority Mask
+ 196:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Returns the current state of the priority mask bit from the Priority Mask Register.
+ 197:Drivers/CMSIS/Include/cmsis_gcc.h ****   \return               Priority Mask value
+ 198:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ 199:Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE uint32_t __get_PRIMASK(void)
+ 200:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ 201:Drivers/CMSIS/Include/cmsis_gcc.h ****   uint32_t result;
+ 202:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 203:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MRS %0, primask" : "=r" (result) );
+ 504              		.loc 2 203 0
+ 505              	@ 203 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 506 0008 EFF31082 		MRS r2, primask
+ 507              	@ 0 "" 2
+ 508              	.LVL34:
+ 509              		.code	16
+ 510              	.LBE21:
+ 511              	.LBE20:
+ 512              	.LBB22:
+ 513              	.LBB23:
+  71:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ 514              		.loc 2 71 0
+ 515              	@ 71 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 516 000c 72B6     		cpsid i
+ 517              	@ 0 "" 2
+ 518              		.code	16
+ 519              	.LBE23:
+ 520              	.LBE22:
+ 489:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     WRITE_REG(FLASH->PEKEYR, FLASH_PEKEY2);
+ 521              		.loc 1 489 0
+ 522 000e 114B     		ldr	r3, .L37
+ 523 0010 1149     		ldr	r1, .L37+4
+ 524 0012 D960     		str	r1, [r3, #12]
+ 490:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 525              		.loc 1 490 0
+ARM GAS  /tmp/ccw9D8C4.s 			page 28
+
+
+ 526 0014 1149     		ldr	r1, .L37+8
+ 527 0016 D960     		str	r1, [r3, #12]
+ 528              	.LVL35:
+ 529              	.LBB24:
+ 530              	.LBB25:
+ 204:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
+ 205:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ 206:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 207:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 208:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+ 209:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Set Priority Mask
+ 210:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Assigns the given value to the Priority Mask Register.
+ 211:Drivers/CMSIS/Include/cmsis_gcc.h ****   \param [in]    priMask  Priority Mask
+ 212:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ 213:Drivers/CMSIS/Include/cmsis_gcc.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE void __set_PRIMASK(uint32_t priMask)
+ 214:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ 215:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("MSR primask, %0" : : "r" (priMask) : "memory");
+ 531              		.loc 2 215 0
+ 532              	@ 215 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 533 0018 82F31088 		MSR primask, r2
+ 534              	@ 0 "" 2
+ 535              		.code	16
+ 536              	.LBE25:
+ 537              	.LBE24:
+ 495:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     {
+ 538              		.loc 1 495 0
+ 539 001c 5B68     		ldr	r3, [r3, #4]
+ 540 001e DB07     		lsl	r3, r3, #31
+ 541 0020 12D4     		bmi	.L34
+ 542              	.L32:
+ 501:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   {
+ 543              		.loc 1 501 0
+ 544 0022 0C4B     		ldr	r3, .L37
+ 545 0024 5B68     		ldr	r3, [r3, #4]
+ 546 0026 9B07     		lsl	r3, r3, #30
+ 547 0028 10D5     		bpl	.L35
+ 548              	.LBB26:
+ 549              	.LBB27:
+ 203:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
+ 550              		.loc 2 203 0
+ 551              	@ 203 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 552 002a EFF31082 		MRS r2, primask
+ 553              	@ 0 "" 2
+ 554              	.LVL36:
+ 555              		.code	16
+ 556              	.LBE27:
+ 557              	.LBE26:
+ 558              	.LBB28:
+ 559              	.LBB29:
+  71:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ 560              		.loc 2 71 0
+ 561              	@ 71 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 562 002e 72B6     		cpsid i
+ 563              	@ 0 "" 2
+ 564              		.code	16
+ 565              	.LBE29:
+ 566              	.LBE28:
+ARM GAS  /tmp/ccw9D8C4.s 			page 29
+
+
+ 508:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     WRITE_REG(FLASH->PRGKEYR, FLASH_PRGKEY2);  
+ 567              		.loc 1 508 0
+ 568 0030 084B     		ldr	r3, .L37
+ 569 0032 0B49     		ldr	r1, .L37+12
+ 570 0034 1961     		str	r1, [r3, #16]
+ 509:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 571              		.loc 1 509 0
+ 572 0036 0B49     		ldr	r1, .L37+16
+ 573 0038 1961     		str	r1, [r3, #16]
+ 574              	.LVL37:
+ 575              	.LBB30:
+ 576              	.LBB31:
+ 577              		.loc 2 215 0
+ 578              	@ 215 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 579 003a 82F31088 		MSR primask, r2
+ 580              	@ 0 "" 2
+ 581              		.code	16
+ 582              	.LBE31:
+ 583              	.LBE30:
+ 514:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     {
+ 584              		.loc 1 514 0
+ 585 003e 5B68     		ldr	r3, [r3, #4]
+ 586 0040 9B07     		lsl	r3, r3, #30
+ 587 0042 05D5     		bpl	.L36
+ 516:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     }
+ 588              		.loc 1 516 0
+ 589 0044 0120     		mov	r0, #1
+ 590 0046 04E0     		b	.L33
+ 591              	.L34:
+ 497:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     }
+ 592              		.loc 1 497 0
+ 593 0048 0120     		mov	r0, #1
+ 594 004a 02E0     		b	.L33
+ 595              	.L35:
+ 520:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** }
+ 596              		.loc 1 520 0
+ 597 004c 0020     		mov	r0, #0
+ 598 004e 00E0     		b	.L33
+ 599              	.L36:
+ 600 0050 0020     		mov	r0, #0
+ 601              	.L33:
+ 521:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 602              		.loc 1 521 0
+ 603              		@ sp needed
+ 604 0052 7047     		bx	lr
+ 605              	.L38:
+ 606              		.align	2
+ 607              	.L37:
+ 608 0054 00200240 		.word	1073881088
+ 609 0058 EFCDAB89 		.word	-1985229329
+ 610 005c 05040302 		.word	33752069
+ 611 0060 BFAE9D8C 		.word	-1935823169
+ 612 0064 16151413 		.word	320083222
+ 613              		.cfi_endproc
+ 614              	.LFE39:
+ 616              		.section	.text.HAL_FLASH_Lock,"ax",%progbits
+ 617              		.align	2
+ARM GAS  /tmp/ccw9D8C4.s 			page 30
+
+
+ 618              		.global	HAL_FLASH_Lock
+ 619              		.code	16
+ 620              		.thumb_func
+ 622              	HAL_FLASH_Lock:
+ 623              	.LFB40:
+ 528:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* Set the PRGLOCK Bit to lock the FLASH Registers access */
+ 624              		.loc 1 528 0
+ 625              		.cfi_startproc
+ 530:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   
+ 626              		.loc 1 530 0
+ 627 0000 054B     		ldr	r3, .L40
+ 628 0002 5968     		ldr	r1, [r3, #4]
+ 629 0004 0222     		mov	r2, #2
+ 630 0006 0A43     		orr	r2, r1
+ 631 0008 5A60     		str	r2, [r3, #4]
+ 533:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 632              		.loc 1 533 0
+ 633 000a 5968     		ldr	r1, [r3, #4]
+ 634 000c 0122     		mov	r2, #1
+ 635 000e 0A43     		orr	r2, r1
+ 636 0010 5A60     		str	r2, [r3, #4]
+ 536:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 637              		.loc 1 536 0
+ 638 0012 0020     		mov	r0, #0
+ 639              		@ sp needed
+ 640 0014 7047     		bx	lr
+ 641              	.L41:
+ 642 0016 C046     		.align	2
+ 643              	.L40:
+ 644 0018 00200240 		.word	1073881088
+ 645              		.cfi_endproc
+ 646              	.LFE40:
+ 648              		.section	.text.HAL_FLASH_OB_Unlock,"ax",%progbits
+ 649              		.align	2
+ 650              		.global	HAL_FLASH_OB_Unlock
+ 651              		.code	16
+ 652              		.thumb_func
+ 654              	HAL_FLASH_OB_Unlock:
+ 655              	.LFB41:
+ 543:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   uint32_t primask_bit;
+ 656              		.loc 1 543 0
+ 657              		.cfi_startproc
+ 546:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   {
+ 658              		.loc 1 546 0
+ 659 0000 0D4B     		ldr	r3, .L46
+ 660 0002 5B68     		ldr	r3, [r3, #4]
+ 661 0004 5B07     		lsl	r3, r3, #29
+ 662 0006 14D5     		bpl	.L45
+ 663              	.LBB32:
+ 664              	.LBB33:
+ 203:Drivers/CMSIS/Include/cmsis_gcc.h ****   return(result);
+ 665              		.loc 2 203 0
+ 666              	@ 203 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 667 0008 EFF31082 		MRS r2, primask
+ 668              	@ 0 "" 2
+ 669              	.LVL38:
+ 670              		.code	16
+ARM GAS  /tmp/ccw9D8C4.s 			page 31
+
+
+ 671              	.LBE33:
+ 672              	.LBE32:
+ 673              	.LBB34:
+ 674              	.LBB35:
+  71:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ 675              		.loc 2 71 0
+ 676              	@ 71 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 677 000c 72B6     		cpsid i
+ 678              	@ 0 "" 2
+ 679              		.code	16
+ 680              	.LBE35:
+ 681              	.LBE34:
+ 553:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     {  
+ 682              		.loc 1 553 0
+ 683 000e 0A4B     		ldr	r3, .L46
+ 684 0010 5B68     		ldr	r3, [r3, #4]
+ 685 0012 DB07     		lsl	r3, r3, #31
+ 686 0014 04D5     		bpl	.L44
+ 556:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       WRITE_REG(FLASH->PEKEYR, FLASH_PEKEY2);
+ 687              		.loc 1 556 0
+ 688 0016 084B     		ldr	r3, .L46
+ 689 0018 0849     		ldr	r1, .L46+4
+ 690 001a D960     		str	r1, [r3, #12]
+ 557:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     }
+ 691              		.loc 1 557 0
+ 692 001c 0849     		ldr	r1, .L46+8
+ 693 001e D960     		str	r1, [r3, #12]
+ 694              	.L44:
+ 561:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     WRITE_REG(FLASH->OPTKEYR, FLASH_OPTKEY2);
+ 695              		.loc 1 561 0
+ 696 0020 054B     		ldr	r3, .L46
+ 697 0022 0849     		ldr	r1, .L46+12
+ 698 0024 5961     		str	r1, [r3, #20]
+ 562:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 699              		.loc 1 562 0
+ 700 0026 0849     		ldr	r1, .L46+16
+ 701 0028 5961     		str	r1, [r3, #20]
+ 702              	.LVL39:
+ 703              	.LBB36:
+ 704              	.LBB37:
+ 705              		.loc 2 215 0
+ 706              	@ 215 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 707 002a 82F31088 		MSR primask, r2
+ 708              	@ 0 "" 2
+ 709              		.code	16
+ 710              	.LBE37:
+ 711              	.LBE36:
+ 572:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** }
+ 712              		.loc 1 572 0
+ 713 002e 0020     		mov	r0, #0
+ 714 0030 00E0     		b	.L43
+ 715              	.LVL40:
+ 716              	.L45:
+ 569:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   }  
+ 717              		.loc 1 569 0
+ 718 0032 0120     		mov	r0, #1
+ 719              	.L43:
+ARM GAS  /tmp/ccw9D8C4.s 			page 32
+
+
+ 573:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 720              		.loc 1 573 0
+ 721              		@ sp needed
+ 722 0034 7047     		bx	lr
+ 723              	.L47:
+ 724 0036 C046     		.align	2
+ 725              	.L46:
+ 726 0038 00200240 		.word	1073881088
+ 727 003c EFCDAB89 		.word	-1985229329
+ 728 0040 05040302 		.word	33752069
+ 729 0044 C8D9EAFB 		.word	-68494904
+ 730 0048 27262524 		.word	606414375
+ 731              		.cfi_endproc
+ 732              	.LFE41:
+ 734              		.section	.text.HAL_FLASH_OB_Lock,"ax",%progbits
+ 735              		.align	2
+ 736              		.global	HAL_FLASH_OB_Lock
+ 737              		.code	16
+ 738              		.thumb_func
+ 740              	HAL_FLASH_OB_Lock:
+ 741              	.LFB42:
+ 580:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* Set the OPTLOCK Bit to lock the option bytes block access */
+ 742              		.loc 1 580 0
+ 743              		.cfi_startproc
+ 582:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   
+ 744              		.loc 1 582 0
+ 745 0000 034A     		ldr	r2, .L49
+ 746 0002 5168     		ldr	r1, [r2, #4]
+ 747 0004 0423     		mov	r3, #4
+ 748 0006 0B43     		orr	r3, r1
+ 749 0008 5360     		str	r3, [r2, #4]
+ 585:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   
+ 750              		.loc 1 585 0
+ 751 000a 0020     		mov	r0, #0
+ 752              		@ sp needed
+ 753 000c 7047     		bx	lr
+ 754              	.L50:
+ 755 000e C046     		.align	2
+ 756              	.L49:
+ 757 0010 00200240 		.word	1073881088
+ 758              		.cfi_endproc
+ 759              	.LFE42:
+ 761              		.section	.text.HAL_FLASH_GetError,"ax",%progbits
+ 762              		.align	2
+ 763              		.global	HAL_FLASH_GetError
+ 764              		.code	16
+ 765              		.thumb_func
+ 767              	HAL_FLASH_GetError:
+ 768              	.LFB44:
+ 625:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****    return pFlash.ErrorCode;
+ 769              		.loc 1 625 0
+ 770              		.cfi_startproc
+ 626:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** }
+ 771              		.loc 1 626 0
+ 772 0000 014B     		ldr	r3, .L52
+ 773 0002 5869     		ldr	r0, [r3, #20]
+ 627:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ARM GAS  /tmp/ccw9D8C4.s 			page 33
+
+
+ 774              		.loc 1 627 0
+ 775              		@ sp needed
+ 776 0004 7047     		bx	lr
+ 777              	.L53:
+ 778 0006 C046     		.align	2
+ 779              	.L52:
+ 780 0008 00000000 		.word	pFlash
+ 781              		.cfi_endproc
+ 782              	.LFE44:
+ 784              		.section	.text.FLASH_WaitForLastOperation,"ax",%progbits
+ 785              		.align	2
+ 786              		.global	FLASH_WaitForLastOperation
+ 787              		.code	16
+ 788              		.thumb_func
+ 790              	FLASH_WaitForLastOperation:
+ 791              	.LFB45:
+ 647:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* Wait for the FLASH operation to complete by polling on BUSY flag to be reset.
+ 792              		.loc 1 647 0
+ 793              		.cfi_startproc
+ 794              	.LVL41:
+ 795 0000 38B5     		push	{r3, r4, r5, lr}
+ 796              	.LCFI2:
+ 797              		.cfi_def_cfa_offset 16
+ 798              		.cfi_offset 3, -16
+ 799              		.cfi_offset 4, -12
+ 800              		.cfi_offset 5, -8
+ 801              		.cfi_offset 14, -4
+ 802 0002 041C     		mov	r4, r0
+ 652:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****      
+ 803              		.loc 1 652 0
+ 804 0004 FFF7FEFF 		bl	HAL_GetTick
+ 805              	.LVL42:
+ 806 0008 051C     		mov	r5, r0
+ 807              	.LVL43:
+ 654:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   { 
+ 808              		.loc 1 654 0
+ 809 000a 08E0     		b	.L56
+ 810              	.LVL44:
+ 811              	.L58:
+ 656:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     {
+ 812              		.loc 1 656 0
+ 813 000c 631C     		add	r3, r4, #1
+ 814 000e 06D0     		beq	.L56
+ 658:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       {
+ 815              		.loc 1 658 0
+ 816 0010 002C     		cmp	r4, #0
+ 817 0012 2FD0     		beq	.L61
+ 658:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       {
+ 818              		.loc 1 658 0 is_stmt 0 discriminator 1
+ 819 0014 FFF7FEFF 		bl	HAL_GetTick
+ 820              	.LVL45:
+ 821 0018 401B     		sub	r0, r0, r5
+ 822 001a A042     		cmp	r0, r4
+ 823 001c 2CD8     		bhi	.L62
+ 824              	.L56:
+ 654:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   { 
+ 825              		.loc 1 654 0 is_stmt 1
+ARM GAS  /tmp/ccw9D8C4.s 			page 34
+
+
+ 826 001e 184B     		ldr	r3, .L64
+ 827 0020 9B69     		ldr	r3, [r3, #24]
+ 828 0022 DB07     		lsl	r3, r3, #31
+ 829 0024 F2D4     		bmi	.L58
+ 666:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   {
+ 830              		.loc 1 666 0
+ 831 0026 164B     		ldr	r3, .L64
+ 832 0028 9B69     		ldr	r3, [r3, #24]
+ 833 002a 9B07     		lsl	r3, r3, #30
+ 834 002c 02D5     		bpl	.L59
+ 669:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   }
+ 835              		.loc 1 669 0
+ 836 002e 0222     		mov	r2, #2
+ 837 0030 134B     		ldr	r3, .L64
+ 838 0032 9A61     		str	r2, [r3, #24]
+ 839              	.L59:
+ 672:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_PGAERR)     || 
+ 840              		.loc 1 672 0
+ 841 0034 124B     		ldr	r3, .L64
+ 842 0036 9B69     		ldr	r3, [r3, #24]
+ 843 0038 DB05     		lsl	r3, r3, #23
+ 844 003a 17D4     		bmi	.L60
+ 673:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_SIZERR)     || 
+ 845              		.loc 1 673 0 discriminator 1
+ 846 003c 104B     		ldr	r3, .L64
+ 847 003e 9B69     		ldr	r3, [r3, #24]
+ 672:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_PGAERR)     || 
+ 848              		.loc 1 672 0 discriminator 1
+ 849 0040 9B05     		lsl	r3, r3, #22
+ 850 0042 13D4     		bmi	.L60
+ 674:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_OPTVERR)    || 
+ 851              		.loc 1 674 0
+ 852 0044 0E4B     		ldr	r3, .L64
+ 853 0046 9B69     		ldr	r3, [r3, #24]
+ 673:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_SIZERR)     || 
+ 854              		.loc 1 673 0
+ 855 0048 5B05     		lsl	r3, r3, #21
+ 856 004a 0FD4     		bmi	.L60
+ 675:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_RDERR)      || 
+ 857              		.loc 1 675 0
+ 858 004c 0C4B     		ldr	r3, .L64
+ 859 004e 9B69     		ldr	r3, [r3, #24]
+ 674:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_OPTVERR)    || 
+ 860              		.loc 1 674 0
+ 861 0050 1B05     		lsl	r3, r3, #20
+ 862 0052 0BD4     		bmi	.L60
+ 676:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_FWWERR)     || 
+ 863              		.loc 1 676 0
+ 864 0054 0A4B     		ldr	r3, .L64
+ 865 0056 9B69     		ldr	r3, [r3, #24]
+ 675:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_RDERR)      || 
+ 866              		.loc 1 675 0
+ 867 0058 9B04     		lsl	r3, r3, #18
+ 868 005a 07D4     		bmi	.L60
+ 677:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_NOTZEROERR) )
+ 869              		.loc 1 677 0
+ 870 005c 084B     		ldr	r3, .L64
+ARM GAS  /tmp/ccw9D8C4.s 			page 35
+
+
+ 871 005e 9B69     		ldr	r3, [r3, #24]
+ 676:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_FWWERR)     || 
+ 872              		.loc 1 676 0
+ 873 0060 9B03     		lsl	r3, r3, #14
+ 874 0062 03D4     		bmi	.L60
+ 678:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   {
+ 875              		.loc 1 678 0
+ 876 0064 064B     		ldr	r3, .L64
+ 877 0066 9B69     		ldr	r3, [r3, #24]
+ 677:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       __HAL_FLASH_GET_FLAG(FLASH_FLAG_NOTZEROERR) )
+ 878              		.loc 1 677 0
+ 879 0068 DB03     		lsl	r3, r3, #15
+ 880 006a 07D5     		bpl	.L63
+ 881              	.L60:
+ 690:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****     return HAL_ERROR;
+ 882              		.loc 1 690 0
+ 883 006c FFF7FEFF 		bl	FLASH_SetErrorCode
+ 884              	.LVL46:
+ 691:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   }
+ 885              		.loc 1 691 0
+ 886 0070 0120     		mov	r0, #1
+ 887 0072 04E0     		b	.L57
+ 888              	.L61:
+ 660:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****       }
+ 889              		.loc 1 660 0
+ 890 0074 0320     		mov	r0, #3
+ 891 0076 02E0     		b	.L57
+ 892              	.L62:
+ 893 0078 0320     		mov	r0, #3
+ 894 007a 00E0     		b	.L57
+ 895              	.L63:
+ 695:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** }
+ 896              		.loc 1 695 0
+ 897 007c 0020     		mov	r0, #0
+ 898              	.L57:
+ 696:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 899              		.loc 1 696 0
+ 900              		@ sp needed
+ 901              	.LVL47:
+ 902              	.LVL48:
+ 903 007e 38BD     		pop	{r3, r4, r5, pc}
+ 904              	.L65:
+ 905              		.align	2
+ 906              	.L64:
+ 907 0080 00200240 		.word	1073881088
+ 908              		.cfi_endproc
+ 909              	.LFE45:
+ 911              		.section	.text.HAL_FLASH_Program,"ax",%progbits
+ 912              		.align	2
+ 913              		.global	HAL_FLASH_Program
+ 914              		.code	16
+ 915              		.thumb_func
+ 917              	HAL_FLASH_Program:
+ 918              	.LFB34:
+ 232:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   HAL_StatusTypeDef status = HAL_ERROR;
+ 919              		.loc 1 232 0
+ 920              		.cfi_startproc
+ARM GAS  /tmp/ccw9D8C4.s 			page 36
+
+
+ 921              	.LVL49:
+ 922 0000 38B5     		push	{r3, r4, r5, lr}
+ 923              	.LCFI3:
+ 924              		.cfi_def_cfa_offset 16
+ 925              		.cfi_offset 3, -16
+ 926              		.cfi_offset 4, -12
+ 927              		.cfi_offset 5, -8
+ 928              		.cfi_offset 14, -4
+ 929              	.LVL50:
+ 236:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 930              		.loc 1 236 0
+ 931 0002 0D4B     		ldr	r3, .L70
+ 932 0004 1B7C     		ldrb	r3, [r3, #16]
+ 933 0006 012B     		cmp	r3, #1
+ 934 0008 14D0     		beq	.L69
+ 935 000a 141C     		mov	r4, r2
+ 936 000c 0D1C     		mov	r5, r1
+ 236:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 937              		.loc 1 236 0 is_stmt 0 discriminator 2
+ 938 000e 0122     		mov	r2, #1
+ 939              	.LVL51:
+ 940 0010 094B     		ldr	r3, .L70
+ 941 0012 1A74     		strb	r2, [r3, #16]
+ 243:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   
+ 942              		.loc 1 243 0 is_stmt 1 discriminator 2
+ 943 0014 0948     		ldr	r0, .L70+4
+ 944              	.LVL52:
+ 945 0016 FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 946              	.LVL53:
+ 245:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   {
+ 947              		.loc 1 245 0 discriminator 2
+ 948 001a 0028     		cmp	r0, #0
+ 949 001c 06D1     		bne	.L68
+ 248:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 950              		.loc 1 248 0
+ 951 001e 0022     		mov	r2, #0
+ 952 0020 054B     		ldr	r3, .L70
+ 953 0022 5A61     		str	r2, [r3, #20]
+ 251:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 954              		.loc 1 251 0
+ 955 0024 2C60     		str	r4, [r5]
+ 254:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   }
+ 956              		.loc 1 254 0
+ 957 0026 0548     		ldr	r0, .L70+4
+ 958              	.LVL54:
+ 959 0028 FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 960              	.LVL55:
+ 961              	.L68:
+ 258:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 962              		.loc 1 258 0
+ 963 002c 0022     		mov	r2, #0
+ 964 002e 024B     		ldr	r3, .L70
+ 965 0030 1A74     		strb	r2, [r3, #16]
+ 260:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** }
+ 966              		.loc 1 260 0
+ 967 0032 00E0     		b	.L67
+ 968              	.LVL56:
+ARM GAS  /tmp/ccw9D8C4.s 			page 37
+
+
+ 969              	.L69:
+ 236:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 970              		.loc 1 236 0
+ 971 0034 0220     		mov	r0, #2
+ 972              	.LVL57:
+ 973              	.L67:
+ 261:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 974              		.loc 1 261 0
+ 975              		@ sp needed
+ 976 0036 38BD     		pop	{r3, r4, r5, pc}
+ 977              	.L71:
+ 978              		.align	2
+ 979              	.L70:
+ 980 0038 00000000 		.word	pFlash
+ 981 003c 50C30000 		.word	50000
+ 982              		.cfi_endproc
+ 983              	.LFE34:
+ 985              		.section	.text.HAL_FLASH_OB_Launch,"ax",%progbits
+ 986              		.align	2
+ 987              		.global	HAL_FLASH_OB_Launch
+ 988              		.code	16
+ 989              		.thumb_func
+ 991              	HAL_FLASH_OB_Launch:
+ 992              	.LFB43:
+ 593:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   /* Set the OBL_Launch bit to launch the option byte loading */
+ 993              		.loc 1 593 0
+ 994              		.cfi_startproc
+ 995 0000 08B5     		push	{r3, lr}
+ 996              	.LCFI4:
+ 997              		.cfi_def_cfa_offset 8
+ 998              		.cfi_offset 3, -8
+ 999              		.cfi_offset 14, -4
+ 595:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c ****   
+ 1000              		.loc 1 595 0
+ 1001 0002 054A     		ldr	r2, .L73
+ 1002 0004 5368     		ldr	r3, [r2, #4]
+ 1003 0006 8021     		mov	r1, #128
+ 1004 0008 C902     		lsl	r1, r1, #11
+ 1005 000a 0B43     		orr	r3, r1
+ 1006 000c 5360     		str	r3, [r2, #4]
+ 598:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** }
+ 1007              		.loc 1 598 0
+ 1008 000e 0348     		ldr	r0, .L73+4
+ 1009 0010 FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 1010              	.LVL58:
+ 599:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c **** 
+ 1011              		.loc 1 599 0
+ 1012              		@ sp needed
+ 1013 0014 08BD     		pop	{r3, pc}
+ 1014              	.L74:
+ 1015 0016 C046     		.align	2
+ 1016              	.L73:
+ 1017 0018 00200240 		.word	1073881088
+ 1018 001c 50C30000 		.word	50000
+ 1019              		.cfi_endproc
+ 1020              	.LFE43:
+ 1022              		.comm	pFlash,24,4
+ARM GAS  /tmp/ccw9D8C4.s 			page 38
+
+
+ 1023              		.text
+ 1024              	.Letext0:
+ 1025              		.file 3 "/usr/include/newlib/machine/_default_types.h"
+ 1026              		.file 4 "/usr/include/newlib/sys/_stdint.h"
+ 1027              		.file 5 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l071xx.h"
+ 1028              		.file 6 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_def.h"
+ 1029              		.file 7 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_flash.h"
+ 1030              		.file 8 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h"
+ARM GAS  /tmp/ccw9D8C4.s 			page 39
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 stm32l0xx_hal_flash.c
+     /tmp/ccw9D8C4.s:18     .text.FLASH_SetErrorCode:0000000000000000 $t
+     /tmp/ccw9D8C4.s:22     .text.FLASH_SetErrorCode:0000000000000000 FLASH_SetErrorCode
+     /tmp/ccw9D8C4.s:159    .text.FLASH_SetErrorCode:00000000000000ac $d
+                            *COM*:0000000000000018 pFlash
+     /tmp/ccw9D8C4.s:165    .text.HAL_FLASH_Program_IT:0000000000000000 $t
+     /tmp/ccw9D8C4.s:170    .text.HAL_FLASH_Program_IT:0000000000000000 HAL_FLASH_Program_IT
+     /tmp/ccw9D8C4.s:234    .text.HAL_FLASH_Program_IT:0000000000000038 $d
+     /tmp/ccw9D8C4.s:240    .text.HAL_FLASH_EndOfOperationCallback:0000000000000000 $t
+     /tmp/ccw9D8C4.s:245    .text.HAL_FLASH_EndOfOperationCallback:0000000000000000 HAL_FLASH_EndOfOperationCallback
+     /tmp/ccw9D8C4.s:257    .text.HAL_FLASH_OperationErrorCallback:0000000000000000 $t
+     /tmp/ccw9D8C4.s:262    .text.HAL_FLASH_OperationErrorCallback:0000000000000000 HAL_FLASH_OperationErrorCallback
+     /tmp/ccw9D8C4.s:274    .text.HAL_FLASH_IRQHandler:0000000000000000 $t
+     /tmp/ccw9D8C4.s:279    .text.HAL_FLASH_IRQHandler:0000000000000000 HAL_FLASH_IRQHandler
+     /tmp/ccw9D8C4.s:478    .text.HAL_FLASH_IRQHandler:00000000000000fc $d
+     /tmp/ccw9D8C4.s:487    .text.HAL_FLASH_Unlock:0000000000000000 $t
+     /tmp/ccw9D8C4.s:492    .text.HAL_FLASH_Unlock:0000000000000000 HAL_FLASH_Unlock
+     /tmp/ccw9D8C4.s:608    .text.HAL_FLASH_Unlock:0000000000000054 $d
+     /tmp/ccw9D8C4.s:617    .text.HAL_FLASH_Lock:0000000000000000 $t
+     /tmp/ccw9D8C4.s:622    .text.HAL_FLASH_Lock:0000000000000000 HAL_FLASH_Lock
+     /tmp/ccw9D8C4.s:644    .text.HAL_FLASH_Lock:0000000000000018 $d
+     /tmp/ccw9D8C4.s:649    .text.HAL_FLASH_OB_Unlock:0000000000000000 $t
+     /tmp/ccw9D8C4.s:654    .text.HAL_FLASH_OB_Unlock:0000000000000000 HAL_FLASH_OB_Unlock
+     /tmp/ccw9D8C4.s:726    .text.HAL_FLASH_OB_Unlock:0000000000000038 $d
+     /tmp/ccw9D8C4.s:735    .text.HAL_FLASH_OB_Lock:0000000000000000 $t
+     /tmp/ccw9D8C4.s:740    .text.HAL_FLASH_OB_Lock:0000000000000000 HAL_FLASH_OB_Lock
+     /tmp/ccw9D8C4.s:757    .text.HAL_FLASH_OB_Lock:0000000000000010 $d
+     /tmp/ccw9D8C4.s:762    .text.HAL_FLASH_GetError:0000000000000000 $t
+     /tmp/ccw9D8C4.s:767    .text.HAL_FLASH_GetError:0000000000000000 HAL_FLASH_GetError
+     /tmp/ccw9D8C4.s:780    .text.HAL_FLASH_GetError:0000000000000008 $d
+     /tmp/ccw9D8C4.s:785    .text.FLASH_WaitForLastOperation:0000000000000000 $t
+     /tmp/ccw9D8C4.s:790    .text.FLASH_WaitForLastOperation:0000000000000000 FLASH_WaitForLastOperation
+     /tmp/ccw9D8C4.s:907    .text.FLASH_WaitForLastOperation:0000000000000080 $d
+     /tmp/ccw9D8C4.s:912    .text.HAL_FLASH_Program:0000000000000000 $t
+     /tmp/ccw9D8C4.s:917    .text.HAL_FLASH_Program:0000000000000000 HAL_FLASH_Program
+     /tmp/ccw9D8C4.s:980    .text.HAL_FLASH_Program:0000000000000038 $d
+     /tmp/ccw9D8C4.s:986    .text.HAL_FLASH_OB_Launch:0000000000000000 $t
+     /tmp/ccw9D8C4.s:991    .text.HAL_FLASH_OB_Launch:0000000000000000 HAL_FLASH_OB_Launch
+     /tmp/ccw9D8C4.s:1017   .text.HAL_FLASH_OB_Launch:0000000000000018 $d
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+FLASH_PageErase
+HAL_GetTick

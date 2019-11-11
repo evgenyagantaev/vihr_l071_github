@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccE3oQGR.s 			page 1
+ARM GAS  /tmp/ccLROzIw.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccE3oQGR.s 			page 1
   45 0008 FFF7FEFF 		bl	__aeabi_i2d
   46              	.LVL1:
   47 000c 041C     		mov	r4, r0
-ARM GAS  /tmp/ccE3oQGR.s 			page 2
+ARM GAS  /tmp/ccLROzIw.s 			page 2
 
 
   48 000e 0D1C     		mov	r5, r1
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccE3oQGR.s 			page 1
   19:Src/dive_meter_object.c **** 
   20:Src/dive_meter_object.c **** 	if(!dive_started_flag)
   95              		.loc 1 20 0
-ARM GAS  /tmp/ccE3oQGR.s 			page 3
+ARM GAS  /tmp/ccLROzIw.s 			page 3
 
 
   96 005e 174B     		ldr	r3, .L10+8
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccE3oQGR.s 			page 1
   34:Src/dive_meter_object.c **** 		}
   35:Src/dive_meter_object.c **** 
   36:Src/dive_meter_object.c **** 		if(current_depth > max_depth)
-ARM GAS  /tmp/ccE3oQGR.s 			page 4
+ARM GAS  /tmp/ccLROzIw.s 			page 4
 
 
  137              		.loc 1 36 0
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccE3oQGR.s 			page 1
  182 0006 C046     		.align	2
  183              	.L13:
  184 0008 00000000 		.word	.LANCHOR0
-ARM GAS  /tmp/ccE3oQGR.s 			page 5
+ARM GAS  /tmp/ccLROzIw.s 			page 5
 
 
  185              		.cfi_endproc
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccE3oQGR.s 			page 1
  236              		.global	dive_meter_drop_dive
  237              		.code	16
  238              		.thumb_func
-ARM GAS  /tmp/ccE3oQGR.s 			page 6
+ARM GAS  /tmp/ccLROzIw.s 			page 6
 
 
  240              	dive_meter_drop_dive:
@@ -358,39 +358,39 @@ ARM GAS  /tmp/ccE3oQGR.s 			page 1
  298              		.file 4 "Inc/dive_meter_object.h"
  299              		.file 5 "Inc/atm_barometer_interface.h"
  300              		.file 6 "Inc/rtc_ds3231_interface.h"
-ARM GAS  /tmp/ccE3oQGR.s 			page 7
+ARM GAS  /tmp/ccLROzIw.s 			page 7
 
 
-ARM GAS  /tmp/ccE3oQGR.s 			page 8
+ARM GAS  /tmp/ccLROzIw.s 			page 8
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 dive_meter_object.c
-     /tmp/ccE3oQGR.s:23     .text.dive_meter_action:0000000000000000 $t
-     /tmp/ccE3oQGR.s:28     .text.dive_meter_action:0000000000000000 dive_meter_action
-     /tmp/ccE3oQGR.s:156    .text.dive_meter_action:00000000000000b4 $d
-     /tmp/ccE3oQGR.s:166    .text.dive_meter_get_current_depth:0000000000000000 $t
-     /tmp/ccE3oQGR.s:171    .text.dive_meter_get_current_depth:0000000000000000 dive_meter_get_current_depth
-     /tmp/ccE3oQGR.s:184    .text.dive_meter_get_current_depth:0000000000000008 $d
-     /tmp/ccE3oQGR.s:189    .text.dive_meter_get_current_dive_time:0000000000000000 $t
-     /tmp/ccE3oQGR.s:194    .text.dive_meter_get_current_dive_time:0000000000000000 dive_meter_get_current_dive_time
-     /tmp/ccE3oQGR.s:207    .text.dive_meter_get_current_dive_time:0000000000000008 $d
-     /tmp/ccE3oQGR.s:212    .text.dive_meter_get_max_depth:0000000000000000 $t
-     /tmp/ccE3oQGR.s:217    .text.dive_meter_get_max_depth:0000000000000000 dive_meter_get_max_depth
-     /tmp/ccE3oQGR.s:230    .text.dive_meter_get_max_depth:0000000000000008 $d
-     /tmp/ccE3oQGR.s:235    .text.dive_meter_drop_dive:0000000000000000 $t
-     /tmp/ccE3oQGR.s:240    .text.dive_meter_drop_dive:0000000000000000 dive_meter_drop_dive
-     /tmp/ccE3oQGR.s:260    .text.dive_meter_drop_dive:0000000000000010 $d
-     /tmp/ccE3oQGR.s:268    .bss.max_depth:0000000000000000 max_depth
-     /tmp/ccE3oQGR.s:269    .bss.max_depth:0000000000000000 $d
-     /tmp/ccE3oQGR.s:274    .bss.current_dive_time:0000000000000000 current_dive_time
-     /tmp/ccE3oQGR.s:275    .bss.current_dive_time:0000000000000000 $d
-     /tmp/ccE3oQGR.s:280    .bss.current_depth:0000000000000000 current_depth
-     /tmp/ccE3oQGR.s:281    .bss.current_depth:0000000000000000 $d
-     /tmp/ccE3oQGR.s:286    .bss.old_minutes:0000000000000000 old_minutes
-     /tmp/ccE3oQGR.s:287    .bss.old_minutes:0000000000000000 $d
-     /tmp/ccE3oQGR.s:292    .bss.dive_started_flag:0000000000000000 dive_started_flag
-     /tmp/ccE3oQGR.s:293    .bss.dive_started_flag:0000000000000000 $d
+     /tmp/ccLROzIw.s:23     .text.dive_meter_action:0000000000000000 $t
+     /tmp/ccLROzIw.s:28     .text.dive_meter_action:0000000000000000 dive_meter_action
+     /tmp/ccLROzIw.s:156    .text.dive_meter_action:00000000000000b4 $d
+     /tmp/ccLROzIw.s:166    .text.dive_meter_get_current_depth:0000000000000000 $t
+     /tmp/ccLROzIw.s:171    .text.dive_meter_get_current_depth:0000000000000000 dive_meter_get_current_depth
+     /tmp/ccLROzIw.s:184    .text.dive_meter_get_current_depth:0000000000000008 $d
+     /tmp/ccLROzIw.s:189    .text.dive_meter_get_current_dive_time:0000000000000000 $t
+     /tmp/ccLROzIw.s:194    .text.dive_meter_get_current_dive_time:0000000000000000 dive_meter_get_current_dive_time
+     /tmp/ccLROzIw.s:207    .text.dive_meter_get_current_dive_time:0000000000000008 $d
+     /tmp/ccLROzIw.s:212    .text.dive_meter_get_max_depth:0000000000000000 $t
+     /tmp/ccLROzIw.s:217    .text.dive_meter_get_max_depth:0000000000000000 dive_meter_get_max_depth
+     /tmp/ccLROzIw.s:230    .text.dive_meter_get_max_depth:0000000000000008 $d
+     /tmp/ccLROzIw.s:235    .text.dive_meter_drop_dive:0000000000000000 $t
+     /tmp/ccLROzIw.s:240    .text.dive_meter_drop_dive:0000000000000000 dive_meter_drop_dive
+     /tmp/ccLROzIw.s:260    .text.dive_meter_drop_dive:0000000000000010 $d
+     /tmp/ccLROzIw.s:268    .bss.max_depth:0000000000000000 max_depth
+     /tmp/ccLROzIw.s:269    .bss.max_depth:0000000000000000 $d
+     /tmp/ccLROzIw.s:274    .bss.current_dive_time:0000000000000000 current_dive_time
+     /tmp/ccLROzIw.s:275    .bss.current_dive_time:0000000000000000 $d
+     /tmp/ccLROzIw.s:280    .bss.current_depth:0000000000000000 current_depth
+     /tmp/ccLROzIw.s:281    .bss.current_depth:0000000000000000 $d
+     /tmp/ccLROzIw.s:286    .bss.old_minutes:0000000000000000 old_minutes
+     /tmp/ccLROzIw.s:287    .bss.old_minutes:0000000000000000 $d
+     /tmp/ccLROzIw.s:292    .bss.dive_started_flag:0000000000000000 dive_started_flag
+     /tmp/ccLROzIw.s:293    .bss.dive_started_flag:0000000000000000 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
