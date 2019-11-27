@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc7uxxem.s 			page 1
+ARM GAS  /tmp/cchmG3UO.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc7uxxem.s 			page 1
   41 000c 034B     		ldr	r3, .L4
   42 000e 9B68     		ldr	r3, [r3, #8]
   43 0010 DB07     		lsl	r3, r3, #31
-ARM GAS  /tmp/cc7uxxem.s 			page 2
+ARM GAS  /tmp/cchmG3UO.s 			page 2
 
 
   44 0012 FBD5     		bpl	.L3
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc7uxxem.s 			page 1
   83 0006 8023     		mov	r3, #128
   84 0008 5B03     		lsl	r3, r3, #13
   85 000a A361     		str	r3, [r4, #24]
-ARM GAS  /tmp/cc7uxxem.s 			page 3
+ARM GAS  /tmp/cchmG3UO.s 			page 3
 
 
   33:Src/pressure_sensor_object.c **** 	// transmit 0x1e                             	
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc7uxxem.s 			page 1
  121              		.loc 1 51 0 discriminator 3
  122 0040 0002     		lsl	r0, r0, #8
  123 0042 A853     		strh	r0, [r5, r6]
-ARM GAS  /tmp/cc7uxxem.s 			page 4
+ARM GAS  /tmp/cchmG3UO.s 			page 4
 
 
   52:Src/pressure_sensor_object.c **** 		// read ls byte
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc7uxxem.s 			page 1
   63:Src/pressure_sensor_object.c **** {	
  167              		.loc 1 63 0
  168              		.cfi_startproc
-ARM GAS  /tmp/cc7uxxem.s 			page 5
+ARM GAS  /tmp/cchmG3UO.s 			page 5
 
 
  169 0000 F0B5     		push	{r4, r5, r6, r7, lr}
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cc7uxxem.s 			page 1
   78:Src/pressure_sensor_object.c ****         HAL_Delay(3);                                                                           
  208              		.loc 1 78 0 discriminator 3
  209 0024 0320     		mov	r0, #3
-ARM GAS  /tmp/cc7uxxem.s 			page 6
+ARM GAS  /tmp/cchmG3UO.s 			page 6
 
 
  210 0026 FFF7FEFF 		bl	HAL_Delay
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cc7uxxem.s 			page 1
   97:Src/pressure_sensor_object.c ****     	aux_p += pressure;
  246              		.loc 1 97 0 discriminator 3
  247 005e 8044     		add	r8, r8, r0
-ARM GAS  /tmp/cc7uxxem.s 			page 7
+ARM GAS  /tmp/cchmG3UO.s 			page 7
 
 
  248              	.LVL20:
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cc7uxxem.s 			page 1
  117:Src/pressure_sensor_object.c **** 	spi1_cs_pressure_GPIO_Port->BSRR = (uint32_t)(spi1_cs_pressure_Pin << 16); 	// reset 	
  281              		.loc 1 117 0
  282 008c AC61     		str	r4, [r5, #24]
-ARM GAS  /tmp/cc7uxxem.s 			page 8
+ARM GAS  /tmp/cchmG3UO.s 			page 8
 
 
  118:Src/pressure_sensor_object.c **** 	// transmit command                                                                     	
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cc7uxxem.s 			page 1
  320 00c8 894E     		ldr	r6, .L18+8
  321 00ca 7089     		ldrh	r0, [r6, #10]
  322 00cc FFF7FEFF 		bl	__aeabi_ui2d
-ARM GAS  /tmp/cc7uxxem.s 			page 9
+ARM GAS  /tmp/cchmG3UO.s 			page 9
 
 
  323              	.LVL31:
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cc7uxxem.s 			page 1
  374 0130 0B1C     		mov	r3, r1
  375 0132 201C     		mov	r0, r4
  376 0134 291C     		mov	r1, r5
-ARM GAS  /tmp/cc7uxxem.s 			page 10
+ARM GAS  /tmp/cchmG3UO.s 			page 10
 
 
  377 0136 FFF7FEFF 		bl	__aeabi_dmul
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cc7uxxem.s 			page 1
  145:Src/pressure_sensor_object.c **** 	                                                                                        	
  146:Src/pressure_sensor_object.c **** 	if(actual_temperature >= 2000)                                                          	
  424              		.loc 1 146 0
-ARM GAS  /tmp/cc7uxxem.s 			page 11
+ARM GAS  /tmp/cchmG3UO.s 			page 11
 
 
  425 0192 009E     		ldr	r6, [sp]
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cc7uxxem.s 			page 1
  469              		.loc 1 156 0
  470 01de 0022     		mov	r2, #0
  471 01e0 494B     		ldr	r3, .L18+32
-ARM GAS  /tmp/cc7uxxem.s 			page 12
+ARM GAS  /tmp/cchmG3UO.s 			page 12
 
 
  472 01e2 FFF7FEFF 		bl	__aeabi_dmul
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cc7uxxem.s 			page 1
  521 0236 FFF7FEFF 		bl	__aeabi_dadd
  522              	.LVL68:
  162:Src/pressure_sensor_object.c **** 			SENS2 = SENS2 + 3.0 * aux_dt * aux_dt;                                          	
-ARM GAS  /tmp/cc7uxxem.s 			page 13
+ARM GAS  /tmp/cchmG3UO.s 			page 13
 
 
  523              		.loc 1 162 0
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cc7uxxem.s 			page 1
  167:Src/pressure_sensor_object.c **** 	                                                                                        	
  168:Src/pressure_sensor_object.c **** 	OFF = OFF - OFF2;                                                                       	
  570              		.loc 1 168 0
-ARM GAS  /tmp/cc7uxxem.s 			page 14
+ARM GAS  /tmp/cchmG3UO.s 			page 14
 
 
  571 027e 0298     		ldr	r0, [sp, #8]
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cc7uxxem.s 			page 1
  622 02dc 5960     		str	r1, [r3, #4]
  172:Src/pressure_sensor_object.c **** 
  173:Src/pressure_sensor_object.c **** 
-ARM GAS  /tmp/cc7uxxem.s 			page 15
+ARM GAS  /tmp/cchmG3UO.s 			page 15
 
 
  174:Src/pressure_sensor_object.c **** }
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cc7uxxem.s 			page 1
  670 0006 7047     		bx	lr
  671              	.L22:
  672              		.align	2
-ARM GAS  /tmp/cc7uxxem.s 			page 16
+ARM GAS  /tmp/cchmG3UO.s 			page 16
 
 
  673              	.L21:
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cc7uxxem.s 			page 1
  731              		.align	3
  732              		.set	.LANCHOR3,. + 0
  735              	dT:
-ARM GAS  /tmp/cc7uxxem.s 			page 17
+ARM GAS  /tmp/cchmG3UO.s 			page 17
 
 
  736 0000 00000000 		.space	8
@@ -991,42 +991,42 @@ ARM GAS  /tmp/cc7uxxem.s 			page 1
  763              		.file 5 "Inc/pressure_sensor_object.h"
  764              		.file 6 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l0xx.h"
  765              		.file 7 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h"
-ARM GAS  /tmp/cc7uxxem.s 			page 18
+ARM GAS  /tmp/cchmG3UO.s 			page 18
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 pressure_sensor_object.c
-     /tmp/cc7uxxem.s:18     .text.write_byte:0000000000000000 $t
-     /tmp/cc7uxxem.s:23     .text.write_byte:0000000000000000 write_byte
-     /tmp/cc7uxxem.s:57     .text.write_byte:000000000000001c $d
-     /tmp/cc7uxxem.s:62     .text.pressure_sensor_object_init:0000000000000000 $t
-     /tmp/cc7uxxem.s:67     .text.pressure_sensor_object_init:0000000000000000 pressure_sensor_object_init
-     /tmp/cc7uxxem.s:148    .text.pressure_sensor_object_init:000000000000005c $d
-     /tmp/cc7uxxem.s:160    .text.pressure_sensor_measure_pressure_temperature:0000000000000000 $t
-     /tmp/cc7uxxem.s:165    .text.pressure_sensor_measure_pressure_temperature:0000000000000000 pressure_sensor_measure_pressure_temperature
-     /tmp/cc7uxxem.s:633    .text.pressure_sensor_measure_pressure_temperature:00000000000002e8 $d
-     /tmp/cc7uxxem.s:655    .text.pressure_sensor_get_pressure:0000000000000000 $t
-     /tmp/cc7uxxem.s:660    .text.pressure_sensor_get_pressure:0000000000000000 pressure_sensor_get_pressure
-     /tmp/cc7uxxem.s:674    .text.pressure_sensor_get_pressure:0000000000000008 $d
-     /tmp/cc7uxxem.s:679    .text.pressure_sensor_get_temperature:0000000000000000 $t
-     /tmp/cc7uxxem.s:684    .text.pressure_sensor_get_temperature:0000000000000000 pressure_sensor_get_temperature
-     /tmp/cc7uxxem.s:698    .text.pressure_sensor_get_temperature:0000000000000008 $d
-     /tmp/cc7uxxem.s:703    .bss.pressure:0000000000000000 $d
-     /tmp/cc7uxxem.s:707    .bss.pressure:0000000000000000 pressure
-     /tmp/cc7uxxem.s:710    .bss.actual_temperature:0000000000000000 $d
-     /tmp/cc7uxxem.s:714    .bss.actual_temperature:0000000000000000 actual_temperature
-     /tmp/cc7uxxem.s:717    .bss.P:0000000000000000 $d
-     /tmp/cc7uxxem.s:721    .bss.P:0000000000000000 P
-     /tmp/cc7uxxem.s:724    .bss.temperature:0000000000000000 $d
-     /tmp/cc7uxxem.s:728    .bss.temperature:0000000000000000 temperature
-     /tmp/cc7uxxem.s:731    .bss.dT:0000000000000000 $d
-     /tmp/cc7uxxem.s:735    .bss.dT:0000000000000000 dT
-     /tmp/cc7uxxem.s:738    .bss.OFF:0000000000000000 $d
-     /tmp/cc7uxxem.s:742    .bss.OFF:0000000000000000 OFF
-     /tmp/cc7uxxem.s:745    .bss.sensor_prom:0000000000000000 $d
-     /tmp/cc7uxxem.s:749    .bss.sensor_prom:0000000000000000 sensor_prom
-     /tmp/cc7uxxem.s:752    .bss.SENS:0000000000000000 $d
-     /tmp/cc7uxxem.s:756    .bss.SENS:0000000000000000 SENS
+     /tmp/cchmG3UO.s:18     .text.write_byte:0000000000000000 $t
+     /tmp/cchmG3UO.s:23     .text.write_byte:0000000000000000 write_byte
+     /tmp/cchmG3UO.s:57     .text.write_byte:000000000000001c $d
+     /tmp/cchmG3UO.s:62     .text.pressure_sensor_object_init:0000000000000000 $t
+     /tmp/cchmG3UO.s:67     .text.pressure_sensor_object_init:0000000000000000 pressure_sensor_object_init
+     /tmp/cchmG3UO.s:148    .text.pressure_sensor_object_init:000000000000005c $d
+     /tmp/cchmG3UO.s:160    .text.pressure_sensor_measure_pressure_temperature:0000000000000000 $t
+     /tmp/cchmG3UO.s:165    .text.pressure_sensor_measure_pressure_temperature:0000000000000000 pressure_sensor_measure_pressure_temperature
+     /tmp/cchmG3UO.s:633    .text.pressure_sensor_measure_pressure_temperature:00000000000002e8 $d
+     /tmp/cchmG3UO.s:655    .text.pressure_sensor_get_pressure:0000000000000000 $t
+     /tmp/cchmG3UO.s:660    .text.pressure_sensor_get_pressure:0000000000000000 pressure_sensor_get_pressure
+     /tmp/cchmG3UO.s:674    .text.pressure_sensor_get_pressure:0000000000000008 $d
+     /tmp/cchmG3UO.s:679    .text.pressure_sensor_get_temperature:0000000000000000 $t
+     /tmp/cchmG3UO.s:684    .text.pressure_sensor_get_temperature:0000000000000000 pressure_sensor_get_temperature
+     /tmp/cchmG3UO.s:698    .text.pressure_sensor_get_temperature:0000000000000008 $d
+     /tmp/cchmG3UO.s:703    .bss.pressure:0000000000000000 $d
+     /tmp/cchmG3UO.s:707    .bss.pressure:0000000000000000 pressure
+     /tmp/cchmG3UO.s:710    .bss.actual_temperature:0000000000000000 $d
+     /tmp/cchmG3UO.s:714    .bss.actual_temperature:0000000000000000 actual_temperature
+     /tmp/cchmG3UO.s:717    .bss.P:0000000000000000 $d
+     /tmp/cchmG3UO.s:721    .bss.P:0000000000000000 P
+     /tmp/cchmG3UO.s:724    .bss.temperature:0000000000000000 $d
+     /tmp/cchmG3UO.s:728    .bss.temperature:0000000000000000 temperature
+     /tmp/cchmG3UO.s:731    .bss.dT:0000000000000000 $d
+     /tmp/cchmG3UO.s:735    .bss.dT:0000000000000000 dT
+     /tmp/cchmG3UO.s:738    .bss.OFF:0000000000000000 $d
+     /tmp/cchmG3UO.s:742    .bss.OFF:0000000000000000 OFF
+     /tmp/cchmG3UO.s:745    .bss.sensor_prom:0000000000000000 $d
+     /tmp/cchmG3UO.s:749    .bss.sensor_prom:0000000000000000 sensor_prom
+     /tmp/cchmG3UO.s:752    .bss.SENS:0000000000000000 $d
+     /tmp/cchmG3UO.s:756    .bss.SENS:0000000000000000 SENS
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

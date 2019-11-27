@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccJjol0U.s 			page 1
+ARM GAS  /tmp/ccOSp2uQ.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccJjol0U.s 			page 1
   32:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****   *
   33:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****   * <h2><center>&copy; Copyright (c) 2016 STMicroelectronics. 
   34:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****   * All rights reserved.</center></h2>
-ARM GAS  /tmp/ccJjol0U.s 			page 2
+ARM GAS  /tmp/ccOSp2uQ.s 			page 2
 
 
   35:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****   *
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccJjol0U.s 			page 1
   89:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c **** 
   90:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c **** /* Private functions ---------------------------------------------------------*/
   91:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****  
-ARM GAS  /tmp/ccJjol0U.s 			page 3
+ARM GAS  /tmp/ccOSp2uQ.s 			page 3
 
 
   92:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c **** /** @defgroup FLASH_RAMFUNC_Exported_Functions FLASH RAM Exported Functions
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccJjol0U.s 			page 1
  146:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c **** 
  147:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c **** #if defined(FLASH_PECR_PARALLBANK)
  148:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c **** /**
-ARM GAS  /tmp/ccJjol0U.s 			page 4
+ARM GAS  /tmp/ccOSp2uQ.s 			page 4
 
 
  149:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****   * @brief  Erases a specified 2 pages in program memory in parallel.
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccJjol0U.s 			page 1
  203:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****   * @param  Address2: specifies the second address to be written in the second bank
  204:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****   *        (BANK2). This parameter should be between FLASH_BANK2_BASE and (FLASH_BANK2_END - FLASH_
  205:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****   * @param  pBuffer2: pointer to the buffer containing the data to be  written 
-ARM GAS  /tmp/ccJjol0U.s 			page 5
+ARM GAS  /tmp/ccOSp2uQ.s 			page 5
 
 
  206:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****   *         to the second half page in the second bank.
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccJjol0U.s 			page 1
  260:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****         *(__IO uint32_t*) Address2 = *pBuffer2;
  261:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****         pBuffer2++;
  262:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****         count ++;  
-ARM GAS  /tmp/ccJjol0U.s 			page 6
+ARM GAS  /tmp/ccOSp2uQ.s 			page 6
 
 
  263:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****       }
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccJjol0U.s 			page 1
  317:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****     SET_BIT(FLASH->PECR, FLASH_PECR_PROG);
  318:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****     
  319:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****     /* Disable all IRQs */
-ARM GAS  /tmp/ccJjol0U.s 			page 7
+ARM GAS  /tmp/ccOSp2uQ.s 			page 7
 
 
  320:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****     __disable_irq();
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccJjol0U.s 			page 1
  374:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****   * @retval HAL Status
  375:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****   */
  376:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c **** __RAM_FUNC HAL_StatusTypeDef HAL_FLASHEx_GetError(uint32_t * Error)
-ARM GAS  /tmp/ccJjol0U.s 			page 8
+ARM GAS  /tmp/ccOSp2uQ.s 			page 8
 
 
  377:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c **** { 
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccJjol0U.s 			page 1
   49              	.L2:
  406:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****   }
  407:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****   if(__HAL_FLASH_GET_FLAG(FLASH_FLAG_PGAERR))
-ARM GAS  /tmp/ccJjol0U.s 			page 9
+ARM GAS  /tmp/ccOSp2uQ.s 			page 9
 
 
   50              		.loc 1 407 0
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccJjol0U.s 			page 1
  423:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****      *           device, this error should be ignored. The revId of the device
  424:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****      *           can be retrieved via the HAL_GetREVID() function.
  425:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****      *
-ARM GAS  /tmp/ccJjol0U.s 			page 10
+ARM GAS  /tmp/ccOSp2uQ.s 			page 10
 
 
  426:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****      */
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccJjol0U.s 			page 1
  129              		.loc 1 439 0
  130 008c 0B43     		orr	r3, r1
  131              	.LVL8:
-ARM GAS  /tmp/ccJjol0U.s 			page 11
+ARM GAS  /tmp/ccOSp2uQ.s 			page 11
 
 
  132              	.L7:
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccJjol0U.s 			page 1
  457:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****   */
  458:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c **** static __RAM_FUNC HAL_StatusTypeDef FLASHRAM_WaitForLastOperation(uint32_t Timeout)
  459:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c **** { 
-ARM GAS  /tmp/ccJjol0U.s 			page 12
+ARM GAS  /tmp/ccOSp2uQ.s 			page 12
 
 
  171              		.loc 1 459 0
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccJjol0U.s 			page 1
  204 00d6 0222     		mov	r2, #2
  205 00d8 124B     		ldr	r3, .L21
  206 00da 9A61     		str	r2, [r3, #24]
-ARM GAS  /tmp/ccJjol0U.s 			page 13
+ARM GAS  /tmp/ccOSp2uQ.s 			page 13
 
 
  207              	.L17:
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccJjol0U.s 			page 1
  246              		.loc 1 486 0
  247 0110 DB03     		lsl	r3, r3, #15
  248 0112 05D5     		bpl	.L20
-ARM GAS  /tmp/ccJjol0U.s 			page 14
+ARM GAS  /tmp/ccOSp2uQ.s 			page 14
 
 
  249              	.L18:
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccJjol0U.s 			page 1
  285              		.loc 1 116 0
  286              		.cfi_startproc
  118:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c **** 
-ARM GAS  /tmp/ccJjol0U.s 			page 15
+ARM GAS  /tmp/ccOSp2uQ.s 			page 15
 
 
  287              		.loc 1 118 0
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccJjol0U.s 			page 1
  339              		.cfi_endproc
  340              	.LFE35:
  342              		.align	2
-ARM GAS  /tmp/ccJjol0U.s 			page 16
+ARM GAS  /tmp/ccOSp2uQ.s 			page 16
 
 
  343              		.global	HAL_FLASHEx_EraseParallelPage
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccJjol0U.s 			page 1
  391 019e 0023     		mov	r3, #0
  392 01a0 3360     		str	r3, [r6]
  182:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****  
-ARM GAS  /tmp/ccJjol0U.s 			page 17
+ARM GAS  /tmp/ccOSp2uQ.s 			page 17
 
 
  393              		.loc 1 182 0
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccJjol0U.s 			page 1
  443              		.cfi_def_cfa_offset 24
  444              		.cfi_offset 3, -24
  445              		.cfi_offset 4, -20
-ARM GAS  /tmp/ccJjol0U.s 			page 18
+ARM GAS  /tmp/ccOSp2uQ.s 			page 18
 
 
  446              		.cfi_offset 5, -16
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccJjol0U.s 			page 1
    2:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @file     cmsis_gcc.h
    3:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @brief    CMSIS Cortex-M Core Function/Instruction Header File
    4:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @version  V4.30
-ARM GAS  /tmp/ccJjol0U.s 			page 19
+ARM GAS  /tmp/ccOSp2uQ.s 			page 19
 
 
    5:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @date     20. October 2015
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccJjol0U.s 			page 1
   59:Drivers/CMSIS/Include/cmsis_gcc.h **** {
   60:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsie i" : : : "memory");
   61:Drivers/CMSIS/Include/cmsis_gcc.h **** }
-ARM GAS  /tmp/ccJjol0U.s 			page 20
+ARM GAS  /tmp/ccOSp2uQ.s 			page 20
 
 
   62:Drivers/CMSIS/Include/cmsis_gcc.h **** 
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccJjol0U.s 			page 1
  257:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c ****       {
  530              		.loc 1 257 0
  531 022a 0F2B     		cmp	r3, #15
-ARM GAS  /tmp/ccJjol0U.s 			page 21
+ARM GAS  /tmp/ccOSp2uQ.s 			page 21
 
 
  532 022c FAD9     		bls	.L39
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccJjol0U.s 			page 1
  580              		.cfi_endproc
  581              	.LFE37:
  583              		.align	2
-ARM GAS  /tmp/ccJjol0U.s 			page 22
+ARM GAS  /tmp/ccOSp2uQ.s 			page 22
 
 
  584              		.global	HAL_FLASHEx_HalfPageProgram
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccJjol0U.s 			page 1
  633 028a 0023     		mov	r3, #0
  634 028c 02E0     		b	.L44
  635              	.LVL52:
-ARM GAS  /tmp/ccJjol0U.s 			page 23
+ARM GAS  /tmp/ccOSp2uQ.s 			page 23
 
 
  636              	.L45:
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccJjol0U.s 			page 1
  682              		.align	2
  683              	.L46:
  684 02b4 50C30000 		.word	50000
-ARM GAS  /tmp/ccJjol0U.s 			page 24
+ARM GAS  /tmp/ccOSp2uQ.s 			page 24
 
 
  685 02b8 00200240 		.word	1073881088
@@ -1419,35 +1419,35 @@ ARM GAS  /tmp/ccJjol0U.s 			page 1
  720              		.file 5 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l071xx.h"
  721              		.file 6 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_def.h"
  722              		.file 7 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_flash.h"
-ARM GAS  /tmp/ccJjol0U.s 			page 25
+ARM GAS  /tmp/ccOSp2uQ.s 			page 25
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32l0xx_hal_flash_ramfunc.c
-     /tmp/ccJjol0U.s:18     .RamFunc:0000000000000000 $t
-     /tmp/ccJjol0U.s:22     .RamFunc:0000000000000000 FLASHRAM_SetErrorCode
-     /tmp/ccJjol0U.s:160    .RamFunc:00000000000000b0 $d
-     /tmp/ccJjol0U.s:165    .RamFunc:00000000000000b8 $t
-     /tmp/ccJjol0U.s:169    .RamFunc:00000000000000b8 FLASHRAM_WaitForLastOperation
-     /tmp/ccJjol0U.s:274    .RamFunc:0000000000000124 $d
-     /tmp/ccJjol0U.s:278    .RamFunc:0000000000000128 $t
-     /tmp/ccJjol0U.s:283    .RamFunc:0000000000000128 HAL_FLASHEx_EnableRunPowerDown
-     /tmp/ccJjol0U.s:304    .RamFunc:0000000000000140 $d
-     /tmp/ccJjol0U.s:310    .RamFunc:000000000000014c $t
-     /tmp/ccJjol0U.s:315    .RamFunc:000000000000014c HAL_FLASHEx_DisableRunPowerDown
-     /tmp/ccJjol0U.s:336    .RamFunc:0000000000000164 $d
-     /tmp/ccJjol0U.s:342    .RamFunc:0000000000000170 $t
-     /tmp/ccJjol0U.s:347    .RamFunc:0000000000000170 HAL_FLASHEx_EraseParallelPage
-     /tmp/ccJjol0U.s:424    .RamFunc:00000000000001c4 $d
-     /tmp/ccJjol0U.s:431    .RamFunc:00000000000001d4 $t
-     /tmp/ccJjol0U.s:436    .RamFunc:00000000000001d4 HAL_FLASHEx_ProgramParallelHalfPage
-     /tmp/ccJjol0U.s:576    .RamFunc:0000000000000254 $d
-     /tmp/ccJjol0U.s:583    .RamFunc:0000000000000264 $t
-     /tmp/ccJjol0U.s:588    .RamFunc:0000000000000264 HAL_FLASHEx_HalfPageProgram
-     /tmp/ccJjol0U.s:684    .RamFunc:00000000000002b4 $d
-     /tmp/ccJjol0U.s:690    .RamFunc:00000000000002c0 $t
-     /tmp/ccJjol0U.s:695    .RamFunc:00000000000002c0 HAL_FLASHEx_GetError
-     /tmp/ccJjol0U.s:712    .RamFunc:00000000000002cc $d
+     /tmp/ccOSp2uQ.s:18     .RamFunc:0000000000000000 $t
+     /tmp/ccOSp2uQ.s:22     .RamFunc:0000000000000000 FLASHRAM_SetErrorCode
+     /tmp/ccOSp2uQ.s:160    .RamFunc:00000000000000b0 $d
+     /tmp/ccOSp2uQ.s:165    .RamFunc:00000000000000b8 $t
+     /tmp/ccOSp2uQ.s:169    .RamFunc:00000000000000b8 FLASHRAM_WaitForLastOperation
+     /tmp/ccOSp2uQ.s:274    .RamFunc:0000000000000124 $d
+     /tmp/ccOSp2uQ.s:278    .RamFunc:0000000000000128 $t
+     /tmp/ccOSp2uQ.s:283    .RamFunc:0000000000000128 HAL_FLASHEx_EnableRunPowerDown
+     /tmp/ccOSp2uQ.s:304    .RamFunc:0000000000000140 $d
+     /tmp/ccOSp2uQ.s:310    .RamFunc:000000000000014c $t
+     /tmp/ccOSp2uQ.s:315    .RamFunc:000000000000014c HAL_FLASHEx_DisableRunPowerDown
+     /tmp/ccOSp2uQ.s:336    .RamFunc:0000000000000164 $d
+     /tmp/ccOSp2uQ.s:342    .RamFunc:0000000000000170 $t
+     /tmp/ccOSp2uQ.s:347    .RamFunc:0000000000000170 HAL_FLASHEx_EraseParallelPage
+     /tmp/ccOSp2uQ.s:424    .RamFunc:00000000000001c4 $d
+     /tmp/ccOSp2uQ.s:431    .RamFunc:00000000000001d4 $t
+     /tmp/ccOSp2uQ.s:436    .RamFunc:00000000000001d4 HAL_FLASHEx_ProgramParallelHalfPage
+     /tmp/ccOSp2uQ.s:576    .RamFunc:0000000000000254 $d
+     /tmp/ccOSp2uQ.s:583    .RamFunc:0000000000000264 $t
+     /tmp/ccOSp2uQ.s:588    .RamFunc:0000000000000264 HAL_FLASHEx_HalfPageProgram
+     /tmp/ccOSp2uQ.s:684    .RamFunc:00000000000002b4 $d
+     /tmp/ccOSp2uQ.s:690    .RamFunc:00000000000002c0 $t
+     /tmp/ccOSp2uQ.s:695    .RamFunc:00000000000002c0 HAL_FLASHEx_GetError
+     /tmp/ccOSp2uQ.s:712    .RamFunc:00000000000002cc $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

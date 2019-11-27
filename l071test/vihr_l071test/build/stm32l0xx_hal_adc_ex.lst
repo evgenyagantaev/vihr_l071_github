@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccJVyHM2.s 			page 1
+ARM GAS  /tmp/ccEgXMxE.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccJVyHM2.s 			page 1
   31:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****   *
   32:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****   ******************************************************************************
   33:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****   */
-ARM GAS  /tmp/ccJVyHM2.s 			page 2
+ARM GAS  /tmp/ccEgXMxE.s 			page 2
 
 
   34:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c **** 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccJVyHM2.s 			page 1
   88:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****  ===============================================================================
   89:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****     [..]  This section provides functions allowing to:
   90:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****       (+) Perform the ADC calibration.
-ARM GAS  /tmp/ccJVyHM2.s 			page 3
+ARM GAS  /tmp/ccEgXMxE.s 			page 3
 
 
   91:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c **** @endverbatim
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccJVyHM2.s 			page 1
   50              	.LVL2:
   51 0016 0B40     		and	r3, r1
   52 0018 012B     		cmp	r3, #1
-ARM GAS  /tmp/ccJVyHM2.s 			page 4
+ARM GAS  /tmp/ccEgXMxE.s 			page 4
 
 
   53 001a 04D1     		bne	.L9
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccJVyHM2.s 			page 1
   90 004e 8021     		mov	r1, #128
   91 0050 0906     		lsl	r1, r1, #24
   92 0052 0B43     		orr	r3, r1
-ARM GAS  /tmp/ccJVyHM2.s 			page 5
+ARM GAS  /tmp/ccEgXMxE.s 			page 5
 
 
   93 0054 9360     		str	r3, [r2, #8]
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccJVyHM2.s 			page 1
  155:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****       }
  156:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****     }
  157:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****     
-ARM GAS  /tmp/ccJVyHM2.s 			page 6
+ARM GAS  /tmp/ccEgXMxE.s 			page 6
 
 
  158:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****     /* Restore ADC DMA transfer request after calibration */
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccJVyHM2.s 			page 1
  161 00ac 00E0     		b	.L2
  162              	.LVL12:
  163              	.L8:
-ARM GAS  /tmp/ccJVyHM2.s 			page 7
+ARM GAS  /tmp/ccEgXMxE.s 			page 7
 
 
  117:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****   
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccJVyHM2.s 			page 1
  202              		.section	.text.HAL_ADCEx_Calibration_SetValue,"ax",%progbits
  203              		.align	2
  204              		.global	HAL_ADCEx_Calibration_SetValue
-ARM GAS  /tmp/ccJVyHM2.s 			page 8
+ARM GAS  /tmp/ccEgXMxE.s 			page 8
 
 
  205              		.code	16
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccJVyHM2.s 			page 1
  235 0018 012B     		cmp	r3, #1
  236 001a 04D1     		bne	.L20
  237              		.loc 1 221 0 is_stmt 0 discriminator 1
-ARM GAS  /tmp/ccJVyHM2.s 			page 9
+ARM GAS  /tmp/ccEgXMxE.s 			page 9
 
 
  238 001c 0B68     		ldr	r3, [r1]
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccJVyHM2.s 			page 1
  280 0050 1343     		orr	r3, r2
  281 0052 4365     		str	r3, [r0, #84]
  232:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****     /* Update ADC state machine to error */
-ARM GAS  /tmp/ccJVyHM2.s 			page 10
+ARM GAS  /tmp/ccEgXMxE.s 			page 10
 
 
  233:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****     SET_BIT(hadc->ErrorCode, HAL_ADC_ERROR_INTERNAL);
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccJVyHM2.s 			page 1
  250:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****   *         For more details on procedure and buffer current consumption, refer to device reference
  251:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****   * @note   This is functional only if the LOCK is not set.
  252:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****   * @retval None
-ARM GAS  /tmp/ccJVyHM2.s 			page 11
+ARM GAS  /tmp/ccEgXMxE.s 			page 11
 
 
  253:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c **** */
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccJVyHM2.s 			page 1
  270:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****     }
  271:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****   }
  272:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****   
-ARM GAS  /tmp/ccJVyHM2.s 			page 12
+ARM GAS  /tmp/ccEgXMxE.s 			page 12
 
 
  273:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_adc_ex.c ****   return HAL_OK;
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccJVyHM2.s 			page 1
  398              		.cfi_endproc
  399              	.LFE38:
  401              		.section	.text.HAL_ADCEx_EnableVREFINTTempSensor,"ax",%progbits
-ARM GAS  /tmp/ccJVyHM2.s 			page 13
+ARM GAS  /tmp/ccEgXMxE.s 			page 13
 
 
  402              		.align	2
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccJVyHM2.s 			page 1
  434 0016 FFF7FEFF 		bl	HAL_GetTick
  435              	.LVL37:
  436 001a 001B     		sub	r0, r0, r4
-ARM GAS  /tmp/ccJVyHM2.s 			page 14
+ARM GAS  /tmp/ccEgXMxE.s 			page 14
 
 
  437 001c 0128     		cmp	r0, #1
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccJVyHM2.s 			page 1
  474 0000 024A     		ldr	r2, .L40
  475 0002 116A     		ldr	r1, [r2, #32]
  476 0004 024B     		ldr	r3, .L40+4
-ARM GAS  /tmp/ccJVyHM2.s 			page 15
+ARM GAS  /tmp/ccEgXMxE.s 			page 15
 
 
  477 0006 0B40     		and	r3, r1
@@ -864,30 +864,30 @@ ARM GAS  /tmp/ccJVyHM2.s 			page 1
  497              		.file 7 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_dma.h"
  498              		.file 8 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_adc.h"
  499              		.file 9 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h"
-ARM GAS  /tmp/ccJVyHM2.s 			page 16
+ARM GAS  /tmp/ccEgXMxE.s 			page 16
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32l0xx_hal_adc_ex.c
-     /tmp/ccJVyHM2.s:18     .text.HAL_ADCEx_Calibration_Start:0000000000000000 $t
-     /tmp/ccJVyHM2.s:23     .text.HAL_ADCEx_Calibration_Start:0000000000000000 HAL_ADCEx_Calibration_Start
-     /tmp/ccJVyHM2.s:174    .text.HAL_ADCEx_Calibration_Start:00000000000000b4 $d
-     /tmp/ccJVyHM2.s:179    .text.HAL_ADCEx_Calibration_GetValue:0000000000000000 $t
-     /tmp/ccJVyHM2.s:184    .text.HAL_ADCEx_Calibration_GetValue:0000000000000000 HAL_ADCEx_Calibration_GetValue
-     /tmp/ccJVyHM2.s:203    .text.HAL_ADCEx_Calibration_SetValue:0000000000000000 $t
-     /tmp/ccJVyHM2.s:208    .text.HAL_ADCEx_Calibration_SetValue:0000000000000000 HAL_ADCEx_Calibration_SetValue
-     /tmp/ccJVyHM2.s:313    .text.HAL_ADCEx_EnableVREFINT:0000000000000000 $t
-     /tmp/ccJVyHM2.s:318    .text.HAL_ADCEx_EnableVREFINT:0000000000000000 HAL_ADCEx_EnableVREFINT
-     /tmp/ccJVyHM2.s:370    .text.HAL_ADCEx_EnableVREFINT:0000000000000030 $d
-     /tmp/ccJVyHM2.s:375    .text.HAL_ADCEx_DisableVREFINT:0000000000000000 $t
-     /tmp/ccJVyHM2.s:380    .text.HAL_ADCEx_DisableVREFINT:0000000000000000 HAL_ADCEx_DisableVREFINT
-     /tmp/ccJVyHM2.s:396    .text.HAL_ADCEx_DisableVREFINT:000000000000000c $d
-     /tmp/ccJVyHM2.s:402    .text.HAL_ADCEx_EnableVREFINTTempSensor:0000000000000000 $t
-     /tmp/ccJVyHM2.s:407    .text.HAL_ADCEx_EnableVREFINTTempSensor:0000000000000000 HAL_ADCEx_EnableVREFINTTempSensor
-     /tmp/ccJVyHM2.s:459    .text.HAL_ADCEx_EnableVREFINTTempSensor:0000000000000030 $d
-     /tmp/ccJVyHM2.s:464    .text.HAL_ADCEx_DisableVREFINTTempSensor:0000000000000000 $t
-     /tmp/ccJVyHM2.s:469    .text.HAL_ADCEx_DisableVREFINTTempSensor:0000000000000000 HAL_ADCEx_DisableVREFINTTempSensor
-     /tmp/ccJVyHM2.s:485    .text.HAL_ADCEx_DisableVREFINTTempSensor:000000000000000c $d
+     /tmp/ccEgXMxE.s:18     .text.HAL_ADCEx_Calibration_Start:0000000000000000 $t
+     /tmp/ccEgXMxE.s:23     .text.HAL_ADCEx_Calibration_Start:0000000000000000 HAL_ADCEx_Calibration_Start
+     /tmp/ccEgXMxE.s:174    .text.HAL_ADCEx_Calibration_Start:00000000000000b4 $d
+     /tmp/ccEgXMxE.s:179    .text.HAL_ADCEx_Calibration_GetValue:0000000000000000 $t
+     /tmp/ccEgXMxE.s:184    .text.HAL_ADCEx_Calibration_GetValue:0000000000000000 HAL_ADCEx_Calibration_GetValue
+     /tmp/ccEgXMxE.s:203    .text.HAL_ADCEx_Calibration_SetValue:0000000000000000 $t
+     /tmp/ccEgXMxE.s:208    .text.HAL_ADCEx_Calibration_SetValue:0000000000000000 HAL_ADCEx_Calibration_SetValue
+     /tmp/ccEgXMxE.s:313    .text.HAL_ADCEx_EnableVREFINT:0000000000000000 $t
+     /tmp/ccEgXMxE.s:318    .text.HAL_ADCEx_EnableVREFINT:0000000000000000 HAL_ADCEx_EnableVREFINT
+     /tmp/ccEgXMxE.s:370    .text.HAL_ADCEx_EnableVREFINT:0000000000000030 $d
+     /tmp/ccEgXMxE.s:375    .text.HAL_ADCEx_DisableVREFINT:0000000000000000 $t
+     /tmp/ccEgXMxE.s:380    .text.HAL_ADCEx_DisableVREFINT:0000000000000000 HAL_ADCEx_DisableVREFINT
+     /tmp/ccEgXMxE.s:396    .text.HAL_ADCEx_DisableVREFINT:000000000000000c $d
+     /tmp/ccEgXMxE.s:402    .text.HAL_ADCEx_EnableVREFINTTempSensor:0000000000000000 $t
+     /tmp/ccEgXMxE.s:407    .text.HAL_ADCEx_EnableVREFINTTempSensor:0000000000000000 HAL_ADCEx_EnableVREFINTTempSensor
+     /tmp/ccEgXMxE.s:459    .text.HAL_ADCEx_EnableVREFINTTempSensor:0000000000000030 $d
+     /tmp/ccEgXMxE.s:464    .text.HAL_ADCEx_DisableVREFINTTempSensor:0000000000000000 $t
+     /tmp/ccEgXMxE.s:469    .text.HAL_ADCEx_DisableVREFINTTempSensor:0000000000000000 HAL_ADCEx_DisableVREFINTTempSensor
+     /tmp/ccEgXMxE.s:485    .text.HAL_ADCEx_DisableVREFINTTempSensor:000000000000000c $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

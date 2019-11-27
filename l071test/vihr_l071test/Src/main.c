@@ -39,91 +39,148 @@
 
 
 
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
+static char message[64];
+static char timestamp[64];
+static char temperature_message[64];
 
-/* USER CODE END Includes */
-
-/* Private typedef -----------------------------------------------------------*/
-/* USER CODE BEGIN PTD */
-
-/* USER CODE END PTD */
-
-/* Private define ------------------------------------------------------------*/
-/* USER CODE BEGIN PD */
-/* USER CODE END PD */
-
-/* Private macro -------------------------------------------------------------*/
-/* USER CODE BEGIN PM */
-
-/* USER CODE END PM */
-
-/* Private variables ---------------------------------------------------------*/
-
-/* USER CODE BEGIN PV */
-
-/* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-/* USER CODE BEGIN PFP */
 
-/* USER CODE END PFP */
 
-/* Private user code ---------------------------------------------------------*/
-/* USER CODE BEGIN 0 */
 
-/* USER CODE END 0 */
 
-/**
-  * @brief  The application entry point.
-  * @retval int
-  */
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 int main(void)
 {
-  /* USER CODE BEGIN 1 */
 
-  /* USER CODE END 1 */
+
+
+
+	/* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+	HAL_Init();
+
+  
+  
+	SystemClock_Config();
+
+  
+  
+	MX_GPIO_Init();
+	MX_ADC_Init();
+	MX_I2C1_Init();
+	//MX_I2C2_Init();
+	MX_I2C3_Init();
+	MX_SPI1_Init();
+    // enable spi1
+    SPI1->CR1 |= SPI_CR1_SPE;
+	MX_USART1_UART_Init();
+  
+	rtc_ds3231_set_i2c_handle(&hi2c3);
+	//rtc_ds3231_set_time(16, 40, 0);
+	//rtc_ds3231_set_date(22, 11, 19);
+	//at24c32_set_i2c_handle(&hi2c2);
+
+    ssd1306_set_i2c_port(&hi2c1, 1);
+  	ssd1306_Init();
+  	HAL_Delay(100);
+  	ssd1306_Fill(White);
+  	ssd1306_UpdateScreen();
+  	HAL_Delay(100);
+  	ssd1306_Fill(Black);
+  	ssd1306_UpdateScreen();
+
+  	HAL_Delay(100);
+
+  	ssd1306_SetCursor(0,0);
+  	ssd1306_WriteString("L071", Font_16x26, White);
+  	ssd1306_SetCursor(0,30);
+  	ssd1306_WriteString("TEST..", Font_16x26, White);
+  	ssd1306_UpdateScreen();
   
 
-  /* MCU Configuration--------------------------------------------------------*/
+	one_second_timer_init();
+	one_second_timer_start();
 
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+	pressure_sensor_object_init();
+	HAL_Delay(1000);
+	uint32_t surface_pressure = 101325;
+	depth_switch_turn_signal_led(1);
 
-  /* USER CODE BEGIN Init */
+	rtc_ds3231_action();
+	//atm_barometer_init();
+	int odd_even = 0;
+	int led_counter = 0;
 
-  /* USER CODE END Init */
+	int mem_test_base = 0;
 
-  /* Configure the system clock */
-  SystemClock_Config();
+	uint8_t at24c32_shifted_address = 0x50 << 1;
+	uint16_t eeprom_address = 64;
+	uint16_t eeprom_debug_address = 64;
+	int eeprom_number_of_records = 0;
+	uint32_t log_counter = 0;
 
-  /* USER CODE BEGIN SysInit */
+	// log debug
+	//****************************************
+	//int sin_counter = 0;
+	//double dt = 2.0*3.14/30.0;
+	// log debug
+	//****************************************
 
-  /* USER CODE END SysInit */
+	int actuator_counter = 0;
 
-  /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-  MX_ADC_Init();
-  MX_I2C1_Init();
-  MX_I2C2_Init();
-  MX_I2C3_Init();
-  MX_SPI1_Init();
-  MX_USART1_UART_Init();
-  /* USER CODE BEGIN 2 */
+	// debug!!!
+	//double P_sym = surface_pressure;
 
-  /* USER CODE END 2 */
 
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-  while (1)
-  {
-    /* USER CODE END WHILE */
+	if(!depth_switch_check_gpio())
+	{
+		// log mode
+  		ssd1306_Fill(Black);
+  	    ssd1306_SetCursor(0,0);
+	    sprintf(message, "log mode");
+  	    ssd1306_WriteString(message, Font_11x18, White);
+  	    ssd1306_SetCursor(0,22);
+	    sprintf(message, "download...");
+  	    ssd1306_WriteString(message, Font_11x18, White);
+  	    ssd1306_UpdateScreen();
 
-    /* USER CODE BEGIN 3 */
-  }
-  /* USER CODE END 3 */
+		while(1)
+		{
+		}
+	}
+	else
+	{
+
+		while (1)
+		{
+  
+  
+	    }// end while   
+
+	}// end if
 }
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 /**
   * @brief System Clock Configuration

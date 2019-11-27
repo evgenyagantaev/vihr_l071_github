@@ -63,7 +63,7 @@ int main(void)
     MX_GPIO_Init();
     MX_USART1_UART_Init();
   	MX_I2C1_Init();
-  	MX_I2C2_Init();
+  	//MX_I2C2_Init();
   	MX_I2C3_Init();
 
 
@@ -99,8 +99,8 @@ int main(void)
 	//---------------------------------
   	//HAL_Delay(100);
 	rtc_ds3231_set_i2c_handle(&hi2c3);
-	//rtc_ds3231_set_time(14, 9, 0);
-	//rtc_ds3231_set_date(12, 8, 19);
+	//rtc_ds3231_set_time(16, 40, 0);
+	//rtc_ds3231_set_date(22, 11, 19);
 	//at24c32_set_i2c_handle(&hi2c2);
 
 	one_second_timer_init();
