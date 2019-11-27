@@ -414,7 +414,381 @@ int main(void)
 
 		while (1)
 		{
-  
+			
+			//*
+	    	if(one_second_timer_get_flag())
+	    	{
+	    		one_second_timer_reset_flag();
+	    		odd_even = (odd_even+1)%2;
+  	    
+	    		pressure_sensor_measure_pressure_temperature();                                                                                                   	
+	    	    double P = pressure_sensor_get_pressure();
+	    	    double actual_temperature = pressure_sensor_get_temperature();
+                                                                                                                                                                  
+	    	    voltmeter_measure_voltage();
+	    	    double accu_voltage = voltmeter_get_voltage();
+	    	    double accu_percentage = voltmeter_get_percentage();
+	                                                                                                                                                              
+	    		rtc_ds3231_action();
+	    		// time-date calculation ----------------------------------------
+	    		uint8_t seconds, minutes, hours;
+	    		rtc_ds3231_get_time(&hours, &minutes, &seconds);
+	    		uint8_t date, month, year;
+	    		rtc_ds3231_get_date(&date, &month, &year);
+	    		//--------------------------------------------------------------
+              
+                                                                                                                                                                      
+	    		// debug!!!
+	    	  	//P_sym += 980;
+	    		//P = P_sym;
+                                                                                                                                                                      
+                                                                                                                                                                      
+	    		if(P <= surface_pressure)
+	    			surface_pressure = P;
+                                                                                                                                                                      
+	    		int we_are_under_water = 0;
+                                                                                                                                                                      
+	    		if(P > (surface_pressure + 9800)) // underwater
+	    			we_are_under_water = 1;
+                                                                                                                                                                      
+	    		if(!we_are_under_water)  // we are not under water
+	    		{
+	    			depth_switch_action();		    
+                                                                                                                                                                      
+	    			
+	    			if(actuator_counter == 0)
+	    			{
+	    				//ssd1306_Fill(Black);                                                                                         
+  	    	        	ssd1306_SetCursor(0,0);
+	    	        	//sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
+	    				if(odd_even)
+	    	        		sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
+	    				else
+	    	        		sprintf(timestamp, "%02d %02d %02d %02d", hours, minutes, date, month);
+  	    	        	ssd1306_WriteString(timestamp, Font_11x18, White);
+  	    	        	ssd1306_SetCursor(0,22);
+	    	        	sprintf(message, "AVAR GL %02dm", (int)depth_switch_get_current_depth());
+        
+  	    	        	ssd1306_WriteString(message, Font_11x18, White);
+  	    	        	ssd1306_SetCursor(0,44);
+	    	        	sprintf(message, "akkum %02d%%", (int)accu_percentage);
+	    	        	//sprintf(message, "akkum");
+  	    	        	ssd1306_WriteString(message, Font_11x18, White);
+  	    	        	ssd1306_UpdateScreen();                                                                               
+	    
+	    			}
+                                                                                                                                                                      
+	    			
+                                                                                                                                                                      
+	    		}
+	    		else // we are under water
+	    		{
+        
+	    			uint16_t data;
+                                                                                                                                                                      
+	    			log_counter++;
+                                                                                                                                                                      
+	    			// calculate depth
+	    			double depth = ((double)(P - surface_pressure))/9800.0;
+	    			if(depth > 1.0)
+	    				depth -= 1.0;
+	    			else
+	    				depth = 0.0;
+                                                                                                                                                                      
+	    			if(actuator_counter == 0)
+	    			{
+  	    	        	ssd1306_SetCursor(0,0);
+	    	        	//sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
+	    				if(odd_even)
+	    	        		sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
+	    				else
+	    	        		sprintf(timestamp, "%02d %02d %02d %02d", hours, minutes, date, month);
+	    	        	//sprintf(timestamp, "timestamp");
+  	    	        	ssd1306_WriteString(timestamp, Font_11x18, White);
+  	    	        	ssd1306_SetCursor(0,22);
+	    	        	//sprintf(message, "glubina %02dm", (int)depth);
+	    	        	sprintf(message, "gl--> %02d.%01dm", (int)depth, (int)((depth - (int)depth)*10.0));
+  	    	        	ssd1306_WriteString(message, Font_11x18, White);
+  	    	        	ssd1306_SetCursor(0,44);
+	    	        	sprintf(message, "akkum %02d%%", (int)accu_percentage);
+  	    	        	ssd1306_WriteString(message, Font_11x18, White);
+  	    	        	ssd1306_UpdateScreen();  
+                                                                                                                                                                      
+	    			}
+                                                                                                                                                                      
+	    			// log depth
+	    			//--------------------------------------------------------------------------
+	    			uint8_t b0;
+	    			int write_delay = 5;
+	    			static I2C_HandleTypeDef *at24c32_i2c_handle = &hi2c2;
+                                                                                                                                                                      
+	    			if(eeprom_number_of_records == 0)
+	    			{
+	    				// no records yet
+	    				
+	    				// read memory bank id
+	    				HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, 0, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);	
+                                                                                                                                                                      
+	    				if(b0 == 1)   // pishem v bank 1
+	    				{
+	    					// pri sleduyuschem zapuske budem pisat' v bank 0
+	    					b0 = 0;
+	    					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, 0, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    					HAL_Delay(write_delay);
+                                                                                                                                                                      
+	    					// nastraivaem address i2c banka pamyati (nomer 1)
+	    					at24c32_shifted_address = 0x51 << 1;
+	    				}
+	    				else
+	    				{
+	    					// pri sleduyuschem zapuske budem pisat' v bank 1
+	    					b0 = 1;
+	    					HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, 0, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    					HAL_Delay(write_delay);
+	    				}
+                                                                                                                                                                      
+                                                                                                                                                                      
+	    				// write timestamp
+	    	        	sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
+	    				b0 = timestamp[0];
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+	    				b0 = timestamp[1];
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+	    				b0 = timestamp[3];
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+	    				b0 = timestamp[4];
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+	    				//b0 = ' ';
+	    				//HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				//HAL_Delay(write_delay);
+	    				//eeprom_debug_address++;
+	    				b0 = timestamp[6];
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+	    				b0 = timestamp[7];
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+	    				b0 = timestamp[9];
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+	    				b0 = timestamp[10];
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+	    				//b0 = ' ';
+	    				//HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				//HAL_Delay(write_delay);
+	    				//eeprom_debug_address++;
+                                                                                                                                                                      
+                                                                                                                                                                      
+                                                                                                                                                                      
+	    				// write first depth record
+	    	        	sprintf(message, "%02d.%01d", (int)depth, (int)((depth - (int)depth)*10.0));
+	    	       		sprintf(temperature_message, "%02d", (int)(actual_temperature/100.0));
+	    				b0 = message[0];
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+	    				b0 = message[1];
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+	    				//b0 = message[2];
+	    				//HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				//HAL_Delay(write_delay);
+	    				//eeprom_debug_address++;
+	    				b0 = message[3];
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+	    				b0 = temperature_message[0];
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+	    				b0 = temperature_message[1];
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+	    				b0 = 0;
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+	    				b0 = 0;
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address--;
+	    				eeprom_number_of_records++;
+                                                                                                                                                                      
+	    			}
+	    			else
+	    			{
+	    				// there are depth records
+                                                                                                                                                                      
+	    				// write new record
+	    				b0 = 0;
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address + 5, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address + 6, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_number_of_records++;
+	    	        	sprintf(message, "%02d.%01d", (int)depth, (int)((depth - (int)depth)*10.0));
+	    	       		sprintf(temperature_message, "%02d", (int)(actual_temperature/100.0));
+	    				b0 = message[0];
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+	    				b0 = message[1];
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+	    				//b0 = message[2];
+	    				//HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				//HAL_Delay(write_delay);
+	    				//eeprom_debug_address++;
+	    				b0 = message[3];
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+	    				b0 = temperature_message[0];
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+	    				b0 = temperature_message[1];
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+                                                                                                                                                                      
+	    			}
+                                                                                                                                                                      
+                                                                                                                                                                      
+                                                                                                                                                                      
+                                                                                                                                                                      
+                                                                                                                                                                      
+	    			//--------------------------------------------------------------------------
+                                                                                                                                                                      
+	    			if((actuator_counter > 0) && (actuator_counter < 100))
+	    			{
+	    				if(actuator_counter >= 21)
+	    				{
+	    					// switch off actuators
+  	    					HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11 | GPIO_PIN_12, GPIO_PIN_RESET);// turn actuators off
+	    					actuator_counter = 100;
+	    				}
+	    				else
+	    				{
+	    					actuator_counter++;
+	    				}
+	    			}
+                                                                                                                                                                      
+                                                                                                                                                                      
+	    			if((depth >= (depth_switch_get_current_depth())) && actuator_counter == 0)
+	    			{
+                                                                                                                                                                      
+	    				actuator_counter++;
+	    				// switch on actuators
+  	    				HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11 | GPIO_PIN_12, GPIO_PIN_SET);// turn actuators on
+                                                                                                                                                                      
+	    				// switch on signal leds
+  	    				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3, GPIO_PIN_SET);// turn leds off
+                                                                                                                                                                      
+                                                                                                                                                                      
+	    				// save info about activation conditions (time, depth, etc)
+	    				ssd1306_Fill(Black);
+  	    	        	ssd1306_SetCursor(0,0);
+	    	        	sprintf(timestamp, "%02d:%02d %02d.%02d", hours, minutes, date, month);
+	    	        	//sprintf(timestamp, "timestamp");
+  	    	        	ssd1306_WriteString(timestamp, Font_11x18, White);
+  	    	        	ssd1306_SetCursor(0,22);
+	    	        	sprintf(message, ">>>>> %02dm", (int)depth);
+  	    	        	ssd1306_WriteString(message, Font_11x18, White);
+  	    	        	//ssd1306_SetCursor(0,44);
+	    	        	//sprintf(message, "activated!!!");
+  	    	        	//ssd1306_WriteString(message, Font_11x18, White);
+  	    	        	ssd1306_UpdateScreen();   
+                                                                                                                                                                      
+                                                                                                                                                                      
+	    				// write depth of activation 
+	    	        	//sprintf(message, "%02d", (int)depth);
+	    	        	sprintf(message, "%02d.%01d", (int)depth, (int)((depth - (int)depth)*10.0));
+	    	       		sprintf(temperature_message, "%02d", (int)(actual_temperature/100.0));
+	    				b0 = message[0];
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+	    				b0 = message[1];
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+	    				//b0 = message[2];
+	    				//HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				//HAL_Delay(write_delay);
+	    				//eeprom_debug_address++;
+	    				b0 = message[3];
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+	    				b0 = temperature_message[0];
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+	    				b0 = temperature_message[1];
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+	    				b0 = '$';
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+	    				b0 = '$';
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+	    				eeprom_number_of_records++;
+	    				b0 = '$';
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+	    				eeprom_number_of_records++;
+	    				b0 = '$';
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+	    				eeprom_number_of_records++;
+	    				b0 = '$';
+	    				HAL_I2C_Mem_Write(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);
+	    				HAL_Delay(write_delay);
+	    				eeprom_debug_address++;
+	    				eeprom_number_of_records++;
+                                                                                                                                                                      
+	    				// pause 21 sec
+	    				//HAL_Delay(21000);
+                                                                                                                                                                      
+                                                                                                                                                                      
+	    				// switch off actuators
+  	    				//HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11 | GPIO_PIN_12, GPIO_PIN_RESET);// turn actuators off
+                                                                                                                                                                      
+	    				// stop
+	    				//while(1);
+	    			}
+                                                                                                                                                                      
+	    
+	    		}// end if(!we_are_under_water)  // we are not under water
+                
+	    	}// end if(one_second_timer_get_flag())
+            //*/                                                                                                                                                          
+
+
   
 	    }// end while   
 
