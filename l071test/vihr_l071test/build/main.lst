@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccFZI1vR.s 			page 1
+ARM GAS  /tmp/ccr4XUhA.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccFZI1vR.s 			page 1
   31:Src/main.c    **** #include "ssd1306.h"
   32:Src/main.c    **** 
   33:Src/main.c    **** #include "one_second_timer_interface.h"
-ARM GAS  /tmp/ccFZI1vR.s 			page 2
+ARM GAS  /tmp/ccr4XUhA.s 			page 2
 
 
   34:Src/main.c    **** #include "pressure_sensor_object.h"
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccFZI1vR.s 			page 1
   88:Src/main.c    ****   
   89:Src/main.c    **** 	rtc_ds3231_set_i2c_handle(&hi2c3);
   90:Src/main.c    **** 	//rtc_ds3231_set_time(16, 40, 0);
-ARM GAS  /tmp/ccFZI1vR.s 			page 3
+ARM GAS  /tmp/ccr4XUhA.s 			page 3
 
 
   91:Src/main.c    **** 	//rtc_ds3231_set_date(22, 11, 19);
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccFZI1vR.s 			page 1
  145:Src/main.c    **** 
  146:Src/main.c    **** 	if(!depth_switch_check_gpio())
  147:Src/main.c    **** 	{
-ARM GAS  /tmp/ccFZI1vR.s 			page 4
+ARM GAS  /tmp/ccr4XUhA.s 			page 4
 
 
  148:Src/main.c    **** 		// log mode
@@ -191,40 +191,305 @@ ARM GAS  /tmp/ccFZI1vR.s 			page 1
  155:Src/main.c    ****   	    ssd1306_WriteString(message, Font_11x18, White);
  156:Src/main.c    ****   	    ssd1306_UpdateScreen();
  157:Src/main.c    **** 
- 158:Src/main.c    **** 		while(1)
- 159:Src/main.c    **** 		{
- 160:Src/main.c    **** 		}
- 161:Src/main.c    **** 	}
- 162:Src/main.c    **** 	else
- 163:Src/main.c    **** 	{
- 164:Src/main.c    **** 
- 165:Src/main.c    **** 		while (1)
- 166:Src/main.c    **** 		{
- 167:Src/main.c    ****   
- 168:Src/main.c    ****   
- 169:Src/main.c    **** 	    }// end while   
- 170:Src/main.c    **** 
- 171:Src/main.c    **** 	}// end if
- 172:Src/main.c    **** }
- 173:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 174:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 175:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 176:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 177:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 178:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 179:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 180:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 181:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 182:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 183:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 184:Src/main.c    **** 
- 185:Src/main.c    **** /**
- 186:Src/main.c    ****   * @brief System Clock Configuration
- 187:Src/main.c    ****   * @retval None
- 188:Src/main.c    ****   */
- 189:Src/main.c    **** void SystemClock_Config(void)
- 190:Src/main.c    **** {
-  26              		.loc 1 190 0
+ 158:Src/main.c    **** 
+ 159:Src/main.c    **** 
+ 160:Src/main.c    **** 	//*
+ 161:Src/main.c    **** 	int end_of_log_reached = 0;
+ 162:Src/main.c    **** 	HAL_Delay(1000);
+ 163:Src/main.c    **** 	uint16_t eeprom_debug_address = 64;
+ 164:Src/main.c    **** 	uint8_t b0;
+ 165:Src/main.c    **** 	uint8_t at24c32_shifted_address = 0x50 << 1;
+ 166:Src/main.c    **** 	static I2C_HandleTypeDef *at24c32_i2c_handle = &hi2c2;
+ 167:Src/main.c    **** 
+ 168:Src/main.c    **** 	sprintf(message, "\r\n");
+ 169:Src/main.c    **** 	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+ 170:Src/main.c    **** 	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+ 171:Src/main.c    **** 	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+ 172:Src/main.c    **** 
+ 173:Src/main.c    **** 	sprintf(message, "log bank 1 start\r\n***********\r\n");
+ 174:Src/main.c    **** 	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+ 175:Src/main.c    **** 
+ 176:Src/main.c    **** 	// read timestamp time
+ 177:Src/main.c    **** 	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZ
+ 178:Src/main.c    **** 	message[0] = b0;                                                                                  
+ 179:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 180:Src/main.c    ****                                                                                                    
+ 181:Src/main.c    **** 	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZ
+ 182:Src/main.c    **** 	message[1] = b0;                                                                                  
+ 183:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 184:Src/main.c    ****                                                                                                    
+ 185:Src/main.c    **** 	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZ
+ 186:Src/main.c    **** 	message[2] = b0;                                                                                  
+ 187:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 188:Src/main.c    ****                                                                                                    
+ 189:Src/main.c    **** 	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZ
+ 190:Src/main.c    **** 	message[3] = b0;                                                                                  
+ 191:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 192:Src/main.c    ****                                                                                                    
+ 193:Src/main.c    **** 	if((message[0] == 0) && (message[1] == 0))                                                        
+ 194:Src/main.c    **** 	{                                                                                                 
+ 195:Src/main.c    **** 		end_of_log_reached = 1;                                                                          
+ 196:Src/main.c    **** 	}                                                                                                 
+ 197:Src/main.c    **** 	else                                                                                              
+ 198:Src/main.c    **** 	{                                                                                                 
+ 199:Src/main.c    **** 		message[4] = '\r';                                                                               
+ 200:Src/main.c    **** 		message[5] = '\n';                                                                               
+ 201:Src/main.c    **** 		message[6] = 0;                                                                                  
+ 202:Src/main.c    **** 		HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);              
+ 203:Src/main.c    **** 	}                                                                                                 
+ 204:Src/main.c    **** 	// read timestamp date
+ARM GAS  /tmp/ccr4XUhA.s 			page 5
+
+
+ 205:Src/main.c    **** 	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZ
+ 206:Src/main.c    **** 	message[0] = b0;                                                                                  
+ 207:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 208:Src/main.c    ****                                                                                                    
+ 209:Src/main.c    **** 	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZ
+ 210:Src/main.c    **** 	message[1] = b0;                                                                                  
+ 211:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 212:Src/main.c    ****                                                                                                    
+ 213:Src/main.c    **** 	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZ
+ 214:Src/main.c    **** 	message[2] = b0;                                                                                  
+ 215:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 216:Src/main.c    ****                                                                                                    
+ 217:Src/main.c    **** 	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZ
+ 218:Src/main.c    **** 	message[3] = b0;                                                                                  
+ 219:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 220:Src/main.c    ****                                                                                                    
+ 221:Src/main.c    **** 	if((message[0] == 0) && (message[1] == 0))                                                        
+ 222:Src/main.c    **** 	{                                                                                                 
+ 223:Src/main.c    **** 		end_of_log_reached = 1;                                                                          
+ 224:Src/main.c    **** 	}                                                                                                 
+ 225:Src/main.c    **** 	else                                                                                              
+ 226:Src/main.c    **** 	{                                                                                                 
+ 227:Src/main.c    **** 		message[4] = '\r';                                                                               
+ 228:Src/main.c    **** 		message[5] = '\n';                                                                               
+ 229:Src/main.c    **** 		message[6] = 0;                                                                                  
+ 230:Src/main.c    **** 		HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);              
+ 231:Src/main.c    **** 	}                                                                                                 
+ 232:Src/main.c    **** 	
+ 233:Src/main.c    **** 	while(!end_of_log_reached)
+ 234:Src/main.c    **** 	{
+ 235:Src/main.c    **** 
+ 236:Src/main.c    **** 		HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SI
+ 237:Src/main.c    **** 		message[0] = b0;                                                                                 
+ 238:Src/main.c    **** 		eeprom_debug_address++;                                                                          
+ 239:Src/main.c    **** 		HAL_Delay(3);
+ 240:Src/main.c    **** 
+ 241:Src/main.c    **** 		HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SI
+ 242:Src/main.c    **** 		message[1] = b0;                                                                                 
+ 243:Src/main.c    **** 		eeprom_debug_address++;                                                                          
+ 244:Src/main.c    **** 
+ 245:Src/main.c    **** 		message[2] = '.';                                                                                
+ 246:Src/main.c    **** 
+ 247:Src/main.c    **** 		HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SI
+ 248:Src/main.c    **** 		message[3] = b0;                                                                                 
+ 249:Src/main.c    **** 		eeprom_debug_address++;                                                                          
+ 250:Src/main.c    **** 
+ 251:Src/main.c    **** 		message[4] = ' ';                                                                                
+ 252:Src/main.c    **** 
+ 253:Src/main.c    **** 		HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SI
+ 254:Src/main.c    **** 		message[5] = b0;                                                                                 
+ 255:Src/main.c    **** 		eeprom_debug_address++;                                                                          
+ 256:Src/main.c    **** 		
+ 257:Src/main.c    **** 		HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SI
+ 258:Src/main.c    **** 		message[6] = b0;                                                                                 
+ 259:Src/main.c    **** 		eeprom_debug_address++;                                                                          
+ 260:Src/main.c    **** 
+ 261:Src/main.c    **** 		if((message[0] == 0) && (message[1] == 0))
+ARM GAS  /tmp/ccr4XUhA.s 			page 6
+
+
+ 262:Src/main.c    **** 		{
+ 263:Src/main.c    **** 			end_of_log_reached = 1;
+ 264:Src/main.c    **** 		}
+ 265:Src/main.c    **** 		else
+ 266:Src/main.c    **** 		{
+ 267:Src/main.c    **** 			message[7] = '\r';                                                                              
+ 268:Src/main.c    **** 			message[8] = '\n';                                                                              
+ 269:Src/main.c    **** 			message[9] = 0;                                                                                 
+ 270:Src/main.c    **** 			HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);             
+ 271:Src/main.c    **** 		}
+ 272:Src/main.c    **** 	}
+ 273:Src/main.c    **** 	
+ 274:Src/main.c    **** 	sprintf(message, "\r\n");
+ 275:Src/main.c    **** 	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+ 276:Src/main.c    **** 	sprintf(message, "**********\r\nlog bank 1 finish\r\n");
+ 277:Src/main.c    **** 	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+ 278:Src/main.c    **** 
+ 279:Src/main.c    **** 
+ 280:Src/main.c    **** 	eeprom_debug_address = 64;
+ 281:Src/main.c    **** 	at24c32_shifted_address = 0x51 << 1;
+ 282:Src/main.c    **** 
+ 283:Src/main.c    **** 	sprintf(message, "\r\n");
+ 284:Src/main.c    **** 	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+ 285:Src/main.c    **** 	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+ 286:Src/main.c    **** 	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+ 287:Src/main.c    **** 
+ 288:Src/main.c    **** 	sprintf(message, "log bank 2 start\r\n***********\r\n");
+ 289:Src/main.c    **** 	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+ 290:Src/main.c    **** 
+ 291:Src/main.c    **** 	end_of_log_reached = 0;
+ 292:Src/main.c    **** 
+ 293:Src/main.c    **** 
+ 294:Src/main.c    **** 	// read timestamp time
+ 295:Src/main.c    **** 	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZ
+ 296:Src/main.c    **** 	message[0] = b0;                                                                                  
+ 297:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 298:Src/main.c    ****                                                                                                    
+ 299:Src/main.c    **** 	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZ
+ 300:Src/main.c    **** 	message[1] = b0;                                                                                  
+ 301:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 302:Src/main.c    ****                                                                                                    
+ 303:Src/main.c    **** 	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZ
+ 304:Src/main.c    **** 	message[2] = b0;                                                                                  
+ 305:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 306:Src/main.c    ****                                                                                                    
+ 307:Src/main.c    **** 	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZ
+ 308:Src/main.c    **** 	message[3] = b0;                                                                                  
+ 309:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 310:Src/main.c    ****                                                                                                    
+ 311:Src/main.c    **** 	if((message[0] == 0) && (message[1] == 0))                                                        
+ 312:Src/main.c    **** 	{                                                                                                 
+ 313:Src/main.c    **** 		end_of_log_reached = 1;                                                                          
+ 314:Src/main.c    **** 	}                                                                                                 
+ 315:Src/main.c    **** 	else                                                                                              
+ 316:Src/main.c    **** 	{                                                                                                 
+ 317:Src/main.c    **** 		message[4] = '\r';                                                                               
+ 318:Src/main.c    **** 		message[5] = '\n';                                                                               
+ARM GAS  /tmp/ccr4XUhA.s 			page 7
+
+
+ 319:Src/main.c    **** 		message[6] = 0;                                                                                  
+ 320:Src/main.c    **** 		HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);              
+ 321:Src/main.c    **** 	}                                                                                                 
+ 322:Src/main.c    **** 	// read timestamp date
+ 323:Src/main.c    **** 	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZ
+ 324:Src/main.c    **** 	message[0] = b0;                                                                                  
+ 325:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 326:Src/main.c    ****                                                                                                    
+ 327:Src/main.c    **** 	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZ
+ 328:Src/main.c    **** 	message[1] = b0;                                                                                  
+ 329:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 330:Src/main.c    ****                                                                                                    
+ 331:Src/main.c    **** 	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZ
+ 332:Src/main.c    **** 	message[2] = b0;                                                                                  
+ 333:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 334:Src/main.c    ****                                                                                                    
+ 335:Src/main.c    **** 	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZ
+ 336:Src/main.c    **** 	message[3] = b0;                                                                                  
+ 337:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 338:Src/main.c    ****                                                                                                    
+ 339:Src/main.c    **** 	if((message[0] == 0) && (message[1] == 0))                                                        
+ 340:Src/main.c    **** 	{                                                                                                 
+ 341:Src/main.c    **** 		end_of_log_reached = 1;                                                                          
+ 342:Src/main.c    **** 	}                                                                                                 
+ 343:Src/main.c    **** 	else                                                                                              
+ 344:Src/main.c    **** 	{                                                                                                 
+ 345:Src/main.c    **** 		message[4] = '\r';                                                                               
+ 346:Src/main.c    **** 		message[5] = '\n';                                                                               
+ 347:Src/main.c    **** 		message[6] = 0;                                                                                  
+ 348:Src/main.c    **** 		HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);              
+ 349:Src/main.c    **** 	}                                                                                                 
+ 350:Src/main.c    **** 
+ 351:Src/main.c    **** 
+ 352:Src/main.c    **** 	while(!end_of_log_reached)
+ 353:Src/main.c    **** 	{
+ 354:Src/main.c    **** 
+ 355:Src/main.c    **** 		HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SI
+ 356:Src/main.c    **** 		message[0] = b0;                                                                                 
+ 357:Src/main.c    **** 		eeprom_debug_address++;                                                                          
+ 358:Src/main.c    **** 		HAL_Delay(3);
+ 359:Src/main.c    **** 
+ 360:Src/main.c    **** 		HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SI
+ 361:Src/main.c    **** 		message[1] = b0;                                                                                 
+ 362:Src/main.c    **** 		eeprom_debug_address++;                                                                          
+ 363:Src/main.c    **** 
+ 364:Src/main.c    **** 		message[2] = '.';                                                                                
+ 365:Src/main.c    **** 
+ 366:Src/main.c    **** 		HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SI
+ 367:Src/main.c    **** 		message[3] = b0;                                                                                 
+ 368:Src/main.c    **** 		eeprom_debug_address++;                                                                          
+ 369:Src/main.c    **** 
+ 370:Src/main.c    **** 		message[4] = ' ';                                                                                
+ 371:Src/main.c    **** 
+ 372:Src/main.c    **** 		HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SI
+ 373:Src/main.c    **** 		message[5] = b0;                                                                                 
+ 374:Src/main.c    **** 		eeprom_debug_address++;                                                                          
+ 375:Src/main.c    **** 		
+ARM GAS  /tmp/ccr4XUhA.s 			page 8
+
+
+ 376:Src/main.c    **** 		HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SI
+ 377:Src/main.c    **** 		message[6] = b0;                                                                                 
+ 378:Src/main.c    **** 		eeprom_debug_address++;                                                                          
+ 379:Src/main.c    **** 
+ 380:Src/main.c    **** 		if((message[0] == 0) && (message[1] == 0))
+ 381:Src/main.c    **** 		{
+ 382:Src/main.c    **** 			end_of_log_reached = 1;
+ 383:Src/main.c    **** 		}
+ 384:Src/main.c    **** 		else
+ 385:Src/main.c    **** 		{
+ 386:Src/main.c    **** 			message[7] = '\r';                                                                              
+ 387:Src/main.c    **** 			message[8] = '\n';                                                                              
+ 388:Src/main.c    **** 			message[9] = 0;                                                                                 
+ 389:Src/main.c    **** 			HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);             
+ 390:Src/main.c    **** 		}
+ 391:Src/main.c    **** 	}
+ 392:Src/main.c    **** 	
+ 393:Src/main.c    **** 	sprintf(message, "\r\n");
+ 394:Src/main.c    **** 	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+ 395:Src/main.c    **** 	sprintf(message, "**********\r\nlog bank 2 finish\r\n");
+ 396:Src/main.c    **** 	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+ 397:Src/main.c    **** 
+ 398:Src/main.c    **** 	//*/
+ 399:Src/main.c    **** 
+ 400:Src/main.c    **** 
+ 401:Src/main.c    **** 		while(1)
+ 402:Src/main.c    **** 		{
+ 403:Src/main.c    **** 		}
+ 404:Src/main.c    **** 
+ 405:Src/main.c    **** 
+ 406:Src/main.c    **** 
+ 407:Src/main.c    **** 
+ 408:Src/main.c    **** 
+ 409:Src/main.c    **** 
+ 410:Src/main.c    **** 
+ 411:Src/main.c    **** 	}
+ 412:Src/main.c    **** 	else
+ 413:Src/main.c    **** 	{
+ 414:Src/main.c    **** 
+ 415:Src/main.c    **** 		while (1)
+ 416:Src/main.c    **** 		{
+ 417:Src/main.c    ****   
+ 418:Src/main.c    ****   
+ 419:Src/main.c    **** 	    }// end while   
+ 420:Src/main.c    **** 
+ 421:Src/main.c    **** 	}// end if
+ 422:Src/main.c    **** }
+ 423:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 424:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 425:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 426:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 427:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 428:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 429:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 430:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 431:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 432:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ARM GAS  /tmp/ccr4XUhA.s 			page 9
+
+
+ 433:Src/main.c    **** //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 434:Src/main.c    **** 
+ 435:Src/main.c    **** /**
+ 436:Src/main.c    ****   * @brief System Clock Configuration
+ 437:Src/main.c    ****   * @retval None
+ 438:Src/main.c    ****   */
+ 439:Src/main.c    **** void SystemClock_Config(void)
+ 440:Src/main.c    **** {
+  26              		.loc 1 440 0
   27              		.cfi_startproc
   28 0000 10B5     		push	{r4, lr}
   29              	.LCFI0:
@@ -234,13 +499,10 @@ ARM GAS  /tmp/ccFZI1vR.s 			page 1
   33 0002 9AB0     		sub	sp, sp, #104
   34              	.LCFI1:
   35              		.cfi_def_cfa_offset 112
- 191:Src/main.c    ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
-  36              		.loc 1 191 0
+ 441:Src/main.c    ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  36              		.loc 1 441 0
   37 0004 0024     		mov	r4, #0
   38 0006 0D94     		str	r4, [sp, #52]
-ARM GAS  /tmp/ccFZI1vR.s 			page 5
-
-
   39 0008 0E94     		str	r4, [sp, #56]
   40 000a 0F94     		str	r4, [sp, #60]
   41 000c 1094     		str	r4, [sp, #64]
@@ -253,15 +515,15 @@ ARM GAS  /tmp/ccFZI1vR.s 			page 1
   48 001a 1794     		str	r4, [sp, #92]
   49 001c 1894     		str	r4, [sp, #96]
   50 001e 1994     		str	r4, [sp, #100]
- 192:Src/main.c    ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
-  51              		.loc 1 192 0
+ 442:Src/main.c    ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+  51              		.loc 1 442 0
   52 0020 0894     		str	r4, [sp, #32]
   53 0022 0994     		str	r4, [sp, #36]
   54 0024 0A94     		str	r4, [sp, #40]
   55 0026 0B94     		str	r4, [sp, #44]
   56 0028 0C94     		str	r4, [sp, #48]
- 193:Src/main.c    ****   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
-  57              		.loc 1 193 0
+ 443:Src/main.c    ****   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
+  57              		.loc 1 443 0
   58 002a 0094     		str	r4, [sp]
   59 002c 0194     		str	r4, [sp, #4]
   60 002e 0294     		str	r4, [sp, #8]
@@ -270,12 +532,15 @@ ARM GAS  /tmp/ccFZI1vR.s 			page 1
   63 0034 0594     		str	r4, [sp, #20]
   64 0036 0694     		str	r4, [sp, #24]
   65 0038 0794     		str	r4, [sp, #28]
- 194:Src/main.c    **** 
- 195:Src/main.c    ****   /** Configure the main internal regulator output voltage 
- 196:Src/main.c    ****   */
- 197:Src/main.c    ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
-  66              		.loc 1 197 0
+ 444:Src/main.c    **** 
+ 445:Src/main.c    ****   /** Configure the main internal regulator output voltage 
+ 446:Src/main.c    ****   */
+ 447:Src/main.c    ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+  66              		.loc 1 447 0
   67 003a 144A     		ldr	r2, .L2
+ARM GAS  /tmp/ccr4XUhA.s 			page 10
+
+
   68 003c 1168     		ldr	r1, [r2]
   69 003e 144B     		ldr	r3, .L2+4
   70 0040 0B40     		and	r3, r1
@@ -283,95 +548,92 @@ ARM GAS  /tmp/ccFZI1vR.s 			page 1
   72 0044 0901     		lsl	r1, r1, #4
   73 0046 0B43     		orr	r3, r1
   74 0048 1360     		str	r3, [r2]
- 198:Src/main.c    ****   /** Initializes the CPU, AHB and APB busses clocks 
- 199:Src/main.c    ****   */
- 200:Src/main.c    ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_MSI;
-  75              		.loc 1 200 0
+ 448:Src/main.c    ****   /** Initializes the CPU, AHB and APB busses clocks 
+ 449:Src/main.c    ****   */
+ 450:Src/main.c    ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_MSI;
+  75              		.loc 1 450 0
   76 004a 1023     		mov	r3, #16
   77 004c 0D93     		str	r3, [sp, #52]
- 201:Src/main.c    ****   RCC_OscInitStruct.MSIState = RCC_MSI_ON;
-  78              		.loc 1 201 0
+ 451:Src/main.c    ****   RCC_OscInitStruct.MSIState = RCC_MSI_ON;
+  78              		.loc 1 451 0
   79 004e 0F3B     		sub	r3, r3, #15
   80 0050 1393     		str	r3, [sp, #76]
- 202:Src/main.c    ****   RCC_OscInitStruct.MSICalibrationValue = 0;
-  81              		.loc 1 202 0
+ 452:Src/main.c    ****   RCC_OscInitStruct.MSICalibrationValue = 0;
+  81              		.loc 1 452 0
   82 0052 1494     		str	r4, [sp, #80]
- 203:Src/main.c    ****   RCC_OscInitStruct.MSIClockRange = RCC_MSIRANGE_5;
-  83              		.loc 1 203 0
-ARM GAS  /tmp/ccFZI1vR.s 			page 6
-
-
+ 453:Src/main.c    ****   RCC_OscInitStruct.MSIClockRange = RCC_MSIRANGE_5;
+  83              		.loc 1 453 0
   84 0054 A023     		mov	r3, #160
   85 0056 1B02     		lsl	r3, r3, #8
   86 0058 1593     		str	r3, [sp, #84]
- 204:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
-  87              		.loc 1 204 0
+ 454:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+  87              		.loc 1 454 0
   88 005a 1694     		str	r4, [sp, #88]
- 205:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-  89              		.loc 1 205 0
+ 455:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  89              		.loc 1 455 0
   90 005c 0DA8     		add	r0, sp, #52
   91 005e FFF7FEFF 		bl	HAL_RCC_OscConfig
   92              	.LVL0:
- 206:Src/main.c    ****   {
- 207:Src/main.c    ****     Error_Handler();
- 208:Src/main.c    ****   }
- 209:Src/main.c    ****   /** Initializes the CPU, AHB and APB busses clocks 
- 210:Src/main.c    ****   */
- 211:Src/main.c    ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-  93              		.loc 1 211 0
+ 456:Src/main.c    ****   {
+ 457:Src/main.c    ****     Error_Handler();
+ 458:Src/main.c    ****   }
+ 459:Src/main.c    ****   /** Initializes the CPU, AHB and APB busses clocks 
+ 460:Src/main.c    ****   */
+ 461:Src/main.c    ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+  93              		.loc 1 461 0
   94 0062 0F23     		mov	r3, #15
   95 0064 0893     		str	r3, [sp, #32]
- 212:Src/main.c    ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
- 213:Src/main.c    ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_MSI;
-  96              		.loc 1 213 0
+ 462:Src/main.c    ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+ 463:Src/main.c    ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_MSI;
+  96              		.loc 1 463 0
   97 0066 0994     		str	r4, [sp, #36]
- 214:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  98              		.loc 1 214 0
+ 464:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  98              		.loc 1 464 0
   99 0068 0A94     		str	r4, [sp, #40]
- 215:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
- 100              		.loc 1 215 0
+ 465:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+ 100              		.loc 1 465 0
  101 006a 0B94     		str	r4, [sp, #44]
- 216:Src/main.c    ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
- 102              		.loc 1 216 0
+ 466:Src/main.c    ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+ 102              		.loc 1 466 0
  103 006c 0C94     		str	r4, [sp, #48]
- 217:Src/main.c    **** 
- 218:Src/main.c    ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
- 104              		.loc 1 218 0
+ 467:Src/main.c    **** 
+ 468:Src/main.c    ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
+ARM GAS  /tmp/ccr4XUhA.s 			page 11
+
+
+ 104              		.loc 1 468 0
  105 006e 08A8     		add	r0, sp, #32
  106 0070 0021     		mov	r1, #0
  107 0072 FFF7FEFF 		bl	HAL_RCC_ClockConfig
  108              	.LVL1:
- 219:Src/main.c    ****   {
- 220:Src/main.c    ****     Error_Handler();
- 221:Src/main.c    ****   }
- 222:Src/main.c    ****   PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART1|RCC_PERIPHCLK_I2C1
- 109              		.loc 1 222 0
+ 469:Src/main.c    ****   {
+ 470:Src/main.c    ****     Error_Handler();
+ 471:Src/main.c    ****   }
+ 472:Src/main.c    ****   PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART1|RCC_PERIPHCLK_I2C1
+ 109              		.loc 1 472 0
  110 0076 0A23     		mov	r3, #10
  111 0078 FF33     		add	r3, r3, #255
  112 007a 0093     		str	r3, [sp]
- 223:Src/main.c    ****                               |RCC_PERIPHCLK_I2C3;
- 224:Src/main.c    ****   PeriphClkInit.Usart1ClockSelection = RCC_USART1CLKSOURCE_PCLK2;
- 113              		.loc 1 224 0
+ 473:Src/main.c    ****                               |RCC_PERIPHCLK_I2C3;
+ 474:Src/main.c    ****   PeriphClkInit.Usart1ClockSelection = RCC_USART1CLKSOURCE_PCLK2;
+ 113              		.loc 1 474 0
  114 007c 0294     		str	r4, [sp, #8]
- 225:Src/main.c    ****   PeriphClkInit.I2c1ClockSelection = RCC_I2C1CLKSOURCE_PCLK1;
- 115              		.loc 1 225 0
+ 475:Src/main.c    ****   PeriphClkInit.I2c1ClockSelection = RCC_I2C1CLKSOURCE_PCLK1;
+ 115              		.loc 1 475 0
  116 007e 0594     		str	r4, [sp, #20]
- 226:Src/main.c    ****   PeriphClkInit.I2c3ClockSelection = RCC_I2C3CLKSOURCE_PCLK1;
- 117              		.loc 1 226 0
-ARM GAS  /tmp/ccFZI1vR.s 			page 7
-
-
+ 476:Src/main.c    ****   PeriphClkInit.I2c3ClockSelection = RCC_I2C3CLKSOURCE_PCLK1;
+ 117              		.loc 1 476 0
  118 0080 0694     		str	r4, [sp, #24]
- 227:Src/main.c    ****   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
- 119              		.loc 1 227 0
+ 477:Src/main.c    ****   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
+ 119              		.loc 1 477 0
  120 0082 6846     		mov	r0, sp
  121 0084 FFF7FEFF 		bl	HAL_RCCEx_PeriphCLKConfig
  122              	.LVL2:
- 228:Src/main.c    ****   {
- 229:Src/main.c    ****     Error_Handler();
- 230:Src/main.c    ****   }
- 231:Src/main.c    **** }
- 123              		.loc 1 231 0
+ 478:Src/main.c    ****   {
+ 479:Src/main.c    ****     Error_Handler();
+ 480:Src/main.c    ****   }
+ 481:Src/main.c    **** }
+ 123              		.loc 1 481 0
  124 0088 1AB0     		add	sp, sp, #104
  125              		@ sp needed
  126 008a 10BD     		pop	{r4, pc}
@@ -392,361 +654,1543 @@ ARM GAS  /tmp/ccFZI1vR.s 			page 1
   65:Src/main.c    **** 
  143              		.loc 1 65 0
  144              		.cfi_startproc
- 145 0000 70B5     		push	{r4, r5, r6, lr}
+ 145 0000 F0B5     		push	{r4, r5, r6, r7, lr}
  146              	.LCFI2:
- 147              		.cfi_def_cfa_offset 16
- 148              		.cfi_offset 4, -16
- 149              		.cfi_offset 5, -12
- 150              		.cfi_offset 6, -8
- 151              		.cfi_offset 14, -4
+ 147              		.cfi_def_cfa_offset 20
+ 148              		.cfi_offset 4, -20
+ARM GAS  /tmp/ccr4XUhA.s 			page 12
+
+
+ 149              		.cfi_offset 5, -16
+ 150              		.cfi_offset 6, -12
+ 151              		.cfi_offset 7, -8
+ 152              		.cfi_offset 14, -4
+ 153 0002 5746     		mov	r7, r10
+ 154 0004 4E46     		mov	r6, r9
+ 155 0006 C0B4     		push	{r6, r7}
+ 156              	.LCFI3:
+ 157              		.cfi_def_cfa_offset 28
+ 158              		.cfi_offset 9, -28
+ 159              		.cfi_offset 10, -24
+ 160 0008 87B0     		sub	sp, sp, #28
+ 161              	.LCFI4:
+ 162              		.cfi_def_cfa_offset 56
   71:Src/main.c    **** 
- 152              		.loc 1 71 0
- 153 0002 FFF7FEFF 		bl	HAL_Init
- 154              	.LVL3:
+ 163              		.loc 1 71 0
+ 164 000a FFF7FEFF 		bl	HAL_Init
+ 165              	.LVL3:
   75:Src/main.c    **** 
- 155              		.loc 1 75 0
- 156 0006 FFF7FEFF 		bl	SystemClock_Config
- 157              	.LVL4:
+ 166              		.loc 1 75 0
+ 167 000e FFF7FEFF 		bl	SystemClock_Config
+ 168              	.LVL4:
   79:Src/main.c    **** 	MX_ADC_Init();
- 158              		.loc 1 79 0
- 159 000a FFF7FEFF 		bl	MX_GPIO_Init
- 160              	.LVL5:
+ 169              		.loc 1 79 0
+ 170 0012 FFF7FEFF 		bl	MX_GPIO_Init
+ 171              	.LVL5:
   80:Src/main.c    **** 	MX_I2C1_Init();
- 161              		.loc 1 80 0
- 162 000e FFF7FEFF 		bl	MX_ADC_Init
- 163              	.LVL6:
+ 172              		.loc 1 80 0
+ 173 0016 FFF7FEFF 		bl	MX_ADC_Init
+ 174              	.LVL6:
   81:Src/main.c    **** 	//MX_I2C2_Init();
- 164              		.loc 1 81 0
- 165 0012 FFF7FEFF 		bl	MX_I2C1_Init
-ARM GAS  /tmp/ccFZI1vR.s 			page 8
-
-
- 166              	.LVL7:
+ 175              		.loc 1 81 0
+ 176 001a FFF7FEFF 		bl	MX_I2C1_Init
+ 177              	.LVL7:
   83:Src/main.c    **** 	MX_SPI1_Init();
- 167              		.loc 1 83 0
- 168 0016 FFF7FEFF 		bl	MX_I2C3_Init
- 169              	.LVL8:
+ 178              		.loc 1 83 0
+ 179 001e FFF7FEFF 		bl	MX_I2C3_Init
+ 180              	.LVL8:
   84:Src/main.c    ****     // enable spi1
- 170              		.loc 1 84 0
- 171 001a FFF7FEFF 		bl	MX_SPI1_Init
- 172              	.LVL9:
+ 181              		.loc 1 84 0
+ 182 0022 FFF7FEFF 		bl	MX_SPI1_Init
+ 183              	.LVL9:
   86:Src/main.c    **** 	MX_USART1_UART_Init();
- 173              		.loc 1 86 0
- 174 001e 394A     		ldr	r2, .L7
- 175 0020 1168     		ldr	r1, [r2]
- 176 0022 4023     		mov	r3, #64
- 177 0024 0B43     		orr	r3, r1
- 178 0026 1360     		str	r3, [r2]
+ 184              		.loc 1 86 0
+ 185 0026 D94A     		ldr	r2, .L29
+ 186 0028 1168     		ldr	r1, [r2]
+ 187 002a 4023     		mov	r3, #64
+ 188 002c 0B43     		orr	r3, r1
+ 189 002e 1360     		str	r3, [r2]
   87:Src/main.c    ****   
- 179              		.loc 1 87 0
- 180 0028 FFF7FEFF 		bl	MX_USART1_UART_Init
- 181              	.LVL10:
+ 190              		.loc 1 87 0
+ 191 0030 FFF7FEFF 		bl	MX_USART1_UART_Init
+ 192              	.LVL10:
   89:Src/main.c    **** 	//rtc_ds3231_set_time(16, 40, 0);
- 182              		.loc 1 89 0
- 183 002c 3648     		ldr	r0, .L7+4
- 184 002e FFF7FEFF 		bl	rtc_ds3231_set_i2c_handle
- 185              	.LVL11:
+ 193              		.loc 1 89 0
+ 194 0034 D648     		ldr	r0, .L29+4
+ 195 0036 FFF7FEFF 		bl	rtc_ds3231_set_i2c_handle
+ARM GAS  /tmp/ccr4XUhA.s 			page 13
+
+
+ 196              	.LVL11:
   94:Src/main.c    ****   	ssd1306_Init();
- 186              		.loc 1 94 0
- 187 0032 3648     		ldr	r0, .L7+8
- 188 0034 0121     		mov	r1, #1
- 189 0036 FFF7FEFF 		bl	ssd1306_set_i2c_port
- 190              	.LVL12:
+ 197              		.loc 1 94 0
+ 198 003a D648     		ldr	r0, .L29+8
+ 199 003c 0121     		mov	r1, #1
+ 200 003e FFF7FEFF 		bl	ssd1306_set_i2c_port
+ 201              	.LVL12:
   95:Src/main.c    ****   	HAL_Delay(100);
- 191              		.loc 1 95 0
- 192 003a FFF7FEFF 		bl	ssd1306_Init
- 193              	.LVL13:
+ 202              		.loc 1 95 0
+ 203 0042 FFF7FEFF 		bl	ssd1306_Init
+ 204              	.LVL13:
   96:Src/main.c    ****   	ssd1306_Fill(White);
- 194              		.loc 1 96 0
- 195 003e 6420     		mov	r0, #100
- 196 0040 FFF7FEFF 		bl	HAL_Delay
- 197              	.LVL14:
+ 205              		.loc 1 96 0
+ 206 0046 6420     		mov	r0, #100
+ 207 0048 FFF7FEFF 		bl	HAL_Delay
+ 208              	.LVL14:
   97:Src/main.c    ****   	ssd1306_UpdateScreen();
- 198              		.loc 1 97 0
- 199 0044 0120     		mov	r0, #1
- 200 0046 FFF7FEFF 		bl	ssd1306_Fill
- 201              	.LVL15:
+ 209              		.loc 1 97 0
+ 210 004c 0120     		mov	r0, #1
+ 211 004e FFF7FEFF 		bl	ssd1306_Fill
+ 212              	.LVL15:
   98:Src/main.c    ****   	HAL_Delay(100);
- 202              		.loc 1 98 0
- 203 004a FFF7FEFF 		bl	ssd1306_UpdateScreen
- 204              	.LVL16:
+ 213              		.loc 1 98 0
+ 214 0052 FFF7FEFF 		bl	ssd1306_UpdateScreen
+ 215              	.LVL16:
   99:Src/main.c    ****   	ssd1306_Fill(Black);
- 205              		.loc 1 99 0
- 206 004e 6420     		mov	r0, #100
- 207 0050 FFF7FEFF 		bl	HAL_Delay
- 208              	.LVL17:
+ 216              		.loc 1 99 0
+ 217 0056 6420     		mov	r0, #100
+ 218 0058 FFF7FEFF 		bl	HAL_Delay
+ 219              	.LVL17:
  100:Src/main.c    ****   	ssd1306_UpdateScreen();
- 209              		.loc 1 100 0
- 210 0054 0020     		mov	r0, #0
-ARM GAS  /tmp/ccFZI1vR.s 			page 9
-
-
- 211 0056 FFF7FEFF 		bl	ssd1306_Fill
- 212              	.LVL18:
+ 220              		.loc 1 100 0
+ 221 005c 0020     		mov	r0, #0
+ 222 005e FFF7FEFF 		bl	ssd1306_Fill
+ 223              	.LVL18:
  101:Src/main.c    **** 
- 213              		.loc 1 101 0
- 214 005a FFF7FEFF 		bl	ssd1306_UpdateScreen
- 215              	.LVL19:
+ 224              		.loc 1 101 0
+ 225 0062 FFF7FEFF 		bl	ssd1306_UpdateScreen
+ 226              	.LVL19:
  103:Src/main.c    **** 
- 216              		.loc 1 103 0
- 217 005e 6420     		mov	r0, #100
- 218 0060 FFF7FEFF 		bl	HAL_Delay
- 219              	.LVL20:
+ 227              		.loc 1 103 0
+ 228 0066 6420     		mov	r0, #100
+ 229 0068 FFF7FEFF 		bl	HAL_Delay
+ 230              	.LVL20:
  105:Src/main.c    ****   	ssd1306_WriteString("L071", Font_16x26, White);
- 220              		.loc 1 105 0
- 221 0064 0020     		mov	r0, #0
- 222 0066 0021     		mov	r1, #0
- 223 0068 FFF7FEFF 		bl	ssd1306_SetCursor
- 224              	.LVL21:
+ 231              		.loc 1 105 0
+ 232 006c 0020     		mov	r0, #0
+ 233 006e 0021     		mov	r1, #0
+ 234 0070 FFF7FEFF 		bl	ssd1306_SetCursor
+ 235              	.LVL21:
  106:Src/main.c    ****   	ssd1306_SetCursor(0,30);
- 225              		.loc 1 106 0
- 226 006c 284C     		ldr	r4, .L7+12
- 227 006e 2948     		ldr	r0, .L7+16
- 228 0070 2168     		ldr	r1, [r4]
- 229 0072 6268     		ldr	r2, [r4, #4]
- 230 0074 0123     		mov	r3, #1
- 231 0076 FFF7FEFF 		bl	ssd1306_WriteString
- 232              	.LVL22:
+ 236              		.loc 1 106 0
+ 237 0074 C84C     		ldr	r4, .L29+12
+ 238 0076 C948     		ldr	r0, .L29+16
+ 239 0078 2168     		ldr	r1, [r4]
+ 240 007a 6268     		ldr	r2, [r4, #4]
+ 241 007c 0123     		mov	r3, #1
+ARM GAS  /tmp/ccr4XUhA.s 			page 14
+
+
+ 242 007e FFF7FEFF 		bl	ssd1306_WriteString
+ 243              	.LVL22:
  107:Src/main.c    ****   	ssd1306_WriteString("TEST..", Font_16x26, White);
- 233              		.loc 1 107 0
- 234 007a 0020     		mov	r0, #0
- 235 007c 1E21     		mov	r1, #30
- 236 007e FFF7FEFF 		bl	ssd1306_SetCursor
- 237              	.LVL23:
+ 244              		.loc 1 107 0
+ 245 0082 0020     		mov	r0, #0
+ 246 0084 1E21     		mov	r1, #30
+ 247 0086 FFF7FEFF 		bl	ssd1306_SetCursor
+ 248              	.LVL23:
  108:Src/main.c    ****   	ssd1306_UpdateScreen();
- 238              		.loc 1 108 0
- 239 0082 2548     		ldr	r0, .L7+20
- 240 0084 2168     		ldr	r1, [r4]
- 241 0086 6268     		ldr	r2, [r4, #4]
- 242 0088 0123     		mov	r3, #1
- 243 008a FFF7FEFF 		bl	ssd1306_WriteString
- 244              	.LVL24:
+ 249              		.loc 1 108 0
+ 250 008a C548     		ldr	r0, .L29+20
+ 251 008c 2168     		ldr	r1, [r4]
+ 252 008e 6268     		ldr	r2, [r4, #4]
+ 253 0090 0123     		mov	r3, #1
+ 254 0092 FFF7FEFF 		bl	ssd1306_WriteString
+ 255              	.LVL24:
  109:Src/main.c    ****   
- 245              		.loc 1 109 0
- 246 008e FFF7FEFF 		bl	ssd1306_UpdateScreen
- 247              	.LVL25:
+ 256              		.loc 1 109 0
+ 257 0096 FFF7FEFF 		bl	ssd1306_UpdateScreen
+ 258              	.LVL25:
  112:Src/main.c    **** 	one_second_timer_start();
- 248              		.loc 1 112 0
- 249 0092 FFF7FEFF 		bl	one_second_timer_init
- 250              	.LVL26:
+ 259              		.loc 1 112 0
+ 260 009a FFF7FEFF 		bl	one_second_timer_init
+ 261              	.LVL26:
  113:Src/main.c    **** 
- 251              		.loc 1 113 0
- 252 0096 FFF7FEFF 		bl	one_second_timer_start
- 253              	.LVL27:
+ 262              		.loc 1 113 0
+ 263 009e FFF7FEFF 		bl	one_second_timer_start
+ 264              	.LVL27:
  115:Src/main.c    **** 	HAL_Delay(1000);
- 254              		.loc 1 115 0
- 255 009a FFF7FEFF 		bl	pressure_sensor_object_init
- 256              	.LVL28:
+ 265              		.loc 1 115 0
+ 266 00a2 FFF7FEFF 		bl	pressure_sensor_object_init
+ 267              	.LVL28:
  116:Src/main.c    **** 	uint32_t surface_pressure = 101325;
-ARM GAS  /tmp/ccFZI1vR.s 			page 10
-
-
- 257              		.loc 1 116 0
- 258 009e FA20     		mov	r0, #250
- 259 00a0 8000     		lsl	r0, r0, #2
- 260 00a2 FFF7FEFF 		bl	HAL_Delay
- 261              	.LVL29:
+ 268              		.loc 1 116 0
+ 269 00a6 FA20     		mov	r0, #250
+ 270 00a8 8000     		lsl	r0, r0, #2
+ 271 00aa FFF7FEFF 		bl	HAL_Delay
+ 272              	.LVL29:
  118:Src/main.c    **** 
- 262              		.loc 1 118 0
- 263 00a6 0120     		mov	r0, #1
- 264 00a8 FFF7FEFF 		bl	depth_switch_turn_signal_led
- 265              	.LVL30:
+ 273              		.loc 1 118 0
+ 274 00ae 0120     		mov	r0, #1
+ 275 00b0 FFF7FEFF 		bl	depth_switch_turn_signal_led
+ 276              	.LVL30:
  120:Src/main.c    **** 	//atm_barometer_init();
- 266              		.loc 1 120 0
- 267 00ac FFF7FEFF 		bl	rtc_ds3231_action
- 268              	.LVL31:
+ 277              		.loc 1 120 0
+ 278 00b4 FFF7FEFF 		bl	rtc_ds3231_action
+ 279              	.LVL31:
  146:Src/main.c    **** 	{
- 269              		.loc 1 146 0
- 270 00b0 FFF7FEFF 		bl	depth_switch_check_gpio
- 271              	.LVL32:
- 272 00b4 0028     		cmp	r0, #0
- 273 00b6 24D1     		bne	.L5
- 274              	.LBB2:
+ 280              		.loc 1 146 0
+ 281 00b8 FFF7FEFF 		bl	depth_switch_check_gpio
+ 282              	.LVL32:
+ 283 00bc 0028     		cmp	r0, #0
+ 284 00be 00D0     		beq	.LCB218
+ 285 00c0 10E3     		b	.L5	@long jump
+ 286              	.LCB218:
+ 287              	.LBB2:
  149:Src/main.c    ****   	    ssd1306_SetCursor(0,0);
- 275              		.loc 1 149 0
- 276 00b8 FFF7FEFF 		bl	ssd1306_Fill
- 277              	.LVL33:
+ARM GAS  /tmp/ccr4XUhA.s 			page 15
+
+
+ 288              		.loc 1 149 0
+ 289 00c2 FFF7FEFF 		bl	ssd1306_Fill
+ 290              	.LVL33:
  150:Src/main.c    **** 	    sprintf(message, "log mode");
- 278              		.loc 1 150 0
- 279 00bc 0020     		mov	r0, #0
- 280 00be 0021     		mov	r1, #0
- 281 00c0 FFF7FEFF 		bl	ssd1306_SetCursor
- 282              	.LVL34:
+ 291              		.loc 1 150 0
+ 292 00c6 0020     		mov	r0, #0
+ 293 00c8 0021     		mov	r1, #0
+ 294 00ca FFF7FEFF 		bl	ssd1306_SetCursor
+ 295              	.LVL34:
  151:Src/main.c    ****   	    ssd1306_WriteString(message, Font_11x18, White);
- 283              		.loc 1 151 0
- 284 00c4 154C     		ldr	r4, .L7+24
- 285 00c6 164B     		ldr	r3, .L7+28
- 286 00c8 221C     		mov	r2, r4
- 287 00ca 03CB     		ldmia	r3!, {r0, r1}
- 288 00cc 03C2     		stmia	r2!, {r0, r1}
- 289 00ce 1B78     		ldrb	r3, [r3]
- 290 00d0 1370     		strb	r3, [r2]
+ 296              		.loc 1 151 0
+ 297 00ce B54C     		ldr	r4, .L29+24
+ 298 00d0 B54B     		ldr	r3, .L29+28
+ 299 00d2 221C     		mov	r2, r4
+ 300 00d4 03CB     		ldmia	r3!, {r0, r1}
+ 301 00d6 03C2     		stmia	r2!, {r0, r1}
+ 302 00d8 1B78     		ldrb	r3, [r3]
+ 303 00da 1370     		strb	r3, [r2]
  152:Src/main.c    ****   	    ssd1306_SetCursor(0,22);
- 291              		.loc 1 152 0
- 292 00d2 144D     		ldr	r5, .L7+32
- 293 00d4 201C     		mov	r0, r4
- 294 00d6 2968     		ldr	r1, [r5]
- 295 00d8 6A68     		ldr	r2, [r5, #4]
- 296 00da 0123     		mov	r3, #1
- 297 00dc FFF7FEFF 		bl	ssd1306_WriteString
- 298              	.LVL35:
+ 304              		.loc 1 152 0
+ 305 00dc B34D     		ldr	r5, .L29+32
+ 306 00de 201C     		mov	r0, r4
+ 307 00e0 2968     		ldr	r1, [r5]
+ 308 00e2 6A68     		ldr	r2, [r5, #4]
+ 309 00e4 0123     		mov	r3, #1
+ 310 00e6 FFF7FEFF 		bl	ssd1306_WriteString
+ 311              	.LVL35:
  153:Src/main.c    **** 	    sprintf(message, "download...");
- 299              		.loc 1 153 0
- 300 00e0 0020     		mov	r0, #0
- 301 00e2 1621     		mov	r1, #22
- 302 00e4 FFF7FEFF 		bl	ssd1306_SetCursor
- 303              	.LVL36:
+ 312              		.loc 1 153 0
+ 313 00ea 0020     		mov	r0, #0
+ 314 00ec 1621     		mov	r1, #22
+ 315 00ee FFF7FEFF 		bl	ssd1306_SetCursor
+ 316              	.LVL36:
  154:Src/main.c    ****   	    ssd1306_WriteString(message, Font_11x18, White);
- 304              		.loc 1 154 0
-ARM GAS  /tmp/ccFZI1vR.s 			page 11
-
-
- 305 00e8 0F4B     		ldr	r3, .L7+36
- 306 00ea 221C     		mov	r2, r4
- 307 00ec 43CB     		ldmia	r3!, {r0, r1, r6}
- 308 00ee 43C2     		stmia	r2!, {r0, r1, r6}
+ 317              		.loc 1 154 0
+ 318 00f2 AF4B     		ldr	r3, .L29+36
+ 319 00f4 271C     		mov	r7, r4
+ 320 00f6 07CB     		ldmia	r3!, {r0, r1, r2}
+ 321 00f8 07C7     		stmia	r7!, {r0, r1, r2}
  155:Src/main.c    ****   	    ssd1306_UpdateScreen();
- 309              		.loc 1 155 0
- 310 00f0 201C     		mov	r0, r4
- 311 00f2 2968     		ldr	r1, [r5]
- 312 00f4 6A68     		ldr	r2, [r5, #4]
- 313 00f6 0123     		mov	r3, #1
- 314 00f8 FFF7FEFF 		bl	ssd1306_WriteString
- 315              	.LVL37:
+ 322              		.loc 1 155 0
+ 323 00fa 201C     		mov	r0, r4
+ 324 00fc 2968     		ldr	r1, [r5]
+ 325 00fe 6A68     		ldr	r2, [r5, #4]
+ 326 0100 0123     		mov	r3, #1
+ 327 0102 FFF7FEFF 		bl	ssd1306_WriteString
+ 328              	.LVL37:
  156:Src/main.c    **** 
- 316              		.loc 1 156 0
- 317 00fc FFF7FEFF 		bl	ssd1306_UpdateScreen
- 318              	.LVL38:
- 319              	.L6:
- 160:Src/main.c    **** 	}
- 320              		.loc 1 160 0 discriminator 1
- 321 0100 FEE7     		b	.L6
- 322              	.L5:
- 323              	.LBE2:
- 169:Src/main.c    **** 
- 324              		.loc 1 169 0 discriminator 2
- 325 0102 FEE7     		b	.L5
- 326              	.L8:
- 327              		.align	2
- 328              	.L7:
- 329 0104 00300140 		.word	1073819648
- 330 0108 00000000 		.word	hi2c3
- 331 010c 00000000 		.word	hi2c1
- 332 0110 00000000 		.word	Font_16x26
- 333 0114 00000000 		.word	.LC2
- 334 0118 08000000 		.word	.LC5
- 335 011c 00000000 		.word	.LANCHOR0
- 336 0120 10000000 		.word	.LC8
- 337 0124 00000000 		.word	Font_11x18
- 338 0128 1C000000 		.word	.LC11
- 339              		.cfi_endproc
- 340              	.LFE34:
- 342              		.section	.text.Error_Handler,"ax",%progbits
- 343              		.align	2
- 344              		.global	Error_Handler
- 345              		.code	16
- 346              		.thumb_func
- 348              	Error_Handler:
- 349              	.LFB36:
- 232:Src/main.c    **** 
- 233:Src/main.c    **** /* USER CODE BEGIN 4 */
- 234:Src/main.c    **** 
- 235:Src/main.c    **** /* USER CODE END 4 */
- 236:Src/main.c    **** 
- 237:Src/main.c    **** /**
- 238:Src/main.c    ****   * @brief  This function is executed in case of error occurrence.
- 239:Src/main.c    ****   * @retval None
- 240:Src/main.c    ****   */
- 241:Src/main.c    **** void Error_Handler(void)
-ARM GAS  /tmp/ccFZI1vR.s 			page 12
+ 329              		.loc 1 156 0
+ 330 0106 FFF7FEFF 		bl	ssd1306_UpdateScreen
+ 331              	.LVL38:
+ 162:Src/main.c    **** 	uint16_t eeprom_debug_address = 64;
+ 332              		.loc 1 162 0
+ 333 010a FA20     		mov	r0, #250
+ 334 010c 8000     		lsl	r0, r0, #2
+ 335 010e FFF7FEFF 		bl	HAL_Delay
+ 336              	.LVL39:
+ARM GAS  /tmp/ccr4XUhA.s 			page 16
 
 
- 242:Src/main.c    **** {
- 350              		.loc 1 242 0
- 351              		.cfi_startproc
- 243:Src/main.c    ****   /* USER CODE BEGIN Error_Handler_Debug */
- 244:Src/main.c    ****   /* User can add his own implementation to report the HAL error return state */
+ 168:Src/main.c    **** 	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+ 337              		.loc 1 168 0
+ 338 0112 A84B     		ldr	r3, .L29+40
+ 339 0114 1A88     		ldrh	r2, [r3]
+ 340 0116 2280     		strh	r2, [r4]
+ 341 0118 9B78     		ldrb	r3, [r3, #2]
+ 342 011a A370     		strb	r3, [r4, #2]
+ 169:Src/main.c    **** 	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+ 343              		.loc 1 169 0
+ 344 011c 201C     		mov	r0, r4
+ 345 011e FFF7FEFF 		bl	strlen
+ 346              	.LVL40:
+ 347 0122 A54E     		ldr	r6, .L29+44
+ 348 0124 82B2     		uxth	r2, r0
+ 349 0126 FA25     		mov	r5, #250
+ 350 0128 6D00     		lsl	r5, r5, #1
+ 351 012a 301C     		mov	r0, r6
+ 352 012c 211C     		mov	r1, r4
+ 353 012e 2B1C     		mov	r3, r5
+ 354 0130 FFF7FEFF 		bl	HAL_UART_Transmit
+ 355              	.LVL41:
+ 170:Src/main.c    **** 	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+ 356              		.loc 1 170 0
+ 357 0134 201C     		mov	r0, r4
+ 358 0136 FFF7FEFF 		bl	strlen
+ 359              	.LVL42:
+ 360 013a 82B2     		uxth	r2, r0
+ 361 013c 301C     		mov	r0, r6
+ 362 013e 211C     		mov	r1, r4
+ 363 0140 2B1C     		mov	r3, r5
+ 364 0142 FFF7FEFF 		bl	HAL_UART_Transmit
+ 365              	.LVL43:
+ 171:Src/main.c    **** 
+ 366              		.loc 1 171 0
+ 367 0146 201C     		mov	r0, r4
+ 368 0148 FFF7FEFF 		bl	strlen
+ 369              	.LVL44:
+ 370 014c 82B2     		uxth	r2, r0
+ 371 014e 301C     		mov	r0, r6
+ 372 0150 211C     		mov	r1, r4
+ 373 0152 2B1C     		mov	r3, r5
+ 374 0154 FFF7FEFF 		bl	HAL_UART_Transmit
+ 375              	.LVL45:
+ 173:Src/main.c    **** 	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+ 376              		.loc 1 173 0
+ 377 0158 9849     		ldr	r1, .L29+48
+ 378 015a 221C     		mov	r2, r4
+ 379 015c 0B1C     		mov	r3, r1
+ 380 015e 83CB     		ldmia	r3!, {r0, r1, r7}
+ 381 0160 83C2     		stmia	r2!, {r0, r1, r7}
+ 382 0162 83CB     		ldmia	r3!, {r0, r1, r7}
+ 383 0164 83C2     		stmia	r2!, {r0, r1, r7}
+ 384 0166 03CB     		ldmia	r3!, {r0, r1}
+ 385 0168 03C2     		stmia	r2!, {r0, r1}
+ 174:Src/main.c    **** 
+ 386              		.loc 1 174 0
+ 387 016a 201C     		mov	r0, r4
+ARM GAS  /tmp/ccr4XUhA.s 			page 17
+
+
+ 388 016c FFF7FEFF 		bl	strlen
+ 389              	.LVL46:
+ 390 0170 82B2     		uxth	r2, r0
+ 391 0172 301C     		mov	r0, r6
+ 392 0174 211C     		mov	r1, r4
+ 393 0176 2B1C     		mov	r3, r5
+ 394 0178 FFF7FEFF 		bl	HAL_UART_Transmit
+ 395              	.LVL47:
+ 177:Src/main.c    **** 	message[0] = b0;                                                                                  
+ 396              		.loc 1 177 0
+ 397 017c DE3D     		sub	r5, r5, #222
+ 398 017e FF3D     		sub	r5, r5, #255
+ 399 0180 6D44     		add	r5, r5, sp
+ 400 0182 0095     		str	r5, [sp]
+ 401 0184 0126     		mov	r6, #1
+ 402 0186 0196     		str	r6, [sp, #4]
+ 403 0188 6427     		mov	r7, #100
+ 404 018a 0297     		str	r7, [sp, #8]
+ 405 018c 8C48     		ldr	r0, .L29+52
+ 406 018e A021     		mov	r1, #160
+ 407 0190 4022     		mov	r2, #64
+ 408 0192 0223     		mov	r3, #2
+ 409 0194 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 410              	.LVL48:
+ 178:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 411              		.loc 1 178 0
+ 412 0198 2B78     		ldrb	r3, [r5]
+ 413 019a 2370     		strb	r3, [r4]
+ 414              	.LVL49:
+ 181:Src/main.c    **** 	message[1] = b0;                                                                                  
+ 415              		.loc 1 181 0
+ 416 019c 0095     		str	r5, [sp]
+ 417 019e 0196     		str	r6, [sp, #4]
+ 418 01a0 0297     		str	r7, [sp, #8]
+ 419 01a2 8748     		ldr	r0, .L29+52
+ 420 01a4 A021     		mov	r1, #160
+ 421 01a6 4122     		mov	r2, #65
+ 422 01a8 0223     		mov	r3, #2
+ 423 01aa FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 424              	.LVL50:
+ 182:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 425              		.loc 1 182 0
+ 426 01ae 2B78     		ldrb	r3, [r5]
+ 427 01b0 6370     		strb	r3, [r4, #1]
+ 428              	.LVL51:
+ 185:Src/main.c    **** 	message[2] = b0;                                                                                  
+ 429              		.loc 1 185 0
+ 430 01b2 0095     		str	r5, [sp]
+ 431 01b4 0196     		str	r6, [sp, #4]
+ 432 01b6 0297     		str	r7, [sp, #8]
+ 433 01b8 8148     		ldr	r0, .L29+52
+ 434 01ba A021     		mov	r1, #160
+ 435 01bc 4222     		mov	r2, #66
+ 436 01be 0223     		mov	r3, #2
+ 437 01c0 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 438              	.LVL52:
+ 186:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ARM GAS  /tmp/ccr4XUhA.s 			page 18
+
+
+ 439              		.loc 1 186 0
+ 440 01c4 2B78     		ldrb	r3, [r5]
+ 441 01c6 A370     		strb	r3, [r4, #2]
+ 442              	.LVL53:
+ 189:Src/main.c    **** 	message[3] = b0;                                                                                  
+ 443              		.loc 1 189 0
+ 444 01c8 0095     		str	r5, [sp]
+ 445 01ca 0196     		str	r6, [sp, #4]
+ 446 01cc 0297     		str	r7, [sp, #8]
+ 447 01ce 7C48     		ldr	r0, .L29+52
+ 448 01d0 A021     		mov	r1, #160
+ 449 01d2 4322     		mov	r2, #67
+ 450 01d4 0223     		mov	r3, #2
+ 451 01d6 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 452              	.LVL54:
+ 190:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 453              		.loc 1 190 0
+ 454 01da 2B78     		ldrb	r3, [r5]
+ 455 01dc E370     		strb	r3, [r4, #3]
+ 456              	.LVL55:
+ 193:Src/main.c    **** 	{                                                                                                 
+ 457              		.loc 1 193 0
+ 458 01de 2378     		ldrb	r3, [r4]
+ 459 01e0 002B     		cmp	r3, #0
+ 460 01e2 03D1     		bne	.L6
+ 193:Src/main.c    **** 	{                                                                                                 
+ 461              		.loc 1 193 0 is_stmt 0 discriminator 1
+ 462 01e4 6F4B     		ldr	r3, .L29+24
+ 463 01e6 5B78     		ldrb	r3, [r3, #1]
+ 464 01e8 002B     		cmp	r3, #0
+ 465 01ea 13D0     		beq	.L23
+ 466              	.L6:
+ 199:Src/main.c    **** 		message[5] = '\n';                                                                               
+ 467              		.loc 1 199 0 is_stmt 1
+ 468 01ec 6D4C     		ldr	r4, .L29+24
+ 469 01ee 0D23     		mov	r3, #13
+ 470 01f0 2371     		strb	r3, [r4, #4]
+ 200:Src/main.c    **** 		message[6] = 0;                                                                                  
+ 471              		.loc 1 200 0
+ 472 01f2 033B     		sub	r3, r3, #3
+ 473 01f4 6371     		strb	r3, [r4, #5]
+ 201:Src/main.c    **** 		HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);              
+ 474              		.loc 1 201 0
+ 475 01f6 0023     		mov	r3, #0
+ 476 01f8 A371     		strb	r3, [r4, #6]
+ 202:Src/main.c    **** 	}                                                                                                 
+ 477              		.loc 1 202 0
+ 478 01fa 201C     		mov	r0, r4
+ 479 01fc FFF7FEFF 		bl	strlen
+ 480              	.LVL56:
+ 481 0200 82B2     		uxth	r2, r0
+ 482 0202 6D48     		ldr	r0, .L29+44
+ 483 0204 211C     		mov	r1, r4
+ 484 0206 FA23     		mov	r3, #250
+ 485 0208 5B00     		lsl	r3, r3, #1
+ 486 020a FFF7FEFF 		bl	HAL_UART_Transmit
+ 487              	.LVL57:
+ARM GAS  /tmp/ccr4XUhA.s 			page 19
+
+
+ 161:Src/main.c    **** 	HAL_Delay(1000);
+ 488              		.loc 1 161 0
+ 489 020e 0023     		mov	r3, #0
+ 490 0210 9A46     		mov	r10, r3
+ 491 0212 01E0     		b	.L7
+ 492              	.L23:
+ 195:Src/main.c    **** 	}                                                                                                 
+ 493              		.loc 1 195 0
+ 494 0214 0123     		mov	r3, #1
+ 495 0216 9A46     		mov	r10, r3
+ 496              	.L7:
+ 497              	.LVL58:
+ 205:Src/main.c    **** 	message[0] = b0;                                                                                  
+ 498              		.loc 1 205 0
+ 499 0218 1724     		mov	r4, #23
+ 500 021a 6C44     		add	r4, r4, sp
+ 501 021c 0094     		str	r4, [sp]
+ 502 021e 0126     		mov	r6, #1
+ 503 0220 0196     		str	r6, [sp, #4]
+ 504 0222 6427     		mov	r7, #100
+ 505 0224 0297     		str	r7, [sp, #8]
+ 506 0226 6648     		ldr	r0, .L29+52
+ 507 0228 A021     		mov	r1, #160
+ 508 022a 4422     		mov	r2, #68
+ 509 022c 0223     		mov	r3, #2
+ 510 022e FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 511              	.LVL59:
+ 206:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 512              		.loc 1 206 0
+ 513 0232 5C4D     		ldr	r5, .L29+24
+ 514 0234 2378     		ldrb	r3, [r4]
+ 515 0236 2B70     		strb	r3, [r5]
+ 516              	.LVL60:
+ 209:Src/main.c    **** 	message[1] = b0;                                                                                  
+ 517              		.loc 1 209 0
+ 518 0238 0094     		str	r4, [sp]
+ 519 023a 0196     		str	r6, [sp, #4]
+ 520 023c 0297     		str	r7, [sp, #8]
+ 521 023e 6048     		ldr	r0, .L29+52
+ 522 0240 A021     		mov	r1, #160
+ 523 0242 4522     		mov	r2, #69
+ 524 0244 0223     		mov	r3, #2
+ 525 0246 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 526              	.LVL61:
+ 210:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 527              		.loc 1 210 0
+ 528 024a 2378     		ldrb	r3, [r4]
+ 529 024c 6B70     		strb	r3, [r5, #1]
+ 530              	.LVL62:
+ 213:Src/main.c    **** 	message[2] = b0;                                                                                  
+ 531              		.loc 1 213 0
+ 532 024e 0094     		str	r4, [sp]
+ 533 0250 0196     		str	r6, [sp, #4]
+ 534 0252 0297     		str	r7, [sp, #8]
+ 535 0254 5A48     		ldr	r0, .L29+52
+ 536 0256 A021     		mov	r1, #160
+ 537 0258 4622     		mov	r2, #70
+ARM GAS  /tmp/ccr4XUhA.s 			page 20
+
+
+ 538 025a 0223     		mov	r3, #2
+ 539 025c FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 540              	.LVL63:
+ 214:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 541              		.loc 1 214 0
+ 542 0260 2378     		ldrb	r3, [r4]
+ 543 0262 AB70     		strb	r3, [r5, #2]
+ 544              	.LVL64:
+ 217:Src/main.c    **** 	message[3] = b0;                                                                                  
+ 545              		.loc 1 217 0
+ 546 0264 0094     		str	r4, [sp]
+ 547 0266 0196     		str	r6, [sp, #4]
+ 548 0268 0297     		str	r7, [sp, #8]
+ 549 026a 5548     		ldr	r0, .L29+52
+ 550 026c A021     		mov	r1, #160
+ 551 026e 4722     		mov	r2, #71
+ 552 0270 0223     		mov	r3, #2
+ 553 0272 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 554              	.LVL65:
+ 218:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 555              		.loc 1 218 0
+ 556 0276 2378     		ldrb	r3, [r4]
+ 557 0278 EB70     		strb	r3, [r5, #3]
+ 558              	.LVL66:
+ 221:Src/main.c    **** 	{                                                                                                 
+ 559              		.loc 1 221 0
+ 560 027a 2B78     		ldrb	r3, [r5]
+ 561 027c 002B     		cmp	r3, #0
+ 562 027e 03D1     		bne	.L8
+ 221:Src/main.c    **** 	{                                                                                                 
+ 563              		.loc 1 221 0 is_stmt 0 discriminator 1
+ 564 0280 484B     		ldr	r3, .L29+24
+ 565 0282 5B78     		ldrb	r3, [r3, #1]
+ 566 0284 002B     		cmp	r3, #0
+ 567 0286 11D0     		beq	.L24
+ 568              	.L8:
+ 227:Src/main.c    **** 		message[5] = '\n';                                                                               
+ 569              		.loc 1 227 0 is_stmt 1
+ 570 0288 464C     		ldr	r4, .L29+24
+ 571 028a 0D23     		mov	r3, #13
+ 572 028c 2371     		strb	r3, [r4, #4]
+ 228:Src/main.c    **** 		message[6] = 0;                                                                                  
+ 573              		.loc 1 228 0
+ 574 028e 033B     		sub	r3, r3, #3
+ 575 0290 6371     		strb	r3, [r4, #5]
+ 229:Src/main.c    **** 		HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);              
+ 576              		.loc 1 229 0
+ 577 0292 0023     		mov	r3, #0
+ 578 0294 A371     		strb	r3, [r4, #6]
+ 230:Src/main.c    **** 	}                                                                                                 
+ 579              		.loc 1 230 0
+ 580 0296 201C     		mov	r0, r4
+ 581 0298 FFF7FEFF 		bl	strlen
+ 582              	.LVL67:
+ 583 029c 82B2     		uxth	r2, r0
+ 584 029e 4648     		ldr	r0, .L29+44
+ 585 02a0 211C     		mov	r1, r4
+ARM GAS  /tmp/ccr4XUhA.s 			page 21
+
+
+ 586 02a2 FA23     		mov	r3, #250
+ 587 02a4 5B00     		lsl	r3, r3, #1
+ 588 02a6 FFF7FEFF 		bl	HAL_UART_Transmit
+ 589              	.LVL68:
+ 590 02aa 01E0     		b	.L9
+ 591              	.L24:
+ 223:Src/main.c    **** 	}                                                                                                 
+ 592              		.loc 1 223 0
+ 593 02ac 0123     		mov	r3, #1
+ 594 02ae 9A46     		mov	r10, r3
+ 595              	.LVL69:
+ 596              	.L9:
+ 263:Src/main.c    **** 		}
+ 597              		.loc 1 263 0
+ 598 02b0 4824     		mov	r4, #72
+ 599 02b2 89E0     		b	.L10
+ 600              	.LVL70:
+ 601              	.L13:
+ 236:Src/main.c    **** 		message[0] = b0;                                                                                 
+ 602              		.loc 1 236 0
+ 603 02b4 1725     		mov	r5, #23
+ 604 02b6 6D44     		add	r5, r5, sp
+ 605 02b8 0095     		str	r5, [sp]
+ 606 02ba 0123     		mov	r3, #1
+ 607              	.LVL71:
+ 608 02bc 9946     		mov	r9, r3
+ 609 02be 0193     		str	r3, [sp, #4]
+ 610 02c0 6426     		mov	r6, #100
+ 611 02c2 0296     		str	r6, [sp, #8]
+ 612 02c4 3E48     		ldr	r0, .L29+52
+ 613 02c6 A021     		mov	r1, #160
+ 614 02c8 221C     		mov	r2, r4
+ 615 02ca 0133     		add	r3, r3, #1
+ 616 02cc FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 617              	.LVL72:
+ 237:Src/main.c    **** 		eeprom_debug_address++;                                                                          
+ 618              		.loc 1 237 0
+ 619 02d0 344F     		ldr	r7, .L29+24
+ 620 02d2 2B78     		ldrb	r3, [r5]
+ 621 02d4 3B70     		strb	r3, [r7]
+ 238:Src/main.c    **** 		HAL_Delay(3);
+ 622              		.loc 1 238 0
+ 623 02d6 0134     		add	r4, r4, #1
+ 624              	.LVL73:
+ 625 02d8 A4B2     		uxth	r4, r4
+ 626              	.LVL74:
+ 239:Src/main.c    **** 
+ 627              		.loc 1 239 0
+ 628 02da 0320     		mov	r0, #3
+ 629 02dc FFF7FEFF 		bl	HAL_Delay
+ 630              	.LVL75:
+ 241:Src/main.c    **** 		message[1] = b0;                                                                                 
+ 631              		.loc 1 241 0
+ 632 02e0 0095     		str	r5, [sp]
+ 633 02e2 4B46     		mov	r3, r9
+ 634 02e4 0193     		str	r3, [sp, #4]
+ 635 02e6 0296     		str	r6, [sp, #8]
+ARM GAS  /tmp/ccr4XUhA.s 			page 22
+
+
+ 636 02e8 3548     		ldr	r0, .L29+52
+ 637 02ea A021     		mov	r1, #160
+ 638 02ec 221C     		mov	r2, r4
+ 639 02ee 0133     		add	r3, r3, #1
+ 640 02f0 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 641              	.LVL76:
+ 242:Src/main.c    **** 		eeprom_debug_address++;                                                                          
+ 642              		.loc 1 242 0
+ 643 02f4 2B78     		ldrb	r3, [r5]
+ 644 02f6 7B70     		strb	r3, [r7, #1]
+ 243:Src/main.c    **** 
+ 645              		.loc 1 243 0
+ 646 02f8 0134     		add	r4, r4, #1
+ 647              	.LVL77:
+ 648 02fa A4B2     		uxth	r4, r4
+ 649              	.LVL78:
  245:Src/main.c    **** 
- 246:Src/main.c    ****   /* USER CODE END Error_Handler_Debug */
- 247:Src/main.c    **** }
- 352              		.loc 1 247 0
- 353              		@ sp needed
- 354 0000 7047     		bx	lr
- 355              		.cfi_endproc
- 356              	.LFE36:
- 358              		.comm	SSD1306_I2C_PORT,4,4
- 359 0002 C046     		.section	.rodata.str1.4,"aMS",%progbits,1
- 360              		.align	2
- 361              	.LC2:
- 362 0000 4C303731 		.ascii	"L071\000"
- 362      00
- 363 0005 000000   		.space	3
- 364              	.LC5:
- 365 0008 54455354 		.ascii	"TEST..\000"
- 365      2E2E00
- 366 000f 00       		.space	1
- 367              	.LC8:
- 368 0010 6C6F6720 		.ascii	"log mode\000"
- 368      6D6F6465 
- 368      00
- 369 0019 000000   		.space	3
- 370              	.LC11:
- 371 001c 646F776E 		.ascii	"download...\000"
- 371      6C6F6164 
- 371      2E2E2E00 
- 372              		.section	.bss.message,"aw",%nobits
- 373              		.align	2
- 374              		.set	.LANCHOR0,. + 0
- 377              	message:
- 378 0000 00000000 		.space	64
- 378      00000000 
- 378      00000000 
- 378      00000000 
- 378      00000000 
- 379              		.text
- 380              	.Letext0:
- 381              		.file 2 "/usr/include/newlib/machine/_default_types.h"
- 382              		.file 3 "/usr/include/newlib/sys/_stdint.h"
- 383              		.file 4 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l071xx.h"
- 384              		.file 5 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_def.h"
- 385              		.file 6 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_rcc.h"
- 386              		.file 7 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_rcc_ex.h"
- 387              		.file 8 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_dma.h"
- 388              		.file 9 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_i2c.h"
- 389              		.file 10 "Inc/fonts.h"
- 390              		.file 11 "Inc/ssd1306.h"
- 391              		.file 12 "Inc/pressure_sensor_object.h"
- 392              		.file 13 "Inc/voltmeter_object.h"
- 393              		.file 14 "Inc/i2c.h"
-ARM GAS  /tmp/ccFZI1vR.s 			page 13
+ 650              		.loc 1 245 0
+ 651 02fc 2E23     		mov	r3, #46
+ 652 02fe BB70     		strb	r3, [r7, #2]
+ 247:Src/main.c    **** 		message[3] = b0;                                                                                 
+ 653              		.loc 1 247 0
+ 654 0300 0095     		str	r5, [sp]
+ 655 0302 4B46     		mov	r3, r9
+ 656 0304 0193     		str	r3, [sp, #4]
+ 657 0306 0296     		str	r6, [sp, #8]
+ 658 0308 2D48     		ldr	r0, .L29+52
+ 659 030a A021     		mov	r1, #160
+ 660 030c 221C     		mov	r2, r4
+ 661 030e 0133     		add	r3, r3, #1
+ 662 0310 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 663              	.LVL79:
+ 248:Src/main.c    **** 		eeprom_debug_address++;                                                                          
+ 664              		.loc 1 248 0
+ 665 0314 2B78     		ldrb	r3, [r5]
+ 666 0316 FB70     		strb	r3, [r7, #3]
+ 249:Src/main.c    **** 
+ 667              		.loc 1 249 0
+ 668 0318 0134     		add	r4, r4, #1
+ 669              	.LVL80:
+ 670 031a A4B2     		uxth	r4, r4
+ 671              	.LVL81:
+ 251:Src/main.c    **** 
+ 672              		.loc 1 251 0
+ 673 031c 2023     		mov	r3, #32
+ 674 031e 3B71     		strb	r3, [r7, #4]
+ 253:Src/main.c    **** 		message[5] = b0;                                                                                 
+ 675              		.loc 1 253 0
+ 676 0320 0095     		str	r5, [sp]
+ 677 0322 4B46     		mov	r3, r9
+ 678 0324 0193     		str	r3, [sp, #4]
+ 679 0326 0296     		str	r6, [sp, #8]
+ 680 0328 2548     		ldr	r0, .L29+52
+ 681 032a A021     		mov	r1, #160
+ 682 032c 221C     		mov	r2, r4
+ 683 032e 0133     		add	r3, r3, #1
+ 684 0330 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ARM GAS  /tmp/ccr4XUhA.s 			page 23
 
 
- 394              		.file 15 "<built-in>"
- 395              		.file 16 "Inc/gpio.h"
- 396              		.file 17 "Inc/adc.h"
- 397              		.file 18 "Inc/spi.h"
- 398              		.file 19 "Inc/usart.h"
- 399              		.file 20 "Inc/rtc_ds3231_interface.h"
- 400              		.file 21 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h"
- 401              		.file 22 "Inc/one_second_timer_interface.h"
- 402              		.file 23 "Inc/depth_switch_interface.h"
-ARM GAS  /tmp/ccFZI1vR.s 			page 14
+ 685              	.LVL82:
+ 254:Src/main.c    **** 		eeprom_debug_address++;                                                                          
+ 686              		.loc 1 254 0
+ 687 0334 2B78     		ldrb	r3, [r5]
+ 688 0336 7B71     		strb	r3, [r7, #5]
+ 255:Src/main.c    **** 		
+ 689              		.loc 1 255 0
+ 690 0338 0134     		add	r4, r4, #1
+ 691              	.LVL83:
+ 692 033a A4B2     		uxth	r4, r4
+ 693              	.LVL84:
+ 257:Src/main.c    **** 		message[6] = b0;                                                                                 
+ 694              		.loc 1 257 0
+ 695 033c 0095     		str	r5, [sp]
+ 696 033e 4B46     		mov	r3, r9
+ 697 0340 0193     		str	r3, [sp, #4]
+ 698 0342 0296     		str	r6, [sp, #8]
+ 699 0344 1E48     		ldr	r0, .L29+52
+ 700 0346 A021     		mov	r1, #160
+ 701 0348 221C     		mov	r2, r4
+ 702 034a 0133     		add	r3, r3, #1
+ 703 034c FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 704              	.LVL85:
+ 258:Src/main.c    **** 		eeprom_debug_address++;                                                                          
+ 705              		.loc 1 258 0
+ 706 0350 2B78     		ldrb	r3, [r5]
+ 707 0352 BB71     		strb	r3, [r7, #6]
+ 259:Src/main.c    **** 
+ 708              		.loc 1 259 0
+ 709 0354 0134     		add	r4, r4, #1
+ 710              	.LVL86:
+ 711 0356 A4B2     		uxth	r4, r4
+ 712              	.LVL87:
+ 261:Src/main.c    **** 		{
+ 713              		.loc 1 261 0
+ 714 0358 3B78     		ldrb	r3, [r7]
+ 715 035a 002B     		cmp	r3, #0
+ 716 035c 03D1     		bne	.L11
+ 261:Src/main.c    **** 		{
+ 717              		.loc 1 261 0 is_stmt 0 discriminator 1
+ 718 035e 114B     		ldr	r3, .L29+24
+ 719 0360 5B78     		ldrb	r3, [r3, #1]
+ 720 0362 002B     		cmp	r3, #0
+ 721 0364 2ED0     		beq	.L25
+ 722              	.L11:
+ 267:Src/main.c    **** 			message[8] = '\n';                                                                              
+ 723              		.loc 1 267 0 is_stmt 1
+ 724 0366 0F4D     		ldr	r5, .L29+24
+ 725 0368 0D23     		mov	r3, #13
+ 726 036a EB71     		strb	r3, [r5, #7]
+ 268:Src/main.c    **** 			message[9] = 0;                                                                                 
+ 727              		.loc 1 268 0
+ 728 036c 033B     		sub	r3, r3, #3
+ 729 036e 2B72     		strb	r3, [r5, #8]
+ 269:Src/main.c    **** 			HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);             
+ 730              		.loc 1 269 0
+ 731 0370 0023     		mov	r3, #0
+ARM GAS  /tmp/ccr4XUhA.s 			page 24
+
+
+ 732 0372 6B72     		strb	r3, [r5, #9]
+ 270:Src/main.c    **** 		}
+ 733              		.loc 1 270 0
+ 734 0374 281C     		mov	r0, r5
+ 735 0376 FFF7FEFF 		bl	strlen
+ 736              	.LVL88:
+ 737 037a 82B2     		uxth	r2, r0
+ 738 037c 0E48     		ldr	r0, .L29+44
+ 739 037e 291C     		mov	r1, r5
+ 740 0380 FA23     		mov	r3, #250
+ 741 0382 5B00     		lsl	r3, r3, #1
+ 742 0384 FFF7FEFF 		bl	HAL_UART_Transmit
+ 743              	.LVL89:
+ 744 0388 1EE0     		b	.L10
+ 745              	.L30:
+ 746 038a C046     		.align	2
+ 747              	.L29:
+ 748 038c 00300140 		.word	1073819648
+ 749 0390 00000000 		.word	hi2c3
+ 750 0394 00000000 		.word	hi2c1
+ 751 0398 00000000 		.word	Font_16x26
+ 752 039c 00000000 		.word	.LC2
+ 753 03a0 08000000 		.word	.LC5
+ 754 03a4 00000000 		.word	.LANCHOR0
+ 755 03a8 10000000 		.word	.LC8
+ 756 03ac 00000000 		.word	Font_11x18
+ 757 03b0 1C000000 		.word	.LC11
+ 758 03b4 28000000 		.word	.LC13
+ 759 03b8 00000000 		.word	huart1
+ 760 03bc 2C000000 		.word	.LC16
+ 761 03c0 00000000 		.word	hi2c2
+ 762              	.L25:
+ 263:Src/main.c    **** 		}
+ 763              		.loc 1 263 0
+ 764 03c4 0123     		mov	r3, #1
+ 765 03c6 9A46     		mov	r10, r3
+ 766              	.LVL90:
+ 767              	.L10:
+ 233:Src/main.c    **** 	{
+ 768              		.loc 1 233 0
+ 769 03c8 5346     		mov	r3, r10
+ 770 03ca 002B     		cmp	r3, #0
+ 771 03cc 00D1     		bne	.LCB653
+ 772 03ce 71E7     		b	.L13	@long jump
+ 773              	.LCB653:
+ 274:Src/main.c    **** 	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+ 774              		.loc 1 274 0
+ 775 03d0 C54C     		ldr	r4, .L31
+ 776              	.LVL91:
+ 777 03d2 C64B     		ldr	r3, .L31+4
+ 778 03d4 9946     		mov	r9, r3
+ 779 03d6 1B88     		ldrh	r3, [r3]
+ 780 03d8 2380     		strh	r3, [r4]
+ 781 03da 4B46     		mov	r3, r9
+ 782 03dc 9B78     		ldrb	r3, [r3, #2]
+ 783 03de A370     		strb	r3, [r4, #2]
+ 275:Src/main.c    **** 	sprintf(message, "**********\r\nlog bank 1 finish\r\n");
+ARM GAS  /tmp/ccr4XUhA.s 			page 25
+
+
+ 784              		.loc 1 275 0
+ 785 03e0 201C     		mov	r0, r4
+ 786 03e2 FFF7FEFF 		bl	strlen
+ 787              	.LVL92:
+ 788 03e6 C24E     		ldr	r6, .L31+8
+ 789 03e8 82B2     		uxth	r2, r0
+ 790 03ea FA25     		mov	r5, #250
+ 791 03ec 6D00     		lsl	r5, r5, #1
+ 792 03ee 301C     		mov	r0, r6
+ 793 03f0 211C     		mov	r1, r4
+ 794 03f2 2B1C     		mov	r3, r5
+ 795 03f4 FFF7FEFF 		bl	HAL_UART_Transmit
+ 796              	.LVL93:
+ 276:Src/main.c    **** 	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+ 797              		.loc 1 276 0
+ 798 03f8 BE49     		ldr	r1, .L31+12
+ 799 03fa 231C     		mov	r3, r4
+ 800 03fc 0A1C     		mov	r2, r1
+ 801 03fe 83CA     		ldmia	r2!, {r0, r1, r7}
+ 802 0400 83C3     		stmia	r3!, {r0, r1, r7}
+ 803 0402 83CA     		ldmia	r2!, {r0, r1, r7}
+ 804 0404 83C3     		stmia	r3!, {r0, r1, r7}
+ 805 0406 03CA     		ldmia	r2!, {r0, r1}
+ 806 0408 03C3     		stmia	r3!, {r0, r1}
+ 277:Src/main.c    **** 
+ 807              		.loc 1 277 0
+ 808 040a 201C     		mov	r0, r4
+ 809 040c FFF7FEFF 		bl	strlen
+ 810              	.LVL94:
+ 811 0410 82B2     		uxth	r2, r0
+ 812 0412 301C     		mov	r0, r6
+ 813 0414 211C     		mov	r1, r4
+ 814 0416 2B1C     		mov	r3, r5
+ 815 0418 FFF7FEFF 		bl	HAL_UART_Transmit
+ 816              	.LVL95:
+ 283:Src/main.c    **** 	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+ 817              		.loc 1 283 0
+ 818 041c 4B46     		mov	r3, r9
+ 819 041e 1B88     		ldrh	r3, [r3]
+ 820 0420 2380     		strh	r3, [r4]
+ 821 0422 4B46     		mov	r3, r9
+ 822 0424 9B78     		ldrb	r3, [r3, #2]
+ 823 0426 A370     		strb	r3, [r4, #2]
+ 284:Src/main.c    **** 	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+ 824              		.loc 1 284 0
+ 825 0428 201C     		mov	r0, r4
+ 826 042a FFF7FEFF 		bl	strlen
+ 827              	.LVL96:
+ 828 042e 82B2     		uxth	r2, r0
+ 829 0430 301C     		mov	r0, r6
+ 830 0432 211C     		mov	r1, r4
+ 831 0434 2B1C     		mov	r3, r5
+ 832 0436 FFF7FEFF 		bl	HAL_UART_Transmit
+ 833              	.LVL97:
+ 285:Src/main.c    **** 	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+ 834              		.loc 1 285 0
+ 835 043a 201C     		mov	r0, r4
+ARM GAS  /tmp/ccr4XUhA.s 			page 26
+
+
+ 836 043c FFF7FEFF 		bl	strlen
+ 837              	.LVL98:
+ 838 0440 82B2     		uxth	r2, r0
+ 839 0442 301C     		mov	r0, r6
+ 840 0444 211C     		mov	r1, r4
+ 841 0446 2B1C     		mov	r3, r5
+ 842 0448 FFF7FEFF 		bl	HAL_UART_Transmit
+ 843              	.LVL99:
+ 286:Src/main.c    **** 
+ 844              		.loc 1 286 0
+ 845 044c 201C     		mov	r0, r4
+ 846 044e FFF7FEFF 		bl	strlen
+ 847              	.LVL100:
+ 848 0452 82B2     		uxth	r2, r0
+ 849 0454 301C     		mov	r0, r6
+ 850 0456 211C     		mov	r1, r4
+ 851 0458 2B1C     		mov	r3, r5
+ 852 045a FFF7FEFF 		bl	HAL_UART_Transmit
+ 853              	.LVL101:
+ 288:Src/main.c    **** 	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+ 854              		.loc 1 288 0
+ 855 045e A649     		ldr	r1, .L31+16
+ 856 0460 231C     		mov	r3, r4
+ 857 0462 0A1C     		mov	r2, r1
+ 858 0464 83CA     		ldmia	r2!, {r0, r1, r7}
+ 859 0466 83C3     		stmia	r3!, {r0, r1, r7}
+ 860 0468 83CA     		ldmia	r2!, {r0, r1, r7}
+ 861 046a 83C3     		stmia	r3!, {r0, r1, r7}
+ 862 046c 03CA     		ldmia	r2!, {r0, r1}
+ 863 046e 03C3     		stmia	r3!, {r0, r1}
+ 289:Src/main.c    **** 
+ 864              		.loc 1 289 0
+ 865 0470 201C     		mov	r0, r4
+ 866 0472 FFF7FEFF 		bl	strlen
+ 867              	.LVL102:
+ 868 0476 82B2     		uxth	r2, r0
+ 869 0478 301C     		mov	r0, r6
+ 870 047a 211C     		mov	r1, r4
+ 871 047c 2B1C     		mov	r3, r5
+ 872 047e FFF7FEFF 		bl	HAL_UART_Transmit
+ 873              	.LVL103:
+ 295:Src/main.c    **** 	message[0] = b0;                                                                                  
+ 874              		.loc 1 295 0
+ 875 0482 DE3D     		sub	r5, r5, #222
+ 876 0484 FF3D     		sub	r5, r5, #255
+ 877 0486 6D44     		add	r5, r5, sp
+ 878 0488 0095     		str	r5, [sp]
+ 879 048a 0126     		mov	r6, #1
+ 880 048c 0196     		str	r6, [sp, #4]
+ 881 048e 6427     		mov	r7, #100
+ 882 0490 0297     		str	r7, [sp, #8]
+ 883 0492 9A48     		ldr	r0, .L31+20
+ 884 0494 A221     		mov	r1, #162
+ 885 0496 4022     		mov	r2, #64
+ 886 0498 0223     		mov	r3, #2
+ 887 049a FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 888              	.LVL104:
+ARM GAS  /tmp/ccr4XUhA.s 			page 27
+
+
+ 296:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 889              		.loc 1 296 0
+ 890 049e 2B78     		ldrb	r3, [r5]
+ 891 04a0 2370     		strb	r3, [r4]
+ 892              	.LVL105:
+ 299:Src/main.c    **** 	message[1] = b0;                                                                                  
+ 893              		.loc 1 299 0
+ 894 04a2 0095     		str	r5, [sp]
+ 895 04a4 0196     		str	r6, [sp, #4]
+ 896 04a6 0297     		str	r7, [sp, #8]
+ 897 04a8 9448     		ldr	r0, .L31+20
+ 898 04aa A221     		mov	r1, #162
+ 899 04ac 4122     		mov	r2, #65
+ 900 04ae 0223     		mov	r3, #2
+ 901 04b0 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 902              	.LVL106:
+ 300:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 903              		.loc 1 300 0
+ 904 04b4 2B78     		ldrb	r3, [r5]
+ 905 04b6 6370     		strb	r3, [r4, #1]
+ 906              	.LVL107:
+ 303:Src/main.c    **** 	message[2] = b0;                                                                                  
+ 907              		.loc 1 303 0
+ 908 04b8 0095     		str	r5, [sp]
+ 909 04ba 0196     		str	r6, [sp, #4]
+ 910 04bc 0297     		str	r7, [sp, #8]
+ 911 04be 8F48     		ldr	r0, .L31+20
+ 912 04c0 A221     		mov	r1, #162
+ 913 04c2 4222     		mov	r2, #66
+ 914 04c4 0223     		mov	r3, #2
+ 915 04c6 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 916              	.LVL108:
+ 304:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 917              		.loc 1 304 0
+ 918 04ca 2B78     		ldrb	r3, [r5]
+ 919 04cc A370     		strb	r3, [r4, #2]
+ 920              	.LVL109:
+ 307:Src/main.c    **** 	message[3] = b0;                                                                                  
+ 921              		.loc 1 307 0
+ 922 04ce 0095     		str	r5, [sp]
+ 923 04d0 0196     		str	r6, [sp, #4]
+ 924 04d2 0297     		str	r7, [sp, #8]
+ 925 04d4 8948     		ldr	r0, .L31+20
+ 926 04d6 A221     		mov	r1, #162
+ 927 04d8 4322     		mov	r2, #67
+ 928 04da 0223     		mov	r3, #2
+ 929 04dc FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 930              	.LVL110:
+ 308:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 931              		.loc 1 308 0
+ 932 04e0 2B78     		ldrb	r3, [r5]
+ 933 04e2 E370     		strb	r3, [r4, #3]
+ 934              	.LVL111:
+ 311:Src/main.c    **** 	{                                                                                                 
+ 935              		.loc 1 311 0
+ 936 04e4 2378     		ldrb	r3, [r4]
+ 937 04e6 002B     		cmp	r3, #0
+ARM GAS  /tmp/ccr4XUhA.s 			page 28
+
+
+ 938 04e8 03D1     		bne	.L14
+ 311:Src/main.c    **** 	{                                                                                                 
+ 939              		.loc 1 311 0 is_stmt 0 discriminator 1
+ 940 04ea 7F4B     		ldr	r3, .L31
+ 941 04ec 5B78     		ldrb	r3, [r3, #1]
+ 942 04ee 002B     		cmp	r3, #0
+ 943 04f0 13D0     		beq	.L26
+ 944              	.L14:
+ 317:Src/main.c    **** 		message[5] = '\n';                                                                               
+ 945              		.loc 1 317 0 is_stmt 1
+ 946 04f2 7D4C     		ldr	r4, .L31
+ 947 04f4 0D23     		mov	r3, #13
+ 948 04f6 2371     		strb	r3, [r4, #4]
+ 318:Src/main.c    **** 		message[6] = 0;                                                                                  
+ 949              		.loc 1 318 0
+ 950 04f8 033B     		sub	r3, r3, #3
+ 951 04fa 6371     		strb	r3, [r4, #5]
+ 319:Src/main.c    **** 		HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);              
+ 952              		.loc 1 319 0
+ 953 04fc 0023     		mov	r3, #0
+ 954 04fe A371     		strb	r3, [r4, #6]
+ 320:Src/main.c    **** 	}                                                                                                 
+ 955              		.loc 1 320 0
+ 956 0500 201C     		mov	r0, r4
+ 957 0502 FFF7FEFF 		bl	strlen
+ 958              	.LVL112:
+ 959 0506 82B2     		uxth	r2, r0
+ 960 0508 7948     		ldr	r0, .L31+8
+ 961 050a 211C     		mov	r1, r4
+ 962 050c FA23     		mov	r3, #250
+ 963 050e 5B00     		lsl	r3, r3, #1
+ 964 0510 FFF7FEFF 		bl	HAL_UART_Transmit
+ 965              	.LVL113:
+ 291:Src/main.c    **** 
+ 966              		.loc 1 291 0
+ 967 0514 0023     		mov	r3, #0
+ 968 0516 9A46     		mov	r10, r3
+ 969 0518 01E0     		b	.L15
+ 970              	.L26:
+ 313:Src/main.c    **** 	}                                                                                                 
+ 971              		.loc 1 313 0
+ 972 051a 0123     		mov	r3, #1
+ 973 051c 9A46     		mov	r10, r3
+ 974              	.L15:
+ 975              	.LVL114:
+ 323:Src/main.c    **** 	message[0] = b0;                                                                                  
+ 976              		.loc 1 323 0
+ 977 051e 1724     		mov	r4, #23
+ 978 0520 6C44     		add	r4, r4, sp
+ 979 0522 0094     		str	r4, [sp]
+ 980 0524 0126     		mov	r6, #1
+ 981 0526 0196     		str	r6, [sp, #4]
+ 982 0528 6427     		mov	r7, #100
+ 983 052a 0297     		str	r7, [sp, #8]
+ 984 052c 7348     		ldr	r0, .L31+20
+ 985 052e A221     		mov	r1, #162
+ 986 0530 4422     		mov	r2, #68
+ARM GAS  /tmp/ccr4XUhA.s 			page 29
+
+
+ 987 0532 0223     		mov	r3, #2
+ 988 0534 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 989              	.LVL115:
+ 324:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 990              		.loc 1 324 0
+ 991 0538 6B4D     		ldr	r5, .L31
+ 992 053a 2378     		ldrb	r3, [r4]
+ 993 053c 2B70     		strb	r3, [r5]
+ 994              	.LVL116:
+ 327:Src/main.c    **** 	message[1] = b0;                                                                                  
+ 995              		.loc 1 327 0
+ 996 053e 0094     		str	r4, [sp]
+ 997 0540 0196     		str	r6, [sp, #4]
+ 998 0542 0297     		str	r7, [sp, #8]
+ 999 0544 6D48     		ldr	r0, .L31+20
+ 1000 0546 A221     		mov	r1, #162
+ 1001 0548 4522     		mov	r2, #69
+ 1002 054a 0223     		mov	r3, #2
+ 1003 054c FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 1004              	.LVL117:
+ 328:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 1005              		.loc 1 328 0
+ 1006 0550 2378     		ldrb	r3, [r4]
+ 1007 0552 6B70     		strb	r3, [r5, #1]
+ 1008              	.LVL118:
+ 331:Src/main.c    **** 	message[2] = b0;                                                                                  
+ 1009              		.loc 1 331 0
+ 1010 0554 0094     		str	r4, [sp]
+ 1011 0556 0196     		str	r6, [sp, #4]
+ 1012 0558 0297     		str	r7, [sp, #8]
+ 1013 055a 6848     		ldr	r0, .L31+20
+ 1014 055c A221     		mov	r1, #162
+ 1015 055e 4622     		mov	r2, #70
+ 1016 0560 0223     		mov	r3, #2
+ 1017 0562 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 1018              	.LVL119:
+ 332:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 1019              		.loc 1 332 0
+ 1020 0566 2378     		ldrb	r3, [r4]
+ 1021 0568 AB70     		strb	r3, [r5, #2]
+ 1022              	.LVL120:
+ 335:Src/main.c    **** 	message[3] = b0;                                                                                  
+ 1023              		.loc 1 335 0
+ 1024 056a 0094     		str	r4, [sp]
+ 1025 056c 0196     		str	r6, [sp, #4]
+ 1026 056e 0297     		str	r7, [sp, #8]
+ 1027 0570 6248     		ldr	r0, .L31+20
+ 1028 0572 A221     		mov	r1, #162
+ 1029 0574 4722     		mov	r2, #71
+ 1030 0576 0223     		mov	r3, #2
+ 1031 0578 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 1032              	.LVL121:
+ 336:Src/main.c    **** 	eeprom_debug_address++;                                                                           
+ 1033              		.loc 1 336 0
+ 1034 057c 2378     		ldrb	r3, [r4]
+ 1035 057e EB70     		strb	r3, [r5, #3]
+ 1036              	.LVL122:
+ARM GAS  /tmp/ccr4XUhA.s 			page 30
+
+
+ 339:Src/main.c    **** 	{                                                                                                 
+ 1037              		.loc 1 339 0
+ 1038 0580 2B78     		ldrb	r3, [r5]
+ 1039 0582 002B     		cmp	r3, #0
+ 1040 0584 03D1     		bne	.L16
+ 339:Src/main.c    **** 	{                                                                                                 
+ 1041              		.loc 1 339 0 is_stmt 0 discriminator 1
+ 1042 0586 584B     		ldr	r3, .L31
+ 1043 0588 5B78     		ldrb	r3, [r3, #1]
+ 1044 058a 002B     		cmp	r3, #0
+ 1045 058c 11D0     		beq	.L27
+ 1046              	.L16:
+ 345:Src/main.c    **** 		message[5] = '\n';                                                                               
+ 1047              		.loc 1 345 0 is_stmt 1
+ 1048 058e 564C     		ldr	r4, .L31
+ 1049 0590 0D23     		mov	r3, #13
+ 1050 0592 2371     		strb	r3, [r4, #4]
+ 346:Src/main.c    **** 		message[6] = 0;                                                                                  
+ 1051              		.loc 1 346 0
+ 1052 0594 033B     		sub	r3, r3, #3
+ 1053 0596 6371     		strb	r3, [r4, #5]
+ 347:Src/main.c    **** 		HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);              
+ 1054              		.loc 1 347 0
+ 1055 0598 0023     		mov	r3, #0
+ 1056 059a A371     		strb	r3, [r4, #6]
+ 348:Src/main.c    **** 	}                                                                                                 
+ 1057              		.loc 1 348 0
+ 1058 059c 201C     		mov	r0, r4
+ 1059 059e FFF7FEFF 		bl	strlen
+ 1060              	.LVL123:
+ 1061 05a2 82B2     		uxth	r2, r0
+ 1062 05a4 5248     		ldr	r0, .L31+8
+ 1063 05a6 211C     		mov	r1, r4
+ 1064 05a8 FA23     		mov	r3, #250
+ 1065 05aa 5B00     		lsl	r3, r3, #1
+ 1066 05ac FFF7FEFF 		bl	HAL_UART_Transmit
+ 1067              	.LVL124:
+ 1068 05b0 01E0     		b	.L17
+ 1069              	.L27:
+ 341:Src/main.c    **** 	}                                                                                                 
+ 1070              		.loc 1 341 0
+ 1071 05b2 0123     		mov	r3, #1
+ 1072 05b4 9A46     		mov	r10, r3
+ 1073              	.LVL125:
+ 1074              	.L17:
+ 382:Src/main.c    **** 		}
+ 1075              		.loc 1 382 0
+ 1076 05b6 4824     		mov	r4, #72
+ 1077 05b8 6CE0     		b	.L18
+ 1078              	.LVL126:
+ 1079              	.L21:
+ 355:Src/main.c    **** 		message[0] = b0;                                                                                 
+ 1080              		.loc 1 355 0
+ 1081 05ba 1725     		mov	r5, #23
+ 1082 05bc 6D44     		add	r5, r5, sp
+ 1083 05be 0095     		str	r5, [sp]
+ 1084 05c0 0123     		mov	r3, #1
+ARM GAS  /tmp/ccr4XUhA.s 			page 31
+
+
+ 1085              	.LVL127:
+ 1086 05c2 9946     		mov	r9, r3
+ 1087 05c4 0193     		str	r3, [sp, #4]
+ 1088 05c6 6426     		mov	r6, #100
+ 1089 05c8 0296     		str	r6, [sp, #8]
+ 1090 05ca 4C48     		ldr	r0, .L31+20
+ 1091 05cc A221     		mov	r1, #162
+ 1092 05ce 221C     		mov	r2, r4
+ 1093 05d0 0133     		add	r3, r3, #1
+ 1094 05d2 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 1095              	.LVL128:
+ 356:Src/main.c    **** 		eeprom_debug_address++;                                                                          
+ 1096              		.loc 1 356 0
+ 1097 05d6 444F     		ldr	r7, .L31
+ 1098 05d8 2B78     		ldrb	r3, [r5]
+ 1099 05da 3B70     		strb	r3, [r7]
+ 357:Src/main.c    **** 		HAL_Delay(3);
+ 1100              		.loc 1 357 0
+ 1101 05dc 0134     		add	r4, r4, #1
+ 1102              	.LVL129:
+ 1103 05de A4B2     		uxth	r4, r4
+ 1104              	.LVL130:
+ 358:Src/main.c    **** 
+ 1105              		.loc 1 358 0
+ 1106 05e0 0320     		mov	r0, #3
+ 1107 05e2 FFF7FEFF 		bl	HAL_Delay
+ 1108              	.LVL131:
+ 360:Src/main.c    **** 		message[1] = b0;                                                                                 
+ 1109              		.loc 1 360 0
+ 1110 05e6 0095     		str	r5, [sp]
+ 1111 05e8 4B46     		mov	r3, r9
+ 1112 05ea 0193     		str	r3, [sp, #4]
+ 1113 05ec 0296     		str	r6, [sp, #8]
+ 1114 05ee 4348     		ldr	r0, .L31+20
+ 1115 05f0 A221     		mov	r1, #162
+ 1116 05f2 221C     		mov	r2, r4
+ 1117 05f4 0133     		add	r3, r3, #1
+ 1118 05f6 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 1119              	.LVL132:
+ 361:Src/main.c    **** 		eeprom_debug_address++;                                                                          
+ 1120              		.loc 1 361 0
+ 1121 05fa 2B78     		ldrb	r3, [r5]
+ 1122 05fc 7B70     		strb	r3, [r7, #1]
+ 362:Src/main.c    **** 
+ 1123              		.loc 1 362 0
+ 1124 05fe 0134     		add	r4, r4, #1
+ 1125              	.LVL133:
+ 1126 0600 A4B2     		uxth	r4, r4
+ 1127              	.LVL134:
+ 364:Src/main.c    **** 
+ 1128              		.loc 1 364 0
+ 1129 0602 2E23     		mov	r3, #46
+ 1130 0604 BB70     		strb	r3, [r7, #2]
+ 366:Src/main.c    **** 		message[3] = b0;                                                                                 
+ 1131              		.loc 1 366 0
+ 1132 0606 0095     		str	r5, [sp]
+ 1133 0608 4B46     		mov	r3, r9
+ARM GAS  /tmp/ccr4XUhA.s 			page 32
+
+
+ 1134 060a 0193     		str	r3, [sp, #4]
+ 1135 060c 0296     		str	r6, [sp, #8]
+ 1136 060e 3B48     		ldr	r0, .L31+20
+ 1137 0610 A221     		mov	r1, #162
+ 1138 0612 221C     		mov	r2, r4
+ 1139 0614 0133     		add	r3, r3, #1
+ 1140 0616 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 1141              	.LVL135:
+ 367:Src/main.c    **** 		eeprom_debug_address++;                                                                          
+ 1142              		.loc 1 367 0
+ 1143 061a 2B78     		ldrb	r3, [r5]
+ 1144 061c FB70     		strb	r3, [r7, #3]
+ 368:Src/main.c    **** 
+ 1145              		.loc 1 368 0
+ 1146 061e 0134     		add	r4, r4, #1
+ 1147              	.LVL136:
+ 1148 0620 A4B2     		uxth	r4, r4
+ 1149              	.LVL137:
+ 370:Src/main.c    **** 
+ 1150              		.loc 1 370 0
+ 1151 0622 2023     		mov	r3, #32
+ 1152 0624 3B71     		strb	r3, [r7, #4]
+ 372:Src/main.c    **** 		message[5] = b0;                                                                                 
+ 1153              		.loc 1 372 0
+ 1154 0626 0095     		str	r5, [sp]
+ 1155 0628 4B46     		mov	r3, r9
+ 1156 062a 0193     		str	r3, [sp, #4]
+ 1157 062c 0296     		str	r6, [sp, #8]
+ 1158 062e 3348     		ldr	r0, .L31+20
+ 1159 0630 A221     		mov	r1, #162
+ 1160 0632 221C     		mov	r2, r4
+ 1161 0634 0133     		add	r3, r3, #1
+ 1162 0636 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 1163              	.LVL138:
+ 373:Src/main.c    **** 		eeprom_debug_address++;                                                                          
+ 1164              		.loc 1 373 0
+ 1165 063a 2B78     		ldrb	r3, [r5]
+ 1166 063c 7B71     		strb	r3, [r7, #5]
+ 374:Src/main.c    **** 		
+ 1167              		.loc 1 374 0
+ 1168 063e 0134     		add	r4, r4, #1
+ 1169              	.LVL139:
+ 1170 0640 A4B2     		uxth	r4, r4
+ 1171              	.LVL140:
+ 376:Src/main.c    **** 		message[6] = b0;                                                                                 
+ 1172              		.loc 1 376 0
+ 1173 0642 0095     		str	r5, [sp]
+ 1174 0644 4B46     		mov	r3, r9
+ 1175 0646 0193     		str	r3, [sp, #4]
+ 1176 0648 0296     		str	r6, [sp, #8]
+ 1177 064a 2C48     		ldr	r0, .L31+20
+ 1178 064c A221     		mov	r1, #162
+ 1179 064e 221C     		mov	r2, r4
+ 1180 0650 0133     		add	r3, r3, #1
+ 1181 0652 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 1182              	.LVL141:
+ 377:Src/main.c    **** 		eeprom_debug_address++;                                                                          
+ARM GAS  /tmp/ccr4XUhA.s 			page 33
+
+
+ 1183              		.loc 1 377 0
+ 1184 0656 2B78     		ldrb	r3, [r5]
+ 1185 0658 BB71     		strb	r3, [r7, #6]
+ 378:Src/main.c    **** 
+ 1186              		.loc 1 378 0
+ 1187 065a 0134     		add	r4, r4, #1
+ 1188              	.LVL142:
+ 1189 065c A4B2     		uxth	r4, r4
+ 1190              	.LVL143:
+ 380:Src/main.c    **** 		{
+ 1191              		.loc 1 380 0
+ 1192 065e 3B78     		ldrb	r3, [r7]
+ 1193 0660 002B     		cmp	r3, #0
+ 1194 0662 03D1     		bne	.L19
+ 380:Src/main.c    **** 		{
+ 1195              		.loc 1 380 0 is_stmt 0 discriminator 1
+ 1196 0664 204B     		ldr	r3, .L31
+ 1197 0666 5B78     		ldrb	r3, [r3, #1]
+ 1198 0668 002B     		cmp	r3, #0
+ 1199 066a 11D0     		beq	.L28
+ 1200              	.L19:
+ 386:Src/main.c    **** 			message[8] = '\n';                                                                              
+ 1201              		.loc 1 386 0 is_stmt 1
+ 1202 066c 1E4D     		ldr	r5, .L31
+ 1203 066e 0D23     		mov	r3, #13
+ 1204 0670 EB71     		strb	r3, [r5, #7]
+ 387:Src/main.c    **** 			message[9] = 0;                                                                                 
+ 1205              		.loc 1 387 0
+ 1206 0672 033B     		sub	r3, r3, #3
+ 1207 0674 2B72     		strb	r3, [r5, #8]
+ 388:Src/main.c    **** 			HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);             
+ 1208              		.loc 1 388 0
+ 1209 0676 0023     		mov	r3, #0
+ 1210 0678 6B72     		strb	r3, [r5, #9]
+ 389:Src/main.c    **** 		}
+ 1211              		.loc 1 389 0
+ 1212 067a 281C     		mov	r0, r5
+ 1213 067c FFF7FEFF 		bl	strlen
+ 1214              	.LVL144:
+ 1215 0680 82B2     		uxth	r2, r0
+ 1216 0682 1B48     		ldr	r0, .L31+8
+ 1217 0684 291C     		mov	r1, r5
+ 1218 0686 FA23     		mov	r3, #250
+ 1219 0688 5B00     		lsl	r3, r3, #1
+ 1220 068a FFF7FEFF 		bl	HAL_UART_Transmit
+ 1221              	.LVL145:
+ 1222 068e 01E0     		b	.L18
+ 1223              	.L28:
+ 382:Src/main.c    **** 		}
+ 1224              		.loc 1 382 0
+ 1225 0690 0123     		mov	r3, #1
+ 1226 0692 9A46     		mov	r10, r3
+ 1227              	.LVL146:
+ 1228              	.L18:
+ 352:Src/main.c    **** 	{
+ 1229              		.loc 1 352 0
+ 1230 0694 5346     		mov	r3, r10
+ARM GAS  /tmp/ccr4XUhA.s 			page 34
+
+
+ 1231 0696 002B     		cmp	r3, #0
+ 1232 0698 8FD0     		beq	.L21
+ 393:Src/main.c    **** 	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+ 1233              		.loc 1 393 0
+ 1234 069a 134E     		ldr	r6, .L31
+ 1235 069c 134B     		ldr	r3, .L31+4
+ 1236 069e 1A88     		ldrh	r2, [r3]
+ 1237 06a0 3280     		strh	r2, [r6]
+ 1238 06a2 9B78     		ldrb	r3, [r3, #2]
+ 1239 06a4 B370     		strb	r3, [r6, #2]
+ 394:Src/main.c    **** 	sprintf(message, "**********\r\nlog bank 2 finish\r\n");
+ 1240              		.loc 1 394 0
+ 1241 06a6 301C     		mov	r0, r6
+ 1242 06a8 FFF7FEFF 		bl	strlen
+ 1243              	.LVL147:
+ 1244 06ac 104D     		ldr	r5, .L31+8
+ 1245 06ae 82B2     		uxth	r2, r0
+ 1246 06b0 FA24     		mov	r4, #250
+ 1247              	.LVL148:
+ 1248 06b2 6400     		lsl	r4, r4, #1
+ 1249 06b4 281C     		mov	r0, r5
+ 1250 06b6 311C     		mov	r1, r6
+ 1251 06b8 231C     		mov	r3, r4
+ 1252 06ba FFF7FEFF 		bl	HAL_UART_Transmit
+ 1253              	.LVL149:
+ 395:Src/main.c    **** 	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+ 1254              		.loc 1 395 0
+ 1255 06be 1049     		ldr	r1, .L31+24
+ 1256 06c0 331C     		mov	r3, r6
+ 1257 06c2 0A1C     		mov	r2, r1
+ 1258 06c4 83CA     		ldmia	r2!, {r0, r1, r7}
+ 1259 06c6 83C3     		stmia	r3!, {r0, r1, r7}
+ 1260 06c8 83CA     		ldmia	r2!, {r0, r1, r7}
+ 1261 06ca 83C3     		stmia	r3!, {r0, r1, r7}
+ 1262 06cc 03CA     		ldmia	r2!, {r0, r1}
+ 1263 06ce 03C3     		stmia	r3!, {r0, r1}
+ 396:Src/main.c    **** 
+ 1264              		.loc 1 396 0
+ 1265 06d0 301C     		mov	r0, r6
+ 1266 06d2 FFF7FEFF 		bl	strlen
+ 1267              	.LVL150:
+ 1268 06d6 82B2     		uxth	r2, r0
+ 1269 06d8 281C     		mov	r0, r5
+ 1270 06da 311C     		mov	r1, r6
+ 1271 06dc 231C     		mov	r3, r4
+ 1272 06de FFF7FEFF 		bl	HAL_UART_Transmit
+ 1273              	.LVL151:
+ 1274              	.L22:
+ 403:Src/main.c    **** 
+ 1275              		.loc 1 403 0 discriminator 1
+ 1276 06e2 FEE7     		b	.L22
+ 1277              	.LVL152:
+ 1278              	.L5:
+ 1279              	.LBE2:
+ 419:Src/main.c    **** 
+ 1280              		.loc 1 419 0 discriminator 2
+ 1281 06e4 FEE7     		b	.L5
+ARM GAS  /tmp/ccr4XUhA.s 			page 35
+
+
+ 1282              	.L32:
+ 1283 06e6 C046     		.align	2
+ 1284              	.L31:
+ 1285 06e8 00000000 		.word	.LANCHOR0
+ 1286 06ec 28000000 		.word	.LC13
+ 1287 06f0 00000000 		.word	huart1
+ 1288 06f4 4C000000 		.word	.LC19
+ 1289 06f8 6C000000 		.word	.LC21
+ 1290 06fc 00000000 		.word	hi2c2
+ 1291 0700 8C000000 		.word	.LC23
+ 1292              		.cfi_endproc
+ 1293              	.LFE34:
+ 1295              		.section	.text.Error_Handler,"ax",%progbits
+ 1296              		.align	2
+ 1297              		.global	Error_Handler
+ 1298              		.code	16
+ 1299              		.thumb_func
+ 1301              	Error_Handler:
+ 1302              	.LFB36:
+ 482:Src/main.c    **** 
+ 483:Src/main.c    **** /* USER CODE BEGIN 4 */
+ 484:Src/main.c    **** 
+ 485:Src/main.c    **** /* USER CODE END 4 */
+ 486:Src/main.c    **** 
+ 487:Src/main.c    **** /**
+ 488:Src/main.c    ****   * @brief  This function is executed in case of error occurrence.
+ 489:Src/main.c    ****   * @retval None
+ 490:Src/main.c    ****   */
+ 491:Src/main.c    **** void Error_Handler(void)
+ 492:Src/main.c    **** {
+ 1303              		.loc 1 492 0
+ 1304              		.cfi_startproc
+ 493:Src/main.c    ****   /* USER CODE BEGIN Error_Handler_Debug */
+ 494:Src/main.c    ****   /* User can add his own implementation to report the HAL error return state */
+ 495:Src/main.c    **** 
+ 496:Src/main.c    ****   /* USER CODE END Error_Handler_Debug */
+ 497:Src/main.c    **** }
+ 1305              		.loc 1 497 0
+ 1306              		@ sp needed
+ 1307 0000 7047     		bx	lr
+ 1308              		.cfi_endproc
+ 1309              	.LFE36:
+ 1311              		.comm	SSD1306_I2C_PORT,4,4
+ 1312 0002 C046     		.section	.rodata.str1.4,"aMS",%progbits,1
+ 1313              		.align	2
+ 1314              	.LC2:
+ 1315 0000 4C303731 		.ascii	"L071\000"
+ 1315      00
+ 1316 0005 000000   		.space	3
+ 1317              	.LC5:
+ 1318 0008 54455354 		.ascii	"TEST..\000"
+ 1318      2E2E00
+ 1319 000f 00       		.space	1
+ 1320              	.LC8:
+ 1321 0010 6C6F6720 		.ascii	"log mode\000"
+ 1321      6D6F6465 
+ 1321      00
+ARM GAS  /tmp/ccr4XUhA.s 			page 36
+
+
+ 1322 0019 000000   		.space	3
+ 1323              	.LC11:
+ 1324 001c 646F776E 		.ascii	"download...\000"
+ 1324      6C6F6164 
+ 1324      2E2E2E00 
+ 1325              	.LC13:
+ 1326 0028 0D0A00   		.ascii	"\015\012\000"
+ 1327 002b 00       		.space	1
+ 1328              	.LC16:
+ 1329 002c 6C6F6720 		.ascii	"log bank 1 start\015\012***********\015\012\000"
+ 1329      62616E6B 
+ 1329      20312073 
+ 1329      74617274 
+ 1329      0D0A2A2A 
+ 1330              	.LC19:
+ 1331 004c 2A2A2A2A 		.ascii	"**********\015\012log bank 1 finish\015\012\000"
+ 1331      2A2A2A2A 
+ 1331      2A2A0D0A 
+ 1331      6C6F6720 
+ 1331      62616E6B 
+ 1332              	.LC21:
+ 1333 006c 6C6F6720 		.ascii	"log bank 2 start\015\012***********\015\012\000"
+ 1333      62616E6B 
+ 1333      20322073 
+ 1333      74617274 
+ 1333      0D0A2A2A 
+ 1334              	.LC23:
+ 1335 008c 2A2A2A2A 		.ascii	"**********\015\012log bank 2 finish\015\012\000"
+ 1335      2A2A2A2A 
+ 1335      2A2A0D0A 
+ 1335      6C6F6720 
+ 1335      62616E6B 
+ 1336              		.section	.bss.message,"aw",%nobits
+ 1337              		.align	2
+ 1338              		.set	.LANCHOR0,. + 0
+ 1341              	message:
+ 1342 0000 00000000 		.space	64
+ 1342      00000000 
+ 1342      00000000 
+ 1342      00000000 
+ 1342      00000000 
+ 1343              		.text
+ 1344              	.Letext0:
+ 1345              		.file 2 "/usr/include/newlib/machine/_default_types.h"
+ 1346              		.file 3 "/usr/include/newlib/sys/_stdint.h"
+ 1347              		.file 4 "/usr/lib/gcc/arm-none-eabi/4.9.3/include/stddef.h"
+ 1348              		.file 5 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l071xx.h"
+ 1349              		.file 6 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_def.h"
+ 1350              		.file 7 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_rcc.h"
+ 1351              		.file 8 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_rcc_ex.h"
+ 1352              		.file 9 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_dma.h"
+ 1353              		.file 10 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_i2c.h"
+ 1354              		.file 11 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_uart.h"
+ 1355              		.file 12 "Inc/fonts.h"
+ 1356              		.file 13 "Inc/ssd1306.h"
+ 1357              		.file 14 "Inc/pressure_sensor_object.h"
+ 1358              		.file 15 "Inc/voltmeter_object.h"
+ARM GAS  /tmp/ccr4XUhA.s 			page 37
+
+
+ 1359              		.file 16 "Inc/i2c.h"
+ 1360              		.file 17 "Inc/usart.h"
+ 1361              		.file 18 "<built-in>"
+ 1362              		.file 19 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h"
+ 1363              		.file 20 "/usr/include/newlib/string.h"
+ 1364              		.file 21 "Inc/gpio.h"
+ 1365              		.file 22 "Inc/adc.h"
+ 1366              		.file 23 "Inc/spi.h"
+ 1367              		.file 24 "Inc/rtc_ds3231_interface.h"
+ 1368              		.file 25 "Inc/one_second_timer_interface.h"
+ 1369              		.file 26 "Inc/depth_switch_interface.h"
+ARM GAS  /tmp/ccr4XUhA.s 			page 38
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-     /tmp/ccFZI1vR.s:18     .text.SystemClock_Config:0000000000000000 $t
-     /tmp/ccFZI1vR.s:23     .text.SystemClock_Config:0000000000000000 SystemClock_Config
-     /tmp/ccFZI1vR.s:130    .text.SystemClock_Config:000000000000008c $d
-     /tmp/ccFZI1vR.s:136    .text.main:0000000000000000 $t
-     /tmp/ccFZI1vR.s:141    .text.main:0000000000000000 main
-     /tmp/ccFZI1vR.s:329    .text.main:0000000000000104 $d
-     /tmp/ccFZI1vR.s:343    .text.Error_Handler:0000000000000000 $t
-     /tmp/ccFZI1vR.s:348    .text.Error_Handler:0000000000000000 Error_Handler
+     /tmp/ccr4XUhA.s:18     .text.SystemClock_Config:0000000000000000 $t
+     /tmp/ccr4XUhA.s:23     .text.SystemClock_Config:0000000000000000 SystemClock_Config
+     /tmp/ccr4XUhA.s:130    .text.SystemClock_Config:000000000000008c $d
+     /tmp/ccr4XUhA.s:136    .text.main:0000000000000000 $t
+     /tmp/ccr4XUhA.s:141    .text.main:0000000000000000 main
+     /tmp/ccr4XUhA.s:748    .text.main:000000000000038c $d
+     /tmp/ccr4XUhA.s:764    .text.main:00000000000003c4 $t
+     /tmp/ccr4XUhA.s:1285   .text.main:00000000000006e8 $d
+     /tmp/ccr4XUhA.s:1296   .text.Error_Handler:0000000000000000 $t
+     /tmp/ccr4XUhA.s:1301   .text.Error_Handler:0000000000000000 Error_Handler
                             *COM*:0000000000000004 SSD1306_I2C_PORT
-     /tmp/ccFZI1vR.s:360    .rodata.str1.4:0000000000000000 $d
-     /tmp/ccFZI1vR.s:373    .bss.message:0000000000000000 $d
-     /tmp/ccFZI1vR.s:377    .bss.message:0000000000000000 message
+     /tmp/ccr4XUhA.s:1313   .rodata.str1.4:0000000000000000 $d
+     /tmp/ccr4XUhA.s:1337   .bss.message:0000000000000000 $d
+     /tmp/ccr4XUhA.s:1341   .bss.message:0000000000000000 message
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
@@ -774,7 +2218,12 @@ pressure_sensor_object_init
 depth_switch_turn_signal_led
 rtc_ds3231_action
 depth_switch_check_gpio
+strlen
+HAL_UART_Transmit
+HAL_I2C_Mem_Read
 hi2c3
 hi2c1
 Font_16x26
 Font_11x18
+huart1
+hi2c2

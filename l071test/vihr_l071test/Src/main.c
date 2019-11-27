@@ -155,9 +155,259 @@ int main(void)
   	    ssd1306_WriteString(message, Font_11x18, White);
   	    ssd1306_UpdateScreen();
 
+
+
+	//*
+	int end_of_log_reached = 0;
+	HAL_Delay(1000);
+	uint16_t eeprom_debug_address = 64;
+	uint8_t b0;
+	uint8_t at24c32_shifted_address = 0x50 << 1;
+	static I2C_HandleTypeDef *at24c32_i2c_handle = &hi2c2;
+
+	sprintf(message, "\r\n");
+	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+
+	sprintf(message, "log bank 1 start\r\n***********\r\n");
+	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+
+	// read timestamp time
+	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);		
+	message[0] = b0;                                                                                                        			
+	eeprom_debug_address++;                                                                                                 			
+                                                                                                                                
+	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);			
+	message[1] = b0;                                                                                                        			
+	eeprom_debug_address++;                                                                                                 			
+                                                                                                                                
+	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);			
+	message[2] = b0;                                                                                                        			
+	eeprom_debug_address++;                                                                                                 			
+                                                                                                                                
+	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);			
+	message[3] = b0;                                                                                                        			
+	eeprom_debug_address++;                                                                                                 			
+                                                                                                                                
+	if((message[0] == 0) && (message[1] == 0))                                                                                  	
+	{                                                                                                                           	
+		end_of_log_reached = 1;                                                                                                 	
+	}                                                                                                                           	
+	else                                                                                                                        	
+	{                                                                                                                           	
+		message[4] = '\r';                                                                                                      	  		
+		message[5] = '\n';                                                                                                      	  		
+		message[6] = 0;                                                                                                        			
+		HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);                                     		    
+	}                                                                                                                           	
+	// read timestamp date
+	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);		
+	message[0] = b0;                                                                                                        			
+	eeprom_debug_address++;                                                                                                 			
+                                                                                                                                
+	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);			
+	message[1] = b0;                                                                                                        			
+	eeprom_debug_address++;                                                                                                 			
+                                                                                                                                
+	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);			
+	message[2] = b0;                                                                                                        			
+	eeprom_debug_address++;                                                                                                 			
+                                                                                                                                
+	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);			
+	message[3] = b0;                                                                                                        			
+	eeprom_debug_address++;                                                                                                 			
+                                                                                                                                
+	if((message[0] == 0) && (message[1] == 0))                                                                                  	
+	{                                                                                                                           	
+		end_of_log_reached = 1;                                                                                                 	
+	}                                                                                                                           	
+	else                                                                                                                        	
+	{                                                                                                                           	
+		message[4] = '\r';                                                                                                      	  		
+		message[5] = '\n';                                                                                                      	  		
+		message[6] = 0;                                                                                                        			
+		HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);                                     		    
+	}                                                                                                                           	
+	
+	while(!end_of_log_reached)
+	{
+
+		HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);	
+		message[0] = b0;                                                                                                        		
+		eeprom_debug_address++;                                                                                                 		
+		HAL_Delay(3);
+
+		HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);		
+		message[1] = b0;                                                                                                        		
+		eeprom_debug_address++;                                                                                                 		
+
+		message[2] = '.';                                                                                                        		
+
+		HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);		
+		message[3] = b0;                                                                                                        		
+		eeprom_debug_address++;                                                                                                 		
+
+		message[4] = ' ';                                                                                                        		
+
+		HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);		
+		message[5] = b0;                                                                                                        		
+		eeprom_debug_address++;                                                                                                 		
+		
+		HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);		
+		message[6] = b0;                                                                                                        		
+		eeprom_debug_address++;                                                                                                 		
+
+		if((message[0] == 0) && (message[1] == 0))
+		{
+			end_of_log_reached = 1;
+		}
+		else
+		{
+			message[7] = '\r';                                                                                                        		
+			message[8] = '\n';                                                                                                        		
+			message[9] = 0;                                                                                                        		
+			HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);                                     	    
+		}
+	}
+	
+	sprintf(message, "\r\n");
+	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+	sprintf(message, "**********\r\nlog bank 1 finish\r\n");
+	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+
+
+	eeprom_debug_address = 64;
+	at24c32_shifted_address = 0x51 << 1;
+
+	sprintf(message, "\r\n");
+	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+
+	sprintf(message, "log bank 2 start\r\n***********\r\n");
+	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+
+	end_of_log_reached = 0;
+
+
+	// read timestamp time
+	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);		
+	message[0] = b0;                                                                                                        			
+	eeprom_debug_address++;                                                                                                 			
+                                                                                                                                
+	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);			
+	message[1] = b0;                                                                                                        			
+	eeprom_debug_address++;                                                                                                 			
+                                                                                                                                
+	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);			
+	message[2] = b0;                                                                                                        			
+	eeprom_debug_address++;                                                                                                 			
+                                                                                                                                
+	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);			
+	message[3] = b0;                                                                                                        			
+	eeprom_debug_address++;                                                                                                 			
+                                                                                                                                
+	if((message[0] == 0) && (message[1] == 0))                                                                                  	
+	{                                                                                                                           	
+		end_of_log_reached = 1;                                                                                                 	
+	}                                                                                                                           	
+	else                                                                                                                        	
+	{                                                                                                                           	
+		message[4] = '\r';                                                                                                      	  		
+		message[5] = '\n';                                                                                                      	  		
+		message[6] = 0;                                                                                                        			
+		HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);                                     		    
+	}                                                                                                                           	
+	// read timestamp date
+	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);		
+	message[0] = b0;                                                                                                        			
+	eeprom_debug_address++;                                                                                                 			
+                                                                                                                                
+	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);			
+	message[1] = b0;                                                                                                        			
+	eeprom_debug_address++;                                                                                                 			
+                                                                                                                                
+	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);			
+	message[2] = b0;                                                                                                        			
+	eeprom_debug_address++;                                                                                                 			
+                                                                                                                                
+	HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);			
+	message[3] = b0;                                                                                                        			
+	eeprom_debug_address++;                                                                                                 			
+                                                                                                                                
+	if((message[0] == 0) && (message[1] == 0))                                                                                  	
+	{                                                                                                                           	
+		end_of_log_reached = 1;                                                                                                 	
+	}                                                                                                                           	
+	else                                                                                                                        	
+	{                                                                                                                           	
+		message[4] = '\r';                                                                                                      	  		
+		message[5] = '\n';                                                                                                      	  		
+		message[6] = 0;                                                                                                        			
+		HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);                                     		    
+	}                                                                                                                           	
+
+
+	while(!end_of_log_reached)
+	{
+
+		HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);	
+		message[0] = b0;                                                                                                        		
+		eeprom_debug_address++;                                                                                                 		
+		HAL_Delay(3);
+
+		HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);		
+		message[1] = b0;                                                                                                        		
+		eeprom_debug_address++;                                                                                                 		
+
+		message[2] = '.';                                                                                                        		
+
+		HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);		
+		message[3] = b0;                                                                                                        		
+		eeprom_debug_address++;                                                                                                 		
+
+		message[4] = ' ';                                                                                                        		
+
+		HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);		
+		message[5] = b0;                                                                                                        		
+		eeprom_debug_address++;                                                                                                 		
+		
+		HAL_I2C_Mem_Read(at24c32_i2c_handle, at24c32_shifted_address, eeprom_debug_address, I2C_MEMADD_SIZE_16BIT, &b0, 1, 100);		
+		message[6] = b0;                                                                                                        		
+		eeprom_debug_address++;                                                                                                 		
+
+		if((message[0] == 0) && (message[1] == 0))
+		{
+			end_of_log_reached = 1;
+		}
+		else
+		{
+			message[7] = '\r';                                                                                                        		
+			message[8] = '\n';                                                                                                        		
+			message[9] = 0;                                                                                                        		
+			HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);                                     	    
+		}
+	}
+	
+	sprintf(message, "\r\n");
+	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+	sprintf(message, "**********\r\nlog bank 2 finish\r\n");
+	HAL_UART_Transmit(&huart1, (uint8_t *)message, strlen((const char *)message), 500);
+
+	//*/
+
+
 		while(1)
 		{
 		}
+
+
+
+
+
+
+
 	}
 	else
 	{
