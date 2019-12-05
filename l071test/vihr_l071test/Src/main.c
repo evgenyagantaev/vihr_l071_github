@@ -157,7 +157,7 @@ int main(void)
 
 
 
-	//*
+	/*
 	int end_of_log_reached = 0;
 	HAL_Delay(1000);
 	uint16_t eeprom_debug_address = 64;

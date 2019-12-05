@@ -159,8 +159,8 @@ CFLAGS += -MMD -MP -MF"$(@:%.o=%.d)"
 LDSCRIPT = STM32L071C8Tx_FLASH.ld
 
 # libraries
+LIBDIR = -L/usr/lib/arm-none-eabi/newlib/thumb/
 LIBS = -lc -lm -lnosys 
-LIBDIR = 
 LDFLAGS = $(MCU) -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) -Wl,-Map=$(BUILD_DIR)/$(TARGET).map,--cref -Wl,--gc-sections
 
 # default action: build all

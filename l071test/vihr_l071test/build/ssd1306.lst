@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccm5pdGb.s 			page 1
+ARM GAS  /tmp/ccuD5ZmC.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccm5pdGb.s 			page 1
   25              		.loc 1 31 0
   26              		.cfi_startproc
   27              	.LVL0:
-ARM GAS  /tmp/ccm5pdGb.s 			page 2
+ARM GAS  /tmp/ccuD5ZmC.s 			page 2
 
 
   28 0000 00B5     		push	{lr}
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccm5pdGb.s 			page 1
   79 0004 0129     		cmp	r1, #1
   80 0006 03D1     		bne	.L5
   21:Src/ssd1306.c **** 	else
-ARM GAS  /tmp/ccm5pdGb.s 			page 3
+ARM GAS  /tmp/ccuD5ZmC.s 			page 3
 
 
   81              		.loc 1 21 0
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccm5pdGb.s 			page 1
   56:Src/ssd1306.c **** 	ssd1306_WriteCommand(0xA6); //--set normal display
   57:Src/ssd1306.c **** 	ssd1306_WriteCommand(0xA8); //--set multiplex ratio(1 to 64)
   58:Src/ssd1306.c **** 	ssd1306_WriteCommand(0x3F); //
-ARM GAS  /tmp/ccm5pdGb.s 			page 4
+ARM GAS  /tmp/ccuD5ZmC.s 			page 4
 
 
   59:Src/ssd1306.c **** 	ssd1306_WriteCommand(0xA4); //0xa4,Output follows RAM content;0xa5,Output ignores RAM content
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccm5pdGb.s 			page 1
  125 000a 0028     		cmp	r0, #0
  126 000c 01D1     		bne	.L13
  127 000e 0021     		mov	r1, #0
-ARM GAS  /tmp/ccm5pdGb.s 			page 5
+ARM GAS  /tmp/ccuD5ZmC.s 			page 5
 
 
  128 0010 00E0     		b	.L11
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccm5pdGb.s 			page 1
  111:Src/ssd1306.c **** 	for (i = 0; i < 8; i++) {
  172              		.loc 1 111 0
  173 0004 0024     		mov	r4, #0
-ARM GAS  /tmp/ccm5pdGb.s 			page 6
+ARM GAS  /tmp/ccuD5ZmC.s 			page 6
 
 
  174 0006 1CE0     		b	.L17
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccm5pdGb.s 			page 1
  219              		@ sp needed
  220              	.LVL16:
  221 0048 10BD     		pop	{r4, pc}
-ARM GAS  /tmp/ccm5pdGb.s 			page 7
+ARM GAS  /tmp/ccuD5ZmC.s 			page 7
 
 
  222              	.L20:
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccm5pdGb.s 			page 1
  270 0026 0020     		mov	r0, #0
  271 0028 FFF7FEFF 		bl	ssd1306_WriteCommand
  272              	.LVL23:
-ARM GAS  /tmp/ccm5pdGb.s 			page 8
+ARM GAS  /tmp/ccuD5ZmC.s 			page 8
 
 
   51:Src/ssd1306.c **** 	ssd1306_WriteCommand(0x40); //--set start line address
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccm5pdGb.s 			page 1
  316              	.LVL34:
   62:Src/ssd1306.c **** 	ssd1306_WriteCommand(0xF0); //--set divide ratio
  317              		.loc 1 62 0
-ARM GAS  /tmp/ccm5pdGb.s 			page 9
+ARM GAS  /tmp/ccuD5ZmC.s 			page 9
 
 
  318 006e D520     		mov	r0, #213
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccm5pdGb.s 			page 1
  361              		.loc 1 75 0
  362 00b0 0020     		mov	r0, #0
  363 00b2 FFF7FEFF 		bl	ssd1306_Fill
-ARM GAS  /tmp/ccm5pdGb.s 			page 10
+ARM GAS  /tmp/ccuD5ZmC.s 			page 10
 
 
  364              	.LVL46:
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccm5pdGb.s 			page 1
  405 0008 25D8     		bhi	.L24
  129:Src/ssd1306.c **** 	{
  130:Src/ssd1306.c **** 		// Don't write outside the buffer
-ARM GAS  /tmp/ccm5pdGb.s 			page 11
+ARM GAS  /tmp/ccuD5ZmC.s 			page 11
 
 
  131:Src/ssd1306.c **** 		return;
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccm5pdGb.s 			page 1
  443 003c DB01     		lsl	r3, r3, #7
  444 003e C018     		add	r0, r0, r3
  445              	.LVL54:
-ARM GAS  /tmp/ccm5pdGb.s 			page 12
+ARM GAS  /tmp/ccuD5ZmC.s 			page 12
 
 
  446 0040 064B     		ldr	r3, .L28+4
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccm5pdGb.s 			page 1
  491 0006 4D46     		mov	r5, r9
  492 0008 4446     		mov	r4, r8
  493 000a F0B4     		push	{r4, r5, r6, r7}
-ARM GAS  /tmp/ccm5pdGb.s 			page 13
+ARM GAS  /tmp/ccuD5ZmC.s 			page 13
 
 
  494              	.LCFI6:
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccm5pdGb.s 			page 1
  533 003e 5343     		mul	r3, r2
  534 0040 5B19     		add	r3, r3, r5
  535 0042 5B00     		lsl	r3, r3, #1
-ARM GAS  /tmp/ccm5pdGb.s 			page 14
+ARM GAS  /tmp/ccuD5ZmC.s 			page 14
 
 
  536 0044 019A     		ldr	r2, [sp, #4]
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccm5pdGb.s 			page 1
  580              	.L33:
  173:Src/ssd1306.c **** 		{
  581              		.loc 1 173 0 is_stmt 0 discriminator 1
-ARM GAS  /tmp/ccm5pdGb.s 			page 15
+ARM GAS  /tmp/ccuD5ZmC.s 			page 15
 
 
  582 0086 A642     		cmp	r6, r4
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccm5pdGb.s 			page 1
  623              		.cfi_endproc
  624              	.LFE40:
  626              		.section	.text.ssd1306_WriteString,"ax",%progbits
-ARM GAS  /tmp/ccm5pdGb.s 			page 16
+ARM GAS  /tmp/ccuD5ZmC.s 			page 16
 
 
  627              		.align	2
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccm5pdGb.s 			page 1
  665 0020 0134     		add	r4, r4, #1
  666              	.LVL71:
  667              	.L43:
-ARM GAS  /tmp/ccm5pdGb.s 			page 17
+ARM GAS  /tmp/ccuD5ZmC.s 			page 17
 
 
  199:Src/ssd1306.c **** 	{
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccm5pdGb.s 			page 1
  710              		.set	.LANCHOR0,. + 0
  713              	SSD1306_Buffer:
  714 0000 00000000 		.space	4
-ARM GAS  /tmp/ccm5pdGb.s 			page 18
+ARM GAS  /tmp/ccuD5ZmC.s 			page 18
 
 
  715              		.section	.bss.SSD1306,"aw",%nobits
@@ -1052,46 +1052,46 @@ ARM GAS  /tmp/ccm5pdGb.s 			page 1
  744              		.file 8 "Inc/fonts.h"
  745              		.file 9 "Inc/ssd1306.h"
  746              		.file 10 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h"
-ARM GAS  /tmp/ccm5pdGb.s 			page 19
+ARM GAS  /tmp/ccuD5ZmC.s 			page 19
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 ssd1306.c
-     /tmp/ccm5pdGb.s:18     .text.ssd1306_WriteCommand:0000000000000000 $t
-     /tmp/ccm5pdGb.s:22     .text.ssd1306_WriteCommand:0000000000000000 ssd1306_WriteCommand
-     /tmp/ccm5pdGb.s:60     .text.ssd1306_WriteCommand:0000000000000028 $d
+     /tmp/ccuD5ZmC.s:18     .text.ssd1306_WriteCommand:0000000000000000 $t
+     /tmp/ccuD5ZmC.s:22     .text.ssd1306_WriteCommand:0000000000000000 ssd1306_WriteCommand
+     /tmp/ccuD5ZmC.s:60     .text.ssd1306_WriteCommand:0000000000000028 $d
                             *COM*:0000000000000004 SSD1306_I2C_PORT
-     /tmp/ccm5pdGb.s:65     .text.ssd1306_set_i2c_port:0000000000000000 $t
-     /tmp/ccm5pdGb.s:70     .text.ssd1306_set_i2c_port:0000000000000000 ssd1306_set_i2c_port
-     /tmp/ccm5pdGb.s:98     .text.ssd1306_set_i2c_port:0000000000000018 $d
-     /tmp/ccm5pdGb.s:106    .text.ssd1306_Fill:0000000000000000 $t
-     /tmp/ccm5pdGb.s:111    .text.ssd1306_Fill:0000000000000000 ssd1306_Fill
-     /tmp/ccm5pdGb.s:148    .text.ssd1306_Fill:0000000000000020 $d
-     /tmp/ccm5pdGb.s:154    .text.ssd1306_UpdateScreen:0000000000000000 $t
-     /tmp/ccm5pdGb.s:159    .text.ssd1306_UpdateScreen:0000000000000000 ssd1306_UpdateScreen
-     /tmp/ccm5pdGb.s:225    .text.ssd1306_UpdateScreen:000000000000004c $d
-     /tmp/ccm5pdGb.s:231    .text.ssd1306_Init:0000000000000000 $t
-     /tmp/ccm5pdGb.s:236    .text.ssd1306_Init:0000000000000000 ssd1306_Init
-     /tmp/ccm5pdGb.s:384    .text.ssd1306_Init:00000000000000cc $d
-     /tmp/ccm5pdGb.s:389    .text.ssd1306_DrawPixel:0000000000000000 $t
-     /tmp/ccm5pdGb.s:394    .text.ssd1306_DrawPixel:0000000000000000 ssd1306_DrawPixel
-     /tmp/ccm5pdGb.s:465    .text.ssd1306_DrawPixel:0000000000000058 $d
-     /tmp/ccm5pdGb.s:471    .text.ssd1306_WriteChar:0000000000000000 $t
-     /tmp/ccm5pdGb.s:476    .text.ssd1306_WriteChar:0000000000000000 ssd1306_WriteChar
-     /tmp/ccm5pdGb.s:622    .text.ssd1306_WriteChar:00000000000000b0 $d
-     /tmp/ccm5pdGb.s:627    .text.ssd1306_WriteString:0000000000000000 $t
-     /tmp/ccm5pdGb.s:632    .text.ssd1306_WriteString:0000000000000000 ssd1306_WriteString
-     /tmp/ccm5pdGb.s:682    .text.ssd1306_SetCursor:0000000000000000 $t
-     /tmp/ccm5pdGb.s:687    .text.ssd1306_SetCursor:0000000000000000 ssd1306_SetCursor
-     /tmp/ccm5pdGb.s:703    .text.ssd1306_SetCursor:0000000000000008 $d
-     /tmp/ccm5pdGb.s:709    .bss.SSD1306_Buffer:0000000000000000 $d
-     /tmp/ccm5pdGb.s:713    .bss.SSD1306_Buffer:0000000000000000 SSD1306_Buffer
-     /tmp/ccm5pdGb.s:716    .bss.SSD1306:0000000000000000 $d
-     /tmp/ccm5pdGb.s:720    .bss.SSD1306:0000000000000000 SSD1306
-     /tmp/ccm5pdGb.s:723    .bss.SSD1306_Buffer1:0000000000000000 $d
-     /tmp/ccm5pdGb.s:727    .bss.SSD1306_Buffer1:0000000000000000 SSD1306_Buffer1
-     /tmp/ccm5pdGb.s:730    .bss.SSD1306_Buffer2:0000000000000000 $d
-     /tmp/ccm5pdGb.s:734    .bss.SSD1306_Buffer2:0000000000000000 SSD1306_Buffer2
+     /tmp/ccuD5ZmC.s:65     .text.ssd1306_set_i2c_port:0000000000000000 $t
+     /tmp/ccuD5ZmC.s:70     .text.ssd1306_set_i2c_port:0000000000000000 ssd1306_set_i2c_port
+     /tmp/ccuD5ZmC.s:98     .text.ssd1306_set_i2c_port:0000000000000018 $d
+     /tmp/ccuD5ZmC.s:106    .text.ssd1306_Fill:0000000000000000 $t
+     /tmp/ccuD5ZmC.s:111    .text.ssd1306_Fill:0000000000000000 ssd1306_Fill
+     /tmp/ccuD5ZmC.s:148    .text.ssd1306_Fill:0000000000000020 $d
+     /tmp/ccuD5ZmC.s:154    .text.ssd1306_UpdateScreen:0000000000000000 $t
+     /tmp/ccuD5ZmC.s:159    .text.ssd1306_UpdateScreen:0000000000000000 ssd1306_UpdateScreen
+     /tmp/ccuD5ZmC.s:225    .text.ssd1306_UpdateScreen:000000000000004c $d
+     /tmp/ccuD5ZmC.s:231    .text.ssd1306_Init:0000000000000000 $t
+     /tmp/ccuD5ZmC.s:236    .text.ssd1306_Init:0000000000000000 ssd1306_Init
+     /tmp/ccuD5ZmC.s:384    .text.ssd1306_Init:00000000000000cc $d
+     /tmp/ccuD5ZmC.s:389    .text.ssd1306_DrawPixel:0000000000000000 $t
+     /tmp/ccuD5ZmC.s:394    .text.ssd1306_DrawPixel:0000000000000000 ssd1306_DrawPixel
+     /tmp/ccuD5ZmC.s:465    .text.ssd1306_DrawPixel:0000000000000058 $d
+     /tmp/ccuD5ZmC.s:471    .text.ssd1306_WriteChar:0000000000000000 $t
+     /tmp/ccuD5ZmC.s:476    .text.ssd1306_WriteChar:0000000000000000 ssd1306_WriteChar
+     /tmp/ccuD5ZmC.s:622    .text.ssd1306_WriteChar:00000000000000b0 $d
+     /tmp/ccuD5ZmC.s:627    .text.ssd1306_WriteString:0000000000000000 $t
+     /tmp/ccuD5ZmC.s:632    .text.ssd1306_WriteString:0000000000000000 ssd1306_WriteString
+     /tmp/ccuD5ZmC.s:682    .text.ssd1306_SetCursor:0000000000000000 $t
+     /tmp/ccuD5ZmC.s:687    .text.ssd1306_SetCursor:0000000000000000 ssd1306_SetCursor
+     /tmp/ccuD5ZmC.s:703    .text.ssd1306_SetCursor:0000000000000008 $d
+     /tmp/ccuD5ZmC.s:709    .bss.SSD1306_Buffer:0000000000000000 $d
+     /tmp/ccuD5ZmC.s:713    .bss.SSD1306_Buffer:0000000000000000 SSD1306_Buffer
+     /tmp/ccuD5ZmC.s:716    .bss.SSD1306:0000000000000000 $d
+     /tmp/ccuD5ZmC.s:720    .bss.SSD1306:0000000000000000 SSD1306
+     /tmp/ccuD5ZmC.s:723    .bss.SSD1306_Buffer1:0000000000000000 $d
+     /tmp/ccuD5ZmC.s:727    .bss.SSD1306_Buffer1:0000000000000000 SSD1306_Buffer1
+     /tmp/ccuD5ZmC.s:730    .bss.SSD1306_Buffer2:0000000000000000 $d
+     /tmp/ccuD5ZmC.s:734    .bss.SSD1306_Buffer2:0000000000000000 SSD1306_Buffer2
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

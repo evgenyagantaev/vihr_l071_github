@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccFjRk0X.s 			page 1
+ARM GAS  /tmp/ccYsMs1p.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccFjRk0X.s 			page 1
   28 0000 08B5     		push	{r3, lr}
   29              	.LCFI0:
   30              		.cfi_def_cfa_offset 8
-ARM GAS  /tmp/ccFjRk0X.s 			page 2
+ARM GAS  /tmp/ccYsMs1p.s 			page 2
 
 
   31              		.cfi_offset 3, -8
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccFjRk0X.s 			page 1
   44:Src/spi.c     ****     Error_Handler();
   70              		.loc 1 44 0
   71 0032 FFF7FEFF 		bl	Error_Handler
-ARM GAS  /tmp/ccFjRk0X.s 			page 3
+ARM GAS  /tmp/ccYsMs1p.s 			page 3
 
 
   72              	.LVL1:
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccFjRk0X.s 			page 1
   58:Src/spi.c     ****     /* SPI1 clock enable */
   59:Src/spi.c     ****     __HAL_RCC_SPI1_CLK_ENABLE();
  115              		.loc 1 59 0
-ARM GAS  /tmp/ccFjRk0X.s 			page 4
+ARM GAS  /tmp/ccYsMs1p.s 			page 4
 
 
  116 0018 0E4B     		ldr	r3, .L7+4
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccFjRk0X.s 			page 1
  150              		.loc 1 79 0
  151 004a 07B0     		add	sp, sp, #28
  152              		@ sp needed
-ARM GAS  /tmp/ccFjRk0X.s 			page 5
+ARM GAS  /tmp/ccYsMs1p.s 			page 5
 
 
  153 004c 00BD     		pop	{pc}
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccFjRk0X.s 			page 1
  190 0014 A020     		mov	r0, #160
  191              	.LVL6:
  192 0016 C005     		lsl	r0, r0, #23
-ARM GAS  /tmp/ccFjRk0X.s 			page 6
+ARM GAS  /tmp/ccYsMs1p.s 			page 6
 
 
  193 0018 F021     		mov	r1, #240
@@ -333,21 +333,21 @@ ARM GAS  /tmp/ccFjRk0X.s 			page 1
  217              		.file 7 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_dma.h"
  218              		.file 8 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_spi.h"
  219              		.file 9 "Inc/main.h"
-ARM GAS  /tmp/ccFjRk0X.s 			page 7
+ARM GAS  /tmp/ccYsMs1p.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 spi.c
-     /tmp/ccFjRk0X.s:18     .text.MX_SPI1_Init:0000000000000000 $t
-     /tmp/ccFjRk0X.s:23     .text.MX_SPI1_Init:0000000000000000 MX_SPI1_Init
-     /tmp/ccFjRk0X.s:80     .text.MX_SPI1_Init:0000000000000038 $d
+     /tmp/ccYsMs1p.s:18     .text.MX_SPI1_Init:0000000000000000 $t
+     /tmp/ccYsMs1p.s:23     .text.MX_SPI1_Init:0000000000000000 MX_SPI1_Init
+     /tmp/ccYsMs1p.s:80     .text.MX_SPI1_Init:0000000000000038 $d
                             *COM*:0000000000000058 hspi1
-     /tmp/ccFjRk0X.s:86     .text.HAL_SPI_MspInit:0000000000000000 $t
-     /tmp/ccFjRk0X.s:91     .text.HAL_SPI_MspInit:0000000000000000 HAL_SPI_MspInit
-     /tmp/ccFjRk0X.s:157    .text.HAL_SPI_MspInit:0000000000000050 $d
-     /tmp/ccFjRk0X.s:163    .text.HAL_SPI_MspDeInit:0000000000000000 $t
-     /tmp/ccFjRk0X.s:168    .text.HAL_SPI_MspDeInit:0000000000000000 HAL_SPI_MspDeInit
-     /tmp/ccFjRk0X.s:203    .text.HAL_SPI_MspDeInit:0000000000000020 $d
+     /tmp/ccYsMs1p.s:86     .text.HAL_SPI_MspInit:0000000000000000 $t
+     /tmp/ccYsMs1p.s:91     .text.HAL_SPI_MspInit:0000000000000000 HAL_SPI_MspInit
+     /tmp/ccYsMs1p.s:157    .text.HAL_SPI_MspInit:0000000000000050 $d
+     /tmp/ccYsMs1p.s:163    .text.HAL_SPI_MspDeInit:0000000000000000 $t
+     /tmp/ccYsMs1p.s:168    .text.HAL_SPI_MspDeInit:0000000000000000 HAL_SPI_MspDeInit
+     /tmp/ccYsMs1p.s:203    .text.HAL_SPI_MspDeInit:0000000000000020 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

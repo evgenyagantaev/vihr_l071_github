@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cciHByQq.s 			page 1
+ARM GAS  /tmp/cc53FlvR.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cciHByQq.s 			page 1
   32:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   *                        opensource.org/licenses/BSD-3-Clause
   33:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   *
   34:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   ******************************************************************************
-ARM GAS  /tmp/cciHByQq.s 			page 2
+ARM GAS  /tmp/cc53FlvR.s 			page 2
 
 
   35:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   */
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cciHByQq.s 			page 1
   89:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****              in the data register is transmitted but is changed by the parity bit.
   90:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****         (++) Hardware flow control
   91:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****         (++) Receiver/transmitter modes
-ARM GAS  /tmp/cciHByQq.s 			page 3
+ARM GAS  /tmp/cc53FlvR.s 			page 3
 
 
   92:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****         (++) Over Sampling Method
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cciHByQq.s 			page 1
  146:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   *       transmitted message, and the de-activation of the DE (Driver Enable) signal.
  147:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   *       It is expressed in sample time units (1/8 or 1/16 bit time, depending on the
  148:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   *       oversampling rate).
-ARM GAS  /tmp/cciHByQq.s 			page 4
+ARM GAS  /tmp/cc53FlvR.s 			page 4
 
 
  149:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   * @retval HAL status
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cciHByQq.s 			page 1
  203:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c **** 
  204:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   if (huart->AdvancedInit.AdvFeatureInit != UART_ADVFEATURE_NO_INIT)
  205:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   {
-ARM GAS  /tmp/cciHByQq.s 			page 5
+ARM GAS  /tmp/cc53FlvR.s 			page 5
 
 
  206:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****     UART_AdvFeatureConfig(huart);
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cciHByQq.s 			page 1
  260:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c **** }
  261:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c **** 
  262:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c **** 
-ARM GAS  /tmp/cciHByQq.s 			page 6
+ARM GAS  /tmp/cc53FlvR.s 			page 6
 
 
  263:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c **** /**
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cciHByQq.s 			page 1
  317:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   */
  318:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c **** HAL_StatusTypeDef HAL_UARTEx_DisableClockStopMode(UART_HandleTypeDef *huart)
  319:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c **** {
-ARM GAS  /tmp/cciHByQq.s 			page 7
+ARM GAS  /tmp/cc53FlvR.s 			page 7
 
 
  320:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   /* Process Locked */
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cciHByQq.s 			page 1
  374:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   *       usart_wkup interrupt source before entering low-power mode.
  375:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   * @param huart           UART handle.
  376:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   * @param WakeUpSelection Address match, Start Bit detection or RXNE/RXFNE bit status.
-ARM GAS  /tmp/cciHByQq.s 			page 8
+ARM GAS  /tmp/cc53FlvR.s 			page 8
 
 
  377:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   *          This parameter can be one of the following values:
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cciHByQq.s 			page 1
  431:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c **** 
  432:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c **** /**
  433:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   * @brief Enable UART Stop Mode.
-ARM GAS  /tmp/cciHByQq.s 			page 9
+ARM GAS  /tmp/cc53FlvR.s 			page 9
 
 
  434:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   * @note The UART is able to wake up the MCU from Stop 1 mode as long as UART clock is HSI or LSE.
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cciHByQq.s 			page 1
  488:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   * @retval None
  489:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c ****   */
  490:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c **** static void UARTEx_Wakeup_AddressConfig(UART_HandleTypeDef *huart, UART_WakeUpTypeDef WakeUpSelecti
-ARM GAS  /tmp/cciHByQq.s 			page 10
+ARM GAS  /tmp/cc53FlvR.s 			page 10
 
 
  491:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c **** {
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cciHByQq.s 			page 1
   71              	.LCFI1:
   72              		.cfi_def_cfa_offset 24
   73              		.cfi_offset 3, -24
-ARM GAS  /tmp/cciHByQq.s 			page 11
+ARM GAS  /tmp/cc53FlvR.s 			page 11
 
 
   74              		.cfi_offset 4, -20
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cciHByQq.s 			page 1
  119              		.loc 1 206 0
  120 003c 201C     		mov	r0, r4
  121 003e FFF7FEFF 		bl	UART_AdvFeatureConfig
-ARM GAS  /tmp/cciHByQq.s 			page 12
+ARM GAS  /tmp/cc53FlvR.s 			page 12
 
 
  122              	.LVL6:
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cciHByQq.s 			page 1
  168 007e 0120     		mov	r0, #1
  169              	.LVL13:
  170              	.L3:
-ARM GAS  /tmp/cciHByQq.s 			page 13
+ARM GAS  /tmp/cc53FlvR.s 			page 13
 
 
  225:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c **** 
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cciHByQq.s 			page 1
  223 000e 8354     		strb	r3, [r0, r2]
  305:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c **** 
  224              		.loc 1 305 0 is_stmt 1 discriminator 2
-ARM GAS  /tmp/cciHByQq.s 			page 14
+ARM GAS  /tmp/cc53FlvR.s 			page 14
 
 
  225 0010 0168     		ldr	r1, [r0]
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cciHByQq.s 			page 1
  274 000e 8354     		strb	r3, [r0, r2]
  324:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c **** 
  275              		.loc 1 324 0 is_stmt 1 discriminator 2
-ARM GAS  /tmp/cciHByQq.s 			page 15
+ARM GAS  /tmp/cc53FlvR.s 			page 15
 
 
  276 0010 0168     		ldr	r1, [r0]
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cciHByQq.s 			page 1
  325              		.loc 1 356 0
  326 0006 2423     		mov	r3, #36
  327 0008 4367     		str	r3, [r0, #116]
-ARM GAS  /tmp/cciHByQq.s 			page 16
+ARM GAS  /tmp/cc53FlvR.s 			page 16
 
 
  359:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c **** 
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cciHByQq.s 			page 1
  377              		.cfi_offset 4, -8
  378              		.cfi_offset 14, -4
  379 0002 84B0     		sub	sp, sp, #16
-ARM GAS  /tmp/cciHByQq.s 			page 17
+ARM GAS  /tmp/cc53FlvR.s 			page 17
 
 
  380              	.LCFI6:
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cciHByQq.s 			page 1
  413:Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c **** 
  426              		.loc 1 413 0
  427 0048 FFF7FEFF 		bl	HAL_GetTick
-ARM GAS  /tmp/cciHByQq.s 			page 18
+ARM GAS  /tmp/cc53FlvR.s 			page 18
 
 
  428              	.LVL31:
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cciHByQq.s 			page 1
  476              		.section	.text.HAL_UARTEx_EnableStopMode,"ax",%progbits
  477              		.align	2
  478              		.global	HAL_UARTEx_EnableStopMode
-ARM GAS  /tmp/cciHByQq.s 			page 19
+ARM GAS  /tmp/cc53FlvR.s 			page 19
 
 
  479              		.code	16
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cciHByQq.s 			page 1
  527              		.align	2
  528              		.global	HAL_UARTEx_DisableStopMode
  529              		.code	16
-ARM GAS  /tmp/cciHByQq.s 			page 20
+ARM GAS  /tmp/cc53FlvR.s 			page 20
 
 
  530              		.thumb_func
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cciHByQq.s 			page 1
  578              		.file 2 "/usr/include/newlib/machine/_default_types.h"
  579              		.file 3 "/usr/include/newlib/sys/_stdint.h"
  580              		.file 4 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l071xx.h"
-ARM GAS  /tmp/cciHByQq.s 			page 21
+ARM GAS  /tmp/cc53FlvR.s 			page 21
 
 
  581              		.file 5 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l0xx.h"
@@ -1207,32 +1207,32 @@ ARM GAS  /tmp/cciHByQq.s 			page 1
  584              		.file 8 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_uart.h"
  585              		.file 9 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_uart_ex.h"
  586              		.file 10 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h"
-ARM GAS  /tmp/cciHByQq.s 			page 22
+ARM GAS  /tmp/cc53FlvR.s 			page 22
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32l0xx_hal_uart_ex.c
-     /tmp/cciHByQq.s:18     .text.UARTEx_Wakeup_AddressConfig:0000000000000000 $t
-     /tmp/cciHByQq.s:22     .text.UARTEx_Wakeup_AddressConfig:0000000000000000 UARTEx_Wakeup_AddressConfig
-     /tmp/cciHByQq.s:60     .text.HAL_RS485Ex_Init:0000000000000000 $t
-     /tmp/cciHByQq.s:65     .text.HAL_RS485Ex_Init:0000000000000000 HAL_RS485Ex_Init
-     /tmp/cciHByQq.s:177    .text.HAL_RS485Ex_Init:0000000000000084 $d
-     /tmp/cciHByQq.s:183    .text.HAL_UARTEx_WakeupCallback:0000000000000000 $t
-     /tmp/cciHByQq.s:188    .text.HAL_UARTEx_WakeupCallback:0000000000000000 HAL_UARTEx_WakeupCallback
-     /tmp/cciHByQq.s:200    .text.HAL_UARTEx_EnableClockStopMode:0000000000000000 $t
-     /tmp/cciHByQq.s:205    .text.HAL_UARTEx_EnableClockStopMode:0000000000000000 HAL_UARTEx_EnableClockStopMode
-     /tmp/cciHByQq.s:251    .text.HAL_UARTEx_DisableClockStopMode:0000000000000000 $t
-     /tmp/cciHByQq.s:256    .text.HAL_UARTEx_DisableClockStopMode:0000000000000000 HAL_UARTEx_DisableClockStopMode
-     /tmp/cciHByQq.s:300    .text.HAL_UARTEx_DisableClockStopMode:0000000000000028 $d
-     /tmp/cciHByQq.s:305    .text.HAL_MultiProcessorEx_AddressLength_Set:0000000000000000 $t
-     /tmp/cciHByQq.s:310    .text.HAL_MultiProcessorEx_AddressLength_Set:0000000000000000 HAL_MultiProcessorEx_AddressLength_Set
-     /tmp/cciHByQq.s:364    .text.HAL_UARTEx_StopModeWakeUpSourceConfig:0000000000000000 $t
-     /tmp/cciHByQq.s:369    .text.HAL_UARTEx_StopModeWakeUpSourceConfig:0000000000000000 HAL_UARTEx_StopModeWakeUpSourceConfig
-     /tmp/cciHByQq.s:471    .text.HAL_UARTEx_StopModeWakeUpSourceConfig:0000000000000078 $d
-     /tmp/cciHByQq.s:477    .text.HAL_UARTEx_EnableStopMode:0000000000000000 $t
-     /tmp/cciHByQq.s:482    .text.HAL_UARTEx_EnableStopMode:0000000000000000 HAL_UARTEx_EnableStopMode
-     /tmp/cciHByQq.s:527    .text.HAL_UARTEx_DisableStopMode:0000000000000000 $t
-     /tmp/cciHByQq.s:532    .text.HAL_UARTEx_DisableStopMode:0000000000000000 HAL_UARTEx_DisableStopMode
+     /tmp/cc53FlvR.s:18     .text.UARTEx_Wakeup_AddressConfig:0000000000000000 $t
+     /tmp/cc53FlvR.s:22     .text.UARTEx_Wakeup_AddressConfig:0000000000000000 UARTEx_Wakeup_AddressConfig
+     /tmp/cc53FlvR.s:60     .text.HAL_RS485Ex_Init:0000000000000000 $t
+     /tmp/cc53FlvR.s:65     .text.HAL_RS485Ex_Init:0000000000000000 HAL_RS485Ex_Init
+     /tmp/cc53FlvR.s:177    .text.HAL_RS485Ex_Init:0000000000000084 $d
+     /tmp/cc53FlvR.s:183    .text.HAL_UARTEx_WakeupCallback:0000000000000000 $t
+     /tmp/cc53FlvR.s:188    .text.HAL_UARTEx_WakeupCallback:0000000000000000 HAL_UARTEx_WakeupCallback
+     /tmp/cc53FlvR.s:200    .text.HAL_UARTEx_EnableClockStopMode:0000000000000000 $t
+     /tmp/cc53FlvR.s:205    .text.HAL_UARTEx_EnableClockStopMode:0000000000000000 HAL_UARTEx_EnableClockStopMode
+     /tmp/cc53FlvR.s:251    .text.HAL_UARTEx_DisableClockStopMode:0000000000000000 $t
+     /tmp/cc53FlvR.s:256    .text.HAL_UARTEx_DisableClockStopMode:0000000000000000 HAL_UARTEx_DisableClockStopMode
+     /tmp/cc53FlvR.s:300    .text.HAL_UARTEx_DisableClockStopMode:0000000000000028 $d
+     /tmp/cc53FlvR.s:305    .text.HAL_MultiProcessorEx_AddressLength_Set:0000000000000000 $t
+     /tmp/cc53FlvR.s:310    .text.HAL_MultiProcessorEx_AddressLength_Set:0000000000000000 HAL_MultiProcessorEx_AddressLength_Set
+     /tmp/cc53FlvR.s:364    .text.HAL_UARTEx_StopModeWakeUpSourceConfig:0000000000000000 $t
+     /tmp/cc53FlvR.s:369    .text.HAL_UARTEx_StopModeWakeUpSourceConfig:0000000000000000 HAL_UARTEx_StopModeWakeUpSourceConfig
+     /tmp/cc53FlvR.s:471    .text.HAL_UARTEx_StopModeWakeUpSourceConfig:0000000000000078 $d
+     /tmp/cc53FlvR.s:477    .text.HAL_UARTEx_EnableStopMode:0000000000000000 $t
+     /tmp/cc53FlvR.s:482    .text.HAL_UARTEx_EnableStopMode:0000000000000000 HAL_UARTEx_EnableStopMode
+     /tmp/cc53FlvR.s:527    .text.HAL_UARTEx_DisableStopMode:0000000000000000 $t
+     /tmp/cc53FlvR.s:532    .text.HAL_UARTEx_DisableStopMode:0000000000000000 HAL_UARTEx_DisableStopMode
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

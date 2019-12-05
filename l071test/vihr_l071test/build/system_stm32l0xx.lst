@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccLjOcgB.s 			page 1
+ARM GAS  /tmp/ccLgws1W.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccLjOcgB.s 			page 1
   31:Src/system_stm32l0xx.c ****   *                        opensource.org/licenses/BSD-3-Clause
   32:Src/system_stm32l0xx.c ****   *
   33:Src/system_stm32l0xx.c ****   ******************************************************************************
-ARM GAS  /tmp/ccLjOcgB.s 			page 2
+ARM GAS  /tmp/ccLgws1W.s 			page 2
 
 
   34:Src/system_stm32l0xx.c ****   */
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccLjOcgB.s 			page 1
   88:Src/system_stm32l0xx.c ****   */
   89:Src/system_stm32l0xx.c **** 
   90:Src/system_stm32l0xx.c **** /** @addtogroup STM32L0xx_System_Private_Macros
-ARM GAS  /tmp/ccLjOcgB.s 			page 3
+ARM GAS  /tmp/ccLgws1W.s 			page 3
 
 
   91:Src/system_stm32l0xx.c ****   * @{
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccLjOcgB.s 			page 1
   32 0006 4900     		lsl	r1, r1, #1
   33 0008 0A43     		orr	r2, r1
   34 000a 1A60     		str	r2, [r3]
-ARM GAS  /tmp/ccLjOcgB.s 			page 4
+ARM GAS  /tmp/ccLgws1W.s 			page 4
 
 
  139:Src/system_stm32l0xx.c **** 
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccLjOcgB.s 			page 1
   65 003a 1205     		lsl	r2, r2, #20
   66 003c 064B     		ldr	r3, .L2+20
   67 003e 9A60     		str	r2, [r3, #8]
-ARM GAS  /tmp/ccLjOcgB.s 			page 5
+ARM GAS  /tmp/ccLgws1W.s 			page 5
 
 
  163:Src/system_stm32l0xx.c **** #endif
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccLjOcgB.s 			page 1
  195:Src/system_stm32l0xx.c ****   *              8 MHz), user has to ensure that HSE_VALUE is same as the real
  196:Src/system_stm32l0xx.c ****   *              frequency of the crystal used. Otherwise, this function may
  197:Src/system_stm32l0xx.c ****   *              have wrong result.
-ARM GAS  /tmp/ccLjOcgB.s 			page 6
+ARM GAS  /tmp/ccLgws1W.s 			page 6
 
 
  198:Src/system_stm32l0xx.c ****   *
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccLjOcgB.s 			page 1
  128 0028 214A     		ldr	r2, .L14+4
  129 002a 1360     		str	r3, [r2]
  216:Src/system_stm32l0xx.c ****       break;
-ARM GAS  /tmp/ccLjOcgB.s 			page 7
+ARM GAS  /tmp/ccLgws1W.s 			page 7
 
 
  130              		.loc 1 216 0
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccLjOcgB.s 			page 1
  233:Src/system_stm32l0xx.c ****       plldiv = RCC->CFGR & RCC_CFGR_PLLDIV;
  168              		.loc 1 233 0
  169 0054 D168     		ldr	r1, [r2, #12]
-ARM GAS  /tmp/ccLjOcgB.s 			page 8
+ARM GAS  /tmp/ccLgws1W.s 			page 8
 
 
  170 0056 0902     		lsl	r1, r1, #8
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccLjOcgB.s 			page 1
  209 0084 0A4B     		ldr	r3, .L14+4
  210 0086 1860     		str	r0, [r3]
  211 0088 05E0     		b	.L9
-ARM GAS  /tmp/ccLjOcgB.s 			page 9
+ARM GAS  /tmp/ccLgws1W.s 			page 9
 
 
  212              	.LVL23:
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccLjOcgB.s 			page 1
  251              	.LFE35:
  253              		.global	PLLMulTable
  254              		.global	APBPrescTable
-ARM GAS  /tmp/ccLjOcgB.s 			page 10
+ARM GAS  /tmp/ccLgws1W.s 			page 10
 
 
  255              		.global	AHBPrescTable
@@ -598,28 +598,28 @@ ARM GAS  /tmp/ccLjOcgB.s 			page 1
  317              		.file 3 "/usr/include/newlib/sys/_stdint.h"
  318              		.file 4 "Drivers/CMSIS/Include/core_cm0plus.h"
  319              		.file 5 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l071xx.h"
-ARM GAS  /tmp/ccLjOcgB.s 			page 11
+ARM GAS  /tmp/ccLgws1W.s 			page 11
 
 
-ARM GAS  /tmp/ccLjOcgB.s 			page 12
+ARM GAS  /tmp/ccLgws1W.s 			page 12
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 system_stm32l0xx.c
-     /tmp/ccLjOcgB.s:18     .text.SystemInit:0000000000000000 $t
-     /tmp/ccLjOcgB.s:23     .text.SystemInit:0000000000000000 SystemInit
-     /tmp/ccLjOcgB.s:74     .text.SystemInit:0000000000000044 $d
-     /tmp/ccLjOcgB.s:85     .text.SystemCoreClockUpdate:0000000000000000 $t
-     /tmp/ccLjOcgB.s:90     .text.SystemCoreClockUpdate:0000000000000000 SystemCoreClockUpdate
-     /tmp/ccLjOcgB.s:243    .text.SystemCoreClockUpdate:00000000000000ac $d
-     /tmp/ccLjOcgB.s:297    .rodata.PLLMulTable:0000000000000000 PLLMulTable
-     /tmp/ccLjOcgB.s:283    .rodata.APBPrescTable:0000000000000000 APBPrescTable
-     /tmp/ccLjOcgB.s:262    .rodata.AHBPrescTable:0000000000000000 AHBPrescTable
-     /tmp/ccLjOcgB.s:312    .data.SystemCoreClock:0000000000000000 SystemCoreClock
-     /tmp/ccLjOcgB.s:258    .rodata.AHBPrescTable:0000000000000000 $d
-     /tmp/ccLjOcgB.s:280    .rodata.APBPrescTable:0000000000000000 $d
-     /tmp/ccLjOcgB.s:293    .rodata.PLLMulTable:0000000000000000 $d
-     /tmp/ccLjOcgB.s:308    .data.SystemCoreClock:0000000000000000 $d
+     /tmp/ccLgws1W.s:18     .text.SystemInit:0000000000000000 $t
+     /tmp/ccLgws1W.s:23     .text.SystemInit:0000000000000000 SystemInit
+     /tmp/ccLgws1W.s:74     .text.SystemInit:0000000000000044 $d
+     /tmp/ccLgws1W.s:85     .text.SystemCoreClockUpdate:0000000000000000 $t
+     /tmp/ccLgws1W.s:90     .text.SystemCoreClockUpdate:0000000000000000 SystemCoreClockUpdate
+     /tmp/ccLgws1W.s:243    .text.SystemCoreClockUpdate:00000000000000ac $d
+     /tmp/ccLgws1W.s:297    .rodata.PLLMulTable:0000000000000000 PLLMulTable
+     /tmp/ccLgws1W.s:283    .rodata.APBPrescTable:0000000000000000 APBPrescTable
+     /tmp/ccLgws1W.s:262    .rodata.AHBPrescTable:0000000000000000 AHBPrescTable
+     /tmp/ccLgws1W.s:312    .data.SystemCoreClock:0000000000000000 SystemCoreClock
+     /tmp/ccLgws1W.s:258    .rodata.AHBPrescTable:0000000000000000 $d
+     /tmp/ccLgws1W.s:280    .rodata.APBPrescTable:0000000000000000 $d
+     /tmp/ccLgws1W.s:293    .rodata.PLLMulTable:0000000000000000 $d
+     /tmp/ccLgws1W.s:308    .data.SystemCoreClock:0000000000000000 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

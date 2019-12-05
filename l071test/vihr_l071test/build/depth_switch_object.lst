@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cctjJIcy.s 			page 1
+ARM GAS  /tmp/ccZxkigQ.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cctjJIcy.s 			page 1
   39 000e 0020     		mov	r0, #0
   40              	.L2:
   41              	.LVL0:
-ARM GAS  /tmp/cctjJIcy.s 			page 2
+ARM GAS  /tmp/ccZxkigQ.s 			page 2
 
 
   18:Src/depth_switch_object.c ****   	}
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cctjJIcy.s 			page 1
   84 001e 022C     		cmp	r4, #2
   85 0020 05D1     		bne	.L7
   32:Src/depth_switch_object.c ****   		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_RESET);
-ARM GAS  /tmp/cctjJIcy.s 			page 3
+ARM GAS  /tmp/ccZxkigQ.s 			page 3
 
 
   86              		.loc 1 32 0
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cctjJIcy.s 			page 1
  129 005c 10BD     		pop	{r4, pc}
  130              	.L11:
  131 005e C046     		.align	2
-ARM GAS  /tmp/cctjJIcy.s 			page 4
+ARM GAS  /tmp/ccZxkigQ.s 			page 4
 
 
  132              	.L10:
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cctjJIcy.s 			page 1
   71:Src/depth_switch_object.c **** 		}
   72:Src/depth_switch_object.c **** 	}
   73:Src/depth_switch_object.c **** 	*/
-ARM GAS  /tmp/cctjJIcy.s 			page 5
+ARM GAS  /tmp/ccZxkigQ.s 			page 5
 
 
   74:Src/depth_switch_object.c **** 
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cctjJIcy.s 			page 1
  204 004e 6168     		ldr	r1, [r4, #4]
  205 0050 0022     		mov	r2, #0
  206 0052 0F4B     		ldr	r3, .L24
-ARM GAS  /tmp/cctjJIcy.s 			page 6
+ARM GAS  /tmp/ccZxkigQ.s 			page 6
 
 
  207 0054 FFF7FEFF 		bl	__aeabi_dadd
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cctjJIcy.s 			page 1
  256              		.align	2
  257              		.global	depth_switch_step_to_test
  258              		.code	16
-ARM GAS  /tmp/cctjJIcy.s 			page 7
+ARM GAS  /tmp/ccZxkigQ.s 			page 7
 
 
  259              		.thumb_func
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cctjJIcy.s 			page 1
  102:Src/depth_switch_object.c **** }
  305              		.loc 1 102 0
  306              		@ sp needed
-ARM GAS  /tmp/cctjJIcy.s 			page 8
+ARM GAS  /tmp/ccZxkigQ.s 			page 8
 
 
  307 0006 7047     		bx	lr
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cctjJIcy.s 			page 1
  116:Src/depth_switch_object.c **** 				depth_switch_step_current_depth(INC_ONE);
  350              		.loc 1 116 0
  351 0020 0020     		mov	r0, #0
-ARM GAS  /tmp/cctjJIcy.s 			page 9
+ARM GAS  /tmp/ccZxkigQ.s 			page 9
 
 
  352 0022 0A49     		ldr	r1, .L38+4
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cctjJIcy.s 			page 1
  398              		.set	.LANCHOR0,. + 0
  401              	order0:
  402 0000 00000000 		.word	0
-ARM GAS  /tmp/cctjJIcy.s 			page 10
+ARM GAS  /tmp/ccZxkigQ.s 			page 10
 
 
  403 0004 00000040 		.word	1073741824
@@ -560,36 +560,36 @@ ARM GAS  /tmp/cctjJIcy.s 			page 1
  423              		.file 4 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l071xx.h"
  424              		.file 5 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_gpio.h"
  425              		.file 6 "Inc/depth_switch_object.h"
-ARM GAS  /tmp/cctjJIcy.s 			page 11
+ARM GAS  /tmp/ccZxkigQ.s 			page 11
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 depth_switch_object.c
-     /tmp/cctjJIcy.s:18     .text.depth_switch_check_gpio:0000000000000000 $t
-     /tmp/cctjJIcy.s:23     .text.depth_switch_check_gpio:0000000000000000 depth_switch_check_gpio
-     /tmp/cctjJIcy.s:49     .text.depth_switch_turn_signal_led:0000000000000000 $t
-     /tmp/cctjJIcy.s:54     .text.depth_switch_turn_signal_led:0000000000000000 depth_switch_turn_signal_led
-     /tmp/cctjJIcy.s:133    .text.depth_switch_turn_signal_led:0000000000000060 $d
-     /tmp/cctjJIcy.s:142    .text.depth_switch_step_current_depth:0000000000000000 $t
-     /tmp/cctjJIcy.s:147    .text.depth_switch_step_current_depth:0000000000000000 depth_switch_step_current_depth
-     /tmp/cctjJIcy.s:246    .text.depth_switch_step_current_depth:0000000000000090 $d
-     /tmp/cctjJIcy.s:256    .text.depth_switch_step_to_test:0000000000000000 $t
-     /tmp/cctjJIcy.s:261    .text.depth_switch_step_to_test:0000000000000000 depth_switch_step_to_test
-     /tmp/cctjJIcy.s:286    .text.depth_switch_step_to_test:0000000000000014 $d
-     /tmp/cctjJIcy.s:292    .text.depth_switch_get_current_depth:0000000000000000 $t
-     /tmp/cctjJIcy.s:297    .text.depth_switch_get_current_depth:0000000000000000 depth_switch_get_current_depth
-     /tmp/cctjJIcy.s:311    .text.depth_switch_get_current_depth:0000000000000008 $d
-     /tmp/cctjJIcy.s:316    .text.depth_switch_action:0000000000000000 $t
-     /tmp/cctjJIcy.s:321    .text.depth_switch_action:0000000000000000 depth_switch_action
-     /tmp/cctjJIcy.s:383    .text.depth_switch_action:0000000000000048 $d
-     /tmp/cctjJIcy.s:390    .bss.order1:0000000000000000 $d
-     /tmp/cctjJIcy.s:394    .bss.order1:0000000000000000 order1
-     /tmp/cctjJIcy.s:397    .data.order0:0000000000000000 $d
-     /tmp/cctjJIcy.s:401    .data.order0:0000000000000000 order0
-     /tmp/cctjJIcy.s:405    .data.current_depth:0000000000000000 $d
-     /tmp/cctjJIcy.s:409    .data.current_depth:0000000000000000 current_depth
-     /tmp/cctjJIcy.s:413    .bss.depth_switch_key_press_period_counter:0000000000000000 $d
-     /tmp/cctjJIcy.s:417    .bss.depth_switch_key_press_period_counter:0000000000000000 depth_switch_key_press_period_counter
+     /tmp/ccZxkigQ.s:18     .text.depth_switch_check_gpio:0000000000000000 $t
+     /tmp/ccZxkigQ.s:23     .text.depth_switch_check_gpio:0000000000000000 depth_switch_check_gpio
+     /tmp/ccZxkigQ.s:49     .text.depth_switch_turn_signal_led:0000000000000000 $t
+     /tmp/ccZxkigQ.s:54     .text.depth_switch_turn_signal_led:0000000000000000 depth_switch_turn_signal_led
+     /tmp/ccZxkigQ.s:133    .text.depth_switch_turn_signal_led:0000000000000060 $d
+     /tmp/ccZxkigQ.s:142    .text.depth_switch_step_current_depth:0000000000000000 $t
+     /tmp/ccZxkigQ.s:147    .text.depth_switch_step_current_depth:0000000000000000 depth_switch_step_current_depth
+     /tmp/ccZxkigQ.s:246    .text.depth_switch_step_current_depth:0000000000000090 $d
+     /tmp/ccZxkigQ.s:256    .text.depth_switch_step_to_test:0000000000000000 $t
+     /tmp/ccZxkigQ.s:261    .text.depth_switch_step_to_test:0000000000000000 depth_switch_step_to_test
+     /tmp/ccZxkigQ.s:286    .text.depth_switch_step_to_test:0000000000000014 $d
+     /tmp/ccZxkigQ.s:292    .text.depth_switch_get_current_depth:0000000000000000 $t
+     /tmp/ccZxkigQ.s:297    .text.depth_switch_get_current_depth:0000000000000000 depth_switch_get_current_depth
+     /tmp/ccZxkigQ.s:311    .text.depth_switch_get_current_depth:0000000000000008 $d
+     /tmp/ccZxkigQ.s:316    .text.depth_switch_action:0000000000000000 $t
+     /tmp/ccZxkigQ.s:321    .text.depth_switch_action:0000000000000000 depth_switch_action
+     /tmp/ccZxkigQ.s:383    .text.depth_switch_action:0000000000000048 $d
+     /tmp/ccZxkigQ.s:390    .bss.order1:0000000000000000 $d
+     /tmp/ccZxkigQ.s:394    .bss.order1:0000000000000000 order1
+     /tmp/ccZxkigQ.s:397    .data.order0:0000000000000000 $d
+     /tmp/ccZxkigQ.s:401    .data.order0:0000000000000000 order0
+     /tmp/ccZxkigQ.s:405    .data.current_depth:0000000000000000 $d
+     /tmp/ccZxkigQ.s:409    .data.current_depth:0000000000000000 current_depth
+     /tmp/ccZxkigQ.s:413    .bss.depth_switch_key_press_period_counter:0000000000000000 $d
+     /tmp/ccZxkigQ.s:417    .bss.depth_switch_key_press_period_counter:0000000000000000 depth_switch_key_press_period_counter
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
